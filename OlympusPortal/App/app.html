@@ -1,0 +1,148 @@
+﻿<div class="header-block">
+    <header>
+        <div class="header-content">
+            <div class="logo-olimp"></div>
+            <div class="header-logo"></div>
+            <div *ngIf="!isAuth" class="registration" (click)="goCome()">Войти</div>
+            <div class="menu">
+                <div class="menu-content">
+                    <ul class="nave nave-tabs">
+                        <li [className]="page == 1 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/">Главная <span class="home"></span></a></li>
+                        <li class="dropdown" [className]="page == 2 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')">
+                            <a data-toggle="dropdown" class="a-navbar" id="nav_home">Турниры <span class="caret"></span> <span class="wreath"></span> </a>
+                            <ul class="dropdown-menu dropped">
+                                <li><a href="/#/current-tournaments">Текущие турниры</a> </li>
+                                <li><a href="/#/new-tournaments">Будущие турниры</a> </li>
+                                <li><a href="/#/past-tournaments">Прошедшие турниры</a> </li>
+                            </ul>
+                        </li>
+                        <li [className]="page == 3 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/comand">Команды<span class="comand"></span></a></li>
+                        <li [className]="page == 4 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/news">Новости<span class="news"></span></a></li>
+                        <li [className]="page == 5 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/foto">Фото<span class="foto-menu"></span></a></li>
+                        <li [className]="page == 6 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/video">Видео<span class="video-menu"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exit-block">
+                <div *ngIf="isAuth" (click)="isExit()" id="exit1" class="exit">{{name}}</div>
+                <div *ngIf="isAuth" (click)="exit()" id="exit2" class="exit-up">Выйти</div>
+                <div *ngIf="isAuth" (click)="goCabinet()" id="cabinet" class="cabinet">Кабинет</div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="transparent-layer" id="transparent-layer">
+    <div class="registration-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}" [ngStyle]="registratioBlockStyle()">
+        <div class="close-button" (click)="close()"></div>
+        <div class="login-button" [ngClass]="selectPage == 1 ? 'active-button' : 'unactive-button'" (click)="userPage(1)">Вход</div>
+        <div class="registration-button" [ngClass]="selectPage == 2 ? 'active-button' : 'unactive-button'" (click)="userPage(2)">Регистрация</div>
+        <div class="reestablish-button" [ngClass]="selectPage == 3 ? 'active-button' : 'unactive-button'" (click)="userPage(3)">Забыли пароль?</div>
+
+
+        <div class="login-content" *ngIf="selectPage == 1">
+            <form class="example-form" autocomplete="on">
+
+                <div class="block center login-block">
+                    <input class="example-full-width login" placeholder="Логин" name="login" [(ngModel)]="user.login" required>
+                    <span [ngClass]="user.login ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                </div>
+
+                <div class="block center login-block">
+                    <input type="password" class="example-full-width passvord" placeholder="Пароль" name="password" [(ngModel)]="user.password" minlength="5" #password="ngModel" required>
+                    <span [ngClass]="user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                </div>
+
+                <button mat-button [ngClass]="(user.login && user.password && user.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)='authorization()'>Войти</button>
+            </form>
+        </div>
+
+        <div class="login-content-registration" *ngIf="selectPage == 2" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+            <form class="example-form" #regisrtation="ngForm" novalidate autocomplete="on">
+
+                <div class="inline-block">
+                    <div class="block">
+                        <input class="reg-input" placeholder="Логин *" name="login" [(ngModel)]="user.login" required>
+                        <span [ngClass]="user.login ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <div class="block">
+                        <input class="reg-input" type="password" placeholder="Пароль *" name="password" [(ngModel)]="user.password" minlength="5" #password="ngModel" required>
+                        <span [ngClass]="user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <div class="block">
+                        <input class="reg-input" type="password" placeholder="Повторите пароль *" name="passwordTo" [(ngModel)]="passwordTo" required>
+                        <span [ngClass]="user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+                </div>
+
+                <div class="inline-block">
+                    <div class="block">
+                        <input class="reg-input" placeholder="Название команды*" name="commandName" [(ngModel)]="user.commandName" required>
+                        <span [ngClass]="user.commandName ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <div class="block">
+                        <input class="reg-input" placeholder="Введите email адресс *" name="email" [(ngModel)]="user.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+                        <span [ngClass]="user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <div class="block">
+                        <input class="reg-input" placeholder="Контактный телефон *" name="mobile" [(ngModel)]="user.mobile" pattern="[0-9]*" #mobile="ngModel" required>
+                        <span [ngClass]="user.mobile && !mobile.hasError('pattern') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+                </div>
+
+                <label class="mandatory">* обязательные поля</label>
+
+                <button mat-button class="button-code-registration" [ngClass]="user.email && !email.hasError('pattern') ? 'button-active' : 'button-no-active'" (click)='singCodeToEmail()'>Выслать код на email</button>
+
+                <input class="form-control label-kode" type="text" placeholder="код *" name="code" [(ngModel)]="user.code" />
+
+                <button mat-button class="button-registration" [ngClass]="!(regisrtation.invalid) && user.code && user.password == passwordTo ? 'button-active' : 'button-no-active'" (click)='registration(regisrtation.invalid, user.code ? true : false)'>Зарегистрировать</button>
+            </form>
+        </div>
+
+        <div class="login-content-registration" *ngIf="selectPage == 3">
+            <form class="example-form" #password="ngForm" novalidate autocomplete="on">
+
+                <div class="inline-block">
+                    <input class="reg-input" placeholder="Логин *" name="login" [(ngModel)]="user.login" required>
+                    <span [ngClass]="user.login ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                </div>
+
+                <div class="inline-block">
+                    <input class="reg-input" placeholder="Введите email адресс *" name="email *" [(ngModel)]="user.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+                    <span [ngClass]="user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                </div>
+
+                <button mat-button class="button-code" [ngClass]="user.email && user.login && !email.hasError('pattern') ? 'button-active' : 'button-no-active'" (click)='singCodeToEmailReplace(password.invalid)'>Выслать код на email</button>
+
+                <input class="form-control label-kode" type="text" placeholder="код *" name="code" [(ngModel)]="user.code" />
+
+                <button mat-button class="button-code" [ngClass]="user.code ? 'button-active' : 'button-no-active'" (click)='confirmTheCode()'>Подтвердить код</button>
+
+                <div class="password-remove">
+                    <div class="inline-block">
+                        <input [disabled]="!isCode" class="reg-input passvord" type="password" placeholder="Новый пароль" name="password" [(ngModel)]="user.password" minlength="5" #password="ngModel">
+                        <span [ngClass]="user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <div class="inline-block">
+                        <input [disabled]="!isCode" class="reg-input passvord" type="password" placeholder="Повторите новый пароль" name="passwordTo" [(ngModel)]="passwordTo">
+                        <span [ngClass]="user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'" class="marcer"></span>
+                    </div>
+
+                    <button [disabled]="!isCode" mat-button class="button-registration" [ngClass]="isCode ? 'button-active' : 'button-no-active'" (click)='replacePassvord()'>Изменить пароль</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+

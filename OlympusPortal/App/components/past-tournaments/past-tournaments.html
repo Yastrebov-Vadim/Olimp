@@ -1,0 +1,55 @@
+﻿<div class="registration-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="login-button" [ngClass]="selectPage == 1 ? 'active-button' : 'unactive-button'" (click)="userPage(1)">Вход</div>
+    <div class="registration-button" [ngClass]="selectPage == 2 ? 'active-button' : 'unactive-button'" (click)="userPage(2)">Регистрация</div>
+    <div class="reestablish-button" [ngClass]="selectPage == 3 ? 'active-button' : 'unactive-button'" (click)="userPage(3)">Забыли пароль?</div>
+
+    <div class="login-content" *ngIf="selectPage == 1">
+        <form class="example-form">
+            <mat-form-field class="example-full-width login">
+                <input matInput placeholder="Логин" name="login" [(ngModel)]="user.login">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width passvord">
+                <input type="password" matInput placeholder="Пароль" name="password" [(ngModel)]="user.password">
+            </mat-form-field>
+
+            <button mat-button class="button-come-in" (click)='Authorization()'>Войти</button>
+        </form>
+    </div>
+
+    <div class="login-content-registration" *ngIf="selectPage == 2">
+        <form class="example-form">
+            <mat-form-field class="example-full-width login">
+                <input matInput placeholder="Введите логин" value="">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width passvord">
+                <input type="password" matInput placeholder="Введите пароль" value="">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width passvord">
+                <input type="password" matInput placeholder="Повторите пароль" value="">
+            </mat-form-field>
+
+            <button mat-button class="button-registration">Зарегистрировать</button>
+        </form>
+    </div>
+
+    <div class="login-content-registration" *ngIf="selectPage == 3">
+        <form class="example-form">
+            <mat-form-field class="example-full-width login">
+                <input matInput placeholder="Введите логин" value="">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width passvord">
+                <input type="password" matInput placeholder="Введите новый пароль" value="">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width passvord">
+                <input type="password" matInput placeholder="Повторите новый пароль" value="">
+            </mat-form-field>
+
+            <button mat-button class="button-registration">Изменить пароль</button>
+        </form>
+    </div>
+</div>

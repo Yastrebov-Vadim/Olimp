@@ -1,0 +1,44 @@
+﻿<div class="command-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+
+    <div class="command-title">
+        <div class="foto-logo-foto">
+        </div>
+        <div class="command-title-text">
+        </div>
+    </div>
+
+
+
+    <div id="foto-content" class="foto-news-content">
+        <div class="news-title-foto">
+        </div>
+        <div id="{{'display'+ i}}" class="foto-display" [style.background-image]="foto[0]"></div>
+        <div class="foto-filter">
+            <div class="filter-title-text">Выберете период времени</div>
+            <form #myForm="ngForm" novalidate>
+                <my-date-picker (ngModelChange)="filterDate($event.formatted)" name="dateTo" [options]="myDatePickerOptions" [(ngModel)]="dateTo" required></my-date-picker>
+                <span>- От</span>
+                <my-date-picker (ngModelChange)="filterDate($event.formatted)" name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="dateEnd" required></my-date-picker>
+                <span>- До</span>
+                <fieldset [disabled]="true">
+                    <!-- ... -->
+                    <my-date-picker (ngModelChange)="filterDate($event.formatted)" name="dateTo" [options]="myDatePickerOptions" [(ngModel)]="dateTo" required></my-date-picker>
+                    <!-- ... -->
+                </fieldset>
+            </form>
+
+            <div class="filter-command">
+                <div class="filter-title-text">Выберете команды</div>
+                <div class="command-filter-button" *ngFor="let command of commandFilter; let i = index">
+                    <mat-slide-toggle (change)="filterCommand(command.id,$event.checked)">{{command.name}}</mat-slide-toggle>
+                </div>
+             
+
+            </div>
+
+        </div>
+
+        <div class="foto-content">
+            <div *ngFor="let url of foto" class="foto-button" (click)="showImg(url, i)" [style.background-image]="url"></div>
+        </div>
+    </div>

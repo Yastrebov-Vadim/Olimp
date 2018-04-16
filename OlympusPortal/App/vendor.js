@@ -1,0 +1,27 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("@angular/platform-browser");
+require("@angular/platform-browser-dynamic");
+require("@angular/core");
+require("@angular/common");
+require("@angular/http");
+require("@angular/router");
+require("@angular/animations");
+require("@angular/animations/browser");
+require("@angular/common");
+require("@angular/compiler");
+require("@angular/material");
+require("@angular/platform-browser/animations");
+require("@angular/forms");
+require("@angular/upgrade");
+require("reflect-metadata");
+require("ng2-toastr");
+require("angular-in-memory-web-api");
+require("shim");
+require("hammerjs");
+require("rxjs");
+require('ng2-toastr/bundles/ng2-toastr.min.css');
+require('@angular/material/prebuilt-themes/indigo-pink.css');
+require('angular2-busy/build/style/busy.css');
+require('videogular2/fonts/videogular.css');
+//# sourceMappingURL=vendor.js.map

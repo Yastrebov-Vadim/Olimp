@@ -1,0 +1,94 @@
+﻿<div class="home-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="about-portal">
+        <div class="slade-content">
+            <ul id="slides">
+                <li class="slide showing"></li>
+                <li class="slide"></li>
+                <li class="slide"></li>
+                <li class="slide"></li>
+                <li class="slide"></li>
+            </ul>
+        </div>
+        <div class="info-portal">
+            <h5>"Спортивное общество "Олимп"</h5>
+            <p>
+                Является основанным на членстве Саратовским региональным общественным объединением, созданным с целью развития, пропаганды и популяризации спорта, физической культуры в Саратове и Саратовской области. Деятельность Организации основывается на принципах добровольности, равноправия его членов, самоуправления, законности и гласности.
+            </p>
+            Основные задачи общества:
+            <hr>
+            <ul class="list-1 indent-left6 p5-1">
+                <li>Организация и проведение спортивно-массовых мероприятий</li>
+                <li>Привлечение населения к занятиям спортом и физической культурой</li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="new-news" *ngIf="newss">
+        Последние новости
+    </div>
+    <div class="news-home" *ngIf="newss">
+        <div *ngFor="let news of newss; let i = index" class="news-block">
+            <div class="news-content">
+                <div *ngIf="news.type == 1" class="news-text-block">
+                    <div class="news-foto" [style.background-image]='news.foto'></div>
+                    <div class="text-news-content">
+                        <div class="news-title">
+                            {{news.title}}
+                        </div>
+                        <div class="news-date">
+                            {{news.date}}
+                        </div>
+                        <div class="news-text">
+                            {{news.text}}
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="news.type == 2" class="news-video-block">
+                    <div class="video-news-content">
+                        <div class="news-date-foto">
+                            {{news.date}}
+                        </div>
+                        <div class="news-title-foto">
+                            {{news.title}}
+                        </div>
+                        <div class="news-video">
+                            <vg-player>
+                                <vg-controls>
+                                    <vg-play-pause></vg-play-pause>
+                                    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                                    <vg-scrub-bar>
+                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                                    </vg-scrub-bar>
+                                    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                                    <vg-mute></vg-mute>
+                                    <vg-volume></vg-volume>
+                                    <vg-fullscreen></vg-fullscreen>
+                                </vg-controls>
+                                <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin="">
+                                    <source src='{{news.urlVideo}}' type="video/mp4">
+                                </video>
+                            </vg-player>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="news.type == 3" class="news-foto-block">
+                    <div id="foto-content" class="foto-news-content">
+                        <div class="news-date-foto">
+                            {{news.date}}
+                        </div>
+                        <div class="news-title-foto">
+                            {{news.title}}
+                        </div>
+                        <div id="{{'display'+ i}}" class="news-foto-display" [style.background-image]="news.urlFoto[0]"></div>
+                        <div class="foto-button-content">
+                            <div *ngFor="let url of news.urlFoto" class="news-foto-button" (click)="showImg(url, i)" [style.background-image]="url"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
