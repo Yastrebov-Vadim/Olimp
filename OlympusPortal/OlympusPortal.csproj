@@ -269,7 +269,6 @@
     <Content Include="font\Videogular.json" />
     <Content Include="font\videogular.ttf" />
     <Content Include="font\videogular.woff" />
-    <Fakes Include="Fakes\Olimp.DAL.fakes" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -338,9 +337,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olimp.DAL\Olimp.DAL.csproj">
-      <Project>{34f4519c-aef6-464b-bd05-5f0ba3580f43}</Project>
-      <Name>Olimp.DAL</Name>
+    <ProjectReference Include="..\Olimp.BLL\Olimp.BLL.csproj">
+      <Project>{1e675895-4498-4fd1-8557-77c8c19643c4}</Project>
+      <Name>Olimp.BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

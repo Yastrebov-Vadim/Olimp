@@ -27,7 +27,7 @@ var App = (function () {
         this.pageService = pageService;
         this.emailService = emailService;
         this.router = router;
-        this.ex = false;
+        this.ex = true;
         this.selectPage = 1;
         this.isValid = false;
         this.isCode = false;
@@ -62,7 +62,6 @@ var App = (function () {
         var self = this;
         var buttom = document.getElementById("exit2");
         var cabinet = document.getElementById("cabinet");
-        self.ex = !self.ex;
         if (self.ex) {
             buttom.style.marginLeft = document.getElementById("exit1").clientWidth - 30 + "px";
             cabinet.style.marginLeft = (30 - cabinet.clientWidth) + "px";
@@ -71,6 +70,7 @@ var App = (function () {
             buttom.style.marginLeft = "0px";
             cabinet.style.marginLeft = "0px";
         }
+        self.ex = !self.ex;
     };
     App.prototype.userPage = function (page) {
         var self = this;

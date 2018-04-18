@@ -1,6 +1,6 @@
-﻿using Olimp.DAL.Models;
-using Olimp.DAL.Models.Response;
-using Olimp.DAL.Operations;
+﻿using Olimp.BLL.Models;
+using Olimp.BLL.Models.Response;
+using Olimp.BLL.Operations;
 using System;
 using System.Web.Http;
 
@@ -10,18 +10,18 @@ namespace OlympusPortal.Controllers.API
     {
         [Authorize]
         [HttpPost]
-        public GetAccountInfoResponse GetAccountInfo() => GetAccountInfoDAL.Execute(Guid.Parse(User.Identity.Name));
+        public GetAccountInfoResponse GetAccountInfo() => GetAccountInfoBLL.Execute(Guid.Parse(User.Identity.Name));
 
         [Authorize]
         [HttpPost]
-        public ElementResponse AddPlayer(PlayerRequest request) => AddPlayerDAL.Execute(Guid.Parse(User.Identity.Name), request);
+        public ElementResponse AddPlayer(PlayerRequest request) => AddPlayerBLL.Execute(Guid.Parse(User.Identity.Name), request);
 
         [Authorize]
         [HttpPost]
-        public void DellPlayer(ElementRequest request) => DellPlayerDAL.Execute(Guid.Parse(request.Txt));
+        public void DellPlayer(ElementRequest request) => DellPlayerBLL.Execute(Guid.Parse(request.Txt));
 
         [Authorize]
         [HttpPost]
-        public void EditAccountInfo(EditAccountRequest request) => EditAccountInfoDAL.Execute(Guid.Parse(User.Identity.Name), request);
+        public void EditAccountInfo(EditAccountRequest request) => EditAccountInfoBLL.Execute(Guid.Parse(User.Identity.Name), request);
     }
 }

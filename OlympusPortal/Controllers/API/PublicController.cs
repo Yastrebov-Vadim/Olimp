@@ -1,5 +1,5 @@
-﻿using Olimp.DAL.Models.Response;
-using Olimp.DAL.Operations;
+﻿using Olimp.BLL.Models.Response;
+using Olimp.BLL.Operations;
 using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
@@ -7,9 +7,9 @@ namespace OlympusPortal.Controllers.API
     public class PublicController : ApiController
     {
         [HttpPost]
-        public GetCommandsResponse GetCommand() => GetCommandDAL.Execute();
+        public GetCommandsResponse GetCommand() => GetCommandBLL.Execute();
 
         [HttpPost]
-        public GetCommandFilterResponse GetCommandFilter() => GetCommandFilterDAL.Execute();
+        public GetCommandFilterResponse GetCommandFilter() => GetCommandFilterBLL.Execute();
     }
 }

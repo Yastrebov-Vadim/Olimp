@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1B3AFEB-6B40-46E6-85B9-EE6420980C6F}</ProjectGuid>
+    <ProjectGuid>{1E675895-4498-4FD1-8557-77C8C19643C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Olimp.BLL</RootNamespace>
@@ -30,17 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,36 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assest\DbHelper.cs" />
-    <Compile Include="Assest\EmailHelper.cs" />
-    <Compile Include="Assest\ImageHelper.cs" />
-    <Compile Include="DTO\command.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\email_code.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\news.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\player.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\CommandFilter.cs" />
     <Compile Include="Models\NewsBriefly.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Request\AuthorizationRequest.cs" />
@@ -87,35 +50,34 @@
     <Compile Include="Models\Request\PlayerRequest.cs" />
     <Compile Include="Models\Request\RegistrationRequest.cs" />
     <Compile Include="Models\Request\SingCodeToEmailRequest.cs" />
+    <Compile Include="Models\Response\ElementResponse.cs" />
+    <Compile Include="Models\Response\GetAccountInfoResponse.cs" />
+    <Compile Include="Models\Response\GetAccountResponse.cs" />
+    <Compile Include="Models\Response\GetCommandFilterResponse.cs" />
+    <Compile Include="Models\Response\GetCommandsResponse.cs" />
+    <Compile Include="Models\Response\GetNewsBrieflyResponse .cs" />
+    <Compile Include="Operations\AddPlayerBLL.cs" />
+    <Compile Include="Operations\CheckImageAvatarBLL.cs" />
+    <Compile Include="Operations\CheckKodeBLL.cs" />
+    <Compile Include="Operations\DellPlayerBLL.cs" />
+    <Compile Include="Operations\EditAccountInfoBLL.cs" />
+    <Compile Include="Operations\GetAccountBLL.cs" />
+    <Compile Include="Operations\GetAccountInfoBLL.cs" />
+    <Compile Include="Operations\GetCommandBLL.cs" />
+    <Compile Include="Operations\GetCommandFilterBLL.cs" />
+    <Compile Include="Operations\GetImageAvatarBLL.cs" />
+    <Compile Include="Operations\LoginBLL.cs" />
+    <Compile Include="Operations\RegistrationBLL.cs" />
+    <Compile Include="Operations\ReplacePassvordBLL.cs" />
+    <Compile Include="Operations\SendEmailBLL.cs" />
+    <Compile Include="Operations\SingCodeToEmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
-    <EntityDeploy Include="DTO\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DTO\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DTO\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DTO\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
+    <ProjectReference Include="..\Olimp.DAL\Olimp.DAL.csproj">
+      <Project>{c65d1f62-9bb6-4a8d-95b5-7f2760af7a8a}</Project>
+      <Name>Olimp.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

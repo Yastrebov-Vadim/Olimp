@@ -1,5 +1,5 @@
-﻿using Olimp.DAL.Models.Response;
-using Olimp.DAL.Operations;
+﻿using Olimp.BLL.Models.Response;
+using Olimp.BLL.Operations;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -36,14 +36,14 @@ namespace OlympusPortal.Controllers.API
 
             byte[] fileArray = await file.ReadAsByteArrayAsync();
 
-            CheckImageAvatarDAL.Execute(idAccount, root, urlBd);
+            CheckImageAvatarBLL.Execute(idAccount, root, urlBd);
 
             using (System.IO.FileStream fs = new System.IO.FileStream(urlDir, System.IO.FileMode.Create))
             {
                 await fs.WriteAsync(fileArray, 0, fileArray.Length);
             }
 
-            GetImageAvatarDAL.Execute(idAccount, urlBd);
+            GetImageAvatarBLL.Execute(idAccount, urlBd);
 
             return new ElementResponse(urlBd);
         }

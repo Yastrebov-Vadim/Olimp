@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Olimp.DAL.Models
+﻿namespace Olimp.DAL.Models
 {
     public class Player
     {
