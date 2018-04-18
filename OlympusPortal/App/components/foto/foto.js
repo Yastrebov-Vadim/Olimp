@@ -20,13 +20,25 @@ var Foto = (function () {
         this.home = home;
         this.pageService = pageService;
         this.foto = new Array();
+        this.dateTo = null;
         this.myDatePickerOptions = {
             dateFormat: 'dd.mm.yyyy'
         };
         var self = this;
         self.getCommandFilter();
+        self.display = 'url(./content/img/slade_home/slade1.jpg)';
         self.foto.push('url(./content/img/slade_home/slade1.jpg)');
         self.foto.push('url(./content/img/slade_home/slade2.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade3.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade4.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade5.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade1.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade2.jpg)');
+        self.foto.push('url(./content/img/ava.png)');
+        self.foto.push('url(./content/img/slade_home/slade4.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade5.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade1.jpg)');
+        self.foto.push('url(./content/img/background3.jpg)');
         self.foto.push('url(./content/img/slade_home/slade3.jpg)');
         self.foto.push('url(./content/img/slade_home/slade4.jpg)');
         self.foto.push('url(./content/img/slade_home/slade5.jpg)');
@@ -46,17 +58,25 @@ var Foto = (function () {
             self.commandFilter = response.commandFilter;
         });
     };
-    Foto.prototype.showImg = function (url, index) {
+    Foto.prototype.showImg = function (url) {
         var self = this;
-        document.getElementById("display" + index).style.backgroundImage = url;
+        self.display = url;
     };
     Foto.prototype.filterCommand = function (id, checked) {
         var self = this;
         console.dir(checked);
+        var D = self.dateTo;
     };
-    Foto.prototype.filterDate = function (date) {
+    Foto.prototype.filterDate = function (event, type) {
         var self = this;
-        console.dir(date);
+        switch (type) {
+            case 1:
+                console.dir("1- " + event);
+                break;
+            case 2:
+                console.dir("2- " + event);
+                break;
+        }
     };
     Foto = __decorate([
         core_1.Component({

@@ -1,6 +1,5 @@
-﻿using OlympusPortal.Assest;
-using OlympusPortal.Models;
-using OlympusPortal.Models.Response;
+﻿using Olimp.DAL.Models.Response;
+using Olimp.DAL.Operations;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,9 +10,6 @@ namespace OlympusPortal.Controllers.API
 {
     public class ImageController : ApiController
     {
-        DbHelper DbHelper = new DbHelper();
-        ImageHelper ImageHelper = new ImageHelper();
-
         [Authorize]
         [HttpPost]
         public async Task<ElementResponse> GetImageAvatar()
@@ -40,14 +36,14 @@ namespace OlympusPortal.Controllers.API
 
             byte[] fileArray = await file.ReadAsByteArrayAsync();
 
-            ImageHelper.CheckImageAvatar(idAccount, root, urlBd);
+            CheckImageAvatarDAL.Execute(idAccount, root, urlBd);
 
             using (System.IO.FileStream fs = new System.IO.FileStream(urlDir, System.IO.FileMode.Create))
             {
                 await fs.WriteAsync(fileArray, 0, fileArray.Length);
             }
 
-            DbHelper.GetImageAvatar(idAccount, urlBd);
+            GetImageAvatarDAL.Execute(idAccount, urlBd);
 
             return new ElementResponse(urlBd);
         }

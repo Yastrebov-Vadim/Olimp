@@ -60,6 +60,12 @@ export class News implements OnInit {
         self.pageService.recipeSelected.emit(4);
     }
 
+    public showImg(url: string, index: number) {
+        var self = this;
+
+        document.getElementById("display" + index).style.backgroundImage = url;
+    }
+
     public getNews() {
         var self = this;
         //self.busy = self.newsService.GetNewsBriefly().then(response => {

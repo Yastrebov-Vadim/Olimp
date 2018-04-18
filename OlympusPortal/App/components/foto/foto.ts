@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
-import { IMyDpOptions } from 'mydatepicker';
+import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
 import { HomeService } from '../../services/public';
 import { PageService } from '../../services/page';
@@ -17,6 +17,8 @@ export class Foto implements OnInit {
     public busy: Promise<any>;
     public commandFilter: CommandFilter[];
     public foto = new Array<string>();
+    public display: string;
+    public dateTo: Date = null;
 
     public myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd.mm.yyyy'
@@ -31,9 +33,19 @@ export class Foto implements OnInit {
 
         self.getCommandFilter();
 
-
+        self.display = 'url(./content/img/slade_home/slade1.jpg)';
         self.foto.push('url(./content/img/slade_home/slade1.jpg)');
         self.foto.push('url(./content/img/slade_home/slade2.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade3.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade4.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade5.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade1.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade2.jpg)');
+        self.foto.push('url(./content/img/ava.png)');
+        self.foto.push('url(./content/img/slade_home/slade4.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade5.jpg)');
+        self.foto.push('url(./content/img/slade_home/slade1.jpg)');
+        self.foto.push('url(./content/img/background3.jpg)');
         self.foto.push('url(./content/img/slade_home/slade3.jpg)');
         self.foto.push('url(./content/img/slade_home/slade4.jpg)');
         self.foto.push('url(./content/img/slade_home/slade5.jpg)');
@@ -58,21 +70,29 @@ export class Foto implements OnInit {
         });
     }
 
-    public showImg(url: string, index: number) {
+    public showImg(url: string) {
         var self = this;
 
-        document.getElementById("display" + index).style.backgroundImage = url;
+        self.display = url;
     }
 
     public filterCommand(id, checked) {
         var self = this;
 
         console.dir(checked);
+        var D = self.dateTo;
     }
 
-    public filterDate(date) {
+    public filterDate(event: IMyDateModel, type) {
         var self = this;
 
-        console.dir(date);
+        switch (type) {
+            case 1: 
+                console.dir("1- " + event);
+                break;
+            case 2: 
+                console.dir("2- " + event);
+                break;
+        }
     }
 }

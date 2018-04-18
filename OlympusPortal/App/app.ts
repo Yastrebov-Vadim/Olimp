@@ -23,7 +23,7 @@ export class App implements OnInit {
     public busy: Promise<any>;
     public name: string;
     public isAuth: boolean;
-    public ex: boolean = false;
+    public ex: boolean = true;
     public page: number;
     public selectPage: number = 1;
     public isValid: boolean = false;
@@ -77,9 +77,7 @@ export class App implements OnInit {
         var self = this;
         var buttom = document.getElementById("exit2");
         var cabinet = document.getElementById("cabinet");
-
-        self.ex = !self.ex;
-
+        
         if (self.ex) {
             buttom.style.marginLeft = document.getElementById("exit1").clientWidth - 30 + "px";
             cabinet.style.marginLeft = (30 - cabinet.clientWidth) + "px";
@@ -88,6 +86,8 @@ export class App implements OnInit {
             buttom.style.marginLeft = "0px";
             cabinet.style.marginLeft = "0px";
         }
+
+        self.ex = !self.ex;
     }
 
     public userPage(page) {

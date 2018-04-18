@@ -25,6 +25,7 @@ import { PastTournaments } from './components/past-tournaments/past-tournaments'
 import { Cabinet } from './components/cabinet/cabinet';
 import { News } from './components/news/news';
 import { Foto } from './components/foto/foto';
+import { VideoCommand } from './components/video/video-command';
 
 import { TransportService } from './services/transport';
 import { HomeService } from './services/public';
@@ -44,7 +45,8 @@ import { ImageService } from './services/image';
         PastTournaments,
         Cabinet,
         News,
-        Foto
+        Foto,
+        VideoCommand
     ],
     imports: [
         BrowserModule,

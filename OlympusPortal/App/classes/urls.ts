@@ -11,7 +11,7 @@
 
     readonly codToEmail = 'api/Email/SingCodeToEmail';
 
-    readonly getAccount = 'api/Account/GetAccount';
+    readonly getAccount = 'api/Account/GetAccountInfo';
     readonly addPlayer = 'api/Account/AddPlayer';
     readonly dellPlayer = 'api/Account/DellPlayer';
     readonly editAccountInfo = 'api/Account/EditAccountInfo';

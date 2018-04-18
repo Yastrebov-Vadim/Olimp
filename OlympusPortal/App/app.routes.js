@@ -9,6 +9,7 @@ var past_tournaments_1 = require("./components/past-tournaments/past-tournaments
 var cabinet_1 = require("./components/cabinet/cabinet");
 var news_1 = require("./components/news/news");
 var foto_1 = require("./components/foto/foto");
+var video_command_1 = require("./components/video/video-command");
 exports.AppRoutes = [
     { path: common_1.Common.RoutePaths.Home, component: home_1.Home },
     { path: common_1.Common.RoutePaths.Comand, component: comand_1.Comand },
@@ -18,5 +19,6 @@ exports.AppRoutes = [
     { path: common_1.Common.RoutePaths.Cabinet, component: cabinet_1.Cabinet },
     { path: common_1.Common.RoutePaths.News, component: news_1.News },
     { path: common_1.Common.RoutePaths.Foto, component: foto_1.Foto },
+    { path: common_1.Common.RoutePaths.Video, component: video_command_1.VideoCommand }
 ];
 //# sourceMappingURL=app.routes.js.map

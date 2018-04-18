@@ -26,6 +26,7 @@ export module Common {
         public static Cabinet = "cabinet";
         public static News = "news";
         public static Foto = "foto";
+        public static Video = "video";
 
         public static PlanOpp = "plan/:key/:bt/:userId/:oppId";
         public static Checkerboard = "checkerboard/:key/:type/:bt";

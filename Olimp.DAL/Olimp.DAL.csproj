@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{34F4519C-AEF6-464B-BD05-5F0BA3580F43}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Olimp.DAL</RootNamespace>
+    <AssemblyName>Olimp.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL.cs" />
+    <Compile Include="Models\CommandFilter.cs" />
+    <Compile Include="Models\Response\GetCommandFilterResponse.cs" />
+    <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\Response\GetCommandsResponse.cs" />
+    <Compile Include="Models\NewsBriefly.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Request\AuthorizationRequest.cs" />
+    <Compile Include="Models\Request\EditAccountRequest.cs" />
+    <Compile Include="Models\Request\ElementRequest.cs" />
+    <Compile Include="Models\Request\PlayerRequest.cs" />
+    <Compile Include="Models\Request\RegistrationRequest.cs" />
+    <Compile Include="Models\Request\SingCodeToEmailRequest.cs" />
+    <Compile Include="Models\Response\ElementResponse.cs" />
+    <Compile Include="Models\Response\GetAccountInfoResponse.cs" />
+    <Compile Include="Models\Response\GetAccountResponse.cs" />
+    <Compile Include="Models\Response\GetNewsBrieflyResponse .cs" />
+    <Compile Include="Operations\AddPlayerDAL.cs" />
+    <Compile Include="Operations\CheckKodeDAL.cs" />
+    <Compile Include="Operations\CheckImageAvatarDAL.cs" />
+    <Compile Include="Operations\GetCommandFilterDAL.cs" />
+    <Compile Include="Operations\GetCommandDAL.cs" />
+    <Compile Include="Operations\GetImageAvatarDAL.cs" />
+    <Compile Include="Operations\SingCodeToEmailDAL.cs" />
+    <Compile Include="Operations\ReplacePassvordDAL.cs" />
+    <Compile Include="Operations\RegistrationDAL.cs" />
+    <Compile Include="Operations\GetAccountDAL.cs" />
+    <Compile Include="Operations\LoginDAL.cs" />
+    <Compile Include="Operations\EditAccountInfoDAL.cs" />
+    <Compile Include="Operations\DellPlayerDAL.cs" />
+    <Compile Include="Operations\GetAccountInfoDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Olimp.BLL\Olimp.BLL.csproj">
+      <Project>{d1b3afeb-6b40-46e6-85b9-ee6420980c6f}</Project>
+      <Name>Olimp.BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

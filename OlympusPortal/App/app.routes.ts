@@ -10,6 +10,7 @@ import { PastTournaments } from './components/past-tournaments/past-tournaments'
 import { Cabinet } from './components/cabinet/cabinet';
 import { News } from './components/news/news';
 import { Foto } from './components/foto/foto';
+import { VideoCommand } from './components/video/video-command';
 
 export const AppRoutes: Routes = [
     { path: Common.RoutePaths.Home, component: Home },
@@ -20,4 +21,5 @@ export const AppRoutes: Routes = [
     { path: Common.RoutePaths.Cabinet, component: Cabinet },
     { path: Common.RoutePaths.News, component: News },
     { path: Common.RoutePaths.Foto, component: Foto },
+    { path: Common.RoutePaths.Video, component: VideoCommand }
 ];

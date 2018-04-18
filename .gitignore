@@ -1,1 +1,5 @@
 node_modules
+/Olimp.BLL/bin/Debug
+/Olimp.BLL/obj/Debug
+/Olimp.DAL/bin/Debug
+/Olimp.DAL/obj/Debug

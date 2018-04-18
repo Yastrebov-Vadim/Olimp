@@ -118,4 +118,11 @@ C:\Ястребов\OlympusPortal\OlympusPortal\bin\EntityFramework.SqlServer.dl
 C:\Ястребов\OlympusPortal\OlympusPortal\bin\EntityFramework.xml
 C:\Ястребов\OlympusPortal\OlympusPortal\bin\EntityFramework.SqlServer.xml
 C:\Ястребов\OlympusPortal\OlympusPortal\bin\ru\EntityFramework.resources.dll
-C:\Ястребов\OlympusPortal\OlympusPortal\obj\Debug\OlympusPortal.csprojResolveAssemblyReference.cache
+C:\Ястребов\OlympusPortal\OlympusPortal\obj\Debug\OlympusPortal.csprojFakesResolveAssemblyReference.cache
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Olimp.DAL.dll
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Olimp.BLL.dll
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Olimp.DAL.pdb
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Olimp.BLL.pdb
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\Olimp.BLL.dll.config
+C:\Ястребов\OlympusPortal\OlympusPortal\bin\ru\Microsoft.QualityTools.Testing.Fakes.resources.dll

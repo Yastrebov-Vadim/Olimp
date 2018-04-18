@@ -51,6 +51,10 @@ var News = (function () {
         var self = this;
         self.pageService.recipeSelected.emit(4);
     };
+    News.prototype.showImg = function (url, index) {
+        var self = this;
+        document.getElementById("display" + index).style.backgroundImage = url;
+    };
     News.prototype.getNews = function () {
         var self = this;
     };

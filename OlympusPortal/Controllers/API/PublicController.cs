@@ -1,23 +1,15 @@
-﻿using OlympusPortal.Assest;
-using OlympusPortal.Models.Response;
+﻿using Olimp.DAL.Models.Response;
+using Olimp.DAL.Operations;
 using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
 {
     public class PublicController : ApiController
     {
-        DbHelper DbHelper = new DbHelper();
-        
         [HttpPost]
-        public GetCommandsResponse GetCommand()
-        {
-            return DbHelper.GetCommand();
-        }
+        public GetCommandsResponse GetCommand() => GetCommandDAL.Execute();
 
         [HttpPost]
-        public GetCommandFilterResponse GetCommandFilter()
-        {
-            return DbHelper.GetCommandFilter();
-        }
+        public GetCommandFilterResponse GetCommandFilter() => GetCommandFilterDAL.Execute();
     }
 }

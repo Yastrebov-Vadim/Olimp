@@ -25,6 +25,7 @@ var Common;
         RoutePaths.Cabinet = "cabinet";
         RoutePaths.News = "news";
         RoutePaths.Foto = "foto";
+        RoutePaths.Video = "video";
         RoutePaths.PlanOpp = "plan/:key/:bt/:userId/:oppId";
         RoutePaths.Checkerboard = "checkerboard/:key/:type/:bt";
         RoutePaths.CheckerboardLead = "checkerboard/:key/:type/:bt/:leadId";

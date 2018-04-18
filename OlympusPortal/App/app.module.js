@@ -30,6 +30,7 @@ var past_tournaments_1 = require("./components/past-tournaments/past-tournaments
 var cabinet_1 = require("./components/cabinet/cabinet");
 var news_1 = require("./components/news/news");
 var foto_1 = require("./components/foto/foto");
+var video_command_1 = require("./components/video/video-command");
 var transport_1 = require("./services/transport");
 var public_1 = require("./services/public");
 var authentication_1 = require("./services/authentication");
@@ -51,7 +52,8 @@ var AppModule = (function () {
                 past_tournaments_1.PastTournaments,
                 cabinet_1.Cabinet,
                 news_1.News,
-                foto_1.Foto
+                foto_1.Foto,
+                video_command_1.VideoCommand
             ],
             imports: [
                 platform_browser_1.BrowserModule,

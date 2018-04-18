@@ -58,6 +58,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -164,61 +167,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Assest\ImageHelper.cs" />
-    <Compile Include="Assest\EmailHelper.cs" />
-    <Compile Include="Controllers\API\PublicController.cs" />
-    <Compile Include="Controllers\API\ImageController.cs" />
     <Compile Include="Controllers\API\AccountController.cs" />
-    <Compile Include="Controllers\API\EmailController.cs" />
     <Compile Include="Controllers\API\AuthorizeController.cs" />
+    <Compile Include="Controllers\API\EmailController.cs" />
+    <Compile Include="Controllers\API\ImageController.cs" />
+    <Compile Include="Controllers\API\PublicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DateModel\command.cs">
-      <DependentUpon>Olimp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\email_code.cs">
-      <DependentUpon>Olimp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\news.cs">
-      <DependentUpon>Olimp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\Olimp.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Olimp.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\Olimp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Olimp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\Olimp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Olimp.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DateModel\player.cs">
-      <DependentUpon>Olimp.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommandFilter.cs" />
-    <Compile Include="Models\Command.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\NewsBriefly.cs" />
-    <Compile Include="Models\Request\EditAccountRequest.cs" />
-    <Compile Include="Models\Request\ElementRequest.cs" />
-    <Compile Include="Models\Request\PlayerRequest.cs" />
-    <Compile Include="Models\Request\RegistrationRequest.cs" />
-    <Compile Include="Models\Request\SingCodeToEmailRequest.cs" />
-    <Compile Include="Models\Request\AuthorizationRequest.cs" />
-    <Compile Include="Models\Response\GetCommandFilterResponse.cs" />
-    <Compile Include="Models\Response\GetCommandsResponse.cs" />
-    <Compile Include="Models\Response\GetAccountInfoResponse.cs" />
-    <Compile Include="Models\Response\GetNewsBrieflyResponse .cs" />
-    <Compile Include="Models\Response\GetAccountResponse.cs" />
-    <Compile Include="Assest\DbHelper.cs" />
-    <Compile Include="Models\Response\ElementResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +188,7 @@
     <TypeScriptCompile Include="App\classes\response\accountResponse.ts" />
     <Content Include="App\components\cabinet\cabinet.html" />
     <Content Include="App\components\comand\comand.html" />
+    <Content Include="App\components\video\video-command.html" />
     <Content Include="App\components\foto\foto.html" />
     <Content Include="App\components\news\news.html" />
     <Content Include="App\components\past-tournaments\past-tournaments.html" />
@@ -238,10 +196,12 @@
     <Content Include="App\components\public\home.html" />
     <Content Include="App\components\new-tournaments\new-tournaments.html" />
     <TypeScriptCompile Include="App\components\cabinet\cabinet.ts" />
+    <TypeScriptCompile Include="App\components\video\video-command.ts" />
     <TypeScriptCompile Include="App\components\foto\foto.ts" />
     <TypeScriptCompile Include="App\components\news\news.ts" />
     <TypeScriptCompile Include="App\components\past-tournaments\past-tournaments.ts" />
     <TypeScriptCompile Include="App\components\current-tournaments\current-tournaments.ts" />
+    <TypeScriptCompile Include="App\model\video.ts" />
     <TypeScriptCompile Include="App\model\command.ts" />
     <TypeScriptCompile Include="App\model\common.ts" />
     <TypeScriptCompile Include="App\model\account.ts" />
@@ -283,16 +243,6 @@
     <Content Include="Content\img\video.png" />
     <Content Include="Content\img\wreath.png" />
     <Content Include="Content\video\videogular.mp4" />
-    <Content Include="DateModel\Olimp.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Olimp.Context.cs</LastGenOutput>
-      <DependentUpon>Olimp.edmx</DependentUpon>
-    </Content>
-    <Content Include="DateModel\Olimp.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Olimp.edmx</DependentUpon>
-      <LastGenOutput>Olimp.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -319,14 +269,7 @@
     <Content Include="font\Videogular.json" />
     <Content Include="font\videogular.ttf" />
     <Content Include="font\videogular.woff" />
-    <EntityDeploy Include="DateModel\Olimp.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Olimp.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DateModel\Olimp.edmx.diagram">
-      <DependentUpon>Olimp.edmx</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
+    <Fakes Include="Fakes\Olimp.DAL.fakes" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -393,6 +336,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Olimp.DAL\Olimp.DAL.csproj">
+      <Project>{34f4519c-aef6-464b-bd05-5f0ba3580f43}</Project>
+      <Name>Olimp.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
