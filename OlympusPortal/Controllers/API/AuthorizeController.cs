@@ -1,23 +1,30 @@
-﻿using Olimp.BLL.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using Olimp.BLL.Models;
 using Olimp.BLL.Models.Response;
 using Olimp.BLL.Operations;
 using System;
+using System.Web;
 using System.Web.Http;
-using System.Web.Security;
 
 namespace OlympusPortal.Controllers.API
 {
-    public class AuthorizeController : ApiController
+    public class AuthorizeController : ApiBaseController
     {
+        private IAuthenticationManager AuthenticationManager
+        {
+            get { return HttpContext.Current.GetOwinContext().Authentication; }
+        }
+
         [HttpPost]
         public string Authorization(AuthorizationRequest request)
         {
             var account = LoginBLL.Execute(request);
-            FormsAuthentication.SetAuthCookie(account.Item1, true);
+
+            SignIn(account.Item1, account.Item2, Role.Admin);
 
             return account.Item2;
         }
-
 
         [HttpPost]
         public GetAccountResponse GetAccount()
@@ -26,7 +33,7 @@ namespace OlympusPortal.Controllers.API
                 return new GetAccountResponse
                 {
                     IsAuth = true,
-                    Login = GetAccountBLL.Execute(Guid.Parse(User.Identity.Name))
+                    Login = GetAccountName()
                 };
 
             else
@@ -38,10 +45,14 @@ namespace OlympusPortal.Controllers.API
         }
 
         [HttpPost]
-        public void Exit() => FormsAuthentication.SignOut();
+        public void Exit() => SignOut();
 
         [HttpPost]
-        public void Registration(RegistrationRequest request) => FormsAuthentication.SetAuthCookie(RegistrationBLL.Execute(request), false);
+        public void Registration(RegistrationRequest request)
+        {
+            var account = RegistrationBLL.Execute(request);
+            SignIn(account.Item1, account.Item2, Role.User);
+        }
 
         [HttpPost]
         public void ConfirmTheCode(RegistrationRequest request) => CheckKodeBLL.Execute(request);

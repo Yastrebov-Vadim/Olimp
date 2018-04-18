@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
 {
-    public class ImageController : ApiController
+    public class ImageController : ApiBaseController
     {
         [Authorize]
         [HttpPost]

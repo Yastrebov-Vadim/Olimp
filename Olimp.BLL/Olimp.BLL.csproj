@@ -43,6 +43,7 @@
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\CommandFilter.cs" />
     <Compile Include="Models\NewsBriefly.cs" />
+    <Compile Include="Models\Enum\Role.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Request\AuthorizationRequest.cs" />
     <Compile Include="Models\Request\EditAccountRequest.cs" />
@@ -61,7 +62,6 @@
     <Compile Include="Operations\CheckKodeBLL.cs" />
     <Compile Include="Operations\DellPlayerBLL.cs" />
     <Compile Include="Operations\EditAccountInfoBLL.cs" />
-    <Compile Include="Operations\GetAccountBLL.cs" />
     <Compile Include="Operations\GetAccountInfoBLL.cs" />
     <Compile Include="Operations\GetCommandBLL.cs" />
     <Compile Include="Operations\GetCommandFilterBLL.cs" />

@@ -6,7 +6,7 @@ namespace Olimp.BLL.Operations
 {
     public class RegistrationBLL
     {
-        public static string Execute(RegistrationRequest request)
+        public static Tuple<string, string> Execute(RegistrationRequest request)
         {
             if (DbHelper.CheckKode(request.Email, request.Code))
                 throw new ApplicationException("Неверный код подтверждения. Попробуйте выслать новый код.");
@@ -21,7 +21,9 @@ namespace Olimp.BLL.Operations
                 Password = request.Password
             };
 
-            return DbHelper.Registration(registrationRequest);
+            var account = DbHelper.Registration(registrationRequest);
+
+            return Tuple.Create(account.id.ToString(), account.command_name);
         }
     }
 }

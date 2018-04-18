@@ -4,8 +4,9 @@ using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
 {
-    public class PublicController : ApiController
+    public class PublicController : ApiBaseController
     {
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public GetCommandsResponse GetCommand() => GetCommandBLL.Execute();
 

@@ -13,12 +13,12 @@ namespace Olimp.BLL.Operations
                 Password = request.Password
             };
 
-            var command = DbHelper.Login(authorizationRequest);
+            var account = DbHelper.Login(authorizationRequest);
 
-            if (command == null)
+            if (account == null)
                 throw new ApplicationException("Неверный логин или пароль");
 
-            return Tuple.Create(command.id.ToString(), command.command_name);
+            return Tuple.Create(account.id.ToString(), account.command_name);
         }
     }
 }

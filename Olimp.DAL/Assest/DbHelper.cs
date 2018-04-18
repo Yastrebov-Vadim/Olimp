@@ -21,17 +21,6 @@ namespace Olimp.DAL.Assest
             return command;
         }
 
-        public static command GetAccount(Guid id)
-        {
-            IQueryable<command> query = context.commands;
-
-            var command = query
-                .Where(x => x.id == id)
-                .FirstOrDefault();
-
-            return command;
-        }
-
         public static List<NewsBriefly> GetNewsBriefly()
         {
             // IQueryable<news> query = context.news;
@@ -92,7 +81,7 @@ namespace Olimp.DAL.Assest
             return false;
         }
 
-        public static string Registration(RegistrationRequest request)
+        public static command Registration(RegistrationRequest request)
         {
             command command = new command
             {
@@ -108,7 +97,7 @@ namespace Olimp.DAL.Assest
             context.commands.Add(command);
             context.SaveChanges();
 
-            return command.id.ToString();
+            return command;
         }
 
         public static void ReplacePassvord(RegistrationRequest request)

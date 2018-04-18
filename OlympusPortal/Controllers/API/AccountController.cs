@@ -6,15 +6,15 @@ using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
 {
-    public class AccountController : ApiController
+    public class AccountController : ApiBaseController
     {
         [Authorize]
         [HttpPost]
-        public GetAccountInfoResponse GetAccountInfo() => GetAccountInfoBLL.Execute(Guid.Parse(User.Identity.Name));
+        public GetAccountInfoResponse GetAccountInfo() => GetAccountInfoBLL.Execute(Guid.Parse(GetAccountId()));
 
         [Authorize]
         [HttpPost]
-        public ElementResponse AddPlayer(PlayerRequest request) => AddPlayerBLL.Execute(Guid.Parse(User.Identity.Name), request);
+        public ElementResponse AddPlayer(PlayerRequest request) => AddPlayerBLL.Execute(Guid.Parse(GetAccountId()), request);
 
         [Authorize]
         [HttpPost]
@@ -22,6 +22,6 @@ namespace OlympusPortal.Controllers.API
 
         [Authorize]
         [HttpPost]
-        public void EditAccountInfo(EditAccountRequest request) => EditAccountInfoBLL.Execute(Guid.Parse(User.Identity.Name), request);
+        public void EditAccountInfo(EditAccountRequest request) => EditAccountInfoBLL.Execute(Guid.Parse(GetAccountId()), request);
     }
 }
