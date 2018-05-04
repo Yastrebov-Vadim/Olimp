@@ -50,11 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assest\DbHelper.cs" />
-    <Compile Include="Assest\ImageHelper.cs" />
-    <Compile Include="DTO\command.cs">
+    <Compile Include="Assest\FileHelper.cs" />
+    <Compile Include="DTO\account.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\admin.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\avatar.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\email_code.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\img_for_news.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\news.cs">
@@ -78,8 +87,13 @@
     <Compile Include="DTO\player.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewsBriefly.cs" />
+    <Compile Include="DTO\video_for_news.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enum\CommandNumber.cs" />
+    <Compile Include="Models\FullNews.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Request\AddNewsTextRequest.cs" />
     <Compile Include="Models\Request\AuthorizationRequest.cs" />
     <Compile Include="Models\Request\EditAccountRequest.cs" />
     <Compile Include="Models\Request\ElementRequest.cs" />
@@ -92,13 +106,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="DTO\Olimp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Olimp.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DTO\Olimp.edmx.diagram">
       <DependentUpon>Olimp.edmx</DependentUpon>
     </None>
@@ -107,8 +121,8 @@
   <ItemGroup>
     <Content Include="DTO\Olimp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Olimp.Context.cs</LastGenOutput>
       <DependentUpon>Olimp.edmx</DependentUpon>
+      <LastGenOutput>Olimp.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DTO\Olimp.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

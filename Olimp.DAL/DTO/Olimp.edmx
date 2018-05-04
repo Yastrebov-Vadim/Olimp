@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище OlimpModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="command">
+    <Schema Namespace="Хранилище OlimpModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -15,7 +15,25 @@
           <Property Name="command_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="foto" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="login" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="surname" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="avatar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="url_bd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="url_dir" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="account_id" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="email_code">
           <Key>
@@ -25,16 +43,30 @@
           <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="code_user" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="img_for_news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_news" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_command_one" Type="uniqueidentifier" />
+          <Property Name="id_command_two" Type="uniqueidentifier" />
+          <Property Name="url_bd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="url_dir" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="foto" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="text" Type="nvarchar(max)" />
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="top" Type="bit" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="command_one" Type="uniqueidentifier" />
+          <Property Name="command_two" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="players">
           <Key>
@@ -47,28 +79,40 @@
           <Property Name="number" Type="int" Nullable="false" />
           <Property Name="id_command" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="video_for_news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_news" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_command_one" Type="uniqueidentifier" />
+          <Property Name="id_command_two" Type="uniqueidentifier" />
+          <Property Name="url_bd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="url_dir" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="Хранилище OlimpModelContainer">
-          <EntitySet Name="command" EntityType="Self.command" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="avatar" EntityType="Self.avatar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="email_code" EntityType="Self.email_code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="img_for_news" EntityType="Self.img_for_news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="video_for_news" EntityType="Self.video_for_news" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OlimpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="command">
+        <EntityType Name="admin">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Guid" Nullable="false" />
-          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="command_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="email_code">
           <Key>
@@ -83,11 +127,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Guid" Nullable="false" />
-          <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="top" Type="Boolean" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="command_one" Type="Guid" />
+          <Property Name="command_two" Type="Guid" />
         </EntityType>
         <EntityType Name="player">
           <Key>
@@ -101,27 +148,71 @@
           <Property Name="id_command" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityContainer Name="OlimpEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="commands" EntityType="Self.command" />
+          <EntitySet Name="admins" EntityType="Self.admin" />
           <EntitySet Name="email_code" EntityType="Self.email_code" />
           <EntitySet Name="news" EntityType="Self.news" />
           <EntitySet Name="players" EntityType="Self.player" />
+          <EntitySet Name="img_for_news" EntityType="OlimpModel.img_for_news" />
+          <EntitySet Name="video_for_news" EntityType="OlimpModel.video_for_news" />
+          <EntitySet Name="accounts" EntityType="OlimpModel.account" />
+          <EntitySet Name="avatars" EntityType="OlimpModel.avatar" />
         </EntityContainer>
+        <EntityType Name="img_for_news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_news" Type="Guid" Nullable="false" />
+          <Property Name="id_command_one" Type="Guid" />
+          <Property Name="id_command_two" Type="Guid" />
+          <Property Name="url_bd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url_dir" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="video_for_news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_news" Type="Guid" Nullable="false" />
+          <Property Name="id_command_one" Type="Guid" />
+          <Property Name="id_command_two" Type="Guid" />
+          <Property Name="url_bd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url_dir" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="command_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="avatar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="url_bd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url_dir" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="account_id" Type="Guid" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище OlimpModelContainer" CdmEntityContainer="OlimpEntities">
-          <EntitySetMapping Name="commands">
-            <EntityTypeMapping TypeName="OlimpModel.command">
-              <MappingFragment StoreEntitySet="command">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="OlimpModel.admin">
+              <MappingFragment StoreEntitySet="admin">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="command_name" ColumnName="command_name" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -137,12 +228,15 @@
           <EntitySetMapping Name="news">
             <EntityTypeMapping TypeName="OlimpModel.news">
               <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="command_two" ColumnName="command_two" />
+                <ScalarProperty Name="command_one" ColumnName="command_one" />
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="foto" ColumnName="foto" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="top" ColumnName="top" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -155,6 +249,52 @@
                 <ScalarProperty Name="middleName" ColumnName="middleName" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id_command" ColumnName="id_command" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="img_for_news">
+            <EntityTypeMapping TypeName="OlimpModel.img_for_news">
+              <MappingFragment StoreEntitySet="img_for_news">
+                <ScalarProperty Name="url_dir" ColumnName="url_dir" />
+                <ScalarProperty Name="url_bd" ColumnName="url_bd" />
+                <ScalarProperty Name="id_command_two" ColumnName="id_command_two" />
+                <ScalarProperty Name="id_command_one" ColumnName="id_command_one" />
+                <ScalarProperty Name="id_news" ColumnName="id_news" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="video_for_news">
+            <EntityTypeMapping TypeName="OlimpModel.video_for_news">
+              <MappingFragment StoreEntitySet="video_for_news">
+                <ScalarProperty Name="url_dir" ColumnName="url_dir" />
+                <ScalarProperty Name="url_bd" ColumnName="url_bd" />
+                <ScalarProperty Name="id_command_two" ColumnName="id_command_two" />
+                <ScalarProperty Name="id_command_one" ColumnName="id_command_one" />
+                <ScalarProperty Name="id_news" ColumnName="id_news" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="OlimpModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="command_name" ColumnName="command_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="avatars">
+            <EntityTypeMapping TypeName="OlimpModel.avatar">
+              <MappingFragment StoreEntitySet="avatar">
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="url_dir" ColumnName="url_dir" />
+                <ScalarProperty Name="url_bd" ColumnName="url_bd" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

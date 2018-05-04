@@ -1,0 +1,72 @@
+﻿<div class="command-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+
+
+    <div id="photo-content" class="photo-news-content">
+        <div class="news-title-photo">
+        </div>
+        <div class="photo-display">
+            {{videoTitle}}
+
+            <vg-player>
+                <vg-controls>
+                    <vg-play-pause></vg-play-pause>
+                    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                    </vg-scrub-bar>
+                    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                    <vg-mute></vg-mute>
+                    <vg-volume></vg-volume>
+                    <vg-fullscreen></vg-fullscreen>
+                </vg-controls>
+                <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin="">
+                    <source *ngFor="let video of sources" src='{{video}}' type="video/mp4">
+                </video>
+            </vg-player>
+        </div>
+
+        <div class="photo-filter">
+            <div class="filter-title-text">Выберете период времени</div>
+            <form #myForm="ngForm" novalidate class="form-date">
+                <my-date-picker class="date-ot" (dateChanged)="filterDate($event,1)" closeSelectorOnDocumentClick="true" name="dateTo" [options]="myDatePickerOptions" [(ngModel)]="dateTo" required></my-date-picker>
+                <span>- От</span>
+                <my-date-picker (dateChanged)="filterDate($event,2)" name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="dateEnd" required></my-date-picker>
+                <span>- До</span>
+            </form>
+            <div class="filter-title-text-comand">Выберете команды</div>
+            <div class="filter-command">
+                <div class="command-filter-button" *ngFor="let command of commandFilter; let i = index">
+                    <mat-slide-toggle (change)="filterCommand(command.id,$event.checked)">{{command.name}}</mat-slide-toggle>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="photo-content">
+            <div *ngFor="let video of videos" class="photo-button" (click)="showVideo(video.url, video.name)" [style.background-image]="video.url">
+
+                <vg-player>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin="">
+                        <source src='{{video.url}}' type="video/mp4">
+                    </video>
+                </vg-player>
+            </div>
+        </div>
+    </div>
+</div>
+

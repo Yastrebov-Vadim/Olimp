@@ -22,22 +22,29 @@ var core_2 = require("videogular2/core");
 var controls_1 = require("videogular2/controls");
 var app_routes_1 = require("./app.routes");
 var app_1 = require("./app");
-var home_1 = require("./components/public/home");
-var comand_1 = require("./components/comand/comand");
-var current_tournaments_1 = require("./components/current-tournaments/current-tournaments");
-var new_tournaments_1 = require("./components/new-tournaments/new-tournaments");
-var past_tournaments_1 = require("./components/past-tournaments/past-tournaments");
-var cabinet_1 = require("./components/cabinet/cabinet");
-var news_1 = require("./components/news/news");
-var foto_1 = require("./components/foto/foto");
-var video_command_1 = require("./components/video/video-command");
+var home_1 = require("./components/user/public/home");
+var comand_1 = require("./components/user/comand/comand");
+var current_tournaments_1 = require("./components/user/current-tournaments/current-tournaments");
+var new_tournaments_1 = require("./components/user/new-tournaments/new-tournaments");
+var past_tournaments_1 = require("./components/user/past-tournaments/past-tournaments");
+var cabinet_1 = require("./components/user/cabinet/cabinet");
+var news_1 = require("./components/user/news/news");
+var photo_1 = require("./components/user/photo/photo");
+var video_command_1 = require("./components/user/video/video-command");
 var transport_1 = require("./services/transport");
-var public_1 = require("./services/public");
-var authentication_1 = require("./services/authentication");
-var news_2 = require("./services/news");
-var email_1 = require("./services/email");
-var account_1 = require("./services/account");
-var image_1 = require("./services/image");
+var public_1 = require("./services/user/public");
+var authentication_1 = require("./services/user/authentication");
+var news_2 = require("./services/user/news");
+var email_1 = require("./services/user/email");
+var account_1 = require("./services/user/account");
+var image_1 = require("./services/user/image");
+var login_1 = require("./components/admin/login/login");
+var news_3 = require("./components/admin/news/news");
+var add_news_1 = require("./components/admin/add-news/add-news");
+var authentication_2 = require("./services/admin/authentication");
+var news_4 = require("./services/admin/news");
+var file_1 = require("./services/admin/file");
+var newsType_1 = require("./pipe/newsType");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -52,8 +59,12 @@ var AppModule = (function () {
                 past_tournaments_1.PastTournaments,
                 cabinet_1.Cabinet,
                 news_1.News,
-                foto_1.Foto,
-                video_command_1.VideoCommand
+                photo_1.Photo,
+                video_command_1.VideoCommand,
+                login_1.Login,
+                news_3.NewsAdmin,
+                newsType_1.NewsType,
+                add_news_1.AddNews
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -81,7 +92,10 @@ var AppModule = (function () {
                 news_2.NewsService,
                 email_1.EmailService,
                 account_1.AccountService,
-                image_1.ImageService
+                image_1.ImageService,
+                authentication_2.AuthenticationAdminService,
+                news_4.NewsAdminService,
+                file_1.FileService
             ],
             bootstrap: [
                 app_1.App

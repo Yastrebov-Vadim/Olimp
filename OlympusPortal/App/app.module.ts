@@ -17,23 +17,34 @@ import { VgControlsModule } from 'videogular2/controls';
 import { AppRoutes } from './app.routes';
 
 import { App } from './app';
-import { Home } from './components/public/home';
-import { Comand } from './components/comand/comand';
-import { CurrentTournaments } from './components/current-tournaments/current-tournaments';
-import { NewTournaments } from './components/new-tournaments/new-tournaments';
-import { PastTournaments } from './components/past-tournaments/past-tournaments';
-import { Cabinet } from './components/cabinet/cabinet';
-import { News } from './components/news/news';
-import { Foto } from './components/foto/foto';
-import { VideoCommand } from './components/video/video-command';
+import { Home } from './components/user/public/home';
+import { Comand } from './components/user/comand/comand';
+import { CurrentTournaments } from './components/user/current-tournaments/current-tournaments';
+import { NewTournaments } from './components/user/new-tournaments/new-tournaments';
+import { PastTournaments } from './components/user/past-tournaments/past-tournaments';
+import { Cabinet } from './components/user/cabinet/cabinet';
+import { News } from './components/user/news/news';
+import { Photo } from './components/user/photo/photo';
+import { VideoCommand } from './components/user/video/video-command';
 
 import { TransportService } from './services/transport';
-import { HomeService } from './services/public';
-import { AuthenticationService } from './services/authentication';
-import { NewsService } from './services/news';
-import { EmailService } from './services/email';
-import { AccountService } from './services/account';
-import { ImageService } from './services/image';
+import { HomeService } from './services/user/public';
+import { AuthenticationService } from './services/user/authentication';
+import { NewsService } from './services/user/news';
+import { EmailService } from './services/user/email';
+import { AccountService } from './services/user/account';
+import { ImageService } from './services/user/image';
+
+import { Login } from './components/admin/login/login';
+import { NewsAdmin } from './components/admin/news/news';
+import { AddNews } from './components/admin/add-news/add-news';
+
+import { AuthenticationAdminService } from './services/admin/authentication';
+import { NewsAdminService } from './services/admin/news';
+import { FileService } from './services/admin/file';
+
+
+import { NewsType } from './pipe/newsType';
 
 @NgModule({
     declarations: [
@@ -45,8 +56,12 @@ import { ImageService } from './services/image';
         PastTournaments,
         Cabinet,
         News,
-        Foto,
-        VideoCommand
+       Photo,
+        VideoCommand,
+        Login,
+        NewsAdmin,
+        NewsType,
+        AddNews
     ],
     imports: [
         BrowserModule,
@@ -74,7 +89,10 @@ import { ImageService } from './services/image';
         NewsService,
         EmailService,
         AccountService,
-        ImageService
+        ImageService,
+        AuthenticationAdminService,
+        NewsAdminService,
+        FileService
     ],
     bootstrap: [
         App

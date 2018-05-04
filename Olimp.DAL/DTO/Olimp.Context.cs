@@ -25,9 +25,13 @@ namespace Olimp.DAL.DTO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<command> commands { get; set; }
+        public virtual DbSet<admin> admins { get; set; }
         public virtual DbSet<email_code> email_code { get; set; }
         public virtual DbSet<news> news { get; set; }
         public virtual DbSet<player> players { get; set; }
+        public virtual DbSet<img_for_news> img_for_news { get; set; }
+        public virtual DbSet<video_for_news> video_for_news { get; set; }
+        public virtual DbSet<account> accounts { get; set; }
+        public virtual DbSet<avatar> avatars { get; set; }
     }
 }

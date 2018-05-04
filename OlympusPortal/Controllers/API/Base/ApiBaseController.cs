@@ -22,7 +22,6 @@ namespace OlympusPortal.Controllers.API
         protected void SignIn(string id, string name, Role role)
         {
             var claims = new List<Claim>();
-            var timeExtension = Convert.ToInt32(ConfigurationManager.AppSettings["TimeExtension"]);
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, id));
             claims.Add(new Claim(ClaimTypes.Name, name));
@@ -32,14 +31,13 @@ namespace OlympusPortal.Controllers.API
 
             AuthenticationManager.SignIn(new AuthenticationProperties()
             {
-                IsPersistent = false,
+                IsPersistent = true,
             }, identity);
         }
 
         protected void SignOut()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie, DefaultAuthenticationTypes.ExternalCookie);
-
         }
 
         protected String GetAccountId()

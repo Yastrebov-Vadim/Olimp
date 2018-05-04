@@ -62,7 +62,7 @@ var MaterialModule = (function () {
                 observers_1.ObserversModule,
                 overlay_1.OverlayModule,
                 platform_1.PlatformModule,
-                portal_1.PortalModule,
+                portal_1.PortalModule
             ]
         })
     ], MaterialModule);

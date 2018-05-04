@@ -1,0 +1,51 @@
+﻿<div class="admin-login-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <header *ngIf="!(page==7)">
+        <div class="header-content">
+            <div class="logo-olimp"></div>
+            <div class="header-logo"></div>
+        </div>
+    </header>
+    <div class="header-hr">
+        Панель Администратора
+    </div>
+</div>
+
+<div class="admin-authorized" *ngIf="isAuthAdmin">
+    <div class="menu">
+        <div class="menu-content">
+            <ul class="nave nave-tabs">
+                <li [className]="page == 8 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')">
+                    <a href="/#/admin/news">Новости</a>
+                </li>
+                <li [className]="page == 2 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')">
+                    <a href="/#/">Турниры</a>
+                </li>
+                <li [className]="page == 3 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')">
+                    <a href="/#/comand">Команды</a>
+                </li>
+                <li onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')">
+                    <div (click)="signOutAdmin()">Выйти</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="admin-not-authorized" *ngIf="!isAuthAdmin">
+    <div class="admin-authoriz">
+        <form class="example-form" autocomplete="on">
+            <div class="block center login-block">
+                <input class="example-full-width login" placeholder="Логин" name="loginAdmin" [(ngModel)]="loginAdmin.login" required>
+                <span [ngClass]="loginAdmin.login ? 'valid-true' : 'valid-false'" class="marcer"></span>
+            </div>
+
+            <div class="block center login-block">
+                <input type="password" class="example-full-width passvord" placeholder="Пароль" name="passwordAdmin" [(ngModel)]="loginAdmin.password" minlength="6" #password="ngModel" required>
+                <span [ngClass]="loginAdmin.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'" class="marcer"></span>
+            </div>
+            <button mat-button [ngClass]="(loginAdmin.login && loginAdmin.password && loginAdmin.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)="signIn(password.hasError('minlength'))">Войти</button>
+        </form>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -3,15 +3,15 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from './services/authentication';
-import { AuthorizationRequest } from './classes/requests/authorizationRequest';
-import { SingCodeToEmailRequest } from './classes/requests/emailRequest';
+import { AuthenticationService } from './services/user/authentication';
+import { AuthorizationRequest } from './classes/user/requests/authorizationRequest';
+import { SingCodeToEmailRequest } from './classes/user/requests/emailRequest';
 
 import { PageService } from './services/page';
-import { EmailService } from './services/email';
-import { Common } from './model/common';
+import { EmailService } from './services/user/email';
+import { Common } from './model/user/common';
 
-import { Account, UserAuthentication, UserRegistration } from './model/user';
+import { Account, UserAuthentication, UserRegistration } from './model/user/user';
 
 @Component({
     selector: 'app-root',
@@ -64,9 +64,10 @@ export class App implements OnInit {
         });
     }
 
-    public exit() {
+    public signOutUser() {
         var self = this;
-        self.busy = self.authenticationService.Exit().then(response => {
+
+        self.busy = self.authenticationService.SignOutUser().then(response => {
             self.toastr.info("До свидания!", self.name);
             self.isAuth = false;
             self.router.navigate([Common.RoutePaths.Home], { queryParams: {} });
@@ -97,14 +98,14 @@ export class App implements OnInit {
         self.passwordTo = null;
     }
 
-    public authorization() {
+    public signInUser() {
         var self = this;
         if (self.user.login == null || self.user.password == null || self.user.login == "" || self.user.password == "") {
             self.toastr.error("Все поля должны быть заполнены");
             return;
         }
 
-        self.busy = self.authenticationService.Authorization(new AuthorizationRequest(self.user.login, self.user.password)).then(response => {
+        self.busy = self.authenticationService.SignInUser(new AuthorizationRequest(self.user.login, self.user.password)).then(response => {
             self.close();
             self.isValid = false;
             self.name = response;

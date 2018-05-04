@@ -1,0 +1,49 @@
+﻿<div class="command-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+
+
+    <div id="photo-content" class="photo-news-content">
+        <div class="news-title-photo">
+        </div>
+        <div class="photo-content">
+            <div *ngFor="let photo of photos; let i = index" class="photo-button" (click)="openPhoto(photo.url, i)" [style.background-image]="photo.url" [ngStyle]="photoStyle(photo.isShow)"></div>
+        </div>
+        <div class="photo-filter">
+            <!--<div class="filter-title-text">Выберете период времени</div>-->
+            <!--<form #myForm="ngForm" novalidate class="form-date">
+                <my-date-picker class="date-ot" (dateChanged)="filterDate($event,1)" closeSelectorOnDocumentClick="true" name="dateTo" [options]="myDatePickerOptions" [(ngModel)]="dateTo" required></my-date-picker>
+                <span>- От</span>
+                <my-date-picker (dateChanged)="filterDate($event,2)" name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="dateEnd" required></my-date-picker>
+                <span>- До</span>
+            </form>-->
+            <div class="filter-title-text-comand">Выберете команды</div>
+            <div class="filter-command">
+                <div class="command-filter-button" *ngFor="let command of commandFilter">
+                    <mat-slide-toggle (change)="filterCommand(command.id,$event.checked)">{{command.name}}</mat-slide-toggle>
+                </div>
+            </div>
+        </div>
+        <div class="nav-content">
+            <div class="nav">
+                <div class="left" width="40" height="40"> </div>
+                <div class="right" width="40" height="40"> </div>
+                <ul class="pages">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="photo-layer" class="photo-layer">
+    <div class="photo-show" [style.background-image]="display.url" [ngStyle]="photoShowStyle()" onmousemove="$('.photo-layer').addClass('photo-hover')" onmouseout="$('.photo-layer').removeClass('photo-hover')">
+        <div class="button-photo-left" (click)="nextLeftPhoto()">
+        </div>
+        <div class="button-photo-right" (click)="nextRightPhoto()">
+        </div>
+    </div>
+    <div class="photo-show-close" (click)="closePhoto()">
+    </div>
+
+</div>

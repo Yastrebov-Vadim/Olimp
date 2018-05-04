@@ -40,37 +40,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Command.cs" />
-    <Compile Include="Models\CommandFilter.cs" />
-    <Compile Include="Models\NewsBriefly.cs" />
+    <Compile Include="Models\Admin\FotoForNews.cs" />
+    <Compile Include="Models\Admin\Photo.cs" />
+    <Compile Include="Models\Admin\NewsInfo.cs" />
+    <Compile Include="Models\Admin\Request\SaveNewsRequest.cs" />
+    <Compile Include="Models\Admin\Request\AddNewsTextRequest.cs" />
+    <Compile Include="Models\Admin\Response\GetNewsResponse .cs" />
+    <Compile Include="Models\Admin\Response\PhotoResponse.cs" />
+    <Compile Include="Models\Admin\Response\NewsInfoResponse.cs" />
+    <Compile Include="Models\Admin\Response\IsAuthResponse.cs" />
+    <Compile Include="Models\User\Photo.cs" />
+    <Compile Include="Models\User\Command.cs" />
+    <Compile Include="Models\User\CommandFilter.cs" />
+    <Compile Include="Models\FullNews.cs" />
     <Compile Include="Models\Enum\Role.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Request\AuthorizationRequest.cs" />
-    <Compile Include="Models\Request\EditAccountRequest.cs" />
-    <Compile Include="Models\Request\ElementRequest.cs" />
-    <Compile Include="Models\Request\PlayerRequest.cs" />
-    <Compile Include="Models\Request\RegistrationRequest.cs" />
-    <Compile Include="Models\Request\SingCodeToEmailRequest.cs" />
-    <Compile Include="Models\Response\ElementResponse.cs" />
-    <Compile Include="Models\Response\GetAccountInfoResponse.cs" />
-    <Compile Include="Models\Response\GetAccountResponse.cs" />
-    <Compile Include="Models\Response\GetCommandFilterResponse.cs" />
-    <Compile Include="Models\Response\GetCommandsResponse.cs" />
-    <Compile Include="Models\Response\GetNewsBrieflyResponse .cs" />
-    <Compile Include="Operations\AddPlayerBLL.cs" />
-    <Compile Include="Operations\CheckImageAvatarBLL.cs" />
-    <Compile Include="Operations\CheckKodeBLL.cs" />
-    <Compile Include="Operations\DellPlayerBLL.cs" />
-    <Compile Include="Operations\EditAccountInfoBLL.cs" />
-    <Compile Include="Operations\GetAccountInfoBLL.cs" />
-    <Compile Include="Operations\GetCommandBLL.cs" />
-    <Compile Include="Operations\GetCommandFilterBLL.cs" />
-    <Compile Include="Operations\GetImageAvatarBLL.cs" />
-    <Compile Include="Operations\LoginBLL.cs" />
-    <Compile Include="Operations\RegistrationBLL.cs" />
-    <Compile Include="Operations\ReplacePassvordBLL.cs" />
-    <Compile Include="Operations\SendEmailBLL.cs" />
-    <Compile Include="Operations\SingCodeToEmailBLL.cs" />
+    <Compile Include="Models\User\Player.cs" />
+    <Compile Include="Models\User\Request\TopRequest.cs" />
+    <Compile Include="Models\User\Request\AuthorizationRequest.cs" />
+    <Compile Include="Models\User\Request\EditAccountRequest.cs" />
+    <Compile Include="Models\User\Request\ElementRequest.cs" />
+    <Compile Include="Models\User\Request\PlayerRequest.cs" />
+    <Compile Include="Models\User\Request\RegistrationRequest.cs" />
+    <Compile Include="Models\User\Request\SingCodeToEmailRequest.cs" />
+    <Compile Include="Models\User\Response\GetPhototResponse.cs" />
+    <Compile Include="Models\User\Response\ElementResponse.cs" />
+    <Compile Include="Models\User\Response\GetAccountInfoResponse.cs" />
+    <Compile Include="Models\User\Response\GetAccountResponse.cs" />
+    <Compile Include="Models\User\Response\GetCommandFilterResponse.cs" />
+    <Compile Include="Models\User\Response\GetCommandsResponse.cs" />
+    <Compile Include="Models\User\Response\GetAllNewsResponse.cs" />
+    <Compile Include="Operations\Admin\AddVideoForNewsBLL.cs" />
+    <Compile Include="Operations\Admin\AddImgForNewsBLL.cs" />
+    <Compile Include="Operations\Admin\DelVideoNewsBLL.cs" />
+    <Compile Include="Operations\Admin\DellPhotoBLL.cs" />
+    <Compile Include="Operations\Admin\ActiveNewsBLL.cs" />
+    <Compile Include="Operations\Admin\SaveNewsBLL.cs" />
+    <Compile Include="Operations\Admin\DelImgNewsTypeTextBLL.cs" />
+    <Compile Include="Operations\Admin\DellNewsBLL.cs" />
+    <Compile Include="Operations\Admin\GetNewsBLL.cs" />
+    <Compile Include="Operations\Admin\GetNewsInfoBLL.cs" />
+    <Compile Include="Operations\Admin\AddNewsBLL.cs" />
+    <Compile Include="Operations\Admin\SignInAdminBLL.cs" />
+    <Compile Include="Operations\User\GetPhotoBLL.cs" />
+    <Compile Include="Operations\User\GetNewsActiveBLL.cs" />
+    <Compile Include="Operations\User\AddPlayerBLL.cs" />
+    <Compile Include="Operations\User\CheckImageAvatarBLL.cs" />
+    <Compile Include="Operations\User\CheckKodeBLL.cs" />
+    <Compile Include="Operations\User\DellPlayerBLL.cs" />
+    <Compile Include="Operations\User\EditAccountInfoBLL.cs" />
+    <Compile Include="Operations\User\GetAccountInfoBLL.cs" />
+    <Compile Include="Operations\User\GetCommandBLL.cs" />
+    <Compile Include="Operations\User\GetCommandFilterBLL.cs" />
+    <Compile Include="Operations\User\GetImageAvatarBLL.cs" />
+    <Compile Include="Operations\User\SignInUserBLL.cs" />
+    <Compile Include="Operations\User\RegistrationBLL.cs" />
+    <Compile Include="Operations\User\ReplacePassvordBLL.cs" />
+    <Compile Include="Operations\User\SendEmailBLL.cs" />
+    <Compile Include="Operations\User\SingCodeToEmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,5 +105,6 @@
       <Name>Olimp.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

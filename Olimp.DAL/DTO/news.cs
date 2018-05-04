@@ -15,10 +15,13 @@ namespace Olimp.DAL.DTO
     public partial class news
     {
         public System.Guid id { get; set; }
-        public string foto { get; set; }
         public string title { get; set; }
         public string text { get; set; }
         public System.DateTime date { get; set; }
         public int type { get; set; }
+        public bool top { get; set; }
+        public bool active { get; set; }
+        public Nullable<System.Guid> command_one { get; set; }
+        public Nullable<System.Guid> command_two { get; set; }
     }
 }

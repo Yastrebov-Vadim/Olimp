@@ -1,0 +1,42 @@
+﻿<div class="admin-news-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="admin-news-title">
+        Управление новостями
+    </div>
+
+    <div class="admin-list-news-block">
+        <ul>
+            <li *ngFor="let news of newsInfo; let i = index">
+                <div><p>Название -</p> {{news.title}} </div>
+                <div><p>Тип новости -</p> {{news.type | newsType}} </div>
+                <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>
+                <div><p>Отображается на главной странице -</p> {{news.top ? "Да":" Нет"}}</div>
+                <button mat-button class="button-come-in button-edit-news" (click)="editNews(news.id)">Редактировать</button>
+                <button mat-button class="button-come-in button-add-news" (click)="dellNews(news.id, i)">Удалить</button>
+                <mat-checkbox [(ngModel)]="news.active" (change)="active(news.id)">
+                    - активна 
+                </mat-checkbox>
+                <hr />
+            </li>
+        </ul>
+    </div>
+
+    <div class="admin-add-news-block">
+        <div class="add-news-title">Добавить новость</div>
+
+        <div class="select-news-title">Выберете тип новости</div>
+        <div class="check-news-block">
+            <mat-checkbox [(ngModel)]="isText" (change)="isPhoto=false; isVideo=false">
+                Текст
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="isPhoto" (change)="isText=false; isVideo=false">
+                Фотоотчет
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="isVideo" (change)="isPhoto=false; isText=false">
+                Видео
+            </mat-checkbox>
+        </div>
+        <button mat-button [ngClass]="(isText || isPhoto  || isVideo) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)="addNews()">Создать</button>
+    </div>
+</div>
+
+

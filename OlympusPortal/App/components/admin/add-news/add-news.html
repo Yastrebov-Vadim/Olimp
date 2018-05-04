@@ -1,0 +1,202 @@
+﻿<div class="admin-new-news-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="admin-news-title">
+        Редактирование новости
+    </div>
+    <button mat-button class="button-back" (click)="back()">Назад</button>
+
+    <div class="admin-add-news" *ngIf="news.type==1">
+        <div class="admin-add-news-title">
+            Заголовок новости
+        </div>
+        <textarea class="admin-add-news-title" [(ngModel)]="news.title"> </textarea>
+        <div class="admin-add-news-txt-block">
+            <div>
+                Текст новости
+            </div>
+            <textarea class="admin-add-news-txt" [(ngModel)]="news.text"> </textarea>
+        </div>
+        <div class="profile-image" [style.background-image]="news.photo[0].url">
+        </div>
+
+        <div class="file-upload">
+            <label>
+                <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" (change)="fileChangedTypeText($event)" />
+                <span>Загрузить фото</span>
+            </label>
+        </div>
+        <div class="admin-news-is-top">
+            <mat-checkbox [(ngModel)]="news.top">
+                - Отображать на главной странице
+            </mat-checkbox>
+        </div>
+        <button mat-button class="preview-button" (click)="preview()">Предпросмотр</button>
+        <button mat-button [ngClass]="(news.title && news.text) ? 'button-active' : 'button-no-active'" class="save-button" (click)="saveNews()">Сохранить</button>
+    </div>
+
+    <div class="admin-add-news" *ngIf="news.type==2">
+        <div class="select-command-block">
+            <div class="inline-block">
+                <div>Комманда 1</div>
+                <select [(ngModel)]="news.commandOne">
+                    <option *ngFor="let command of commandFilter" [value]="command.id">
+                        {{ command.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="inline-block">
+                <div>Комманда 2</div>
+                <select [(ngModel)]="news.commandTwo">
+                    <option *ngFor="let command of commandFilter" [value]="command.id">
+                        {{ command.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="admin-add-news-title">
+            Заголовок новости
+        </div>
+        <textarea class="admin-add-news-title" [(ngModel)]="news.title"> </textarea>
+
+        <div id="preview" class="news-image-content">
+            <div *ngIf="isPhoto()">
+                <div class="photo" data-title="удалить" *ngFor="let photo of news.photo; let i = index" (click)="dellPhotoForNews(photo.id, i)">
+                    <div [style.background-image]="photo.url"></div>
+                </div>
+            </div>
+        </div>
+        <div class="file-upload">
+            <label>
+                <input type="file" name="file" multiple accept="image/x-png,image/gif,image/jpeg" (change)="fileChangedTypePhoto($event)" />
+                <span>Загрузить фото</span>
+            </label>
+        </div>
+        <div class="admin-news-is-top">
+            <mat-checkbox [(ngModel)]="news.top">
+                - Отображать на главной странице
+            </mat-checkbox>
+        </div>
+        <button mat-button class="preview-button" (click)="preview()">Предпросмотр</button>
+        <button mat-button [ngClass]="news.title ? 'button-active' : 'button-no-active'" class="save-button" (click)="saveNews()">Сохранить</button>
+    </div>
+
+    <div class="admin-add-news" *ngIf="news.type==3">
+        <div class="admin-add-news-title">
+            Заголовок новости
+        </div>
+        <textarea class="admin-add-news-title" [(ngModel)]="news.title"> </textarea>
+
+        <div class="news-no-video-content" *ngIf="!news.urlVideo">
+
+        </div>
+
+        <div class="news-video-content" *ngIf="news.urlVideo">
+            <div *ngFor="let video of videos">
+                <vg-player>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin="">
+                        <source src='{{video}}' type="video/mp4">
+                    </video>
+                </vg-player>
+            </div>
+        </div>
+
+        <div class="file-upload">
+            <label>
+                <input type="file" name="file" multiple accept="video/mp4" (change)="fileChangedVideo($event)" />
+                <span>Загрузить видео</span>
+            </label>
+        </div>
+        <div class="admin-news-is-top">
+            <mat-checkbox [(ngModel)]="news.top">
+                - Отображать на главной странице
+            </mat-checkbox>
+        </div>
+        <button mat-button class="preview-button" (click)="preview()">Предпросмотр</button>
+        <button mat-button [ngClass]="news.title ? 'button-active' : 'button-no-active'" class="save-button" (click)="saveNews()">Сохранить</button>
+    </div>
+
+</div>
+
+
+
+<div class="news-home preview-layer" id="preview-layer" (click)="close()">
+    <div class="news-preview-block">
+        <div class="news-content">
+            <div *ngIf="news.type == 1" class="news-text-block">
+                <div class="news-title">
+                    {{news.title}}
+                    <div class="news-date">
+                        {{news.date}}
+                    </div>
+                </div>
+                <div class="text-news-content">
+
+                    <div class="news-text">
+                        <div class="news-photo" [style.background-image]='news.photo[0].url'></div>
+                        {{news.text}}
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="news.type == 2" class="news-photo-block">
+                <div id="photo-content" class="photo-news-content">
+                    <div class="news-title">
+                        {{news.title}}
+                        <div class="news-date">
+                            {{news.date}}
+                        </div>
+                    </div>
+                    <div *ngIf="isPhoto()">
+                        <div id="{{'display'+ i}}" class="news-photo-display" [style.background-image]="news.photo[0].url"></div>
+                        <div class="photo-button-content">
+                            <div *ngFor="let photo of news.photo" class="news-photo-button" [style.background-image]="photo.url"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="news.type == 3" class="news-video-block">
+                <div class="video-news-content">
+                    <div class="news-title">
+                        {{news.title}}
+                        <div class="news-date">
+                            {{news.date}}
+                        </div>
+                    </div>
+                    <div class="news-video" *ngFor="let video of videos">
+                        d
+                        <vg-player>
+                            <vg-controls>
+                                <vg-play-pause></vg-play-pause>
+                                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                                <vg-scrub-bar>
+                                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                                </vg-scrub-bar>
+                                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                                <vg-mute></vg-mute>
+                                <vg-volume></vg-volume>
+                                <vg-fullscreen></vg-fullscreen>
+                            </vg-controls>
+                            <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin="">
+                                <source src='{{video}}' type="video/mp4">
+                            </video>
+                        </vg-player>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

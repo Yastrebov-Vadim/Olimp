@@ -5,7 +5,7 @@ namespace Olimp.DAL.Models
 {
     public class EditAccountRequest
     {
-        public string Foto { get; set; }
+        public string Photo { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

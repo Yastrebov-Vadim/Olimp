@@ -12,13 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 var router_1 = require("@angular/router");
-var authentication_1 = require("./services/authentication");
-var authorizationRequest_1 = require("./classes/requests/authorizationRequest");
-var emailRequest_1 = require("./classes/requests/emailRequest");
+var authentication_1 = require("./services/user/authentication");
+var authorizationRequest_1 = require("./classes/user/requests/authorizationRequest");
+var emailRequest_1 = require("./classes/user/requests/emailRequest");
 var page_1 = require("./services/page");
-var email_1 = require("./services/email");
-var common_1 = require("./model/common");
-var user_1 = require("./model/user");
+var email_1 = require("./services/user/email");
+var common_1 = require("./model/user/common");
+var user_1 = require("./model/user/user");
 var App = (function () {
     function App(toastr, vcr, authenticationService, pageService, emailService, router) {
         this.toastr = toastr;
@@ -50,9 +50,9 @@ var App = (function () {
             self.isAuth = response.isAuth;
         });
     };
-    App.prototype.exit = function () {
+    App.prototype.signOutUser = function () {
         var self = this;
-        self.busy = self.authenticationService.Exit().then(function (response) {
+        self.busy = self.authenticationService.SignOutUser().then(function (response) {
             self.toastr.info("До свидания!", self.name);
             self.isAuth = false;
             self.router.navigate([common_1.Common.RoutePaths.Home], { queryParams: {} });
@@ -78,13 +78,13 @@ var App = (function () {
         self.user.password = null;
         self.passwordTo = null;
     };
-    App.prototype.authorization = function () {
+    App.prototype.signInUser = function () {
         var self = this;
         if (self.user.login == null || self.user.password == null || self.user.login == "" || self.user.password == "") {
             self.toastr.error("Все поля должны быть заполнены");
             return;
         }
-        self.busy = self.authenticationService.Authorization(new authorizationRequest_1.AuthorizationRequest(self.user.login, self.user.password)).then(function (response) {
+        self.busy = self.authenticationService.SignInUser(new authorizationRequest_1.AuthorizationRequest(self.user.login, self.user.password)).then(function (response) {
             self.close();
             self.isValid = false;
             self.name = response;

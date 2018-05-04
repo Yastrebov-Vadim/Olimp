@@ -1,5 +1,5 @@
 ﻿import { EventEmitter } from '@angular/core';
-import { Account } from '../model/user';
+import { Account } from '../model/user/user';
 
 export class PageService {
 

@@ -1,0 +1,121 @@
+﻿<div class="cabinet-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="lk-info">
+        <div class="lk-avatar-block">
+            <div class="lk-avatar" id="avatar" [style.background-image]="account.photo"></div>
+        </div>
+
+        <div class="lk-label">
+            Персональные данные команды
+        </div>
+
+        <div class="lk-name">
+            <div>Название команды</div>
+            <input placeholder="Название команды" name="name" [(ngModel)]="account.name" [disabled]="isEdit" />
+        </div>
+        <div class="lk-fone">
+            <div>Контактный телефон</div>
+            <input placeholder="Контактный телефон" type="text" name="phone" [(ngModel)]="account.phone" [disabled]="isEdit" />
+        </div>
+        <div class="lk-email">
+            <div>Электронная почта</div>
+            <input placeholder="Электронная почта" type="text" name="email" [(ngModel)]="account.email" [disabled]="isEdit" />
+        </div>
+
+        <div class="lk-button">
+            <div class="file-upload">
+                <label>
+                    <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" (change)="avatarChanged($event)" />
+                    <span>Загрузить фото</span>
+                </label>
+            </div>
+            <button mat-button class="button-lk-add-player" (click)="openFormAddPlayer()">Добавить игрока</button>
+            <button mat-button class="button-lk-update" id="editButton" (click)="editAccountInfo(isEdit)">Редактировать</button>
+        </div>
+
+
+    </div>
+
+    <div class="tournaments-command-title">
+        Состав
+    </div>
+
+    <table class="lk-command">
+        <tr class="lk-player">
+            <td class="lk-number-count title-header">
+                №
+            </td>
+            <td class="lk-surname title-header">
+                Фамилия
+            </td>
+            <td class="lk-full-name title-header">
+                Имя
+            </td>
+            <td class="lk-last-name title-header">
+                Отчество
+            </td>
+            <td class="lk-number title-header">
+                Номер в поле
+            </td>
+            <td class="delet-player title-header">
+                Удалить
+            </td>
+        </tr>
+
+        <tr class="lk-player" *ngFor="let player of account.command; let i = index">
+            <td class="lk-number-count">
+                {{i+1}}
+            </td>
+            <td class="lk-surname">
+                {{player.surname}}
+            </td>
+            <td class="lk-full-name">
+                {{player.name}}
+            </td>
+            <td class="lk-last-name">
+                {{player.middleName}}
+            </td>
+            <td class="lk-number">
+                <input class="edit-number" name="number" #number="ngModel" [(ngModel)]="player.number" [disabled]="isEdit" pattern="[0-9]*" (change)="changeInfoPlayer(player, number.hasError('pattern'))" />
+            </td>
+            <td class="delet-player delet-player-img" (click)="selectPlayer(player.playerId, i)" data-toggle="modal" data-target="#myModal"></td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="transparent-layer-player" id="transparent-layer-player">
+    <div class="add-player" [ngStyle]="addPlayerBlockStyle()">
+        <form class="example-form" #newplayer="ngForm" novalidate autocomplete="on">
+            <mat-form-field>
+                <input placeholder="Фамилия" matInput type="text" name="surname" [(ngModel)]="player.surname" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Имя" matInput type="text" name="name" [(ngModel)]="player.name" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Отчество" matInput type="text" name="middleName" [(ngModel)]="player.middleName" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Номер в поле" matInput type="text" #newNumber="ngModel" name="number" [(ngModel)]="player.number" pattern="[0-9]*" required />
+            </mat-form-field>
+            <button mat-button (click)="addPlayer(newplayer.invalid, newNumber.hasError('pattern'))">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-body">
+                Удалить игрока?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellPlayer()">ДА</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

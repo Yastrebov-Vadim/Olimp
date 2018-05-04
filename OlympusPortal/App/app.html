@@ -1,5 +1,5 @@
 ﻿<div class="header-block">
-    <header>
+    <header *ngIf="page<7">
         <div class="header-content">
             <div class="logo-olimp"></div>
             <div class="header-logo"></div>
@@ -18,7 +18,7 @@
                         </li>
                         <li [className]="page == 3 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/comand">Команды<span class="comand"></span></a></li>
                         <li [className]="page == 4 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/news">Новости<span class="news"></span></a></li>
-                        <li [className]="page == 5 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/foto">Фото<span class="foto-menu"></span></a></li>
+                        <li [className]="page == 5 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/photo">Фото<span class="photo-menu"></span></a></li>
                         <li [className]="page == 6 ? 'active' : ''" onmousemove="$(this).addClass('focus-over')" onmouseout="$('.focus-over').removeClass('focus-over')"><a href="/#/video">Видео<span class="video-menu"></span></a></li>
                     </ul>
                 </div>
@@ -26,7 +26,7 @@
 
             <div class="exit-block">
                 <div *ngIf="isAuth" (click)="isExit()" id="exit1" class="exit">{{name}}</div>
-                <div *ngIf="isAuth" (click)="exit()" id="exit2" class="exit-up">Выйти</div>
+                <div *ngIf="isAuth" (click)="signOutUser()" id="exit2" class="exit-up">Выйти</div>
                 <div *ngIf="isAuth" (click)="goCabinet()" id="cabinet" class="cabinet">Кабинет</div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <span [ngClass]="user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'" class="marcer"></span>
                 </div>
 
-                <button mat-button [ngClass]="(user.login && user.password && user.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)='authorization()'>Войти</button>
+                <button mat-button [ngClass]="(user.login && user.password && user.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)='signInUser()'>Войти</button>
             </form>
         </div>
 

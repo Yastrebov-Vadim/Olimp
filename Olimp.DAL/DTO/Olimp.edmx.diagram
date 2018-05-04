@@ -4,11 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="884ed12c66c94e4f9391b8d7f4240426" Name="Diagram1">
-        <EntityTypeShape EntityType="OlimpModel.command" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OlimpModel.email_code" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OlimpModel.news" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OlimpModel.player" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="b46a6f4d41654ccc9629d7b677ded673" Name="Diagram1">
+        <EntityTypeShape EntityType="OlimpModel.admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.email_code" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.news" Width="1.5" PointX="2.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.player" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.img_for_news" Width="1.5" PointX="0.5" PointY="4" />
+        <EntityTypeShape EntityType="OlimpModel.video_for_news" Width="1.5" PointX="6.625" PointY="0.875" />
+        <EntityTypeShape EntityType="OlimpModel.account" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OlimpModel.avatar" Width="1.5" PointX="8.625" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
