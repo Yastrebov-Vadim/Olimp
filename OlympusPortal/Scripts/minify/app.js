@@ -227,7 +227,24 @@ exports.VgUtils = VgUtils;
 
 /***/ }),
 
-/***/ 197:
+/***/ 144:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementRequest = (function () {
+    function ElementRequest(txt) {
+        this.txt = txt;
+    }
+    return ElementRequest;
+}());
+exports.ElementRequest = ElementRequest;
+
+
+/***/ }),
+
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -322,7 +339,7 @@ exports.PromiseTrackerService = PromiseTrackerService;
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -340,7 +357,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = __webpack_require__(1);
-var busy_config_1 = __webpack_require__(199);
+var busy_config_1 = __webpack_require__(200);
 var BusyService = (function () {
     function BusyService(config) {
         this.config = config || new busy_config_1.BusyConfig();
@@ -357,7 +374,7 @@ exports.BusyService = BusyService;
 
 /***/ }),
 
-/***/ 199:
+/***/ 200:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -384,7 +401,7 @@ exports.BUSY_CONFIG_DEFAULTS = {
 
 /***/ }),
 
-/***/ 200:
+/***/ 201:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -392,13 +409,13 @@ exports.BUSY_CONFIG_DEFAULTS = {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var Observable_1 = __webpack_require__(0);
-var TimerObservable_1 = __webpack_require__(267);
-var vg_states_1 = __webpack_require__(85);
+var TimerObservable_1 = __webpack_require__(268);
+var vg_states_1 = __webpack_require__(86);
 var vg_api_1 = __webpack_require__(28);
-var vg_events_1 = __webpack_require__(201);
+var vg_events_1 = __webpack_require__(202);
 var Subject_1 = __webpack_require__(5);
 __webpack_require__(136);
-__webpack_require__(285);
+__webpack_require__(286);
 var VgMedia = (function () {
     function VgMedia(api, ref) {
         this.api = api;
@@ -841,7 +858,7 @@ exports.VgMedia = VgMedia;
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -893,7 +910,7 @@ exports.VgEvents = VgEvents;
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -909,9 +926,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var NewsService = (function () {
     function NewsService(tranport) {
         this.tranport = tranport;
@@ -936,45 +953,6 @@ exports.NewsService = NewsService;
 
 /***/ }),
 
-/***/ 203:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
-var EmailService = (function () {
-    function EmailService(tranport) {
-        this.tranport = tranport;
-        this.urls = new urls_1.Urls();
-    }
-    EmailService.prototype.singCodeToEmail = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.codToEmail, request);
-    };
-    EmailService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [transport_1.TransportService])
-    ], EmailService);
-    return EmailService;
-}());
-exports.EmailService = EmailService;
-
-
-/***/ }),
-
 /***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -991,9 +969,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var AuthenticationService = (function () {
     function AuthenticationService(tranport) {
         this.tranport = tranport;
@@ -1050,9 +1028,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var NewsAdminService = (function () {
     function NewsAdminService(tranport) {
         this.tranport = tranport;
@@ -1093,6 +1071,77 @@ exports.NewsAdminService = NewsAdminService;
 
 /***/ }),
 
+/***/ 206:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
+var TurnamentAdminService = (function () {
+    function TurnamentAdminService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    TurnamentAdminService.prototype.GetTurnamentInfo = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentInfo, null);
+    };
+    TurnamentAdminService.prototype.AddTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.addTurnament, request);
+    };
+    TurnamentAdminService.prototype.DellTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.dellTurnament, request);
+    };
+    TurnamentAdminService.prototype.GetTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnament, request);
+    };
+    TurnamentAdminService.prototype.SaveTurnamentInfo = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
+    };
+    TurnamentAdminService.prototype.ChangeStep = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeStep, request);
+    };
+    TurnamentAdminService.prototype.AcceptDeclare = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.acceptDeclare, request);
+    };
+    TurnamentAdminService.prototype.RemoveDeclare = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.removeDeclare, request);
+    };
+    TurnamentAdminService.prototype.CalculateTable = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.calculateTable, request);
+    };
+    TurnamentAdminService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], TurnamentAdminService);
+    return TurnamentAdminService;
+}());
+exports.TurnamentAdminService = TurnamentAdminService;
+
+
+/***/ }),
+
 /***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1100,7 +1149,7 @@ exports.NewsAdminService = NewsAdminService;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var vg_states_1 = __webpack_require__(85);
+var vg_states_1 = __webpack_require__(86);
 var VgAPI = (function () {
     function VgAPI() {
         this.medias = {};
@@ -1391,7 +1440,7 @@ exports.VgAPI = VgAPI;
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1407,11 +1456,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var Subscription_1 = __webpack_require__(12);
-var util_1 = __webpack_require__(871);
-var promise_tracker_service_1 = __webpack_require__(197);
-var busy_service_1 = __webpack_require__(198);
-var busy_component_1 = __webpack_require__(364);
-var busy_backdrop_component_1 = __webpack_require__(365);
+var util_1 = __webpack_require__(876);
+var promise_tracker_service_1 = __webpack_require__(198);
+var busy_service_1 = __webpack_require__(199);
+var busy_component_1 = __webpack_require__(365);
+var busy_backdrop_component_1 = __webpack_require__(366);
 var BusyDirective = (function () {
     function BusyDirective(service, tracker, cfResolver, vcRef, injector) {
         this.service = service;
@@ -1504,7 +1553,7 @@ exports.BusyDirective = BusyDirective;
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1519,7 +1568,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var promise_tracker_service_1 = __webpack_require__(197);
+var promise_tracker_service_1 = __webpack_require__(198);
 var inactiveStyle = core_1.style({
     opacity: 0,
     transform: 'translateY(-40px)'
@@ -1561,7 +1610,7 @@ exports.BusyComponent = BusyComponent;
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1576,7 +1625,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var promise_tracker_service_1 = __webpack_require__(197);
+var promise_tracker_service_1 = __webpack_require__(198);
 var inactiveStyle = core_1.style({
     opacity: 0,
 });
@@ -1613,7 +1662,7 @@ exports.BusyBackdropComponent = BusyBackdropComponent;
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1629,9 +1678,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var http_1 = __webpack_require__(52);
-var index_1 = __webpack_require__(874);
-var Utils_1 = __webpack_require__(877);
+var http_1 = __webpack_require__(55);
+var index_1 = __webpack_require__(879);
+var Utils_1 = __webpack_require__(882);
 var DYNAMIC_SELECTOR = 'DynamicComponent';
 var DynamicComponentMetadata = (function () {
     function DynamicComponentMetadata(selector, template) {
@@ -1824,13 +1873,13 @@ exports.DynamicComponent = DynamicComponent;
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(165);
 __webpack_require__(166);
+__webpack_require__(167);
 exports.PROP_METADATA = 'propMetadata';
 exports.ANNOTATIONS_METADATA = 'annotations';
 function PropertyAnnotationFactory(annotationMetadata) {
@@ -1851,23 +1900,23 @@ exports.PropertyAnnotationFactory = PropertyAnnotationFactory;
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(e,r){ true?module.exports=r():"function"==typeof define&&define.amd?define([],r):"object"==typeof exports?exports.textMaskCore=r():e.textMaskCore=r()}(this,function(){return function(e){function r(n){if(t[n])return t[n].exports;var o=t[n]={exports:{},id:n,loaded:!1};return e[n].call(o.exports,o,o.exports,r),o.loaded=!0,o.exports}var t={};return r.m=e,r.c=t,r.p="",r(0)}([function(e,r,t){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(r,"__esModule",{value:!0});var o=t(3);Object.defineProperty(r,"conformToMask",{enumerable:!0,get:function(){return n(o).default}});var i=t(2);Object.defineProperty(r,"adjustCaretPosition",{enumerable:!0,get:function(){return n(i).default}});var a=t(5);Object.defineProperty(r,"createTextMaskInputElement",{enumerable:!0,get:function(){return n(a).default}})},function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.placeholderChar="_"},function(e,r){"use strict";function t(e){var r=e.previousConformedValue,t=void 0===r?o:r,i=e.previousPlaceholder,a=void 0===i?o:i,u=e.currentCaretPosition,l=void 0===u?0:u,s=e.conformedValue,f=e.rawValue,d=e.placeholderChar,c=e.placeholder,v=e.indexesOfPipedChars,p=void 0===v?n:v,h=e.caretTrapIndexes,g=void 0===h?n:h;if(0===l)return 0;var m=f.length,y=t.length,b=c.length,C=s.length,P=m-y,x=P>0,O=0===y,k=P>1&&!x&&!O;if(k)return l;var j=x&&(t===s||s===c),M=0,T=void 0,w=void 0;if(j)M=l-P;else{var _=s.toLowerCase(),V=f.toLowerCase(),S=V.substr(0,l).split(o),N=S.filter(function(e){return _.indexOf(e)!==-1});w=N[N.length-1];var E=a.substr(0,N.length).split(o).filter(function(e){return e!==d}).length,A=c.substr(0,N.length).split(o).filter(function(e){return e!==d}).length,R=A!==E,I=void 0!==a[N.length-1]&&void 0!==c[N.length-2]&&a[N.length-1]!==d&&a[N.length-1]!==c[N.length-1]&&a[N.length-1]===c[N.length-2];!x&&(R||I)&&E>0&&c.indexOf(w)>-1&&void 0!==f[l]&&(T=!0,w=f[l]);for(var J=p.map(function(e){return _[e]}),q=J.filter(function(e){return e===w}).length,F=N.filter(function(e){return e===w}).length,L=c.substr(0,c.indexOf(d)).split(o).filter(function(e,r){return e===w&&f[r]!==e}).length,W=L+F+q+(T?1:0),z=0,B=0;B<C;B++){var D=_[B];if(M=B+1,D===w&&z++,z>=W)break}}if(x){for(var G=M,H=M;H<=b;H++)if(c[H]===d&&(G=H),c[H]===d||g.indexOf(H)!==-1||H===b)return G}else if(T){for(var K=M-1;K>=0;K--)if(s[K]===w||g.indexOf(K)!==-1||0===K)return K}else for(var Q=M;Q>=0;Q--)if(c[Q-1]===d||g.indexOf(Q)!==-1||0===Q)return Q}Object.defineProperty(r,"__esModule",{value:!0}),r.default=t;var n=[],o=""},function(e,r,t){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:a,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:a,t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=t.guide,u=void 0===n||n,l=t.previousConformedValue,s=void 0===l?a:l,f=t.placeholderChar,d=void 0===f?i.placeholderChar:f,c=t.placeholder,v=void 0===c?(0,o.convertMaskToPlaceholder)(r,d):c,p=t.currentCaretPosition,h=t.keepCharPositions,g=u===!1&&void 0!==s,m=e.length,y=s.length,b=v.length,C=r.length,P=m-y,x=P>0,O=p+(x?-P:0),k=O+Math.abs(P);if(h===!0&&!x){for(var j=a,M=O;M<k;M++)v[M]===d&&(j+=d);e=e.slice(0,O)+j+e.slice(O,m)}for(var T=e.split(a).map(function(e,r){return{char:e,isNew:r>=O&&r<k}}),w=m-1;w>=0;w--){var _=T[w].char;if(_!==d){var V=w>=O&&y===C;_===v[V?w-P:w]&&T.splice(w,1)}}var S=a,N=!1;e:for(var E=0;E<b;E++){var A=v[E];if(A===d){if(T.length>0)for(;T.length>0;){var R=T.shift(),I=R.char,J=R.isNew;if(I===d&&g!==!0){S+=d;continue e}if(r[E].test(I)){if(h===!0&&J!==!1&&s!==a&&u!==!1&&x){for(var q=T.length,F=null,L=0;L<q;L++){var W=T[L];if(W.char!==d&&W.isNew===!1)break;if(W.char===d){F=L;break}}null!==F?(S+=I,T.splice(F,1)):E--}else S+=I;continue e}N=!0}g===!1&&(S+=v.substr(E,b));break}S+=A}if(g&&x===!1){for(var z=null,B=0;B<S.length;B++)v[B]===d&&(z=B);S=null!==z?S.substr(0,z+1):a}return{conformedValue:S,meta:{someCharsRejected:N}}}Object.defineProperty(r,"__esModule",{value:!0}),r.default=n;var o=t(4),i=t(1),a=""},function(e,r,t){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:l,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:u.placeholderChar;if(e.indexOf(r)!==-1)throw new Error("Placeholder character must not be used as part of the mask. Please specify a character that is not present in your mask as your placeholder character.\n\n"+("The placeholder character that was received is: "+JSON.stringify(r)+"\n\n")+("The mask that was received is: "+JSON.stringify(e)));return e.map(function(e){return e instanceof RegExp?r:e}).join("")}function o(e){return"string"==typeof e||e instanceof String}function i(e){return"number"==typeof e&&void 0===e.length&&!isNaN(e)}function a(e){for(var r=[],t=void 0;t=e.indexOf(s),t!==-1;)r.push(t),e.splice(t,1);return{maskWithoutCaretTraps:e,indexes:r}}Object.defineProperty(r,"__esModule",{value:!0}),r.convertMaskToPlaceholder=n,r.isString=o,r.isNumber=i,r.processCaretTraps=a;var u=t(1),l=[],s="[]"},function(e,r,t){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function o(e){var r={previousConformedValue:void 0,previousPlaceholder:void 0};return{state:r,update:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:e,o=n.inputElement,s=n.mask,d=n.guide,m=n.pipe,b=n.placeholderChar,C=void 0===b?p.placeholderChar:b,P=n.keepCharPositions,x=void 0!==P&&P,O=n.showMask,k=void 0!==O&&O;if("undefined"==typeof t&&(t=o.value),t!==r.previousConformedValue){("undefined"==typeof s?"undefined":l(s))===y&&void 0!==s.pipe&&void 0!==s.mask&&(m=s.pipe,s=s.mask);var j=void 0,M=void 0;if(s instanceof Array&&(j=(0,v.convertMaskToPlaceholder)(s,C)),s!==!1){var T=a(t),w=o.selectionEnd,_=r.previousConformedValue,V=r.previousPlaceholder,S=void 0;if(("undefined"==typeof s?"undefined":l(s))===h){if(M=s(T,{currentCaretPosition:w,previousConformedValue:_,placeholderChar:C}),M===!1)return;var N=(0,v.processCaretTraps)(M),E=N.maskWithoutCaretTraps,A=N.indexes;M=E,S=A,j=(0,v.convertMaskToPlaceholder)(M,C)}else M=s;var R={previousConformedValue:_,guide:d,placeholderChar:C,pipe:m,placeholder:j,currentCaretPosition:w,keepCharPositions:x},I=(0,c.default)(T,M,R),J=I.conformedValue,q=("undefined"==typeof m?"undefined":l(m))===h,F={};q&&(F=m(J,u({rawValue:T},R)),F===!1?F={value:_,rejected:!0}:(0,v.isString)(F)&&(F={value:F}));var L=q?F.value:J,W=(0,f.default)({previousConformedValue:_,previousPlaceholder:V,conformedValue:L,placeholder:j,rawValue:T,currentCaretPosition:w,placeholderChar:C,indexesOfPipedChars:F.indexesOfPipedChars,caretTrapIndexes:S}),z=L===j&&0===W,B=k?j:g,D=z?B:L;r.previousConformedValue=D,r.previousPlaceholder=j,o.value!==D&&(o.value=D,i(o,W))}}}}}function i(e,r){document.activeElement===e&&(b?C(function(){return e.setSelectionRange(r,r,m)},0):e.setSelectionRange(r,r,m))}function a(e){if((0,v.isString)(e))return e;if((0,v.isNumber)(e))return String(e);if(void 0===e||null===e)return g;throw new Error("The 'value' provided to Text Mask needs to be a string or a number. The value received was:\n\n "+JSON.stringify(e))}Object.defineProperty(r,"__esModule",{value:!0});var u=Object.assign||function(e){for(var r=1;r<arguments.length;r++){var t=arguments[r];for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&(e[n]=t[n])}return e},l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};r.default=o;var s=t(2),f=n(s),d=t(3),c=n(d),v=t(4),p=t(1),h="function",g="",m="none",y="object",b="undefined"!=typeof navigator&&/Android/i.test(navigator.userAgent),C="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:setTimeout}])});
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MYDP_VALUE_ACCESSOR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyDatePicker; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_my_date_picker_locale_service__ = __webpack_require__(882);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_my_date_picker_util_service__ = __webpack_require__(883);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_my_date_picker_locale_service__ = __webpack_require__(887);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_my_date_picker_util_service__ = __webpack_require__(888);
 
 
 
@@ -2629,7 +2678,7 @@ var MyDatePicker = (function () {
 
 /***/ }),
 
-/***/ 370:
+/***/ 371:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2639,8 +2688,8 @@ var core_1 = __webpack_require__(1);
 var vg_api_1 = __webpack_require__(28);
 var vg_fullscreen_api_1 = __webpack_require__(142);
 var vg_utils_1 = __webpack_require__(143);
-var vg_media_1 = __webpack_require__(200);
-var vg_controls_hidden_1 = __webpack_require__(86);
+var vg_media_1 = __webpack_require__(201);
+var vg_controls_hidden_1 = __webpack_require__(87);
 var VgPlayer = (function () {
     function VgPlayer(ref, api, fsAPI, controlsHidden) {
         this.api = api;
@@ -2714,14 +2763,14 @@ exports.VgPlayer = VgPlayer;
 
 /***/ }),
 
-/***/ 371:
+/***/ 372:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var vg_events_1 = __webpack_require__(201);
+var vg_events_1 = __webpack_require__(202);
 var Observable_1 = __webpack_require__(0);
 __webpack_require__(136);
 var VgCuePoints = (function () {
@@ -2795,7 +2844,7 @@ exports.VgCuePoints = VgCuePoints;
 
 /***/ }),
 
-/***/ 372:
+/***/ 373:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2811,11 +2860,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var public_1 = __webpack_require__(88);
-var newsRequest_1 = __webpack_require__(373);
+var newsRequest_1 = __webpack_require__(374);
 var page_1 = __webpack_require__(38);
-var news_1 = __webpack_require__(202);
+var news_1 = __webpack_require__(203);
 var Home = (function () {
     function Home(toastr, vcr, home, pageService, newsService) {
         this.toastr = toastr;
@@ -2853,7 +2902,7 @@ var Home = (function () {
     Home = __decorate([
         core_1.Component({
             selector: 'home',
-            template: __webpack_require__(916)
+            template: __webpack_require__(921)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -2868,7 +2917,7 @@ exports.Home = Home;
 
 /***/ }),
 
-/***/ 373:
+/***/ 374:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2885,7 +2934,7 @@ exports.TopRequest = TopRequest;
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2901,7 +2950,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
 var Comand = (function () {
@@ -2925,7 +2974,7 @@ var Comand = (function () {
     Comand = __decorate([
         core_1.Component({
             selector: 'command',
-            template: __webpack_require__(917)
+            template: __webpack_require__(922)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -2935,50 +2984,6 @@ var Comand = (function () {
     return Comand;
 }());
 exports.Comand = Comand;
-
-
-/***/ }),
-
-/***/ 375:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var page_1 = __webpack_require__(38);
-var CurrentTournaments = (function () {
-    function CurrentTournaments(toastr, vcr, pageService) {
-        this.toastr = toastr;
-        this.vcr = vcr;
-        this.pageService = pageService;
-    }
-    CurrentTournaments.prototype.ngOnInit = function () {
-        var self = this;
-        self.pageService.recipeSelected.emit(2);
-    };
-    CurrentTournaments = __decorate([
-        core_1.Component({
-            selector: 'current-tournaments',
-            template: __webpack_require__(918)
-        }),
-        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
-            core_1.ViewContainerRef,
-            page_1.PageService])
-    ], CurrentTournaments);
-    return CurrentTournaments;
-}());
-exports.CurrentTournaments = CurrentTournaments;
 
 
 /***/ }),
@@ -2999,40 +3004,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var page_1 = __webpack_require__(38);
-var email_1 = __webpack_require__(203);
-var NewTournaments = (function () {
-    function NewTournaments(toastr, vcr, pageService, emailService) {
+var CurrentTournaments = (function () {
+    function CurrentTournaments(toastr, vcr, pageService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.pageService = pageService;
-        this.emailService = emailService;
-        this.isChecked = true;
     }
-    NewTournaments.prototype.ngOnInit = function () {
+    CurrentTournaments.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(2);
     };
-    NewTournaments.prototype.showcommand = function (id) {
-        var self = this;
-        document.getElementById(id).style.display = "block";
-    };
-    NewTournaments.prototype.getNews = function () {
-    };
-    NewTournaments = __decorate([
+    CurrentTournaments = __decorate([
         core_1.Component({
-            selector: 'new-tournaments',
-            template: __webpack_require__(919)
+            selector: 'current-tournaments',
+            template: __webpack_require__(923)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
-            page_1.PageService,
-            email_1.EmailService])
-    ], NewTournaments);
-    return NewTournaments;
+            page_1.PageService])
+    ], CurrentTournaments);
+    return CurrentTournaments;
 }());
-exports.NewTournaments = NewTournaments;
+exports.CurrentTournaments = CurrentTournaments;
 
 
 /***/ }),
@@ -3053,30 +3048,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var page_1 = __webpack_require__(38);
-var PastTournaments = (function () {
-    function PastTournaments(toastr, vcr, pageService) {
+var turnament_1 = __webpack_require__(378);
+var command_1 = __webpack_require__(924);
+var elementtRequest_1 = __webpack_require__(379);
+var NewTournaments = (function () {
+    function NewTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.pageService = pageService;
+        this.turnamentService = turnamentService;
+        this.isChecked = false;
+        this.isTur = false;
     }
-    PastTournaments.prototype.ngOnInit = function () {
+    NewTournaments.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
     };
-    PastTournaments = __decorate([
+    NewTournaments.prototype.getTournaments = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentsForUser().then(function (response) {
+            self.turnaments = response.turnaments;
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
+    };
+    NewTournaments.prototype.declareTournament = function (id, index) {
+        var self = this;
+        self.busy = self.turnamentService.DeclareTournament(new elementtRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnaments[index].commands.push(new command_1.CommandForTurnament(null, response.txt, false));
+            self.toastr.success("Заявка подана");
+        });
+    };
+    NewTournaments = __decorate([
         core_1.Component({
-            selector: 'past-tournaments',
-            template: __webpack_require__(920)
+            selector: 'new-tournaments',
+            template: __webpack_require__(925)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
-            page_1.PageService])
-    ], PastTournaments);
-    return PastTournaments;
+            page_1.PageService,
+            turnament_1.TurnamentService])
+    ], NewTournaments);
+    return NewTournaments;
 }());
-exports.PastTournaments = PastTournaments;
+exports.NewTournaments = NewTournaments;
 
 
 /***/ }),
@@ -3097,16 +3115,139 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(80);
-var http_1 = __webpack_require__(52);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
+var TurnamentService = (function () {
+    function TurnamentService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    TurnamentService.prototype.GetTurnamentsForUser = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentsForUser, null);
+    };
+    TurnamentService.prototype.DeclareTournament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.declareTournament, request);
+    };
+    TurnamentService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], TurnamentService);
+    return TurnamentService;
+}());
+exports.TurnamentService = TurnamentService;
+
+
+/***/ }),
+
+/***/ 379:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementRequest = (function () {
+    function ElementRequest(txt) {
+        this.txt = txt;
+    }
+    return ElementRequest;
+}());
+exports.ElementRequest = ElementRequest;
+
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var PageService = (function () {
+    function PageService() {
+        this.recipeSelected = new core_1.EventEmitter();
+        this.account = 1;
+    }
+    return PageService;
+}());
+exports.PageService = PageService;
+
+
+/***/ }),
+
+/***/ 380:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(21);
 var page_1 = __webpack_require__(38);
-var account_1 = __webpack_require__(379);
+var PastTournaments = (function () {
+    function PastTournaments(toastr, vcr, pageService) {
+        this.toastr = toastr;
+        this.vcr = vcr;
+        this.pageService = pageService;
+    }
+    PastTournaments.prototype.ngOnInit = function () {
+        var self = this;
+        self.pageService.recipeSelected.emit(2);
+    };
+    PastTournaments = __decorate([
+        core_1.Component({
+            selector: 'past-tournaments',
+            template: __webpack_require__(926)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            core_1.ViewContainerRef,
+            page_1.PageService])
+    ], PastTournaments);
+    return PastTournaments;
+}());
+exports.PastTournaments = PastTournaments;
+
+
+/***/ }),
+
+/***/ 381:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
+var http_1 = __webpack_require__(55);
+var page_1 = __webpack_require__(38);
+var account_1 = __webpack_require__(382);
 var authentication_1 = __webpack_require__(204);
-var image_1 = __webpack_require__(380);
-var account_2 = __webpack_require__(921);
-var common_1 = __webpack_require__(87);
-var accountRequest_1 = __webpack_require__(922);
+var image_1 = __webpack_require__(383);
+var account_2 = __webpack_require__(927);
+var common_1 = __webpack_require__(73);
+var elementtRequest_1 = __webpack_require__(379);
 var Cabinet = (function () {
     function Cabinet(toastr, pageService, accountService, imgService, authenticationService, router, http) {
         this.toastr = toastr;
@@ -3186,7 +3327,7 @@ var Cabinet = (function () {
         var self = this;
         if (self.idPlayer == null && self.index == null)
             return;
-        self.busy = self.accountService.DellPlayer(new accountRequest_1.ElementRequest(self.idPlayer)).then(function (response) {
+        self.busy = self.accountService.DellPlayer(new elementtRequest_1.ElementRequest(self.idPlayer)).then(function (response) {
             self.account.command.splice(self.index, 1);
             self.idPlayer = null;
             self.index = null;
@@ -3238,7 +3379,7 @@ var Cabinet = (function () {
     Cabinet = __decorate([
         core_1.Component({
             selector: 'cabinet',
-            template: __webpack_require__(923)
+            template: __webpack_require__(928)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -3255,7 +3396,7 @@ exports.Cabinet = Cabinet;
 
 /***/ }),
 
-/***/ 379:
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3271,9 +3412,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var AccountService = (function () {
     function AccountService(tranport) {
         this.tranport = tranport;
@@ -3306,26 +3447,7 @@ exports.AccountService = AccountService;
 
 /***/ }),
 
-/***/ 38:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var PageService = (function () {
-    function PageService() {
-        this.recipeSelected = new core_1.EventEmitter();
-        this.account = 1;
-    }
-    return PageService;
-}());
-exports.PageService = PageService;
-
-
-/***/ }),
-
-/***/ 380:
+/***/ 383:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3341,9 +3463,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var ImageService = (function () {
     function ImageService(tranport) {
         this.tranport = tranport;
@@ -3364,7 +3486,7 @@ exports.ImageService = ImageService;
 
 /***/ }),
 
-/***/ 381:
+/***/ 384:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3380,10 +3502,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var news_1 = __webpack_require__(202);
+var ng2_toastr_1 = __webpack_require__(21);
+var news_1 = __webpack_require__(203);
 var page_1 = __webpack_require__(38);
-var newsRequest_1 = __webpack_require__(373);
+var newsRequest_1 = __webpack_require__(374);
 var News = (function () {
     function News(toastr, vcr, newsService, pageService) {
         this.toastr = toastr;
@@ -3410,7 +3532,7 @@ var News = (function () {
     News = __decorate([
         core_1.Component({
             selector: 'news',
-            template: __webpack_require__(924)
+            template: __webpack_require__(929)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3424,7 +3546,7 @@ exports.News = News;
 
 /***/ }),
 
-/***/ 382:
+/***/ 385:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3440,38 +3562,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
-var photo_1 = __webpack_require__(925);
+var photo_1 = __webpack_require__(930);
+var photoRequest_1 = __webpack_require__(931);
+var photoResponse_1 = __webpack_require__(932);
 var Photo = (function () {
     function Photo(toastr, vcr, home, pageService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.home = home;
         this.pageService = pageService;
-        this.photos = new Array();
+        this.pagePhotos = new photoResponse_1.GetPhotoResponse(null, null, null);
         this.display = new photo_1.Display(null, null);
-        this.commandsId = new Array();
-        this.myDatePickerOptions = {
-            dateFormat: 'dd.mm.yyyy'
-        };
+        this.pageSize = new Array();
         var self = this;
-        self.getPhoto();
+        self.getPhoto(1);
         self.getCommandFilter();
     }
     Photo.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(5);
     };
-    Photo.prototype.getPhoto = function () {
+    Photo.prototype.getPhoto = function (page) {
         var self = this;
-        self.busy = self.home.GetPhoto().then(function (response) {
-            self.display.url = response.photos[0].url;
-            self.display.position = 0;
-            self.photos = response.photos;
-            for (var i = 0; i < self.photos.length; i++) {
-                self.photos[i].isShow = true;
+        self.busy = self.home.GetPhoto(new photoRequest_1.GetPhotoRequest(page, self.commandId)).then(function (response) {
+            self.pagePhotos = response;
+            self.pageSize = new Array();
+            for (var i = 2; i < self.pagePhotos.pageSize; i++) {
+                self.pageSize.push(i);
             }
         });
     };
@@ -3484,20 +3604,13 @@ var Photo = (function () {
     Photo.prototype.filterCommand = function (id, checked) {
         var self = this;
         if (checked) {
-            self.commandsId.push(id);
+            self.commandId = id;
+            self.getPhoto(self.pagePhotos.currentPage);
         }
         else {
-            for (var i = 0; i < self.commandsId.length; i++) {
-                if (self.commandsId[i] == id)
-                    self.commandsId.splice(i, 1);
-            }
+            self.commandId = null;
+            self.getPhoto(self.pagePhotos.currentPage);
         }
-    };
-    Photo.prototype.photoStyle = function (isShow) {
-        if (isShow)
-            return { "display": "inline-block" };
-        else
-            return { "display": "none" };
     };
     Photo.prototype.photoShowStyle = function () {
         var self = this;
@@ -3505,6 +3618,18 @@ var Photo = (function () {
         return {
             "margin-top": top + "px"
         };
+    };
+    Photo.prototype.pageStyle = function (page) {
+        var self = this;
+        if ((self.pagePhotos.currentPage + 2 < page || self.pagePhotos.currentPage - 2 > page) && (page != self.pagePhotos.pageSize && page != 1))
+            return {
+                "display": "none"
+            };
+        if (self.pagePhotos.currentPage == page)
+            return {
+                "color": "#00ff2d",
+                "font-size": "20px"
+            };
     };
     Photo.prototype.openPhoto = function (url, position) {
         var self = this;
@@ -3518,23 +3643,41 @@ var Photo = (function () {
     Photo.prototype.nextLeftPhoto = function () {
         var self = this;
         if (self.display.position <= 0)
-            self.display.position = self.photos.length - 1;
+            self.display.position = self.pagePhotos.photos.length - 1;
         else
             self.display.position--;
-        self.display.url = self.photos[self.display.position].url;
+        self.display.url = self.pagePhotos.photos[self.display.position];
     };
     Photo.prototype.nextRightPhoto = function () {
         var self = this;
-        if (self.display.position >= self.photos.length - 1)
+        if (self.display.position >= self.pagePhotos.photos.length - 1)
             self.display.position = 0;
         else
             self.display.position++;
-        self.display.url = self.photos[self.display.position].url;
+        self.display.url = self.pagePhotos.photos[self.display.position];
+    };
+    Photo.prototype.nextLeftPage = function () {
+        var self = this;
+        if (self.pagePhotos.currentPage <= 1)
+            return;
+        self.getPhoto(self.pagePhotos.currentPage - 1);
+    };
+    Photo.prototype.nextRightPage = function () {
+        var self = this;
+        if (self.pagePhotos.pageSize < self.pagePhotos.currentPage + 1)
+            return;
+        self.getPhoto(self.pagePhotos.currentPage + 1);
+    };
+    Photo.prototype.getPage = function (page) {
+        var self = this;
+        if (self.pagePhotos.currentPage == page)
+            return;
+        self.getPhoto(page);
     };
     Photo = __decorate([
         core_1.Component({
             selector: 'photo',
-            template: __webpack_require__(926)
+            template: __webpack_require__(933)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3548,7 +3691,7 @@ exports.Photo = Photo;
 
 /***/ }),
 
-/***/ 383:
+/***/ 386:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3564,14 +3707,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(80);
-var http_1 = __webpack_require__(52);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
+var http_1 = __webpack_require__(55);
 var page_1 = __webpack_require__(38);
-var authentication_1 = __webpack_require__(384);
-var common_1 = __webpack_require__(87);
-var login_1 = __webpack_require__(927);
-var authorizationRequest_1 = __webpack_require__(385);
+var authentication_1 = __webpack_require__(387);
+var common_1 = __webpack_require__(73);
+var login_1 = __webpack_require__(934);
+var authorizationRequest_1 = __webpack_require__(388);
 var Login = (function () {
     function Login(toastr, pageService, router, http, authenticationService) {
         this.toastr = toastr;
@@ -3628,7 +3771,7 @@ var Login = (function () {
     Login = __decorate([
         core_1.Component({
             selector: 'login',
-            template: __webpack_require__(928)
+            template: __webpack_require__(935)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -3643,7 +3786,7 @@ exports.Login = Login;
 
 /***/ }),
 
-/***/ 384:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3659,9 +3802,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var AuthenticationAdminService = (function () {
     function AuthenticationAdminService(tranport) {
         this.tranport = tranport;
@@ -3690,7 +3833,7 @@ exports.AuthenticationAdminService = AuthenticationAdminService;
 
 /***/ }),
 
-/***/ 385:
+/***/ 388:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3709,7 +3852,7 @@ exports.AuthorizationRequest = AuthorizationRequest;
 
 /***/ }),
 
-/***/ 386:
+/***/ 389:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3725,13 +3868,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(80);
-var http_1 = __webpack_require__(52);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
+var http_1 = __webpack_require__(55);
 var page_1 = __webpack_require__(38);
 var news_1 = __webpack_require__(205);
-var common_1 = __webpack_require__(87);
-var ElementRequest_1 = __webpack_require__(387);
+var common_1 = __webpack_require__(73);
+var ElementRequest_1 = __webpack_require__(144);
 var NewsAdmin = (function () {
     function NewsAdmin(toastr, pageService, newsService, router, http) {
         this.toastr = toastr;
@@ -3742,6 +3885,8 @@ var NewsAdmin = (function () {
         this.isText = false;
         this.isPhoto = false;
         this.isVideo = false;
+        this.idNews = null;
+        this.index = null;
         var self = this;
     }
     NewsAdmin.prototype.ngOnInit = function () {
@@ -3769,10 +3914,19 @@ var NewsAdmin = (function () {
             });
         });
     };
-    NewsAdmin.prototype.dellNews = function (id, index) {
+    NewsAdmin.prototype.selectNews = function (id, i) {
         var self = this;
-        self.busy = self.newsService.DellNews(new ElementRequest_1.ElementRequest(id)).then(function (response) {
-            self.newsInfo.splice(index, 1);
+        self.idNews = id;
+        self.index = i;
+    };
+    NewsAdmin.prototype.dellNews = function () {
+        var self = this;
+        if (self.idNews == null && self.index == null)
+            return;
+        self.busy = self.newsService.DellNews(new ElementRequest_1.ElementRequest(self.idNews)).then(function (response) {
+            self.newsInfo.splice(self.index, 1);
+            self.idNews = null;
+            self.index = null;
             self.toastr.success("Новость удалена");
         });
     };
@@ -3793,7 +3947,7 @@ var NewsAdmin = (function () {
     NewsAdmin = __decorate([
         core_1.Component({
             selector: 'news-admin',
-            template: __webpack_require__(929)
+            template: __webpack_require__(936)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -3808,25 +3962,7 @@ exports.NewsAdmin = NewsAdmin;
 
 /***/ }),
 
-/***/ 387:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ElementRequest = (function () {
-    function ElementRequest(txt) {
-        var self = this;
-        self.txt = txt;
-    }
-    return ElementRequest;
-}());
-exports.ElementRequest = ElementRequest;
-
-
-/***/ }),
-
-/***/ 388:
+/***/ 390:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3842,26 +3978,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(80);
-var http_1 = __webpack_require__(52);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
 var news_1 = __webpack_require__(205);
-var file_1 = __webpack_require__(389);
+var file_1 = __webpack_require__(391);
 var public_1 = __webpack_require__(88);
-var page_1 = __webpack_require__(38);
-var ElementRequest_1 = __webpack_require__(387);
-var news_2 = __webpack_require__(390);
-var common_1 = __webpack_require__(87);
-var news_3 = __webpack_require__(390);
+var ElementRequest_1 = __webpack_require__(144);
+var news_2 = __webpack_require__(392);
+var common_1 = __webpack_require__(73);
+var news_3 = __webpack_require__(392);
 var AddNews = (function () {
-    function AddNews(toastr, pageService, newsService, fileService, home, router, http, route) {
+    function AddNews(toastr, newsService, fileService, home, router, route) {
         this.toastr = toastr;
-        this.pageService = pageService;
         this.newsService = newsService;
         this.fileService = fileService;
         this.home = home;
         this.router = router;
-        this.http = http;
         this.route = route;
         this.videos = new Array();
         this.news = new news_3.GetNews(null, null, null, null, null, null, null, null, null, null);
@@ -3874,8 +4006,6 @@ var AddNews = (function () {
         self.getCommandFilter();
     }
     AddNews.prototype.ngOnInit = function () {
-        var self = this;
-        self.pageService.recipeSelected.emit(8);
     };
     AddNews.prototype.getNews = function (id) {
         var self = this;
@@ -3963,22 +4093,16 @@ var AddNews = (function () {
             self.commandFilter = response.commandFilter;
         });
     };
-    __decorate([
-        core_1.ViewChild("profileImage"),
-        __metadata("design:type", Object)
-    ], AddNews.prototype, "profileImage", void 0);
     AddNews = __decorate([
         core_1.Component({
             selector: 'add-news',
-            template: __webpack_require__(930)
+            template: __webpack_require__(937)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
-            page_1.PageService,
             news_1.NewsAdminService,
             file_1.FileService,
             public_1.HomeService,
             router_1.Router,
-            http_1.Http,
             router_1.ActivatedRoute])
     ], AddNews);
     return AddNews;
@@ -3988,7 +4112,7 @@ exports.AddNews = AddNews;
 
 /***/ }),
 
-/***/ 389:
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4004,9 +4128,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
 var FileService = (function () {
     function FileService(tranport) {
         this.tranport = tranport;
@@ -4039,7 +4163,7 @@ exports.FileService = FileService;
 
 /***/ }),
 
-/***/ 390:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4096,7 +4220,7 @@ exports.UrlPhotosNews = UrlPhotosNews;
 
 /***/ }),
 
-/***/ 58:
+/***/ 393:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4112,9 +4236,333 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var http_1 = __webpack_require__(52);
-var ng2_toastr_1 = __webpack_require__(24);
-__webpack_require__(350);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
+var http_1 = __webpack_require__(55);
+var page_1 = __webpack_require__(38);
+var turnament_1 = __webpack_require__(206);
+var ElementRequest_1 = __webpack_require__(144);
+var common_1 = __webpack_require__(73);
+var Turnament = (function () {
+    function Turnament(toastr, pageService, turnamentService, router, http) {
+        this.toastr = toastr;
+        this.pageService = pageService;
+        this.turnamentService = turnamentService;
+        this.router = router;
+        this.http = http;
+        this.idTurnament = null;
+        this.index = null;
+        var self = this;
+    }
+    Turnament.prototype.ngOnInit = function () {
+        var self = this;
+        self.pageService.recipeSelected.emit(9);
+        self.getTurnamentInfo();
+    };
+    Turnament.prototype.getTurnamentInfo = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentInfo().then(function (response) {
+            self.turnaments = response.turnaments;
+        });
+    };
+    Turnament.prototype.addTurnament = function (isType, type) {
+        var self = this;
+        if (!isType) {
+            self.toastr.error("Не выбран тип турнира");
+            return;
+        }
+        self.busy = self.turnamentService.AddTurnament(new ElementRequest_1.ElementRequest(type)).then(function (response) {
+            self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
+                queryParams: {
+                    key: response.txt
+                }
+            });
+        });
+    };
+    Turnament.prototype.selectTurnament = function (id, i) {
+        var self = this;
+        self.idTurnament = id;
+        self.index = i;
+    };
+    Turnament.prototype.dellTurnament = function () {
+        var self = this;
+        if (self.idTurnament == null && self.index == null)
+            return;
+        self.busy = self.turnamentService.DellTurnament(new ElementRequest_1.ElementRequest(self.idTurnament)).then(function (response) {
+            self.turnaments.splice(self.index, 1);
+            self.idTurnament = null;
+            self.index = null;
+            self.toastr.success("Турнир удален");
+        });
+    };
+    Turnament.prototype.editTurnament = function (id) {
+        var self = this;
+        self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
+            queryParams: {
+                key: id
+            }
+        });
+    };
+    Turnament = __decorate([
+        core_1.Component({
+            selector: 'turnament',
+            template: __webpack_require__(938)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            page_1.PageService,
+            turnament_1.TurnamentAdminService,
+            router_1.Router,
+            http_1.Http])
+    ], Turnament);
+    return Turnament;
+}());
+exports.Turnament = Turnament;
+
+
+/***/ }),
+
+/***/ 394:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
+var common_1 = __webpack_require__(73);
+var turnament_1 = __webpack_require__(206);
+var ElementRequest_1 = __webpack_require__(144);
+var turnamentRequest_1 = __webpack_require__(939);
+var turnament_2 = __webpack_require__(940);
+var TuningTurnament = (function () {
+    function TuningTurnament(toastr, router, turnamentService, route) {
+        this.toastr = toastr;
+        this.router = router;
+        this.turnamentService = turnamentService;
+        this.route = route;
+        this.page = 1;
+        this.cause = null;
+        this.commandId = null;
+        this.index = null;
+        this.rowSize = new Array();
+        this.colSize = new Array();
+        this.tours = [];
+        this.table = new Array();
+        this.turnament = new turnament_2.GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.myDatePickerOptions = {
+            dateFormat: 'yyyy-mm-dd'
+        };
+        var self = this;
+        route.queryParams.subscribe(function (params) {
+            self.id = params["key"];
+        });
+        self.getTurnament(self.id);
+    }
+    TuningTurnament.prototype.ngOnInit = function () {
+    };
+    TuningTurnament.prototype.getTurnament = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnament(new ElementRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnament = response.turnament;
+            self.page = self.turnament.step > 1 ? 2 : 1;
+            self.getTable();
+            for (var i = 1; i < self.turnament.positionCommand.length; i++)
+                self.tours.push(self.turnament.gameTurnament.filter(function (x) { return x.tour == i; }));
+        });
+    };
+    TuningTurnament.prototype.getResult = function (row, col) {
+        var self = this;
+        var commandOneId = self.turnament.positionCommand[row - 1].commandId;
+        var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
+        for (var i = 0; i < self.turnament.gameTurnament.length; i++) {
+            if (self.turnament.gameTurnament[i].idCommandOne == commandOneId && self.turnament.gameTurnament[i].idCommandTwo == commandTwoId)
+                return self.turnament.gameTurnament[i].commandOneGoals + " -- " + self.turnament.gameTurnament[i].commandTwoGoals;
+            if (self.turnament.gameTurnament[i].idCommandOne == commandTwoId && self.turnament.gameTurnament[i].idCommandTwo == commandOneId)
+                return self.turnament.gameTurnament[i].commandTwoGoals + " -- " + self.turnament.gameTurnament[i].commandOneGoals;
+        }
+    };
+    TuningTurnament.prototype.getTable = function () {
+        var self = this;
+        var commandSize = self.turnament.positionCommand.length;
+        self.rowSize = new Array();
+        self.colSize = new Array();
+        self.table = new Array(commandSize + 1);
+        for (var i = 0; i < commandSize + 1; i++) {
+            self.rowSize.push(i);
+            self.table[i] = new Array(commandSize + 3);
+        }
+        for (var i = 0; i < commandSize + 3; i++)
+            self.colSize.push(i);
+        for (var row = 0; row < self.table.length; row++) {
+            for (var col = 0; col < self.table[row].length; col++) {
+                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
+                    self.table[row][col] = self.getResult(row, col);
+                if (row != 0 && col == commandSize + 1)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].points;
+                if (row != 0 && col == commandSize + 2)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].place;
+                if (row == 0 && col < commandSize + 1 && row != col)
+                    self.table[row][col] = self.turnament.positionCommand[col - 1].commandName;
+                if (col == 0 && row < commandSize + 1 && row != col)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].commandName;
+                if (row == 0 && col == commandSize + 1)
+                    self.table[row][col] = "Очки";
+                if (row == 0 && col == commandSize + 2)
+                    self.table[row][col] = "Место";
+            }
+        }
+    };
+    TuningTurnament.prototype.back = function () {
+        var self = this;
+        self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.Turnament], {});
+    };
+    TuningTurnament.prototype.saveTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.SaveTurnamentInfo(new turnamentRequest_1.SaveTurnamentInfoRequest(self.turnament)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    TuningTurnament.prototype.openRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 1)).then(function (response) {
+            self.turnament.step = 1;
+            self.toastr.success("Этап регистрации");
+        });
+    };
+    TuningTurnament.prototype.changeStep = function (step) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, step)).then(function (response) {
+            self.turnament.step = step;
+            self.toastr.success("Смена этапа");
+        });
+    };
+    TuningTurnament.prototype.completeRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
+            self.turnament.step = 2;
+            self.page = 2;
+            self.toastr.success("Этап построения");
+        });
+    };
+    TuningTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
+        var self = this;
+        self.busy = self.turnamentService.AcceptDeclare(new turnamentRequest_1.DeclareRequest(turnamentId, commandId)).then(function (response) {
+            self.turnament.commands[index].status = true;
+            self.toastr.success("Заявка принята");
+        });
+    };
+    TuningTurnament.prototype.selectDeclare = function (commandId, index) {
+        var self = this;
+        self.commandId = commandId;
+        self.index = index;
+    };
+    TuningTurnament.prototype.removeDeclare = function () {
+        var self = this;
+        if (self.commandId == null && self.index == null)
+            return;
+        if (self.cause == null || self.cause == "") {
+            self.toastr.error("Укажите причину отказа");
+            return;
+        }
+        self.busy = self.turnamentService.RemoveDeclare(new turnamentRequest_1.RemoveDeclareRequest(self.turnament.id, self.commandId, self.cause)).then(function (response) {
+            self.turnament.commands.splice(self.index, 1);
+            self.commandId = null;
+            self.index = null;
+            self.cause = null;
+            self.toastr.success("Заявка отклонена");
+        });
+    };
+    TuningTurnament.prototype.calculateTable = function () {
+        var self = this;
+        self.busy = self.turnamentService.CalculateTable(new ElementRequest_1.ElementRequest(self.turnament.id)).then(function (response) {
+            self.toastr.success("Турнирная табляца построена");
+        });
+    };
+    TuningTurnament = __decorate([
+        core_1.Component({
+            selector: 'tuning-turnament',
+            template: __webpack_require__(941)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            router_1.Router,
+            turnament_1.TurnamentAdminService,
+            router_1.ActivatedRoute])
+    ], TuningTurnament);
+    return TuningTurnament;
+}());
+exports.TuningTurnament = TuningTurnament;
+
+
+/***/ }),
+
+/***/ 395:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
+var EmailService = (function () {
+    function EmailService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    EmailService.prototype.singCodeToEmail = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.codToEmail, request);
+    };
+    EmailService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], EmailService);
+    return EmailService;
+}());
+exports.EmailService = EmailService;
+
+
+/***/ }),
+
+/***/ 45:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var http_1 = __webpack_require__(55);
+var ng2_toastr_1 = __webpack_require__(21);
+__webpack_require__(351);
 var TransportService = (function () {
     function TransportService(http, toastr) {
         this.http = http;
@@ -4166,7 +4614,7 @@ exports.TransportService = TransportService;
 
 /***/ }),
 
-/***/ 63:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4188,6 +4636,8 @@ var Urls = (function () {
         this.dellPlayer = 'api/Account/DellPlayer';
         this.editAccountInfo = 'api/Account/EditAccountInfo';
         this.addImageAvatar = 'api/Image/AddImageAvatar';
+        this.getTurnamentsForUser = 'api/Turnament/GetTurnamentsForUser';
+        this.declareTournament = 'api/Turnament/DeclareTournament';
         this.command = 'api/Public/GetCommand';
         this.commandFilter = 'api/Public/GetCommandFilter';
         this.getPhoto = 'api/Public/GetPhoto';
@@ -4200,6 +4650,15 @@ var Urls = (function () {
         this.addNews = 'api/NewsAdmin/AddNews';
         this.saveNews = 'api/NewsAdmin/SaveNews';
         this.activeNews = 'api/NewsAdmin/ActiveNews';
+        this.addTurnament = 'api/TurnamentAdmin/AddTurnament';
+        this.getTurnamentInfo = 'api/TurnamentAdmin/GetTurnamentInfo';
+        this.dellTurnament = 'api/TurnamentAdmin/DellTurnament';
+        this.getTurnament = 'api/TurnamentAdmin/GetTurnament';
+        this.saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
+        this.changeStep = 'api/TurnamentAdmin/ChangeStep';
+        this.acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
+        this.removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
+        this.calculateTable = 'api/TurnamentAdmin/CalculateTable';
         this.addImgNewsTypeText = 'api/FileAdmin/AddImgNewsTypeText';
         this.addImgNewsTypePhoto = 'api/FileAdmin/AddImgNewsTypePhoto';
         this.addVideoForNews = 'api/FileAdmin/AddVideoForNews';
@@ -4212,7 +4671,54 @@ exports.Urls = Urls;
 
 /***/ }),
 
-/***/ 85:
+/***/ 73:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Common;
+(function (Common) {
+    var NavigationState = (function () {
+        function NavigationState(route, queryParams) {
+            this.route = route;
+            this.queryParams = queryParams;
+        }
+        return NavigationState;
+    }());
+    Common.NavigationState = NavigationState;
+    var RoutePaths = (function () {
+        function RoutePaths() {
+        }
+        RoutePaths.Home = "";
+        RoutePaths.Comand = "comand";
+        RoutePaths.CurrentTournaments = "current-tournaments";
+        RoutePaths.NewTournaments = "new-tournaments";
+        RoutePaths.PastTournaments = "past-tournaments";
+        RoutePaths.Cabinet = "cabinet";
+        RoutePaths.News = "news";
+        RoutePaths.Photo = "photo";
+        RoutePaths.Video = "video";
+        RoutePaths.Admin = "admin";
+        RoutePaths.EditNews = "edit-news/:key";
+        RoutePaths.Turnament = "turnament";
+        RoutePaths.TuningTurnament = "tuning-turnament/:key";
+        RoutePaths.PlanOpp = "plan/:key/:bt/:userId/:oppId";
+        RoutePaths.Checkerboard = "checkerboard/:key/:type/:bt";
+        RoutePaths.CheckerboardLead = "checkerboard/:key/:type/:bt/:leadId";
+        RoutePaths.CheckerboardOpp = "checkerboard/:key/:type/:bt/:oppId";
+        RoutePaths.CheckerDetail = "checkerDetail/:key/:type/:bt";
+        RoutePaths.Slash = "/";
+        RoutePaths.Any = '**';
+        return RoutePaths;
+    }());
+    Common.RoutePaths = RoutePaths;
+})(Common = exports.Common || (exports.Common = {}));
+
+
+/***/ }),
+
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4239,7 +4745,7 @@ exports.VgStates = VgStates;
 
 /***/ }),
 
-/***/ 86:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4268,20 +4774,20 @@ exports.VgControlsHidden = VgControlsHidden;
 
 /***/ }),
 
-/***/ 866:
+/***/ 871:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_dynamic_1 = __webpack_require__(173);
-var app_module_1 = __webpack_require__(867);
+var platform_browser_dynamic_1 = __webpack_require__(174);
+var app_module_1 = __webpack_require__(872);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 
 
 /***/ }),
 
-/***/ 867:
+/***/ 872:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4294,44 +4800,50 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__(41);
-var router_1 = __webpack_require__(80);
+var router_1 = __webpack_require__(64);
 var core_1 = __webpack_require__(1);
-var forms_1 = __webpack_require__(23);
-var http_1 = __webpack_require__(52);
-var material_modul_1 = __webpack_require__(868);
-var animations_1 = __webpack_require__(278);
-var angular2_busy_1 = __webpack_require__(869);
-var ng2_toastr_1 = __webpack_require__(24);
-var ng2_toastr_2 = __webpack_require__(24);
-var angular2_text_mask_1 = __webpack_require__(879);
-var mydatepicker_1 = __webpack_require__(880);
-var core_2 = __webpack_require__(899);
-var controls_1 = __webpack_require__(901);
-var app_routes_1 = __webpack_require__(915);
-var app_1 = __webpack_require__(931);
-var home_1 = __webpack_require__(372);
-var comand_1 = __webpack_require__(374);
-var current_tournaments_1 = __webpack_require__(375);
-var new_tournaments_1 = __webpack_require__(376);
-var past_tournaments_1 = __webpack_require__(377);
-var cabinet_1 = __webpack_require__(378);
-var news_1 = __webpack_require__(381);
-var photo_1 = __webpack_require__(382);
-var video_command_1 = __webpack_require__(935);
-var transport_1 = __webpack_require__(58);
+var forms_1 = __webpack_require__(24);
+var http_1 = __webpack_require__(55);
+var material_modul_1 = __webpack_require__(873);
+var animations_1 = __webpack_require__(279);
+var angular2_busy_1 = __webpack_require__(874);
+var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_2 = __webpack_require__(21);
+var angular2_text_mask_1 = __webpack_require__(884);
+var mydatepicker_1 = __webpack_require__(885);
+var core_2 = __webpack_require__(904);
+var controls_1 = __webpack_require__(906);
+var app_routes_1 = __webpack_require__(920);
+var app_1 = __webpack_require__(942);
+var home_1 = __webpack_require__(373);
+var comand_1 = __webpack_require__(375);
+var current_tournaments_1 = __webpack_require__(376);
+var new_tournaments_1 = __webpack_require__(377);
+var past_tournaments_1 = __webpack_require__(380);
+var cabinet_1 = __webpack_require__(381);
+var news_1 = __webpack_require__(384);
+var photo_1 = __webpack_require__(385);
+var video_command_1 = __webpack_require__(946);
+var transport_1 = __webpack_require__(45);
 var public_1 = __webpack_require__(88);
 var authentication_1 = __webpack_require__(204);
-var news_2 = __webpack_require__(202);
-var email_1 = __webpack_require__(203);
-var account_1 = __webpack_require__(379);
-var image_1 = __webpack_require__(380);
-var login_1 = __webpack_require__(383);
-var news_3 = __webpack_require__(386);
-var add_news_1 = __webpack_require__(388);
-var authentication_2 = __webpack_require__(384);
+var news_2 = __webpack_require__(203);
+var email_1 = __webpack_require__(395);
+var account_1 = __webpack_require__(382);
+var image_1 = __webpack_require__(383);
+var turnament_1 = __webpack_require__(378);
+var login_1 = __webpack_require__(386);
+var news_3 = __webpack_require__(389);
+var add_news_1 = __webpack_require__(390);
+var turnament_2 = __webpack_require__(393);
+var tuning_turnament_1 = __webpack_require__(394);
+var authentication_2 = __webpack_require__(387);
 var news_4 = __webpack_require__(205);
-var file_1 = __webpack_require__(389);
-var newsType_1 = __webpack_require__(938);
+var file_1 = __webpack_require__(391);
+var turnament_3 = __webpack_require__(206);
+var newsType_1 = __webpack_require__(949);
+var turnamentType_1 = __webpack_require__(950);
+var turnamentStep_1 = __webpack_require__(951);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -4351,7 +4863,11 @@ var AppModule = (function () {
                 login_1.Login,
                 news_3.NewsAdmin,
                 newsType_1.NewsType,
-                add_news_1.AddNews
+                turnamentType_1.TurnamentType,
+                turnamentStep_1.TurnamentStep,
+                add_news_1.AddNews,
+                turnament_2.Turnament,
+                tuning_turnament_1.TuningTurnament
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -4382,7 +4898,9 @@ var AppModule = (function () {
                 image_1.ImageService,
                 authentication_2.AuthenticationAdminService,
                 news_4.NewsAdminService,
-                file_1.FileService
+                file_1.FileService,
+                turnament_3.TurnamentAdminService,
+                turnament_1.TurnamentService
             ],
             bootstrap: [
                 app_1.App
@@ -4396,7 +4914,7 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ 868:
+/***/ 873:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4409,16 +4927,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var material_1 = __webpack_require__(184);
-var material_2 = __webpack_require__(184);
-var table_1 = __webpack_require__(190);
-var accordion_1 = __webpack_require__(272);
+var material_1 = __webpack_require__(185);
+var material_2 = __webpack_require__(185);
+var table_1 = __webpack_require__(191);
+var accordion_1 = __webpack_require__(273);
 var a11y_1 = __webpack_require__(20);
 var bidi_1 = __webpack_require__(31);
-var overlay_1 = __webpack_require__(53);
+var overlay_1 = __webpack_require__(56);
 var platform_1 = __webpack_require__(34);
 var observers_1 = __webpack_require__(133);
-var portal_1 = __webpack_require__(54);
+var portal_1 = __webpack_require__(57);
 var MaterialModule = (function () {
     function MaterialModule() {
     }
@@ -4475,7 +4993,7 @@ exports.MaterialModule = MaterialModule;
 
 /***/ }),
 
-/***/ 869:
+/***/ 874:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4483,57 +5001,12 @@ exports.MaterialModule = MaterialModule;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(870));
+__export(__webpack_require__(875));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 87:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Common;
-(function (Common) {
-    var NavigationState = (function () {
-        function NavigationState(route, queryParams) {
-            this.route = route;
-            this.queryParams = queryParams;
-        }
-        return NavigationState;
-    }());
-    Common.NavigationState = NavigationState;
-    var RoutePaths = (function () {
-        function RoutePaths() {
-        }
-        RoutePaths.Home = "";
-        RoutePaths.Comand = "comand";
-        RoutePaths.CurrentTournaments = "current-tournaments";
-        RoutePaths.NewTournaments = "new-tournaments";
-        RoutePaths.PastTournaments = "past-tournaments";
-        RoutePaths.Cabinet = "cabinet";
-        RoutePaths.News = "news";
-        RoutePaths.Photo = "photo";
-        RoutePaths.Video = "video";
-        RoutePaths.Admin = "admin";
-        RoutePaths.EditNews = "edit-news/:key";
-        RoutePaths.PlanOpp = "plan/:key/:bt/:userId/:oppId";
-        RoutePaths.Checkerboard = "checkerboard/:key/:type/:bt";
-        RoutePaths.CheckerboardLead = "checkerboard/:key/:type/:bt/:leadId";
-        RoutePaths.CheckerboardOpp = "checkerboard/:key/:type/:bt/:oppId";
-        RoutePaths.CheckerDetail = "checkerDetail/:key/:type/:bt";
-        RoutePaths.Slash = "/";
-        RoutePaths.Any = '**';
-        return RoutePaths;
-    }());
-    Common.RoutePaths = RoutePaths;
-})(Common = exports.Common || (exports.Common = {}));
-
-
-/***/ }),
-
-/***/ 870:
+/***/ 875:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4541,15 +5014,15 @@ var Common;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(363));
-__export(__webpack_require__(198));
+__export(__webpack_require__(364));
 __export(__webpack_require__(199));
-__export(__webpack_require__(872));
+__export(__webpack_require__(200));
+__export(__webpack_require__(877));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 871:
+/***/ 876:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4651,7 +5124,7 @@ exports.equals = equals;
 
 /***/ }),
 
-/***/ 872:
+/***/ 877:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4667,12 +5140,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var index_1 = __webpack_require__(873);
-var busy_directive_1 = __webpack_require__(363);
-var busy_service_1 = __webpack_require__(198);
-var busy_backdrop_component_1 = __webpack_require__(365);
-var busy_component_1 = __webpack_require__(364);
-var busy_config_1 = __webpack_require__(199);
+var index_1 = __webpack_require__(878);
+var busy_directive_1 = __webpack_require__(364);
+var busy_service_1 = __webpack_require__(199);
+var busy_backdrop_component_1 = __webpack_require__(366);
+var busy_component_1 = __webpack_require__(365);
+var busy_config_1 = __webpack_require__(200);
 var BusyModule = (function () {
     function BusyModule() {
     }
@@ -4711,42 +5184,89 @@ exports.BusyModule = BusyModule;
 
 /***/ }),
 
-/***/ 873:
+/***/ 878:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DynamicComponent_1 = __webpack_require__(366);
+var DynamicComponent_1 = __webpack_require__(367);
 exports.DynamicComponent = DynamicComponent_1.DynamicComponent;
 exports.DynamicComponentMetadata = DynamicComponent_1.DynamicComponentMetadata;
-var DynamicComponentModule_1 = __webpack_require__(878);
+var DynamicComponentModule_1 = __webpack_require__(883);
 exports.DynamicComponentModule = DynamicComponentModule_1.DynamicComponentModule;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 874:
+/***/ 879:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var MetadataHelper_1 = __webpack_require__(875);
+var MetadataHelper_1 = __webpack_require__(880);
 exports.MetadataHelper = MetadataHelper_1.MetadataHelper;
-var MetadataFactory_1 = __webpack_require__(367);
+var MetadataFactory_1 = __webpack_require__(368);
 exports.PropertyAnnotationFactory = MetadataFactory_1.PropertyAnnotationFactory;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 875:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(165);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(50);
+var HomeService = (function () {
+    function HomeService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    HomeService.prototype.GetCommand = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.command, null);
+    };
+    HomeService.prototype.GetCommandFilter = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.commandFilter, null);
+    };
+    HomeService.prototype.GetPhoto = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getPhoto, request);
+    };
+    HomeService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], HomeService);
+    return HomeService;
+}());
+exports.HomeService = HomeService;
+
+
+/***/ }),
+
+/***/ 880:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 __webpack_require__(166);
-var Utils_1 = __webpack_require__(876);
-var MetadataFactory_1 = __webpack_require__(367);
+__webpack_require__(167);
+var Utils_1 = __webpack_require__(881);
+var MetadataFactory_1 = __webpack_require__(368);
 var MetadataHelper = (function () {
     function MetadataHelper() {
     }
@@ -4787,7 +5307,7 @@ exports.MetadataHelper = MetadataHelper;
 
 /***/ }),
 
-/***/ 876:
+/***/ 881:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4817,7 +5337,7 @@ exports.Utils = Utils;
 
 /***/ }),
 
-/***/ 877:
+/***/ 882:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4847,7 +5367,7 @@ exports.Utils = Utils;
 
 /***/ }),
 
-/***/ 878:
+/***/ 883:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4862,7 +5382,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var DynamicComponent_1 = __webpack_require__(366);
+var DynamicComponent_1 = __webpack_require__(367);
 var DynamicComponentModule = (function () {
     function DynamicComponentModule() {
     }
@@ -4884,7 +5404,7 @@ exports.DynamicComponentModule = DynamicComponentModule;
 
 /***/ }),
 
-/***/ 879:
+/***/ 884:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4900,8 +5420,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var forms_1 = __webpack_require__(23);
-var textMaskCore_1 = __webpack_require__(368);
+var forms_1 = __webpack_require__(24);
+var textMaskCore_1 = __webpack_require__(369);
 exports.MASKEDINPUT_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return MaskedInputDirective; }),
@@ -5001,109 +5521,62 @@ TextMaskModule = __decorate([
     })
 ], TextMaskModule);
 exports.TextMaskModule = TextMaskModule;
-var textMaskCore_2 = __webpack_require__(368);
+var textMaskCore_2 = __webpack_require__(369);
 exports.conformToMask = textMaskCore_2.conformToMask;
 //# sourceMappingURL=angular2TextMask.js.map
 
 /***/ }),
 
-/***/ 88:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-__webpack_require__(57);
-var transport_1 = __webpack_require__(58);
-var urls_1 = __webpack_require__(63);
-var HomeService = (function () {
-    function HomeService(tranport) {
-        this.tranport = tranport;
-        this.urls = new urls_1.Urls();
-    }
-    HomeService.prototype.GetCommand = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.command, null);
-    };
-    HomeService.prototype.GetCommandFilter = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.commandFilter, null);
-    };
-    HomeService.prototype.GetPhoto = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.getPhoto, null);
-    };
-    HomeService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [transport_1.TransportService])
-    ], HomeService);
-    return HomeService;
-}());
-exports.HomeService = HomeService;
-
-
-/***/ }),
-
-/***/ 880:
+/***/ 885:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__ = __webpack_require__(881);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__ = __webpack_require__(886);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MyDatePickerModule", function() { return __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__ = __webpack_require__(370);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MYDP_VALUE_ACCESSOR", function() { return __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MyDatePicker", function() { return __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__ = __webpack_require__(885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__ = __webpack_require__(890);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__ = __webpack_require__(886);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__ = __webpack_require__(891);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__ = __webpack_require__(887);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__ = __webpack_require__(892);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__ = __webpack_require__(888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__ = __webpack_require__(893);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__ = __webpack_require__(889);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__ = __webpack_require__(894);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__ = __webpack_require__(895);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__ = __webpack_require__(891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__ = __webpack_require__(896);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__ = __webpack_require__(892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__ = __webpack_require__(897);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__ = __webpack_require__(893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__ = __webpack_require__(898);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__ = __webpack_require__(894);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__ = __webpack_require__(899);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__ = __webpack_require__(900);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__ = __webpack_require__(901);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__ = __webpack_require__(897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__ = __webpack_require__(902);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__ = __webpack_require__(903);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
@@ -5125,16 +5598,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 881:
+/***/ 886:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyDatePickerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__ = __webpack_require__(884);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__ = __webpack_require__(889);
 
 
 
@@ -5157,7 +5630,7 @@ var MyDatePickerModule = (function () {
 
 /***/ }),
 
-/***/ 882:
+/***/ 887:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5520,7 +5993,7 @@ var LocaleService = (function () {
 
 /***/ }),
 
-/***/ 883:
+/***/ 888:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5758,7 +6231,7 @@ var UtilService = (function () {
 
 /***/ }),
 
-/***/ 884:
+/***/ 889:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5794,105 +6267,105 @@ var FocusDirective = (function () {
 
 /***/ }),
 
-/***/ 885:
+/***/ 890:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date.interface.js.map
 
 /***/ }),
 
-/***/ 886:
+/***/ 891:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date-model.interface.js.map
 
 /***/ }),
 
-/***/ 887:
+/***/ 892:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-input-field-changed.interface.js.map
 
 /***/ }),
 
-/***/ 888:
+/***/ 893:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-calendar-view-changed.interface.js.map
 
 /***/ }),
 
-/***/ 889:
+/***/ 894:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-input-focus-blur.interface.js.map
 
 /***/ }),
 
-/***/ 890:
+/***/ 895:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date-range.interface.js.map
 
 /***/ }),
 
-/***/ 891:
+/***/ 896:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-day-labels.interface.js.map
 
 /***/ }),
 
-/***/ 892:
+/***/ 897:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-month-labels.interface.js.map
 
 /***/ }),
 
-/***/ 893:
+/***/ 898:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-options.interface.js.map
 
 /***/ }),
 
-/***/ 894:
+/***/ 899:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-weekday.interface.js.map
 
 /***/ }),
 
-/***/ 895:
+/***/ 900:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-marked-date.interface.js.map
 
 /***/ }),
 
-/***/ 896:
+/***/ 901:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-marked-dates.interface.js.map
 
 /***/ }),
 
-/***/ 897:
+/***/ 902:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-default-month.interface.js.map
 
 /***/ }),
 
-/***/ 898:
+/***/ 903:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-selector.interface.js.map
 
 /***/ }),
 
-/***/ 899:
+/***/ 904:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5901,7 +6374,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(900));
+__export(__webpack_require__(905));
 // CustomEvent polyfill for IE9/10/11
 (function () {
     if (typeof window === "undefined" || typeof window['CustomEvent'] === "function")
@@ -5920,7 +6393,7 @@ __export(__webpack_require__(900));
 
 /***/ }),
 
-/***/ 900:
+/***/ 905:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5930,25 +6403,25 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var vg_player_1 = __webpack_require__(370);
-var vg_media_1 = __webpack_require__(200);
-var vg_cue_points_1 = __webpack_require__(371);
+var vg_player_1 = __webpack_require__(371);
+var vg_media_1 = __webpack_require__(201);
+var vg_cue_points_1 = __webpack_require__(372);
 var vg_api_1 = __webpack_require__(28);
 var vg_fullscreen_api_1 = __webpack_require__(142);
 var vg_utils_1 = __webpack_require__(143);
-var vg_controls_hidden_1 = __webpack_require__(86);
+var vg_controls_hidden_1 = __webpack_require__(87);
 // components
-__export(__webpack_require__(370));
-__export(__webpack_require__(200));
 __export(__webpack_require__(371));
+__export(__webpack_require__(201));
+__export(__webpack_require__(372));
 // services
 __export(__webpack_require__(28));
 __export(__webpack_require__(142));
 __export(__webpack_require__(143));
-__export(__webpack_require__(86));
+__export(__webpack_require__(87));
 // types
-__export(__webpack_require__(201));
-__export(__webpack_require__(85));
+__export(__webpack_require__(202));
+__export(__webpack_require__(86));
 /**
  * @internal
  */
@@ -5984,7 +6457,7 @@ exports.VgCoreModule = VgCoreModule;
 
 /***/ }),
 
-/***/ 901:
+/***/ 906:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5993,13 +6466,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(902));
+__export(__webpack_require__(907));
 
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udHJvbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJjb250cm9scy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLDZDQUF3QyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vc3JjL2NvbnRyb2xzL2NvbnRyb2xzJztcbiJdfQ==
 
 /***/ }),
 
-/***/ 902:
+/***/ 907:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6007,19 +6480,19 @@ __export(__webpack_require__(902));
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var vg_controls_1 = __webpack_require__(903);
-var vg_fullscreen_1 = __webpack_require__(904);
-var vg_mute_1 = __webpack_require__(905);
-var vg_volume_1 = __webpack_require__(906);
-var vg_play_pause_1 = __webpack_require__(907);
-var vg_playback_button_1 = __webpack_require__(908);
-var vg_scrub_bar_1 = __webpack_require__(909);
-var vg_scrub_bar_buffering_time_1 = __webpack_require__(910);
-var vg_scrub_bar_cue_points_1 = __webpack_require__(911);
-var vg_scrub_bar_current_time_1 = __webpack_require__(912);
-var vg_time_display_1 = __webpack_require__(913);
-var vg_track_selector_1 = __webpack_require__(914);
-var vg_controls_hidden_1 = __webpack_require__(86);
+var vg_controls_1 = __webpack_require__(908);
+var vg_fullscreen_1 = __webpack_require__(909);
+var vg_mute_1 = __webpack_require__(910);
+var vg_volume_1 = __webpack_require__(911);
+var vg_play_pause_1 = __webpack_require__(912);
+var vg_playback_button_1 = __webpack_require__(913);
+var vg_scrub_bar_1 = __webpack_require__(914);
+var vg_scrub_bar_buffering_time_1 = __webpack_require__(915);
+var vg_scrub_bar_cue_points_1 = __webpack_require__(916);
+var vg_scrub_bar_current_time_1 = __webpack_require__(917);
+var vg_time_display_1 = __webpack_require__(918);
+var vg_track_selector_1 = __webpack_require__(919);
+var vg_controls_hidden_1 = __webpack_require__(87);
 var VgControlsModule = (function () {
     function VgControlsModule() {
     }
@@ -6069,7 +6542,7 @@ exports.VgControlsModule = VgControlsModule;
 
 /***/ }),
 
-/***/ 903:
+/***/ 908:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6078,9 +6551,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var Observable_1 = __webpack_require__(0);
 var vg_api_1 = __webpack_require__(28);
-var vg_controls_hidden_1 = __webpack_require__(86);
+var vg_controls_hidden_1 = __webpack_require__(87);
 __webpack_require__(136);
-var vg_states_1 = __webpack_require__(85);
+var vg_states_1 = __webpack_require__(86);
 var VgControls = (function () {
     function VgControls(API, ref, hidden) {
         this.API = API;
@@ -6192,7 +6665,7 @@ exports.VgControls = VgControls;
 
 /***/ }),
 
-/***/ 904:
+/***/ 909:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6273,7 +6746,7 @@ exports.VgFullscreen = VgFullscreen;
 
 /***/ }),
 
-/***/ 905:
+/***/ 910:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6355,7 +6828,7 @@ exports.VgMute = VgMute;
 
 /***/ }),
 
-/***/ 906:
+/***/ 911:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6457,7 +6930,7 @@ exports.VgVolume = VgVolume;
 
 /***/ }),
 
-/***/ 907:
+/***/ 912:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6465,7 +6938,7 @@ exports.VgVolume = VgVolume;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var vg_api_1 = __webpack_require__(28);
-var vg_states_1 = __webpack_require__(85);
+var vg_states_1 = __webpack_require__(86);
 var VgPlayPause = (function () {
     function VgPlayPause(ref, API) {
         this.API = API;
@@ -6540,7 +7013,7 @@ exports.VgPlayPause = VgPlayPause;
 
 /***/ }),
 
-/***/ 908:
+/***/ 913:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6622,7 +7095,7 @@ exports.VgPlaybackButton = VgPlaybackButton;
 
 /***/ }),
 
-/***/ 909:
+/***/ 914:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6630,8 +7103,8 @@ exports.VgPlaybackButton = VgPlaybackButton;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var vg_api_1 = __webpack_require__(28);
-var vg_controls_hidden_1 = __webpack_require__(86);
-var vg_states_1 = __webpack_require__(85);
+var vg_controls_hidden_1 = __webpack_require__(87);
+var vg_states_1 = __webpack_require__(86);
 var VgScrubBar = (function () {
     function VgScrubBar(ref, API, vgControlsHiddenState) {
         var _this = this;
@@ -6810,7 +7283,7 @@ exports.VgScrubBar = VgScrubBar;
 
 /***/ }),
 
-/***/ 910:
+/***/ 915:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6875,7 +7348,7 @@ exports.VgScrubBarBufferingTime = VgScrubBarBufferingTime;
 
 /***/ }),
 
-/***/ 911:
+/***/ 916:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6980,7 +7453,7 @@ exports.VgScrubBarCuePoints = VgScrubBarCuePoints;
 
 /***/ }),
 
-/***/ 912:
+/***/ 917:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7038,7 +7511,7 @@ exports.VgScrubBarCurrentTime = VgScrubBarCurrentTime;
 
 /***/ }),
 
-/***/ 913:
+/***/ 918:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7135,7 +7608,7 @@ exports.VgTimeDisplay = VgTimeDisplay;
 
 /***/ }),
 
-/***/ 914:
+/***/ 919:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7223,27 +7696,31 @@ exports.VgTrackSelector = VgTrackSelector;
 
 /***/ }),
 
-/***/ 915:
+/***/ 920:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var common_1 = __webpack_require__(87);
-var home_1 = __webpack_require__(372);
-var comand_1 = __webpack_require__(374);
-var current_tournaments_1 = __webpack_require__(375);
-var new_tournaments_1 = __webpack_require__(376);
-var past_tournaments_1 = __webpack_require__(377);
-var cabinet_1 = __webpack_require__(378);
-var news_1 = __webpack_require__(381);
-var photo_1 = __webpack_require__(382);
-var login_1 = __webpack_require__(383);
-var news_2 = __webpack_require__(386);
-var add_news_1 = __webpack_require__(388);
+var common_1 = __webpack_require__(73);
+var home_1 = __webpack_require__(373);
+var comand_1 = __webpack_require__(375);
+var current_tournaments_1 = __webpack_require__(376);
+var new_tournaments_1 = __webpack_require__(377);
+var past_tournaments_1 = __webpack_require__(380);
+var cabinet_1 = __webpack_require__(381);
+var news_1 = __webpack_require__(384);
+var photo_1 = __webpack_require__(385);
+var login_1 = __webpack_require__(386);
+var news_2 = __webpack_require__(389);
+var add_news_1 = __webpack_require__(390);
+var turnament_1 = __webpack_require__(393);
+var tuning_turnament_1 = __webpack_require__(394);
 var adminRoutes = [
     { path: common_1.Common.RoutePaths.News, component: news_2.NewsAdmin },
     { path: common_1.Common.RoutePaths.EditNews, component: add_news_1.AddNews },
+    { path: common_1.Common.RoutePaths.Turnament, component: turnament_1.Turnament },
+    { path: common_1.Common.RoutePaths.TuningTurnament, component: tuning_turnament_1.TuningTurnament },
 ];
 exports.AppRoutes = [
     { path: common_1.Common.RoutePaths.Home, component: home_1.Home },
@@ -7263,42 +7740,85 @@ exports.AppRoutes = [
 
 /***/ }),
 
-/***/ 916:
+/***/ 921:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"home-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"about-portal\">\r\n        <div class=\"slade-content\">\r\n            <ul id=\"slides\">\r\n                <li class=\"slide showing\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"info-portal\">\r\n            <h5>\"Спортивное общество \"Олимп\"</h5>\r\n            <p>\r\n                Является основанным на членстве Саратовским региональным общественным объединением, созданным с целью развития, пропаганды и популяризации спорта, физической культуры в Саратове и Саратовской области. Деятельность Организации основывается на принципах добровольности, равноправия его членов, самоуправления, законности и гласности.\r\n            </p>\r\n            Основные задачи общества:\r\n            <hr>\r\n            <ul class=\"list-1 indent-left6 p5-1\">\r\n                <li>Организация и проведение спортивно-массовых мероприятий</li>\r\n                <li>Привлечение населения к занятиям спортом и физической культурой</li>\r\n            </ul>\r\n\r\n        </div>\r\n    </div>\r\n    <div class=\"new-news\" *ngIf=\"isNews\">\r\n        Последние новости\r\n    </div>\r\n    <div class=\"news-home\">\r\n        <div *ngFor=\"let news of newss; let i = index\" class=\"news-block\">\r\n            <div class=\"news-content\">\r\n                <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"text-news-content\">\r\n                       \r\n                        <div class=\"news-text\">\r\n                            <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                            {{news.text}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                    <div id=\"photo-content\" class=\"photo-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" (click)=\"showImg(photo.url, i)\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                    <div class=\"video-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"news-video\">\r\n                            <vg-player>\r\n                                <vg-controls>\r\n                                    <vg-play-pause></vg-play-pause>\r\n                                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-scrub-bar>\r\n                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                    </vg-scrub-bar>\r\n                                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-mute></vg-mute>\r\n                                    <vg-volume></vg-volume>\r\n                                    <vg-fullscreen></vg-fullscreen>\r\n                                </vg-controls>\r\n                                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                    <source src='{{news.urlVideo}}' type=\"video/mp4\">\r\n                                </video>\r\n                            </vg-player>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 917:
+/***/ 922:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"command-title\">\r\n        <div class=\"command-title-photo\">\r\n        </div>\r\n        <div class=\"command-title-text\">\r\n            Список команд играющих в лиги\r\n        </div>\r\n    </div>\r\n\r\n\r\n\r\n    <div *ngFor=\"let command of commands; let i = index\" class=\"command-block\">\r\n\r\n        <div class=\"command-avatar-block\">\r\n            <div class=\"command-avatar\" [style.background-image]=\"command.photo\"></div>\r\n        </div>\r\n\r\n        <div class=\"command-name\">{{command.name}}</div>\r\n\r\n        <div class=\"command-player\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Состав\r\n            </div>\r\n\r\n            <input type=\"checkbox\" id=\"{{'tournaments' + i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n            <label for=\"{{'tournaments' + i}}\" class=\"tournaments-command-open\"></label>\r\n            <div>\r\n                <table class=\"lk-command comand-table\">\r\n                    <tr class=\"lk-player\">\r\n                        <td class=\"lk-number-count title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"lk-surname title-header\">\r\n                            Фамилия\r\n                        </td>\r\n                        <td class=\"lk-full-name title-header\">\r\n                            Имя\r\n                        </td>\r\n                        <td class=\"lk-last-name title-header\">\r\n                            Отчество\r\n                        </td>\r\n                        <td class=\"lk-number title-header\">\r\n                            Номер в поле\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr class=\"lk-player\" *ngFor=\"let player of command.players; let j = index\">\r\n                        <td class=\"lk-number-count\">\r\n                            {{j+1}}\r\n                        </td>\r\n                        <td class=\"lk-surname\">\r\n                            {{player.surname}}\r\n                        </td>\r\n                        <td class=\"lk-full-name\">\r\n                            {{player.name}}\r\n                        </td>\r\n                        <td class=\"lk-last-name\">\r\n                            {{player.middleName}}\r\n                        </td>\r\n                        <td class=\"lk-number\">\r\n                            {{player.number}}\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 918:
+/***/ 923:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"current-tournaments-content\">\r\n        <div class=\"tournaments-photo\" [style.background-image]=\"'url(./content/img/slade_home/slade1.jpg)'\"></div>\r\n        <div class=\"title-tournaments\">\r\n            <div class=\"tournaments-text\">\r\n                Чемпионат саратова по минифутболу 2018\r\n            </div>\r\n        </div>\r\n        <div class=\"tournaments-registration-block\">\r\n            <div class=\"tournaments-date\">\r\n                C 12.12.2017\r\n            </div>\r\n            <form class=\"example-form\">\r\n                <button mat-button class=\"tournaments-registration\">Учавствовать</button>\r\n            </form>\r\n        </div>\r\n\r\n\r\n        <div class=\"tournaments-command-content\">\r\n            <div class=\"tournaments-command-title\">\r\n                Команды\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number title-header\">\r\n                    №\r\n                </div>\r\n                <div class=\"tournaments-command-name title-header\">\r\n                    Названия команд участников турнира\r\n                </div>\r\n                <div class=\"tournaments-command-status title-header\">\r\n                    Статус заявки\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    1\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Зенит\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    2\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Дрова\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка принята\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    3\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Арсенал\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"current-tournaments-content\">\r\n        <div class=\"tournaments-photo\" [style.background-image]=\"'url(./content/img/slade_home/slade1.jpg)'\"></div>\r\n        <div class=\"title-tournaments\">\r\n            <div class=\"tournaments-text\">\r\n                Чемпионат саратова по минифутболу 2018\r\n            </div>\r\n        </div>\r\n        <div class=\"tournaments-registration-block\">\r\n            <div class=\"tournaments-date\">\r\n                C 12.12.2017\r\n            </div>\r\n            <form class=\"example-form\">\r\n                <button mat-button class=\"tournaments-registration\">Учавствовать</button>\r\n            </form>\r\n        </div>\r\n\r\n\r\n        <div class=\"tournaments-command-content\">\r\n            <div class=\"tournaments-command-title\">\r\n                Команды\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number title-header\">\r\n                    №\r\n                </div>\r\n                <div class=\"tournaments-command-name title-header\">\r\n                    Названия команд участников турнира\r\n                </div>\r\n                <div class=\"tournaments-command-status title-header\">\r\n                    Статус заявки\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    1\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Зенит\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    2\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Дрова\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка принята\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    3\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Арсенал\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 919:
-/***/ (function(module, exports) {
+/***/ 924:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\">\r\n            Проходит набор команд для участия\r\n        </div>\r\n        <!--<div class=\"tournaments-log-text no-log\">\r\n          Нет открытых чемпионатов\r\n        </div>-->\r\n    </div>\r\n\r\n    <div class=\"news-block\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C 12.12.2017\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    Чемпионат саратова по минифутболу 2018\r\n                </div>\r\n                <form class=\"example-form inline-block\">\r\n                    <button mat-button class=\"tournaments-registration\">Участвовать</button>\r\n                </form>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command-content\">\r\n                <div class=\"tournaments-command-title inline-block\">\r\n                    Команды\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"tournaments1\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"tournaments1\" class=\"tournaments-command-open\"></label>\r\n\r\n                <table class=\"lk-command\">\r\n                    <tr>\r\n                        <td class=\"title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Названия команд участвующих в турнире\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Статус заявки\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            1\r\n                        </td>\r\n                        <td>\r\n                            Зенит\r\n                        </td>\r\n                        <td class=\"filed\">\r\n                            Заявка подана\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            2\r\n                        </td>\r\n                        <td>\r\n                            Дрова\r\n                        </td>\r\n                        <td class=\"adopted\">\r\n                            Заявка принята\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            3\r\n                        </td>\r\n                        <td>\r\n                            Арсенал\r\n                        </td>\r\n                        <td class=\"filed\">\r\n                            Заявка подана\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C 12.12.2017\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    Чемпионат саратова по минифутболу 2018\r\n                </div>\r\n                <form class=\"example-form inline-block\">\r\n                    <button mat-button class=\"tournaments-registration\">Участвовать</button>\r\n                </form>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command-content\">\r\n                <div class=\"tournaments-command-title inline-block\">\r\n                    Команды\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"tournaments2\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"tournaments2\" class=\"tournaments-command-open\"></label>\r\n\r\n                <table class=\"lk-command\">\r\n                    <tr>\r\n                        <td class=\"title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Названия команд участвующих в турнире\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Статус заявки\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            1\r\n                        </td>\r\n                        <td>\r\n                            Зенит\r\n                        </td>\r\n                        <td class=\"filed\">\r\n                            Заявка подана\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            2\r\n                        </td>\r\n                        <td>\r\n                            Дрова\r\n                        </td>\r\n                        <td class=\"adopted\">\r\n                            Заявка принята\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr>\r\n                        <td>\r\n                            3\r\n                        </td>\r\n                        <td>\r\n                            Арсенал\r\n                        </td>\r\n                        <td class=\"filed\">\r\n                            Заявка подана\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Command = (function () {
+    function Command(photo, name, phone, email, command) {
+        this.photo = photo;
+        this.name = name;
+        this.command = command;
+    }
+    return Command;
+}());
+exports.Command = Command;
+var CommandFilter = (function () {
+    function CommandFilter(name, id) {
+        this.name = name;
+        this.id = id;
+    }
+    return CommandFilter;
+}());
+exports.CommandFilter = CommandFilter;
+var CommandsId = (function () {
+    function CommandsId(id) {
+        this.id = id;
+    }
+    return CommandsId;
+}());
+exports.CommandsId = CommandsId;
+var CommandForTurnament = (function () {
+    function CommandForTurnament(id, name, status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+    return CommandForTurnament;
+}());
+exports.CommandForTurnament = CommandForTurnament;
+
 
 /***/ }),
 
-/***/ 920:
+/***/ 925:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\" *ngIf=\"isTur\">\r\n            Проходит набор команд для участия\r\n        </div>\r\n        <div class=\"tournaments-log-text no-log\" *ngIf=\"!isTur\">\r\n            Нет открытых чемпионатов\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n\r\n                <button mat-button class=\"tournaments-registration button-active\" (click)=\"declareTournament(turnament.id, i)\">Участвовать</button>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div class=\"tournaments-command-content\">\r\n                <div class=\"tournaments-command-title inline-block\">\r\n                    Команды\r\n                </div>\r\n\r\n                <div class=\"turnament-price\">\r\n                    Взнос за турнир - {{turnament.contributionTournament}}p.   Взнос за игру - {{turnament.contributionGame}}р.\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <table class=\"lk-command\">\r\n                    <tr>\r\n                        <td class=\"title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Названия команд участвующих в турнире\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Статус заявки\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                        <td>\r\n                            {{j+1}}\r\n                        </td>\r\n                        <td>\r\n                            {{command.name}}\r\n                        </td>\r\n                        <td *ngIf=\"!command.status\" class=\"filed\">\r\n                            рассмотрение\r\n                        </td>\r\n                        <td *ngIf=\"command.status\" class=\"adopted\">\r\n                            участие\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+
+/***/ 926:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"registration-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"login-button\" [ngClass]=\"selectPage == 1 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(1)\">Вход</div>\r\n    <div class=\"registration-button\" [ngClass]=\"selectPage == 2 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(2)\">Регистрация</div>\r\n    <div class=\"reestablish-button\" [ngClass]=\"selectPage == 3 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(3)\">Забыли пароль?</div>\r\n\r\n    <div class=\"login-content\" *ngIf=\"selectPage == 1\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Логин\" name=\"login\" [(ngModel)]=\"user.login\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Пароль\" name=\"password\" [(ngModel)]=\"user.password\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-come-in\" (click)='Authorization()'>Войти</button>\r\n        </form>\r\n    </div>\r\n\r\n    <div class=\"login-content-registration\" *ngIf=\"selectPage == 2\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Введите логин\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Введите пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Повторите пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-registration\">Зарегистрировать</button>\r\n        </form>\r\n    </div>\r\n\r\n    <div class=\"login-content-registration\" *ngIf=\"selectPage == 3\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Введите логин\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Введите новый пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Повторите новый пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-registration\">Изменить пароль</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 921:
+/***/ 927:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7330,55 +7850,26 @@ exports.Player = Player;
 
 /***/ }),
 
-/***/ 922:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ElementRequest = (function () {
-    function ElementRequest(txt) {
-        var self = this;
-        self.txt = txt;
-    }
-    return ElementRequest;
-}());
-exports.ElementRequest = ElementRequest;
-
-
-/***/ }),
-
-/***/ 923:
+/***/ 928:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cabinet-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"lk-info\">\r\n        <div class=\"lk-avatar-block\">\r\n            <div class=\"lk-avatar\" id=\"avatar\" [style.background-image]=\"account.photo\"></div>\r\n        </div>\r\n\r\n        <div class=\"lk-label\">\r\n            Персональные данные команды\r\n        </div>\r\n\r\n        <div class=\"lk-name\">\r\n            <div>Название команды</div>\r\n            <input placeholder=\"Название команды\" name=\"name\" [(ngModel)]=\"account.name\" [disabled]=\"isEdit\" />\r\n        </div>\r\n        <div class=\"lk-fone\">\r\n            <div>Контактный телефон</div>\r\n            <input placeholder=\"Контактный телефон\" type=\"text\" name=\"phone\" [(ngModel)]=\"account.phone\" [disabled]=\"isEdit\" />\r\n        </div>\r\n        <div class=\"lk-email\">\r\n            <div>Электронная почта</div>\r\n            <input placeholder=\"Электронная почта\" type=\"text\" name=\"email\" [(ngModel)]=\"account.email\" [disabled]=\"isEdit\" />\r\n        </div>\r\n\r\n        <div class=\"lk-button\">\r\n            <div class=\"file-upload\">\r\n                <label>\r\n                    <input type=\"file\" name=\"file\" accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"avatarChanged($event)\" />\r\n                    <span>Загрузить фото</span>\r\n                </label>\r\n            </div>\r\n            <button mat-button class=\"button-lk-add-player\" (click)=\"openFormAddPlayer()\">Добавить игрока</button>\r\n            <button mat-button class=\"button-lk-update\" id=\"editButton\" (click)=\"editAccountInfo(isEdit)\">Редактировать</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n    <div class=\"tournaments-command-title\">\r\n        Состав\r\n    </div>\r\n\r\n    <table class=\"lk-command\">\r\n        <tr class=\"lk-player\">\r\n            <td class=\"lk-number-count title-header\">\r\n                №\r\n            </td>\r\n            <td class=\"lk-surname title-header\">\r\n                Фамилия\r\n            </td>\r\n            <td class=\"lk-full-name title-header\">\r\n                Имя\r\n            </td>\r\n            <td class=\"lk-last-name title-header\">\r\n                Отчество\r\n            </td>\r\n            <td class=\"lk-number title-header\">\r\n                Номер в поле\r\n            </td>\r\n            <td class=\"delet-player title-header\">\r\n                Удалить\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"lk-player\" *ngFor=\"let player of account.command; let i = index\">\r\n            <td class=\"lk-number-count\">\r\n                {{i+1}}\r\n            </td>\r\n            <td class=\"lk-surname\">\r\n                {{player.surname}}\r\n            </td>\r\n            <td class=\"lk-full-name\">\r\n                {{player.name}}\r\n            </td>\r\n            <td class=\"lk-last-name\">\r\n                {{player.middleName}}\r\n            </td>\r\n            <td class=\"lk-number\">\r\n                <input class=\"edit-number\" name=\"number\" #number=\"ngModel\" [(ngModel)]=\"player.number\" [disabled]=\"isEdit\" pattern=\"[0-9]*\" (change)=\"changeInfoPlayer(player, number.hasError('pattern'))\" />\r\n            </td>\r\n            <td class=\"delet-player delet-player-img\" (click)=\"selectPlayer(player.playerId, i)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n        </tr>\r\n    </table>\r\n\r\n</div>\r\n\r\n<div class=\"transparent-layer-player\" id=\"transparent-layer-player\">\r\n    <div class=\"add-player\" [ngStyle]=\"addPlayerBlockStyle()\">\r\n        <form class=\"example-form\" #newplayer=\"ngForm\" novalidate autocomplete=\"on\">\r\n            <mat-form-field>\r\n                <input placeholder=\"Фамилия\" matInput type=\"text\" name=\"surname\" [(ngModel)]=\"player.surname\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Имя\" matInput type=\"text\" name=\"name\" [(ngModel)]=\"player.name\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Отчество\" matInput type=\"text\" name=\"middleName\" [(ngModel)]=\"player.middleName\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Номер в поле\" matInput type=\"text\" #newNumber=\"ngModel\" name=\"number\" [(ngModel)]=\"player.number\" pattern=\"[0-9]*\" required />\r\n            </mat-form-field>\r\n            <button mat-button (click)=\"addPlayer(newplayer.invalid, newNumber.hasError('pattern'))\">Добавить</button>\r\n            <button mat-button (click)=\"close()\">Отмена</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n        \r\n            <div class=\"modal-body\">\r\n                Удалить игрока?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellPlayer()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 924:
+/***/ 929:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"command-title\">\r\n        <div class=\"news-logo-photo\">\r\n        </div>\r\n        <div class=\"command-title-text\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-home\" *ngIf=\"newss\">\r\n        <div *ngFor=\"let news of newss; let i = index\" class=\"news-block\">\r\n            <div class=\"news-content\">\r\n                <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"text-news-content\">\r\n\r\n                        <div class=\"news-text\">\r\n                            <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                            {{news.text}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                    <div id=\"photo-content\" class=\"photo-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" (click)=\"showImg(photo.url, i)\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                    <div class=\"video-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"news-video\">\r\n                            <vg-player>\r\n                                <vg-controls>\r\n                                    <vg-play-pause></vg-play-pause>\r\n                                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-scrub-bar>\r\n                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                    </vg-scrub-bar>\r\n                                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-mute></vg-mute>\r\n                                    <vg-volume></vg-volume>\r\n                                    <vg-fullscreen></vg-fullscreen>\r\n                                </vg-controls>\r\n                                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                    <source src='{{news.urlVideo}}' type=\"video/mp4\">\r\n                                </video>\r\n                            </vg-player>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 925:
+/***/ 930:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PhotoCommand = (function () {
-    function PhotoCommand(url, commandOne, commandTwo, date, isShow) {
-        this.url = url;
-        this.commandOne = commandOne;
-        this.commandTwo = commandTwo;
-        this.date = date;
-        this.isShow = isShow;
-    }
-    return PhotoCommand;
-}());
-exports.PhotoCommand = PhotoCommand;
 var Display = (function () {
     function Display(url, position) {
         this.url = url;
@@ -7391,14 +7882,51 @@ exports.Display = Display;
 
 /***/ }),
 
-/***/ 926:
-/***/ (function(module, exports) {
+/***/ 931:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let photo of photos; let i = index\" class=\"photo-button\" (click)=\"openPhoto(photo.url, i)\" [style.background-image]=\"photo.url\" [ngStyle]=\"photoStyle(photo.isShow)\"></div>\r\n        </div>\r\n        <div class=\"photo-filter\">\r\n            <!--<div class=\"filter-title-text\">Выберете период времени</div>-->\r\n            <!--<form #myForm=\"ngForm\" novalidate class=\"form-date\">\r\n                <my-date-picker class=\"date-ot\" (dateChanged)=\"filterDate($event,1)\" closeSelectorOnDocumentClick=\"true\" name=\"dateTo\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateTo\" required></my-date-picker>\r\n                <span>- От</span>\r\n                <my-date-picker (dateChanged)=\"filterDate($event,2)\" name=\"dateEnd\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateEnd\" required></my-date-picker>\r\n                <span>- До</span>\r\n            </form>-->\r\n            <div class=\"filter-title-text-comand\">Выберете команды</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter\">\r\n                    <mat-slide-toggle (change)=\"filterCommand(command.id,$event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"nav-content\">\r\n            <div class=\"nav\">\r\n                <div class=\"left\" width=\"40\" height=\"40\"> </div>\r\n                <div class=\"right\" width=\"40\" height=\"40\"> </div>\r\n                <ul class=\"pages\">\r\n                    <li>1</li>\r\n                    <li>2</li>\r\n                    <li>3</li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div id=\"photo-layer\" class=\"photo-layer\">\r\n    <div class=\"photo-show\" [style.background-image]=\"display.url\" [ngStyle]=\"photoShowStyle()\" onmousemove=\"$('.photo-layer').addClass('photo-hover')\" onmouseout=\"$('.photo-layer').removeClass('photo-hover')\">\r\n        <div class=\"button-photo-left\" (click)=\"nextLeftPhoto()\">\r\n        </div>\r\n        <div class=\"button-photo-right\" (click)=\"nextRightPhoto()\">\r\n        </div>\r\n    </div>\r\n    <div class=\"photo-show-close\" (click)=\"closePhoto()\">\r\n    </div>\r\n\r\n</div>";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GetPhotoRequest = (function () {
+    function GetPhotoRequest(page, id) {
+        this.page = page;
+        this.id = id;
+    }
+    return GetPhotoRequest;
+}());
+exports.GetPhotoRequest = GetPhotoRequest;
+
 
 /***/ }),
 
-/***/ 927:
+/***/ 932:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GetPhotoResponse = (function () {
+    function GetPhotoResponse(currentPage, pageSize, photos) {
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
+        this.photos = photos;
+    }
+    return GetPhotoResponse;
+}());
+exports.GetPhotoResponse = GetPhotoResponse;
+
+
+/***/ }),
+
+/***/ 933:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let url of pagePhotos.photos; let i = index\" class=\"photo-button\" (click)=\"openPhoto(url, i)\" [style.background-image]=\"url\"></div>\r\n        </div>\r\n        <div class=\"photo-filter\">\r\n            <div class=\"filter-title-text-comand\">Выберете команду</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter\">\r\n                    <mat-slide-toggle [checked]=\"command.id==commandId\" (change)=\"filterCommand(command.id, $event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"nav-content\">\r\n            <div class=\"nav\">\r\n                <div class=\"left\" width=\"40\" height=\"40\" (click)=\"nextLeftPage()\"> </div>\r\n                <div class=\"right\" width=\"40\" height=\"40\" (click)=\"nextRightPage()\"> </div>\r\n                <ul class=\"pages\">\r\n                    <li class=\"first-page\" [ngStyle]=\"pageStyle(1)\" (click)=\"getPage(1)\">1</li>\r\n                    <li *ngFor=\"let page of pageSize\" [ngStyle]=\"pageStyle(page)\" (click)=\"getPage(page)\">{{page}}</li>\r\n                    <li *ngIf=\"pagePhotos.pageSize > 1\" class=\"last-page\" [ngStyle]=\"pageStyle(pagePhotos.pageSize)\" (click)=\"getPage(pagePhotos.pageSize)\">{{pagePhotos.pageSize}}</li>\r\n                    <li>всего - {{pagePhotos.pageSize}}</li>\r\n                </ul>\r\n                <span></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div id=\"photo-layer\" class=\"photo-layer\">\r\n    <div class=\"photo-show\" [style.background-image]=\"display.url\" [ngStyle]=\"photoShowStyle()\" onmousemove=\"$('.photo-layer').addClass('photo-hover')\" onmouseout=\"$('.photo-layer').removeClass('photo-hover')\">\r\n        <div class=\"button-photo-left\" (click)=\"nextLeftPhoto()\">\r\n        </div>\r\n        <div class=\"button-photo-right\" (click)=\"nextRightPhoto()\">\r\n        </div>\r\n    </div>\r\n    <div class=\"photo-show-close\" (click)=\"closePhoto()\">\r\n    </div>\r\n\r\n</div>";
+
+/***/ }),
+
+/***/ 934:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7423,28 +7951,152 @@ exports.IsAuth = IsAuth;
 
 /***/ }),
 
-/***/ 928:
+/***/ 935:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-login-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <header *ngIf=\"!(page==7)\">\r\n        <div class=\"header-content\">\r\n            <div class=\"logo-olimp\"></div>\r\n            <div class=\"header-logo\"></div>\r\n        </div>\r\n    </header>\r\n    <div class=\"header-hr\">\r\n        Панель Администратора\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-authorized\" *ngIf=\"isAuthAdmin\">\r\n    <div class=\"menu\">\r\n        <div class=\"menu-content\">\r\n            <ul class=\"nave nave-tabs\">\r\n                <li [className]=\"page == 8 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/admin/news\">Новости</a>\r\n                </li>\r\n                <li [className]=\"page == 2 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/\">Турниры</a>\r\n                </li>\r\n                <li [className]=\"page == 3 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/comand\">Команды</a>\r\n                </li>\r\n                <li onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <div (click)=\"signOutAdmin()\">Выйти</div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-not-authorized\" *ngIf=\"!isAuthAdmin\">\r\n    <div class=\"admin-authoriz\">\r\n        <form class=\"example-form\" autocomplete=\"on\">\r\n            <div class=\"block center login-block\">\r\n                <input class=\"example-full-width login\" placeholder=\"Логин\" name=\"loginAdmin\" [(ngModel)]=\"loginAdmin.login\" required>\r\n                <span [ngClass]=\"loginAdmin.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n\r\n            <div class=\"block center login-block\">\r\n                <input type=\"password\" class=\"example-full-width passvord\" placeholder=\"Пароль\" name=\"passwordAdmin\" [(ngModel)]=\"loginAdmin.password\" minlength=\"6\" #password=\"ngModel\" required>\r\n                <span [ngClass]=\"loginAdmin.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n            <button mat-button [ngClass]=\"(loginAdmin.login && loginAdmin.password && loginAdmin.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"signIn(password.hasError('minlength'))\">Войти</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>";
+module.exports = "<div class=\"admin-login-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <header *ngIf=\"!(page==7)\">\r\n        <div class=\"header-content\">\r\n            <div class=\"logo-olimp\"></div>\r\n            <div class=\"header-logo\"></div>\r\n        </div>\r\n    </header>\r\n    <div class=\"header-hr\">\r\n        Панель Администратора\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-authorized\" *ngIf=\"isAuthAdmin\">\r\n    <div class=\"menu\">\r\n        <div class=\"menu-content\">\r\n            <ul class=\"nave nave-tabs\">\r\n                <li [className]=\"page == 8 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/admin/news\">Новости</a>\r\n                </li>\r\n                <li [className]=\"page == 9 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/admin/turnament\">Турниры</a>\r\n                </li>\r\n                <li [className]=\"page == 10 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/comand\">Команды</a>\r\n                </li>\r\n                <li onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <div (click)=\"signOutAdmin()\">Выйти</div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-not-authorized\" *ngIf=\"!isAuthAdmin\">\r\n    <div class=\"admin-authoriz\">\r\n        <form class=\"example-form\" autocomplete=\"on\">\r\n            <div class=\"block center login-block\">\r\n                <input class=\"example-full-width login\" placeholder=\"Логин\" name=\"loginAdmin\" [(ngModel)]=\"loginAdmin.login\" required>\r\n                <span [ngClass]=\"loginAdmin.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n\r\n            <div class=\"block center login-block\">\r\n                <input type=\"password\" class=\"example-full-width passvord\" placeholder=\"Пароль\" name=\"passwordAdmin\" [(ngModel)]=\"loginAdmin.password\" minlength=\"6\" #password=\"ngModel\" required>\r\n                <span [ngClass]=\"loginAdmin.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n            <button mat-button [ngClass]=\"(loginAdmin.login && loginAdmin.password && loginAdmin.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"signIn(password.hasError('minlength'))\">Войти</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>";
 
 /***/ }),
 
-/***/ 929:
+/***/ 936:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление новостями\r\n    </div>\r\n\r\n    <div class=\"admin-list-news-block\">\r\n        <ul>\r\n            <li *ngFor=\"let news of newsInfo; let i = index\">\r\n                <div><p>Название -</p> {{news.title}} </div>\r\n                <div><p>Тип новости -</p> {{news.type | newsType}} </div>\r\n                <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>\r\n                <div><p>Отображается на главной странице -</p> {{news.top ? \"Да\":\" Нет\"}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editNews(news.id)\">Редактировать</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"dellNews(news.id, i)\">Удалить</button>\r\n                <mat-checkbox [(ngModel)]=\"news.active\" (change)=\"active(news.id)\">\r\n                    - активна \r\n                </mat-checkbox>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news-block\">\r\n        <div class=\"add-news-title\">Добавить новость</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип новости</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isText\" (change)=\"isPhoto=false; isVideo=false\">\r\n                Текст\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isPhoto\" (change)=\"isText=false; isVideo=false\">\r\n                Фотоотчет\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isVideo\" (change)=\"isPhoto=false; isText=false\">\r\n                Видео\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isText || isPhoto  || isVideo) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addNews()\">Создать</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n";
+module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление новостями\r\n    </div>\r\n\r\n    <div class=\"admin-list-news-block\">\r\n        <ul>\r\n            <li *ngFor=\"let news of newsInfo; let i = index\">\r\n                <div><p>Название -</p> {{news.title}} </div>\r\n                <div><p>Тип новости -</p> {{news.type | newsType}} </div>\r\n                <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>\r\n                <div><p>Отображается на главной странице -</p> {{news.top ? \"Да\":\" Нет\"}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editNews(news.id)\">Редактировать</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectNews(news.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <mat-checkbox [(ngModel)]=\"news.active\" (change)=\"active(news.id)\">\r\n                    - активна\r\n                </mat-checkbox>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news-block\">\r\n        <div class=\"add-news-title\">Добавить новость</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип новости</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isText\" (change)=\"isPhoto=false; isVideo=false\">\r\n                Текст\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isPhoto\" (change)=\"isText=false; isVideo=false\">\r\n                Фотоотчет\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isVideo\" (change)=\"isPhoto=false; isText=false\">\r\n                Видео\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isText || isPhoto  || isVideo) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addNews()\">Создать</button>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить новость?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"  (click)=\"dellNews()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 930:
+/***/ 937:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"admin-new-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Редактирование новости\r\n    </div>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==1\">\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n        <div class=\"admin-add-news-txt-block\">\r\n            <div>\r\n                Текст новости\r\n            </div>\r\n            <textarea class=\"admin-add-news-txt\" [(ngModel)]=\"news.text\"> </textarea>\r\n        </div>\r\n        <div class=\"profile-image\" [style.background-image]=\"news.photo[0].url\">\r\n        </div>\r\n\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"fileChangedTypeText($event)\" />\r\n                <span>Загрузить фото</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"(news.title && news.text) ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==2\">\r\n        <div class=\"select-command-block\">\r\n            <div class=\"inline-block\">\r\n                <div>Комманда 1</div>\r\n                <select [(ngModel)]=\"news.commandOne\">\r\n                    <option *ngFor=\"let command of commandFilter\" [value]=\"command.id\">\r\n                        {{ command.name }}\r\n                    </option>\r\n                </select>\r\n            </div>\r\n\r\n            <div class=\"inline-block\">\r\n                <div>Комманда 2</div>\r\n                <select [(ngModel)]=\"news.commandTwo\">\r\n                    <option *ngFor=\"let command of commandFilter\" [value]=\"command.id\">\r\n                        {{ command.name }}\r\n                    </option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n\r\n        <div id=\"preview\" class=\"news-image-content\">\r\n            <div *ngIf=\"isPhoto()\">\r\n                <div class=\"photo\" data-title=\"удалить\" *ngFor=\"let photo of news.photo; let i = index\" (click)=\"dellPhotoForNews(photo.id, i)\">\r\n                    <div [style.background-image]=\"photo.url\"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" multiple accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"fileChangedTypePhoto($event)\" />\r\n                <span>Загрузить фото</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"news.title ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==3\">\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n\r\n        <div class=\"news-no-video-content\" *ngIf=\"!news.urlVideo\">\r\n\r\n        </div>\r\n\r\n        <div class=\"news-video-content\" *ngIf=\"news.urlVideo\">\r\n            <div *ngFor=\"let video of videos\">\r\n                <vg-player>\r\n                    <vg-controls>\r\n                        <vg-play-pause></vg-play-pause>\r\n                        <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-scrub-bar>\r\n                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                        </vg-scrub-bar>\r\n                        <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-mute></vg-mute>\r\n                        <vg-volume></vg-volume>\r\n                        <vg-fullscreen></vg-fullscreen>\r\n                    </vg-controls>\r\n                    <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                        <source src='{{video}}' type=\"video/mp4\">\r\n                    </video>\r\n                </vg-player>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" multiple accept=\"video/mp4\" (change)=\"fileChangedVideo($event)\" />\r\n                <span>Загрузить видео</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"news.title ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n</div>\r\n\r\n\r\n\r\n<div class=\"news-home preview-layer\" id=\"preview-layer\" (click)=\"close()\">\r\n    <div class=\"news-preview-block\">\r\n        <div class=\"news-content\">\r\n            <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                <div class=\"news-title\">\r\n                    {{news.title}}\r\n                    <div class=\"news-date\">\r\n                        {{news.date}}\r\n                    </div>\r\n                </div>\r\n                <div class=\"text-news-content\">\r\n\r\n                    <div class=\"news-text\">\r\n                        <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                        {{news.text}}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                <div id=\"photo-content\" class=\"photo-news-content\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div *ngIf=\"isPhoto()\">\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                <div class=\"video-news-content\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"news-video\" *ngFor=\"let video of videos\">\r\n                        d\r\n                        <vg-player>\r\n                            <vg-controls>\r\n                                <vg-play-pause></vg-play-pause>\r\n                                <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                <vg-scrub-bar>\r\n                                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                </vg-scrub-bar>\r\n                                <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                <vg-mute></vg-mute>\r\n                                <vg-volume></vg-volume>\r\n                                <vg-fullscreen></vg-fullscreen>\r\n                            </vg-controls>\r\n                            <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                <source src='{{video}}' type=\"video/mp4\">\r\n                            </video>\r\n                        </vg-player>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 931:
+/***/ 938:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление турнирами\r\n    </div>\r\n\r\n\r\n    <div class=\"admin-list-news-block\">\r\n\r\n        <ul>\r\n            <li *ngFor=\"let turnament of turnaments; let i = index\">\r\n                <div><p>Название -</p> {{turnament.name}} </div>\r\n                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>\r\n                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>\r\n                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>\r\n                <div><p>Дата завершения -</p> {{ turnament.dateEnd | date:'dd-MM-yyyy'}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editTurnament(turnament.id)\">Открыть</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectTurnament(turnament.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n\r\n    </div>\r\n\r\n    <div class=\"admin-add-turnament-block\">\r\n        <div class=\"add-news-title\">Добавить турнир</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип турнира</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isOut\" (change)=\"isMixture=false\">\r\n                На выбывание\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isMixture\" (change)=\"isOut=false\">\r\n                Смешанный\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isOut || isMixture) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)\">Создать</button>\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить турнир?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellTurnament()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ }),
+
+/***/ 939:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SaveTurnamentInfoRequest = (function () {
+    function SaveTurnamentInfoRequest(turnament) {
+        this.turnament = turnament;
+    }
+    return SaveTurnamentInfoRequest;
+}());
+exports.SaveTurnamentInfoRequest = SaveTurnamentInfoRequest;
+var TurnamentStepRequest = (function () {
+    function TurnamentStepRequest(id, step) {
+        this.id = id;
+        this.step = step;
+    }
+    return TurnamentStepRequest;
+}());
+exports.TurnamentStepRequest = TurnamentStepRequest;
+var DeclareRequest = (function () {
+    function DeclareRequest(turnamentId, commandId) {
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+    }
+    return DeclareRequest;
+}());
+exports.DeclareRequest = DeclareRequest;
+var RemoveDeclareRequest = (function () {
+    function RemoveDeclareRequest(turnamentId, commandId, cause) {
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.cause = cause;
+    }
+    return RemoveDeclareRequest;
+}());
+exports.RemoveDeclareRequest = RemoveDeclareRequest;
+
+
+/***/ }),
+
+/***/ 940:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TurnamentInfo = (function () {
+    function TurnamentInfo(id, name, dateStart, dateEnd, type, stateCode, step) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+    }
+    return TurnamentInfo;
+}());
+exports.TurnamentInfo = TurnamentInfo;
+var GetTurnament = (function () {
+    function GetTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, positionCommand, gameTurnament) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.positionCommand = positionCommand;
+        this.gameTurnament = gameTurnament;
+    }
+    return GetTurnament;
+}());
+exports.GetTurnament = GetTurnament;
+var PositionCommand = (function () {
+    function PositionCommand(id, position, commandId, commandName, points, place) {
+        this.id = id;
+        this.position = position;
+        this.commandId = commandId;
+        this.commandName = commandName;
+        this.points = points;
+        this.place = place;
+    }
+    return PositionCommand;
+}());
+exports.PositionCommand = PositionCommand;
+var GameTurnament = (function () {
+    function GameTurnament(id, idCommandOne, idCommandTwo, tour, dateStart, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
+        if (dateStart === void 0) { dateStart = null; }
+        this.id = id;
+        this.idCommandOne = idCommandOne;
+        this.idCommandTwo = idCommandTwo;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+        this.commandOnePoints = commandOnePoints;
+        this.commandTwoPoints = commandTwoPoints;
+    }
+    return GameTurnament;
+}());
+exports.GameTurnament = GameTurnament;
+
+
+/***/ }),
+
+/***/ 941:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2\" mat-button class=\"calculate-table button-active\" (click)=\"calculateTable()\">Расчитать таблицу</button>\r\n    \r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n\r\n            <table class=\"lk-command\">\r\n                <tr *ngFor=\"let row of rowSize; let r = index\">\r\n                    <td *ngFor=\"let col of colSize; let c = index\">\r\n                        {{table[r][c]}}\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n            <div *ngFor=\"let tour of tours\">\r\n                <div *ngFor=\"let game of tour\">\r\n                    {{game.idCommandOne}} VS {{game.idCommandTwo}}\r\n                </div>\r\n                -----------------------------------------------------\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+
+/***/ 942:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7460,15 +8112,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(80);
+var ng2_toastr_1 = __webpack_require__(21);
+var router_1 = __webpack_require__(64);
 var authentication_1 = __webpack_require__(204);
-var authorizationRequest_1 = __webpack_require__(385);
-var emailRequest_1 = __webpack_require__(932);
+var authorizationRequest_1 = __webpack_require__(388);
+var emailRequest_1 = __webpack_require__(943);
 var page_1 = __webpack_require__(38);
-var email_1 = __webpack_require__(203);
-var common_1 = __webpack_require__(87);
-var user_1 = __webpack_require__(933);
+var email_1 = __webpack_require__(395);
+var common_1 = __webpack_require__(73);
+var user_1 = __webpack_require__(944);
 var App = (function () {
     function App(toastr, vcr, authenticationService, pageService, emailService, router) {
         this.toastr = toastr;
@@ -7633,7 +8285,7 @@ var App = (function () {
     App = __decorate([
         core_1.Component({
             selector: 'app-root',
-            template: __webpack_require__(934),
+            template: __webpack_require__(945),
             providers: [page_1.PageService]
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
@@ -7650,7 +8302,7 @@ exports.App = App;
 
 /***/ }),
 
-/***/ 932:
+/***/ 943:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7669,7 +8321,7 @@ exports.SingCodeToEmailRequest = SingCodeToEmailRequest;
 
 /***/ }),
 
-/***/ 933:
+/***/ 944:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7707,14 +8359,14 @@ exports.Account = Account;
 
 /***/ }),
 
-/***/ 934:
+/***/ 945:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"header-block\">\r\n    <header *ngIf=\"page<7\">\r\n        <div class=\"header-content\">\r\n            <div class=\"logo-olimp\"></div>\r\n            <div class=\"header-logo\"></div>\r\n            <div *ngIf=\"!isAuth\" class=\"registration\" (click)=\"goCome()\">Войти</div>\r\n            <div class=\"menu\">\r\n                <div class=\"menu-content\">\r\n                    <ul class=\"nave nave-tabs\">\r\n                        <li [className]=\"page == 1 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/\">Главная <span class=\"home\"></span></a></li>\r\n                        <li class=\"dropdown\" [className]=\"page == 2 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                            <a data-toggle=\"dropdown\" class=\"a-navbar\" id=\"nav_home\">Турниры <span class=\"caret\"></span> <span class=\"wreath\"></span> </a>\r\n                            <ul class=\"dropdown-menu dropped\">\r\n                                <li><a href=\"/#/current-tournaments\">Текущие турниры</a> </li>\r\n                                <li><a href=\"/#/new-tournaments\">Будущие турниры</a> </li>\r\n                                <li><a href=\"/#/past-tournaments\">Прошедшие турниры</a> </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li [className]=\"page == 3 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/comand\">Команды<span class=\"comand\"></span></a></li>\r\n                        <li [className]=\"page == 4 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/news\">Новости<span class=\"news\"></span></a></li>\r\n                        <li [className]=\"page == 5 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/photo\">Фото<span class=\"photo-menu\"></span></a></li>\r\n                        <li [className]=\"page == 6 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/video\">Видео<span class=\"video-menu\"></span></a></li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"exit-block\">\r\n                <div *ngIf=\"isAuth\" (click)=\"isExit()\" id=\"exit1\" class=\"exit\">{{name}}</div>\r\n                <div *ngIf=\"isAuth\" (click)=\"signOutUser()\" id=\"exit2\" class=\"exit-up\">Выйти</div>\r\n                <div *ngIf=\"isAuth\" (click)=\"goCabinet()\" id=\"cabinet\" class=\"cabinet\">Кабинет</div>\r\n            </div>\r\n        </div>\r\n    </header>\r\n</div>\r\n\r\n<div class=\"transparent-layer\" id=\"transparent-layer\">\r\n    <div class=\"registration-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\" [ngStyle]=\"registratioBlockStyle()\">\r\n        <div class=\"close-button\" (click)=\"close()\"></div>\r\n        <div class=\"login-button\" [ngClass]=\"selectPage == 1 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(1)\">Вход</div>\r\n        <div class=\"registration-button\" [ngClass]=\"selectPage == 2 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(2)\">Регистрация</div>\r\n        <div class=\"reestablish-button\" [ngClass]=\"selectPage == 3 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(3)\">Забыли пароль?</div>\r\n\r\n\r\n        <div class=\"login-content\" *ngIf=\"selectPage == 1\">\r\n            <form class=\"example-form\" autocomplete=\"on\">\r\n\r\n                <div class=\"block center login-block\">\r\n                    <input class=\"example-full-width login\" placeholder=\"Логин\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                    <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <div class=\"block center login-block\">\r\n                    <input type=\"password\" class=\"example-full-width passvord\" placeholder=\"Пароль\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\" required>\r\n                    <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <button mat-button [ngClass]=\"(user.login && user.password && user.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)='signInUser()'>Войти</button>\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"login-content-registration\" *ngIf=\"selectPage == 2\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n            <form class=\"example-form\" #regisrtation=\"ngForm\" novalidate autocomplete=\"on\">\r\n\r\n                <div class=\"inline-block\">\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Логин *\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                        <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" type=\"password\" placeholder=\"Пароль *\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\" required>\r\n                        <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" type=\"password\" placeholder=\"Повторите пароль *\" name=\"passwordTo\" [(ngModel)]=\"passwordTo\" required>\r\n                        <span [ngClass]=\"user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"inline-block\">\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Название команды*\" name=\"commandName\" [(ngModel)]=\"user.commandName\" required>\r\n                        <span [ngClass]=\"user.commandName ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Введите email адресс *\" name=\"email\" [(ngModel)]=\"user.email\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\" #email=\"ngModel\">\r\n                        <span [ngClass]=\"user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Контактный телефон *\" name=\"mobile\" [(ngModel)]=\"user.mobile\" pattern=\"[0-9]*\" #mobile=\"ngModel\" required>\r\n                        <span [ngClass]=\"user.mobile && !mobile.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n                </div>\r\n\r\n                <label class=\"mandatory\">* обязательные поля</label>\r\n\r\n                <button mat-button class=\"button-code-registration\" [ngClass]=\"user.email && !email.hasError('pattern') ? 'button-active' : 'button-no-active'\" (click)='singCodeToEmail()'>Выслать код на email</button>\r\n\r\n                <input class=\"form-control label-kode\" type=\"text\" placeholder=\"код *\" name=\"code\" [(ngModel)]=\"user.code\" />\r\n\r\n                <button mat-button class=\"button-registration\" [ngClass]=\"!(regisrtation.invalid) && user.code && user.password == passwordTo ? 'button-active' : 'button-no-active'\" (click)='registration(regisrtation.invalid, user.code ? true : false)'>Зарегистрировать</button>\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"login-content-registration\" *ngIf=\"selectPage == 3\">\r\n            <form class=\"example-form\" #password=\"ngForm\" novalidate autocomplete=\"on\">\r\n\r\n                <div class=\"inline-block\">\r\n                    <input class=\"reg-input\" placeholder=\"Логин *\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                    <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <div class=\"inline-block\">\r\n                    <input class=\"reg-input\" placeholder=\"Введите email адресс *\" name=\"email *\" [(ngModel)]=\"user.email\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\" #email=\"ngModel\">\r\n                    <span [ngClass]=\"user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <button mat-button class=\"button-code\" [ngClass]=\"user.email && user.login && !email.hasError('pattern') ? 'button-active' : 'button-no-active'\" (click)='singCodeToEmailReplace(password.invalid)'>Выслать код на email</button>\r\n\r\n                <input class=\"form-control label-kode\" type=\"text\" placeholder=\"код *\" name=\"code\" [(ngModel)]=\"user.code\" />\r\n\r\n                <button mat-button class=\"button-code\" [ngClass]=\"user.code ? 'button-active' : 'button-no-active'\" (click)='confirmTheCode()'>Подтвердить код</button>\r\n\r\n                <div class=\"password-remove\">\r\n                    <div class=\"inline-block\">\r\n                        <input [disabled]=\"!isCode\" class=\"reg-input passvord\" type=\"password\" placeholder=\"Новый пароль\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\">\r\n                        <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"inline-block\">\r\n                        <input [disabled]=\"!isCode\" class=\"reg-input passvord\" type=\"password\" placeholder=\"Повторите новый пароль\" name=\"passwordTo\" [(ngModel)]=\"passwordTo\">\r\n                        <span [ngClass]=\"user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <button [disabled]=\"!isCode\" mat-button class=\"button-registration\" [ngClass]=\"isCode ? 'button-active' : 'button-no-active'\" (click)='replacePassvord()'>Изменить пароль</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n\r\n";
 
 /***/ }),
 
-/***/ 935:
+/***/ 946:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7730,10 +8382,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(24);
+var ng2_toastr_1 = __webpack_require__(21);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
-var video_1 = __webpack_require__(936);
+var video_1 = __webpack_require__(947);
 var VideoCommand = (function () {
     function VideoCommand(toastr, vcr, home, pageService) {
         this.toastr = toastr;
@@ -7797,7 +8449,7 @@ var VideoCommand = (function () {
     VideoCommand = __decorate([
         core_1.Component({
             selector: 'video-command',
-            template: __webpack_require__(937)
+            template: __webpack_require__(948)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -7811,7 +8463,7 @@ exports.VideoCommand = VideoCommand;
 
 /***/ }),
 
-/***/ 936:
+/***/ 947:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7829,14 +8481,14 @@ exports.Video = Video;
 
 /***/ }),
 
-/***/ 937:
+/***/ 948:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-display\">\r\n            {{videoTitle}}\r\n\r\n            <vg-player>\r\n                <vg-controls>\r\n                    <vg-play-pause></vg-play-pause>\r\n                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                    <vg-scrub-bar>\r\n                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                    </vg-scrub-bar>\r\n                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                    <vg-mute></vg-mute>\r\n                    <vg-volume></vg-volume>\r\n                    <vg-fullscreen></vg-fullscreen>\r\n                </vg-controls>\r\n                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                    <source *ngFor=\"let video of sources\" src='{{video}}' type=\"video/mp4\">\r\n                </video>\r\n            </vg-player>\r\n        </div>\r\n\r\n        <div class=\"photo-filter\">\r\n            <div class=\"filter-title-text\">Выберете период времени</div>\r\n            <form #myForm=\"ngForm\" novalidate class=\"form-date\">\r\n                <my-date-picker class=\"date-ot\" (dateChanged)=\"filterDate($event,1)\" closeSelectorOnDocumentClick=\"true\" name=\"dateTo\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateTo\" required></my-date-picker>\r\n                <span>- От</span>\r\n                <my-date-picker (dateChanged)=\"filterDate($event,2)\" name=\"dateEnd\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateEnd\" required></my-date-picker>\r\n                <span>- До</span>\r\n            </form>\r\n            <div class=\"filter-title-text-comand\">Выберете команды</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter; let i = index\">\r\n                    <mat-slide-toggle (change)=\"filterCommand(command.id,$event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n\r\n\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let video of videos\" class=\"photo-button\" (click)=\"showVideo(video.url, video.name)\" [style.background-image]=\"video.url\">\r\n\r\n                <vg-player>\r\n                    <vg-controls>\r\n                        <vg-play-pause></vg-play-pause>\r\n                        <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-scrub-bar>\r\n                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                        </vg-scrub-bar>\r\n                        <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-mute></vg-mute>\r\n                        <vg-volume></vg-volume>\r\n                        <vg-fullscreen></vg-fullscreen>\r\n                    </vg-controls>\r\n                    <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                        <source src='{{video.url}}' type=\"video/mp4\">\r\n                    </video>\r\n                </vg-player>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 
-/***/ 938:
+/***/ 949:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7870,7 +8522,81 @@ var NewsType = (function () {
 exports.NewsType = NewsType;
 
 
+/***/ }),
+
+/***/ 950:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var TurnamentType = (function () {
+    function TurnamentType() {
+    }
+    TurnamentType.prototype.transform = function (value, args) {
+        if (value == 1)
+            return "Круговой";
+        if (value == 2)
+            return "Смешанный";
+    };
+    TurnamentType = __decorate([
+        core_1.Pipe({
+            name: 'turnamentType'
+        })
+    ], TurnamentType);
+    return TurnamentType;
+}());
+exports.TurnamentType = TurnamentType;
+
+
+/***/ }),
+
+/***/ 951:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var TurnamentStep = (function () {
+    function TurnamentStep() {
+    }
+    TurnamentStep.prototype.transform = function (value, args) {
+        if (value == 0)
+            return "Редактирование";
+        if (value == 1)
+            return "Регистрация";
+        if (value == 2)
+            return "Построение";
+        if (value == 3)
+            return "В процессе";
+        if (value == 4)
+            return "Завершен";
+    };
+    TurnamentStep = __decorate([
+        core_1.Pipe({
+            name: 'turnamentStep'
+        })
+    ], TurnamentStep);
+    return TurnamentStep;
+}());
+exports.TurnamentStep = TurnamentStep;
+
+
 /***/ })
 
-},[866]);
+},[871]);
 //# sourceMappingURL=app.js.map

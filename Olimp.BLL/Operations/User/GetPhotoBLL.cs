@@ -1,29 +1,28 @@
 ﻿using Olimp.BLL.Models;
 using Olimp.BLL.Models.Response;
 using Olimp.DAL.Assest;
+using System;
 using System.Collections.Generic;
 
 namespace Olimp.BLL.Operations
 {
     public class GetPhotoBLL
     {
-        public static GetPhototResponse Execute()
+        public static GetPhototResponse Execute(GetPhotoRequest request)
         {
-            var photos = DbHelper.GetPhoto();
+            var pagePhotos = DbHelper.GetPhoto(request.Page, request.Id);
 
-            var response = new GetPhototResponse { Photos = new List<PhotoCommand>() };
-
-            foreach (var photo in photos)
+            var response = new GetPhototResponse
             {
-                var item = new PhotoCommand
-                {
-                    Url = photo.url_bd,
-                    CommandOne = photo.id_command_one.ToString(),
-                    CommandTwo = photo.id_command_two.ToString(),
-                    //  DateAdd = photo.,
-                };
+                Photos = new List<string>(),
+                PageSize = pagePhotos.Item2,
+                CurrentPage = pagePhotos.Item3
 
-                response.Photos.Add(item);
+            };
+
+            foreach (var photo in pagePhotos.Item1)
+            {
+                response.Photos.Add(photo.url_bd);
             }
 
             return response;

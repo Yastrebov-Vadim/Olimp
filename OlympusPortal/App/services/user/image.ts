@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { Account, Player } from '../../model/user/account';
-import { ElementResponse } from '../../classes/user/response/accountResponse';
+import { ElementResponse } from '../../classes/user/response/elementResponse';
 
 @Injectable()
 export class ImageService {

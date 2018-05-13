@@ -9,15 +9,9 @@ namespace Olimp.BLL.Operations
     {
         public static ElementResponse Execute(Guid id, PlayerRequest request)
         {
-            var playerRequest = new DAL.Models.PlayerRequest
-            {
-                MiddleName = request.MiddleName,
-                Name = request.Name,
-                Number = request.Number,
-                Surname = request.Surname
-            };
+            DbHelper.CheckAddPlayer(id, request.Number);
 
-            var playerId = DbHelper.AddPlayer(id, playerRequest);
+            var playerId = DbHelper.AddPlayer(id, request.MiddleName, request.Name, request.Surname, request.Number);
 
             return new ElementResponse { Txt = playerId };
         }

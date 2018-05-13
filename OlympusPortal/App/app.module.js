@@ -38,13 +38,19 @@ var news_2 = require("./services/user/news");
 var email_1 = require("./services/user/email");
 var account_1 = require("./services/user/account");
 var image_1 = require("./services/user/image");
+var turnament_1 = require("./services/user/turnament");
 var login_1 = require("./components/admin/login/login");
 var news_3 = require("./components/admin/news/news");
 var add_news_1 = require("./components/admin/add-news/add-news");
+var turnament_2 = require("./components/admin/turnament/turnament");
+var tuning_turnament_1 = require("./components/admin/tuning-turnament/tuning-turnament");
 var authentication_2 = require("./services/admin/authentication");
 var news_4 = require("./services/admin/news");
 var file_1 = require("./services/admin/file");
+var turnament_3 = require("./services/admin/turnament");
 var newsType_1 = require("./pipe/newsType");
+var turnamentType_1 = require("./pipe/turnamentType");
+var turnamentStep_1 = require("./pipe/turnamentStep");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -64,7 +70,11 @@ var AppModule = (function () {
                 login_1.Login,
                 news_3.NewsAdmin,
                 newsType_1.NewsType,
-                add_news_1.AddNews
+                turnamentType_1.TurnamentType,
+                turnamentStep_1.TurnamentStep,
+                add_news_1.AddNews,
+                turnament_2.Turnament,
+                tuning_turnament_1.TuningTurnament
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -95,7 +105,9 @@ var AppModule = (function () {
                 image_1.ImageService,
                 authentication_2.AuthenticationAdminService,
                 news_4.NewsAdminService,
-                file_1.FileService
+                file_1.FileService,
+                turnament_3.TurnamentAdminService,
+                turnament_1.TurnamentService
             ],
             bootstrap: [
                 app_1.App

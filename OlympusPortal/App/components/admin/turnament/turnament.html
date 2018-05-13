@@ -1,0 +1,55 @@
+﻿<div class="admin-news-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="admin-news-title">
+        Управление турнирами
+    </div>
+
+
+    <div class="admin-list-news-block">
+
+        <ul>
+            <li *ngFor="let turnament of turnaments; let i = index">
+                <div><p>Название -</p> {{turnament.name}} </div>
+                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>
+                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>
+                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>
+                <div><p>Дата завершения -</p> {{ turnament.dateEnd | date:'dd-MM-yyyy'}}</div>
+                <button mat-button class="button-come-in button-edit-news" (click)="editTurnament(turnament.id)">Открыть</button>
+                <button mat-button class="button-come-in button-add-news" (click)="selectTurnament(turnament.id, i)" data-toggle="modal" data-target="#myModal">Удалить</button>
+                <hr />
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="admin-add-turnament-block">
+        <div class="add-news-title">Добавить турнир</div>
+
+        <div class="select-news-title">Выберете тип турнира</div>
+        <div class="check-news-block">
+            <mat-checkbox [(ngModel)]="isOut" (change)="isMixture=false">
+                На выбывание
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="isMixture" (change)="isOut=false">
+                Смешанный
+            </mat-checkbox>
+        </div>
+        <button mat-button [ngClass]="(isOut || isMixture) ? 'button-active' : 'button-no-active'" class="button-come-in" (click)="addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)">Создать</button>
+    </div>
+
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Удалить турнир?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellTurnament()">ДА</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

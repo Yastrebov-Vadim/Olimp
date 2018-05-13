@@ -5,8 +5,8 @@ import 'rxjs/Rx';
 import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { NewsInfoResponse, NewsResponse } from '../../classes/admin/response/newsResponse';
-import { ElementResponse } from '../../classes/user/response/accountResponse';
-import { ElementRequest } from '../../classes/user//requests/accountRequest';
+import { ElementResponse } from '../../classes/user/response/elementResponse';
+import { ElementRequest } from '../../classes/user//requests/elementtRequest';
 import { SetNews, GetNews } from '../../model/admin/news';
 
 @Injectable()

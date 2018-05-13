@@ -2,7 +2,11 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { PageService } from '../../../services/page';
-import { EmailService } from '../../../services/user/email';
+import { TurnamentService } from '../../../services/user/turnament';
+
+import { GetTurnamentForUser } from '../../../model/user/turnament';
+import { CommandForTurnament } from '../../../model/user/command';
+import { ElementRequest } from '../../../classes/user/requests/elementtRequest';
 
 @Component({
     selector: 'new-tournaments',
@@ -10,31 +14,38 @@ import { EmailService } from '../../../services/user/email';
 })
 export class NewTournaments implements OnInit {
     public busy: Promise<any>;
-    public bank: string;
-    public isChecked: boolean = true;
+    public turnaments: GetTurnamentForUser[];
+    public isChecked: boolean = false;
+    public isTur: boolean = false;
     
     constructor(
         private toastr: ToastsManager,
         private vcr: ViewContainerRef,
         private pageService: PageService,
-        private emailService: EmailService) {
+        private turnamentService: TurnamentService) {
 
     }
 
     ngOnInit(): void {
         var self = this;
         self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
     }
 
-    public showcommand(id) {
+    public getTournaments() {
         var self = this;
-        document.getElementById(id).style.display = "block";
+        self.busy = self.turnamentService.GetTurnamentsForUser().then(response => {
+            self.turnaments = response.turnaments;
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
     }
 
-    public getNews() {
-        //var self = this;
-        //self.busy = self.emailService.GetNewsBriefly().then(response => {
-           
-        //});
+    public declareTournament(id, index) {
+        var self = this;
+        self.busy = self.turnamentService.DeclareTournament(new ElementRequest(id)).then(response => {
+            self.turnaments[index].commands.push(new CommandForTurnament(null, response.txt, false));
+            self.toastr.success("Заявка подана");
+        });
     }
-}
+} 

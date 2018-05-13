@@ -35,6 +35,15 @@
           <Property Name="url_dir" Type="nvarchar(max)" Nullable="false" />
           <Property Name="account_id" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="command_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_command" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="email_code">
           <Key>
             <PropertyRef Name="id" />
@@ -42,6 +51,22 @@
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="code_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="game_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_command_one" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_command_two" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="number_tour" Type="int" Nullable="false" />
+          <Property Name="date_start" Type="date" />
+          <Property Name="command_one_goals" Type="int" Nullable="false" />
+          <Property Name="command_two_goals" Type="int" Nullable="false" />
+          <Property Name="command_one_points" Type="int" Nullable="false" />
+          <Property Name="command_two_points" Type="int" Nullable="false" />
+          <Property Name="state_code" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="img_for_news">
           <Key>
@@ -79,6 +104,33 @@
           <Property Name="number" Type="int" Nullable="false" />
           <Property Name="id_command" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="position_command_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="id_command" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="command_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="place" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="сontribution_tournament" Type="int" Nullable="false" />
+          <Property Name="сontribution_game" Type="int" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="state_code" Type="bit" Nullable="false" />
+          <Property Name="step" Type="int" Nullable="false" />
+          <Property Name="date_start" Type="date" />
+          <Property Name="date_end" Type="date" />
+        </EntityType>
         <EntityType Name="video_for_news">
           <Key>
             <PropertyRef Name="id" />
@@ -94,10 +146,14 @@
           <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="avatar" EntityType="Self.avatar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="command_for_turnament" EntityType="Self.command_for_turnament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="email_code" EntityType="Self.email_code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="game_for_turnament" EntityType="Self.game_for_turnament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="img_for_news" EntityType="Self.img_for_news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="position_command_for_turnament" EntityType="Self.position_command_for_turnament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="turnament" EntityType="Self.turnament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="video_for_news" EntityType="Self.video_for_news" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -156,6 +212,10 @@
           <EntitySet Name="video_for_news" EntityType="OlimpModel.video_for_news" />
           <EntitySet Name="accounts" EntityType="OlimpModel.account" />
           <EntitySet Name="avatars" EntityType="OlimpModel.avatar" />
+          <EntitySet Name="turnaments" EntityType="OlimpModel.turnament" />
+          <EntitySet Name="command_for_turnament" EntityType="OlimpModel.command_for_turnament" />
+          <EntitySet Name="position_command_for_turnament" EntityType="OlimpModel.position_command_for_turnament" />
+          <EntitySet Name="game_for_turnament" EntityType="OlimpModel.game_for_turnament" />
         </EntityContainer>
         <EntityType Name="img_for_news">
           <Key>
@@ -198,6 +258,58 @@
           <Property Name="url_bd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="url_dir" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="account_id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="сontribution_tournament" Type="Int32" Nullable="false" />
+          <Property Name="сontribution_game" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="state_code" Type="Boolean" Nullable="false" />
+          <Property Name="step" Type="Int32" Nullable="false" />
+          <Property Name="date_start" Type="DateTime" Precision="0" />
+          <Property Name="date_end" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="command_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_command" Type="Guid" Nullable="false" />
+          <Property Name="id_turnament" Type="Guid" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="position_command_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_turnament" Type="Guid" Nullable="false" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="id_command" Type="Guid" Nullable="false" />
+          <Property Name="command_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="place" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="game_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_turnament" Type="Guid" Nullable="false" />
+          <Property Name="id_command_one" Type="Guid" Nullable="false" />
+          <Property Name="id_command_two" Type="Guid" Nullable="false" />
+          <Property Name="number_tour" Type="Int32" Nullable="false" />
+          <Property Name="date_start" Type="DateTime" Precision="0" />
+          <Property Name="command_one_goals" Type="Int32" Nullable="false" />
+          <Property Name="command_two_goals" Type="Int32" Nullable="false" />
+          <Property Name="command_one_points" Type="Int32" Nullable="false" />
+          <Property Name="command_two_points" Type="Int32" Nullable="false" />
+          <Property Name="state_code" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -294,6 +406,62 @@
                 <ScalarProperty Name="account_id" ColumnName="account_id" />
                 <ScalarProperty Name="url_dir" ColumnName="url_dir" />
                 <ScalarProperty Name="url_bd" ColumnName="url_bd" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turnaments">
+            <EntityTypeMapping TypeName="OlimpModel.turnament">
+              <MappingFragment StoreEntitySet="turnament">
+                <ScalarProperty Name="date_end" ColumnName="date_end" />
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="step" ColumnName="step" />
+                <ScalarProperty Name="state_code" ColumnName="state_code" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="сontribution_game" ColumnName="сontribution_game" />
+                <ScalarProperty Name="сontribution_tournament" ColumnName="сontribution_tournament" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="command_for_turnament">
+            <EntityTypeMapping TypeName="OlimpModel.command_for_turnament">
+              <MappingFragment StoreEntitySet="command_for_turnament">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
+                <ScalarProperty Name="id_command" ColumnName="id_command" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="position_command_for_turnament">
+            <EntityTypeMapping TypeName="OlimpModel.position_command_for_turnament">
+              <MappingFragment StoreEntitySet="position_command_for_turnament">
+                <ScalarProperty Name="place" ColumnName="place" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="command_name" ColumnName="command_name" />
+                <ScalarProperty Name="id_command" ColumnName="id_command" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="game_for_turnament">
+            <EntityTypeMapping TypeName="OlimpModel.game_for_turnament">
+              <MappingFragment StoreEntitySet="game_for_turnament">
+                <ScalarProperty Name="state_code" ColumnName="state_code" />
+                <ScalarProperty Name="command_two_points" ColumnName="command_two_points" />
+                <ScalarProperty Name="command_one_points" ColumnName="command_one_points" />
+                <ScalarProperty Name="command_two_goals" ColumnName="command_two_goals" />
+                <ScalarProperty Name="command_one_goals" ColumnName="command_one_goals" />
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="number_tour" ColumnName="number_tour" />
+                <ScalarProperty Name="id_command_two" ColumnName="id_command_two" />
+                <ScalarProperty Name="id_command_one" ColumnName="id_command_one" />
+                <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

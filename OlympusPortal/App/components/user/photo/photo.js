@@ -14,34 +14,32 @@ var ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 var public_1 = require("../../../services/user/public");
 var page_1 = require("../../../services/page");
 var photo_1 = require("../../../model/user/photo");
+var photoRequest_1 = require("../../../classes/user/requests/photoRequest");
+var photoResponse_1 = require("../../../classes/user/response/photoResponse");
 var Photo = (function () {
     function Photo(toastr, vcr, home, pageService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.home = home;
         this.pageService = pageService;
-        this.photos = new Array();
+        this.pagePhotos = new photoResponse_1.GetPhotoResponse(null, null, null);
         this.display = new photo_1.Display(null, null);
-        this.commandsId = new Array();
-        this.myDatePickerOptions = {
-            dateFormat: 'dd.mm.yyyy'
-        };
+        this.pageSize = new Array();
         var self = this;
-        self.getPhoto();
+        self.getPhoto(1);
         self.getCommandFilter();
     }
     Photo.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(5);
     };
-    Photo.prototype.getPhoto = function () {
+    Photo.prototype.getPhoto = function (page) {
         var self = this;
-        self.busy = self.home.GetPhoto().then(function (response) {
-            self.display.url = response.photos[0].url;
-            self.display.position = 0;
-            self.photos = response.photos;
-            for (var i = 0; i < self.photos.length; i++) {
-                self.photos[i].isShow = true;
+        self.busy = self.home.GetPhoto(new photoRequest_1.GetPhotoRequest(page, self.commandId)).then(function (response) {
+            self.pagePhotos = response;
+            self.pageSize = new Array();
+            for (var i = 2; i < self.pagePhotos.pageSize; i++) {
+                self.pageSize.push(i);
             }
         });
     };
@@ -54,20 +52,13 @@ var Photo = (function () {
     Photo.prototype.filterCommand = function (id, checked) {
         var self = this;
         if (checked) {
-            self.commandsId.push(id);
+            self.commandId = id;
+            self.getPhoto(self.pagePhotos.currentPage);
         }
         else {
-            for (var i = 0; i < self.commandsId.length; i++) {
-                if (self.commandsId[i] == id)
-                    self.commandsId.splice(i, 1);
-            }
+            self.commandId = null;
+            self.getPhoto(self.pagePhotos.currentPage);
         }
-    };
-    Photo.prototype.photoStyle = function (isShow) {
-        if (isShow)
-            return { "display": "inline-block" };
-        else
-            return { "display": "none" };
     };
     Photo.prototype.photoShowStyle = function () {
         var self = this;
@@ -75,6 +66,18 @@ var Photo = (function () {
         return {
             "margin-top": top + "px"
         };
+    };
+    Photo.prototype.pageStyle = function (page) {
+        var self = this;
+        if ((self.pagePhotos.currentPage + 2 < page || self.pagePhotos.currentPage - 2 > page) && (page != self.pagePhotos.pageSize && page != 1))
+            return {
+                "display": "none"
+            };
+        if (self.pagePhotos.currentPage == page)
+            return {
+                "color": "#00ff2d",
+                "font-size": "20px"
+            };
     };
     Photo.prototype.openPhoto = function (url, position) {
         var self = this;
@@ -88,18 +91,36 @@ var Photo = (function () {
     Photo.prototype.nextLeftPhoto = function () {
         var self = this;
         if (self.display.position <= 0)
-            self.display.position = self.photos.length - 1;
+            self.display.position = self.pagePhotos.photos.length - 1;
         else
             self.display.position--;
-        self.display.url = self.photos[self.display.position].url;
+        self.display.url = self.pagePhotos.photos[self.display.position];
     };
     Photo.prototype.nextRightPhoto = function () {
         var self = this;
-        if (self.display.position >= self.photos.length - 1)
+        if (self.display.position >= self.pagePhotos.photos.length - 1)
             self.display.position = 0;
         else
             self.display.position++;
-        self.display.url = self.photos[self.display.position].url;
+        self.display.url = self.pagePhotos.photos[self.display.position];
+    };
+    Photo.prototype.nextLeftPage = function () {
+        var self = this;
+        if (self.pagePhotos.currentPage <= 1)
+            return;
+        self.getPhoto(self.pagePhotos.currentPage - 1);
+    };
+    Photo.prototype.nextRightPage = function () {
+        var self = this;
+        if (self.pagePhotos.pageSize < self.pagePhotos.currentPage + 1)
+            return;
+        self.getPhoto(self.pagePhotos.currentPage + 1);
+    };
+    Photo.prototype.getPage = function (page) {
+        var self = this;
+        if (self.pagePhotos.currentPage == page)
+            return;
+        self.getPhoto(page);
     };
     Photo = __decorate([
         core_1.Component({

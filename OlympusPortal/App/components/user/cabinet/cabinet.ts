@@ -10,7 +10,7 @@ import { ImageService } from '../../../services/user/image';
 
 import { Account, Player } from '../../../model/user/account';
 import { Common } from '../../../model/user/common';
-import { ElementRequest } from '../../../classes/user/requests/accountRequest';
+import { ElementRequest } from '../../../classes/user/requests/elementtRequest';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

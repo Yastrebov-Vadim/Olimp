@@ -19,7 +19,7 @@ var authentication_1 = require("../../../services/user/authentication");
 var image_1 = require("../../../services/user/image");
 var account_2 = require("../../../model/user/account");
 var common_1 = require("../../../model/user/common");
-var accountRequest_1 = require("../../../classes/user/requests/accountRequest");
+var elementtRequest_1 = require("../../../classes/user/requests/elementtRequest");
 var Cabinet = (function () {
     function Cabinet(toastr, pageService, accountService, imgService, authenticationService, router, http) {
         this.toastr = toastr;
@@ -99,7 +99,7 @@ var Cabinet = (function () {
         var self = this;
         if (self.idPlayer == null && self.index == null)
             return;
-        self.busy = self.accountService.DellPlayer(new accountRequest_1.ElementRequest(self.idPlayer)).then(function (response) {
+        self.busy = self.accountService.DellPlayer(new elementtRequest_1.ElementRequest(self.idPlayer)).then(function (response) {
             self.account.command.splice(self.index, 1);
             self.idPlayer = null;
             self.index = null;

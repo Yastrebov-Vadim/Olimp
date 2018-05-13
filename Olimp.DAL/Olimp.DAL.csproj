@@ -60,7 +60,13 @@
     <Compile Include="DTO\avatar.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\command_for_turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\email_code.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\game_for_turnament.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\img_for_news.cs">
@@ -87,19 +93,22 @@
     <Compile Include="DTO\player.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\position_command_for_turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\video_for_news.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="Enum\CommandNumber.cs" />
-    <Compile Include="Models\FullNews.cs" />
+    <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Request\AddNewsTextRequest.cs" />
     <Compile Include="Models\Request\AuthorizationRequest.cs" />
     <Compile Include="Models\Request\EditAccountRequest.cs" />
-    <Compile Include="Models\Request\ElementRequest.cs" />
-    <Compile Include="Models\Request\PlayerRequest.cs" />
     <Compile Include="Models\Request\RegistrationRequest.cs" />
-    <Compile Include="Models\Request\SingCodeToEmailRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,10 @@
-﻿import { Component, OnInit, ViewChild } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http, RequestOptions } from '@angular/http';
-import { Subscription } from 'rxjs/Subscription';
 
 import { NewsAdminService } from '../../../services/admin/news';
 import { FileService } from '../../../services/admin/file';
 import { HomeService } from '../../../services/user/public';
-import { PageService } from '../../../services/page';
 
 import { ElementRequest } from '../../../classes/admin/requests/ElementRequest';
 import { SetNews } from '../../../model/admin/news';
@@ -29,17 +26,12 @@ export class AddNews implements OnInit {
     public files: File[] = new Array<File>();
     public commandFilter: CommandFilter[];
 
-    @ViewChild("profileImage")
-    profileImage: any;
-
     constructor(
         private toastr: ToastsManager,
-        private pageService: PageService,
         private newsService: NewsAdminService,
         private fileService: FileService,
         private home: HomeService,
         private router: Router,
-        public http: Http,
         private route: ActivatedRoute) {
         var self = this;
 
@@ -53,8 +45,6 @@ export class AddNews implements OnInit {
     }
 
     ngOnInit(): void {
-        var self = this;
-        self.pageService.recipeSelected.emit(8);
     }
 
     public getNews(id) {

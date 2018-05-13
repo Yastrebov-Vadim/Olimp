@@ -9,12 +9,4 @@ var AccountResponse = (function () {
     return AccountResponse;
 }());
 exports.AccountResponse = AccountResponse;
-var ElementResponse = (function () {
-    function ElementResponse(txt) {
-        var self = this;
-        self.txt = txt;
-    }
-    return ElementResponse;
-}());
-exports.ElementResponse = ElementResponse;
 //# sourceMappingURL=accountResponse.js.map

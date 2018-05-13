@@ -15,10 +15,14 @@ import { VideoCommand } from './components/user/video/video-command';
 import { Login } from './components/admin/login/login';
 import { NewsAdmin } from './components/admin/news/news';
 import { AddNews } from './components/admin/add-news/add-news';
+import { Turnament } from './components/admin/turnament/turnament';
+import { TuningTurnament } from './components/admin/tuning-turnament/tuning-turnament';
 
 const adminRoutes: Routes = [
     { path: Common.RoutePaths.News, component: NewsAdmin },
     { path: Common.RoutePaths.EditNews, component: AddNews },
+    { path: Common.RoutePaths.Turnament, component: Turnament },
+    { path: Common.RoutePaths.TuningTurnament, component: TuningTurnament },
 ];
 
 export const AppRoutes: Routes = [

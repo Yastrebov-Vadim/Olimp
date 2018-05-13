@@ -7,6 +7,7 @@ import { Urls } from '../../classes/urls';
 import { CommandsResponse } from '../../classes/user/response/commandsResponse';
 import { CommandFilterResponse } from '../../classes/user/response/commandFilterResponse';
 import { GetPhotoResponse } from '../../classes/user/response/photoResponse';
+import { GetPhotoRequest } from '../../classes/user/requests/photoRequest';
 
 @Injectable()
 export class HomeService {
@@ -24,8 +25,8 @@ export class HomeService {
         return this.tranport.postData(self.urls.commandFilter, null);
     }
 
-    GetPhoto(): Promise<GetPhotoResponse> {
+    GetPhoto(request: GetPhotoRequest): Promise<GetPhotoResponse> {
         var self = this;
-        return this.tranport.postData(self.urls.getPhoto, null);
+        return this.tranport.postData(self.urls.getPhoto, request);
     }
 } 

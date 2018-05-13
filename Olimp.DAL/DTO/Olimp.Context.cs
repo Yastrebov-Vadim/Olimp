@@ -33,5 +33,9 @@ namespace Olimp.DAL.DTO
         public virtual DbSet<video_for_news> video_for_news { get; set; }
         public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<avatar> avatars { get; set; }
+        public virtual DbSet<turnament> turnaments { get; set; }
+        public virtual DbSet<command_for_turnament> command_for_turnament { get; set; }
+        public virtual DbSet<position_command_for_turnament> position_command_for_turnament { get; set; }
+        public virtual DbSet<game_for_turnament> game_for_turnament { get; set; }
     }
 }

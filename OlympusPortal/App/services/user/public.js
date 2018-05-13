@@ -26,9 +26,9 @@ var HomeService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.commandFilter, null);
     };
-    HomeService.prototype.GetPhoto = function () {
+    HomeService.prototype.GetPhoto = function (request) {
         var self = this;
-        return this.tranport.postData(self.urls.getPhoto, null);
+        return this.tranport.postData(self.urls.getPhoto, request);
     };
     HomeService = __decorate([
         core_1.Injectable(),

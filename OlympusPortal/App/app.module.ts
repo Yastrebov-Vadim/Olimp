@@ -34,17 +34,23 @@ import { NewsService } from './services/user/news';
 import { EmailService } from './services/user/email';
 import { AccountService } from './services/user/account';
 import { ImageService } from './services/user/image';
+import { TurnamentService } from './services/user/turnament';
 
 import { Login } from './components/admin/login/login';
 import { NewsAdmin } from './components/admin/news/news';
 import { AddNews } from './components/admin/add-news/add-news';
+import { Turnament } from './components/admin/turnament/turnament';
+import { TuningTurnament } from './components/admin/tuning-turnament/tuning-turnament';
 
 import { AuthenticationAdminService } from './services/admin/authentication';
 import { NewsAdminService } from './services/admin/news';
 import { FileService } from './services/admin/file';
+import { TurnamentAdminService } from './services/admin/turnament';
 
 
 import { NewsType } from './pipe/newsType';
+import { TurnamentType } from './pipe/turnamentType';
+import { TurnamentStep } from './pipe/turnamentStep';
 
 @NgModule({
     declarations: [
@@ -61,7 +67,11 @@ import { NewsType } from './pipe/newsType';
         Login,
         NewsAdmin,
         NewsType,
-        AddNews
+        TurnamentType,
+        TurnamentStep,
+        AddNews,
+        Turnament,
+        TuningTurnament
     ],
     imports: [
         BrowserModule,
@@ -92,7 +102,9 @@ import { NewsType } from './pipe/newsType';
         ImageService,
         AuthenticationAdminService,
         NewsAdminService,
-        FileService
+        FileService,
+        TurnamentAdminService,
+        TurnamentService
     ],
     bootstrap: [
         App

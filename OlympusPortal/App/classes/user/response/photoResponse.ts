@@ -1,9 +1,11 @@
-﻿import { PhotoCommand } from '../../../model/user/photo';
+﻿export class GetPhotoResponse {
+    currentPage: number
+    pageSize: number
+    photos: string[]
 
-export class GetPhotoResponse {
-    photos: PhotoCommand[]
-
-    constructor(photos: PhotoCommand[]) {
+    constructor(currentPage: number, pageSize: number, photos: string[]) {
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
         this.photos = photos;
     }
 }

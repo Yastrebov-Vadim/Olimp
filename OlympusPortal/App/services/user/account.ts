@@ -5,8 +5,8 @@ import 'rxjs/Rx';
 import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { Account, Player } from '../../model/user/account';
-import { ElementRequest } from '../../classes/user/requests/accountRequest';
-import { ElementResponse } from '../../classes/user/response/accountResponse';
+import { ElementRequest } from '../../classes/user/requests/elementtRequest';
+import { ElementResponse } from '../../classes/user/response/elementResponse';
 
 @Injectable()
 export class AccountService {

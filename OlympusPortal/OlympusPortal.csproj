@@ -191,6 +191,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\Admin\TurnamentAdminController.cs" />
     <Compile Include="Controllers\API\Admin\FileAdminController.cs" />
     <Compile Include="Controllers\API\Admin\NewsAdminController.cs" />
     <Compile Include="Controllers\API\User\AccountController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Controllers\API\User\NewsController.cs" />
     <Compile Include="Controllers\API\User\ImageController.cs" />
     <Compile Include="Controllers\API\User\PublicController.cs" />
+    <Compile Include="Controllers\API\User\TurnamentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,21 +212,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.html" />
+    <TypeScriptCompile Include="App\classes\admin\requests\turnamentRequest.ts" />
     <TypeScriptCompile Include="App\classes\admin\requests\elementRequest.ts" />
+    <TypeScriptCompile Include="App\classes\admin\response\turnamentResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\photoResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\elementResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\newsResponse.ts" />
-    <TypeScriptCompile Include="App\classes\user\requests\accountRequest.ts" />
+    <TypeScriptCompile Include="App\classes\user\requests\photoRequest.ts" />
+    <TypeScriptCompile Include="App\classes\user\requests\elementtRequest.ts" />
     <TypeScriptCompile Include="App\classes\user\requests\newsRequest.ts" />
     <TypeScriptCompile Include="App\classes\user\requests\emailRequest.ts" />
+    <TypeScriptCompile Include="App\classes\user\response\elementResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\photoResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\commandFilterResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\commandsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\newsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\accountResponse.ts" />
+    <Content Include="App\components\admin\tuning-turnament\tuning-turnament.html" />
     <Content Include="App\components\admin\login\login.html" />
     <Content Include="App\components\admin\news\news.html" />
     <Content Include="App\components\admin\add-news\add-news.html" />
+    <Content Include="App\components\admin\turnament\turnament.html" />
     <Content Include="App\components\admin\test\news.html" />
     <Content Include="App\components\user\cabinet\cabinet.html" />
     <Content Include="App\components\user\comand\comand.html" />
@@ -235,9 +243,12 @@
     <Content Include="App\components\user\current-tournaments\current-tournaments.html" />
     <Content Include="App\components\user\public\home.html" />
     <Content Include="App\components\user\new-tournaments\new-tournaments.html" />
+    <TypeScriptCompile Include="App\classes\user\response\turnamentResponse.ts" />
+    <TypeScriptCompile Include="App\components\admin\tuning-turnament\tuning-turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\login\login.ts" />
     <TypeScriptCompile Include="App\components\admin\news\news.ts" />
     <TypeScriptCompile Include="App\components\admin\add-news\add-news.ts" />
+    <TypeScriptCompile Include="App\components\admin\turnament\turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\test\news.ts" />
     <TypeScriptCompile Include="App\components\user\cabinet\cabinet.ts" />
     <TypeScriptCompile Include="App\components\user\video\video-command.ts" />
@@ -247,15 +258,20 @@
     <TypeScriptCompile Include="App\components\user\current-tournaments\current-tournaments.ts" />
     <TypeScriptCompile Include="App\model\admin\file.ts" />
     <TypeScriptCompile Include="App\model\admin\login.ts" />
+    <TypeScriptCompile Include="App\model\admin\turnament.ts" />
     <TypeScriptCompile Include="App\model\admin\news.ts" />
     <TypeScriptCompile Include="App\model\user\photo.ts" />
+    <TypeScriptCompile Include="App\model\user\turnament.ts" />
     <TypeScriptCompile Include="App\model\user\video.ts" />
     <TypeScriptCompile Include="App\model\user\command.ts" />
     <TypeScriptCompile Include="App\model\user\common.ts" />
     <TypeScriptCompile Include="App\model\user\account.ts" />
+    <TypeScriptCompile Include="App\pipe\turnamentStep.ts" />
+    <TypeScriptCompile Include="App\pipe\turnamentType.ts" />
     <TypeScriptCompile Include="App\pipe\newsType.ts" />
     <TypeScriptCompile Include="App\services\admin\authentication.ts" />
     <TypeScriptCompile Include="App\services\admin\file.ts" />
+    <TypeScriptCompile Include="App\services\admin\turnament.ts" />
     <TypeScriptCompile Include="App\services\admin\news.ts" />
     <TypeScriptCompile Include="App\services\user\image.ts" />
     <TypeScriptCompile Include="App\services\user\account.ts" />
@@ -391,6 +407,7 @@
     <TypeScriptCompile Include="App\services\user\news.ts" />
     <TypeScriptCompile Include="App\services\user\public.ts" />
     <TypeScriptCompile Include="App\services\transport.ts" />
+    <TypeScriptCompile Include="App\services\user\turnament.ts" />
     <TypeScriptCompile Include="App\vendor.ts" />
   </ItemGroup>
   <ItemGroup>

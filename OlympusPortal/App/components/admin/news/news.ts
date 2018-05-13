@@ -19,6 +19,8 @@ export class NewsAdmin implements OnInit {
     public isText: boolean = false;
     public isPhoto: boolean = false;
     public isVideo: boolean = false;
+    public idNews: string = null;
+    public index: number = null;
     public newsInfo: GetNewsInfo[];
 
     constructor(
@@ -61,11 +63,23 @@ export class NewsAdmin implements OnInit {
         });
     }
 
-    public dellNews(id, index) {
+    public selectNews(id, i) {
         var self = this;
 
-        self.busy = self.newsService.DellNews(new ElementRequest(id)).then(response => {
-            self.newsInfo.splice(index, 1);
+        self.idNews = id;
+        self.index = i;
+    }
+
+    public dellNews() {
+        var self = this;
+
+        if (self.idNews == null && self.index == null)
+            return;
+
+        self.busy = self.newsService.DellNews(new ElementRequest(self.idNews)).then(response => {
+            self.newsInfo.splice(self.index, 1);
+            self.idNews = null;
+            self.index = null;
             self.toastr.success("Новость удалена");
         });
     }

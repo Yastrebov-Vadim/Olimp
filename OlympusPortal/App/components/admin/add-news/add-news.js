@@ -12,24 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 var router_1 = require("@angular/router");
-var http_1 = require("@angular/http");
 var news_1 = require("../../../services/admin/news");
 var file_1 = require("../../../services/admin/file");
 var public_1 = require("../../../services/user/public");
-var page_1 = require("../../../services/page");
 var ElementRequest_1 = require("../../../classes/admin/requests/ElementRequest");
 var news_2 = require("../../../model/admin/news");
 var common_1 = require("../../../model/user/common");
 var news_3 = require("../../../model/admin/news");
 var AddNews = (function () {
-    function AddNews(toastr, pageService, newsService, fileService, home, router, http, route) {
+    function AddNews(toastr, newsService, fileService, home, router, route) {
         this.toastr = toastr;
-        this.pageService = pageService;
         this.newsService = newsService;
         this.fileService = fileService;
         this.home = home;
         this.router = router;
-        this.http = http;
         this.route = route;
         this.videos = new Array();
         this.news = new news_3.GetNews(null, null, null, null, null, null, null, null, null, null);
@@ -42,8 +38,6 @@ var AddNews = (function () {
         self.getCommandFilter();
     }
     AddNews.prototype.ngOnInit = function () {
-        var self = this;
-        self.pageService.recipeSelected.emit(8);
     };
     AddNews.prototype.getNews = function (id) {
         var self = this;
@@ -131,22 +125,16 @@ var AddNews = (function () {
             self.commandFilter = response.commandFilter;
         });
     };
-    __decorate([
-        core_1.ViewChild("profileImage"),
-        __metadata("design:type", Object)
-    ], AddNews.prototype, "profileImage", void 0);
     AddNews = __decorate([
         core_1.Component({
             selector: 'add-news',
             templateUrl: './add-news.html'
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
-            page_1.PageService,
             news_1.NewsAdminService,
             file_1.FileService,
             public_1.HomeService,
             router_1.Router,
-            http_1.Http,
             router_1.ActivatedRoute])
     ], AddNews);
     return AddNews;

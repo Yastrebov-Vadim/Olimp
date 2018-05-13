@@ -19,6 +19,9 @@
 
     readonly addImageAvatar = 'api/Image/AddImageAvatar';
 
+    readonly getTurnamentsForUser = 'api/Turnament/GetTurnamentsForUser';
+    readonly declareTournament = 'api/Turnament/DeclareTournament';
+    
     readonly command = 'api/Public/GetCommand';
     readonly commandFilter = 'api/Public/GetCommandFilter';
     readonly getPhoto = 'api/Public/GetPhoto';
@@ -33,6 +36,16 @@
     readonly addNews = 'api/NewsAdmin/AddNews';
     readonly saveNews = 'api/NewsAdmin/SaveNews';
     readonly activeNews = 'api/NewsAdmin/ActiveNews';
+
+    readonly addTurnament = 'api/TurnamentAdmin/AddTurnament';
+    readonly getTurnamentInfo = 'api/TurnamentAdmin/GetTurnamentInfo';
+    readonly dellTurnament = 'api/TurnamentAdmin/DellTurnament';
+    readonly getTurnament = 'api/TurnamentAdmin/GetTurnament';
+    readonly saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
+    readonly changeStep = 'api/TurnamentAdmin/ChangeStep';
+    readonly acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
+    readonly removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
+    readonly calculateTable = 'api/TurnamentAdmin/CalculateTable';
     
     readonly addImgNewsTypeText = 'api/FileAdmin/AddImgNewsTypeText';
     readonly addImgNewsTypePhoto = 'api/FileAdmin/AddImgNewsTypePhoto';

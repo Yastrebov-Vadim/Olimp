@@ -9,14 +9,8 @@ namespace Olimp.BLL.Operations
     {
         public static void Execute(SingCodeToEmailRequest request)
         {
-            var singCodeToEmailRequest = new DAL.Models.SingCodeToEmailRequest
-            {
-                Email = request.Email,
-                Login = request.Login
-            };
-
             if (request.Login != null)
-                DbHelper.CheckLodinInEmail(singCodeToEmailRequest);
+                DbHelper.CheckLodinInEmail(request.Login, request.Email);
 
             Random rnd = new Random();
             var code = rnd.Next(1000, 10001);
@@ -24,7 +18,7 @@ namespace Olimp.BLL.Operations
             DbHelper.SaveUserCode(code, request.Email);
 
             if (request.Login != null)
-                SendEmailBLL.SendEmail("Изменение пароля", $"Код подтверждения для изменения пароля от Вашей учетной записи: {code}", request.Email);
+                SendEmailBLL.SendEmail("Смена пароля", $"Код подтверждения для изменения пароля от Вашей учетной записи: {code}", request.Email);
 
             else
                 SendEmailBLL.SendEmail("Регистрация", $"Код подтверждения регистрации: {code}", request.Email);

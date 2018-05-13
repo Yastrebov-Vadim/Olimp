@@ -1,4 +1,5 @@
-﻿using Olimp.BLL.Models.Response;
+﻿using Olimp.BLL.Models;
+using Olimp.BLL.Models.Response;
 using Olimp.BLL.Operations;
 using System.Web.Http;
 
@@ -13,6 +14,6 @@ namespace OlympusPortal.Controllers.API
         public GetCommandFilterResponse GetCommandFilter() => GetCommandFilterBLL.Execute();
 
         [HttpPost]
-        public GetPhototResponse GetPhoto() => GetPhotoBLL.Execute();
+        public GetPhototResponse GetPhoto(GetPhotoRequest request) => GetPhotoBLL.Execute(request);
     }
 }

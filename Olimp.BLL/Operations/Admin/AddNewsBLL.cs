@@ -9,12 +9,7 @@ namespace Olimp.BLL.Operations
     {
         public static ElementResponse Execute(ElementRequest request)
         {
-            var elementRequest = new DAL.Models.ElementRequest
-            {
-                Txt = request.Txt
-            };
-
-            return new ElementResponse { Txt = DbHelper.AddNews(elementRequest) };
+            return new ElementResponse { Txt = DbHelper.AddNews(Convert.ToInt32(request.Txt)) };
         }
     }
 }

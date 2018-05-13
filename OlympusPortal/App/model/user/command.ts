@@ -29,3 +29,15 @@ export class CommandsId {
         this.id = id;
     }
 }
+
+export class CommandForTurnament {
+    public id: string;
+    public name: string;
+    public status: boolean;
+
+    constructor(id: string, name: string, status: boolean) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+}

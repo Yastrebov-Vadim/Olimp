@@ -12,24 +12,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 var page_1 = require("../../../services/page");
-var email_1 = require("../../../services/user/email");
+var turnament_1 = require("../../../services/user/turnament");
+var command_1 = require("../../../model/user/command");
+var elementtRequest_1 = require("../../../classes/user/requests/elementtRequest");
 var NewTournaments = (function () {
-    function NewTournaments(toastr, vcr, pageService, emailService) {
+    function NewTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.pageService = pageService;
-        this.emailService = emailService;
-        this.isChecked = true;
+        this.turnamentService = turnamentService;
+        this.isChecked = false;
+        this.isTur = false;
     }
     NewTournaments.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
     };
-    NewTournaments.prototype.showcommand = function (id) {
+    NewTournaments.prototype.getTournaments = function () {
         var self = this;
-        document.getElementById(id).style.display = "block";
+        self.busy = self.turnamentService.GetTurnamentsForUser().then(function (response) {
+            self.turnaments = response.turnaments;
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
     };
-    NewTournaments.prototype.getNews = function () {
+    NewTournaments.prototype.declareTournament = function (id, index) {
+        var self = this;
+        self.busy = self.turnamentService.DeclareTournament(new elementtRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnaments[index].commands.push(new command_1.CommandForTurnament(null, response.txt, false));
+            self.toastr.success("Заявка подана");
+        });
     };
     NewTournaments = __decorate([
         core_1.Component({
@@ -39,7 +52,7 @@ var NewTournaments = (function () {
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
             page_1.PageService,
-            email_1.EmailService])
+            turnament_1.TurnamentService])
     ], NewTournaments);
     return NewTournaments;
 }());

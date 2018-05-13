@@ -27,6 +27,8 @@ var NewsAdmin = (function () {
         this.isText = false;
         this.isPhoto = false;
         this.isVideo = false;
+        this.idNews = null;
+        this.index = null;
         var self = this;
     }
     NewsAdmin.prototype.ngOnInit = function () {
@@ -54,10 +56,19 @@ var NewsAdmin = (function () {
             });
         });
     };
-    NewsAdmin.prototype.dellNews = function (id, index) {
+    NewsAdmin.prototype.selectNews = function (id, i) {
         var self = this;
-        self.busy = self.newsService.DellNews(new ElementRequest_1.ElementRequest(id)).then(function (response) {
-            self.newsInfo.splice(index, 1);
+        self.idNews = id;
+        self.index = i;
+    };
+    NewsAdmin.prototype.dellNews = function () {
+        var self = this;
+        if (self.idNews == null && self.index == null)
+            return;
+        self.busy = self.newsService.DellNews(new ElementRequest_1.ElementRequest(self.idNews)).then(function (response) {
+            self.newsInfo.splice(self.index, 1);
+            self.idNews = null;
+            self.index = null;
             self.toastr.success("Новость удалена");
         });
     };

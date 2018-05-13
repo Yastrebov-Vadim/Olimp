@@ -11,9 +11,9 @@
                 <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>
                 <div><p>Отображается на главной странице -</p> {{news.top ? "Да":" Нет"}}</div>
                 <button mat-button class="button-come-in button-edit-news" (click)="editNews(news.id)">Редактировать</button>
-                <button mat-button class="button-come-in button-add-news" (click)="dellNews(news.id, i)">Удалить</button>
+                <button mat-button class="button-come-in button-add-news" (click)="selectNews(news.id, i)" data-toggle="modal" data-target="#myModal">Удалить</button>
                 <mat-checkbox [(ngModel)]="news.active" (change)="active(news.id)">
-                    - активна 
+                    - активна
                 </mat-checkbox>
                 <hr />
             </li>
@@ -39,4 +39,17 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
+            <div class="modal-body">
+                Удалить новость?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="dellNews()">ДА</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,103 +3,30 @@
     <div class="tournaments-not">
         <div class="tournaments-not-photo">
         </div>
-        <div class="tournaments-log-text">
+        <div class="tournaments-log-text" *ngIf="isTur">
             Проходит набор команд для участия
         </div>
-        <!--<div class="tournaments-log-text no-log">
-          Нет открытых чемпионатов
-        </div>-->
-    </div>
-
-    <div class="news-block">
-        <div class="current-tournaments-content">
-
-            <div class="title-tournaments">
-                <div class="tournaments-date">
-                    C 12.12.2017
-                </div>
-                <div class="tournaments-text">
-                    Чемпионат саратова по минифутболу 2018
-                </div>
-                <form class="example-form inline-block">
-                    <button mat-button class="tournaments-registration">Участвовать</button>
-                </form>
-            </div>
-
-            <div class="tournaments-command-content">
-                <div class="tournaments-command-title inline-block">
-                    Команды
-                </div>
-
-                <input type="checkbox" id="tournaments1" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
-                <label for="tournaments1" class="tournaments-command-open"></label>
-
-                <table class="lk-command">
-                    <tr>
-                        <td class="title-header">
-                            №
-                        </td>
-                        <td class="title-header">
-                            Названия команд участвующих в турнире
-                        </td>
-                        <td class="title-header">
-                            Статус заявки
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Зенит
-                        </td>
-                        <td class="filed">
-                            Заявка подана
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Дрова
-                        </td>
-                        <td class="adopted">
-                            Заявка принята
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Арсенал
-                        </td>
-                        <td class="filed">
-                            Заявка подана
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        <div class="tournaments-log-text no-log" *ngIf="!isTur">
+            Нет открытых чемпионатов
         </div>
     </div>
 
-    <div class="news-block">
+    <div class="news-block" *ngFor="let turnament of turnaments; let i = index">
         <div class="current-tournaments-content">
 
             <div class="title-tournaments">
                 <div class="tournaments-date">
-                    C 12.12.2017
+                    C {{turnament.dateStart}}
                 </div>
                 <div class="tournaments-text">
-                    Чемпионат саратова по минифутболу 2018
+                    {{turnament.name}}
                 </div>
-                <form class="example-form inline-block">
-                    <button mat-button class="tournaments-registration">Участвовать</button>
-                </form>
+
+                <button mat-button class="tournaments-registration button-active" (click)="declareTournament(turnament.id, i)">Участвовать</button>
+            </div>
+
+            <div class="tournaments-description">
+                {{turnament.description}}
             </div>
 
             <div class="tournaments-command-content">
@@ -107,8 +34,12 @@
                     Команды
                 </div>
 
-                <input type="checkbox" id="tournaments2" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
-                <label for="tournaments2" class="tournaments-command-open"></label>
+                <div class="turnament-price">
+                    Взнос за турнир - {{turnament.contributionTournament}}p.   Взнос за игру - {{turnament.contributionGame}}р.
+                </div>
+
+                <input type="checkbox" id="{{'tur'+i}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                <label for="{{'tur'+i}}" class="tournaments-command-open"></label>
 
                 <table class="lk-command">
                     <tr>
@@ -123,39 +54,18 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr *ngFor="let command of turnament.commands; let j = index">
                         <td>
-                            1
-                        </td>
-                        <td>
-                            Зенит
-                        </td>
-                        <td class="filed">
-                            Заявка подана
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            2
+                            {{j+1}}
                         </td>
                         <td>
-                            Дрова
+                            {{command.name}}
                         </td>
-                        <td class="adopted">
-                            Заявка принята
+                        <td *ngIf="!command.status" class="filed">
+                            рассмотрение
                         </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Арсенал
-                        </td>
-                        <td class="filed">
-                            Заявка подана
+                        <td *ngIf="command.status" class="adopted">
+                            участие
                         </td>
                     </tr>
                 </table>

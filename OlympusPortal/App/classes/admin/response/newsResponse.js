@@ -2,16 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var NewsInfoResponse = (function () {
     function NewsInfoResponse(news) {
-        var self = this;
-        self.news = news;
+        this.news = news;
     }
     return NewsInfoResponse;
 }());
 exports.NewsInfoResponse = NewsInfoResponse;
 var NewsResponse = (function () {
     function NewsResponse(news) {
-        var self = this;
-        self.news = news;
+        this.news = news;
     }
     return NewsResponse;
 }());

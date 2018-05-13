@@ -24,4 +24,13 @@ var CommandsId = (function () {
     return CommandsId;
 }());
 exports.CommandsId = CommandsId;
+var CommandForTurnament = (function () {
+    function CommandForTurnament(id, name, status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+    return CommandForTurnament;
+}());
+exports.CommandForTurnament = CommandForTurnament;
 //# sourceMappingURL=command.js.map
