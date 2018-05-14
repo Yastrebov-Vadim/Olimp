@@ -942,7 +942,7 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static void СreateGameForTurnament(Guid turnamentId, Guid commandOneId, Guid commandTwoId, int tout)
+        public static void СreateGameForTurnament(Guid turnamentId, Guid commandOneId, Guid commandTwoId, string commandOneName, string commandTwoName, int tout)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
@@ -952,6 +952,8 @@ namespace Olimp.DAL.Assest
                     id_turnament = turnamentId,
                     id_command_one = commandOneId,
                     id_command_two = commandTwoId,
+                    command_one_name = commandOneName,
+                    command_two_name = commandTwoName,
                     number_tour = tout,
                     command_one_goals = 0,
                     command_two_goals = 0,

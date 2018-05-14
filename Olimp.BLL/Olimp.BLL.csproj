@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Admin\GroupTourNumber.cs" />
+    <Compile Include="Models\Admin\GroupDateStart.cs" />
     <Compile Include="Models\Admin\GameTurnament.cs" />
     <Compile Include="Models\Admin\PositionCommand.cs" />
     <Compile Include="Models\Admin\FotoForNews.cs" />

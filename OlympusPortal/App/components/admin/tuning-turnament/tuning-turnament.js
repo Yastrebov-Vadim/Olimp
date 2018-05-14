@@ -27,13 +27,14 @@ var TuningTurnament = (function () {
         this.cause = null;
         this.commandId = null;
         this.index = null;
+        this.isCalc = false;
         this.rowSize = new Array();
         this.colSize = new Array();
-        this.tours = new Array();
+        this.days = new Array();
         this.table = new Array();
         this.turnament = new turnament_2.GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
         this.myDatePickerOptions = {
-            dateFormat: 'yyyy-mm-dd'
+            dateFormat: 'dd.mm.yyyy'
         };
         var self = this;
         route.queryParams.subscribe(function (params) {
@@ -48,30 +49,22 @@ var TuningTurnament = (function () {
         self.busy = self.turnamentService.GetTurnament(new ElementRequest_1.ElementRequest(id)).then(function (response) {
             self.turnament = response.turnament;
             self.page = self.turnament.step > 1 ? 2 : 1;
+            self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
-            self.getTour();
         });
-    };
-    TuningTurnament.prototype.getTour = function () {
-        var self = this;
-        for (var i = 0; i < self.turnament.gameTurnament.length; i++) {
-            for (var j = 0; j < self.turnament.gameTurnament.length; j++) {
-                if (i + 1 == self.turnament.gameTurnament[j].tour)
-                    self.tours[i] = self.turnament.gameTurnament[j];
-            }
-        }
-        var w = 0;
     };
     TuningTurnament.prototype.getResult = function (row, col) {
         var self = this;
         var commandOneId = self.turnament.positionCommand[row - 1].commandId;
         var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
-        for (var i = 0; i < self.turnament.gameTurnament.length; i++) {
-            if (self.turnament.gameTurnament[i].idCommandOne == commandOneId && self.turnament.gameTurnament[i].idCommandTwo == commandTwoId)
-                return self.turnament.gameTurnament[i].commandOneGoals + " -- " + self.turnament.gameTurnament[i].commandTwoGoals;
-            if (self.turnament.gameTurnament[i].idCommandOne == commandTwoId && self.turnament.gameTurnament[i].idCommandTwo == commandOneId)
-                return self.turnament.gameTurnament[i].commandTwoGoals + " -- " + self.turnament.gameTurnament[i].commandOneGoals;
-        }
+        var result = "";
+        self.turnament.groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        }); }); });
+        return result;
     };
     TuningTurnament.prototype.getTable = function () {
         var self = this;
@@ -125,6 +118,7 @@ var TuningTurnament = (function () {
         var self = this;
         self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, step)).then(function (response) {
             self.turnament.step = step;
+            self.page = step > 1 ? 2 : 1;
             self.toastr.success("Смена этапа");
         });
     };
@@ -167,8 +161,25 @@ var TuningTurnament = (function () {
     TuningTurnament.prototype.calculateTable = function () {
         var self = this;
         self.busy = self.turnamentService.CalculateTable(new ElementRequest_1.ElementRequest(self.turnament.id)).then(function (response) {
+            self.getTurnament(self.id);
             self.toastr.success("Турнирная табляца построена");
         });
+    };
+    TuningTurnament.prototype.selectDay = function (day) {
+        var self = this;
+        if (day > self.turnament.positionCommand.length / 2) {
+            self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
+            return;
+        }
+        self.days = new Array();
+        for (var i = 0; i < day; i++) {
+            self.days.push(new Date());
+        }
+    };
+    TuningTurnament.prototype.divideForDay = function (tour) {
+        var self = this;
+        console.dir(tour);
+        var sd = self.days;
     };
     TuningTurnament = __decorate([
         core_1.Component({

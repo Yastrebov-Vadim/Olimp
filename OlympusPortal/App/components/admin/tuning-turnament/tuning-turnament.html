@@ -69,8 +69,8 @@
         Идет регистрация...
     </div>
 
-    <button *ngIf="turnament.step == 2" mat-button class="calculate-table button-active" (click)="calculateTable()">Расчитать таблицу</button>
-    
+    <button *ngIf="turnament.step == 2 && isCalc" mat-button class="calculate-table button-active" (click)="calculateTable()">Расчитать таблицу</button>
+
     <div class="admin-tuning-turnament-block" *ngIf="turnament.step != 0">
         <div class="button-turnament-block" *ngIf="turnament.step != 1">
             <div mat-button [className]="page == 1 ? 'turnament-control-active' : 'turnament-control'" (click)="page=1">Команды</div>
@@ -127,11 +127,52 @@
                     </td>
                 </tr>
             </table>
-            <div *ngFor="let tour of tours">
-                <div *ngFor="let game of tour">
-                    {{game.idCommandOne}} VS {{game.idCommandTwo}}
+            <div *ngFor="let groupTour of turnament.groupTourNumber; let t = index" class="tour-block">
+                <div class="tour-number">
+                    Тур № {{groupTour.numberTour}}
                 </div>
-                -----------------------------------------------------
+
+                <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="game-group-date">
+                    <div class="day-play-game">
+                        День {{d+1}}<br />
+                    </div>
+
+                    <div class="date-start-game">
+                        Дата игр <br />
+                        <input type="datetime-local" [ngModel]="tour.dateStart">
+                    </div>
+                    <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                        <div class="game-points">
+                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                        </div>
+                        <div class="game-command-name-block">
+                            <div class="game-command-name">
+                                {{game.commandOneName}}
+                            </div>
+                            VS
+                            <div class="game-command-name">
+                                {{game.commandTwoName}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="checkbox" id="{{'divide' + t}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                <label for="{{'divide' + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
+
+                <div>
+                    <div class="inline-block">
+                        Выберете колличество дней  <input type="number" value="0" (change)="selectDay($event.target.value)" />
+                    </div>
+                    <button mat-button class="game-day-button button-active" (click)="divideForDay(groupTour.numberTour)">Сохранить</button>
+                    <div>
+                        <div *ngFor="let day of days; let w = index" class="day-value">
+                            День {{w+1}}
+                            <input type="datetime-local" [ngModel]="day.day" (change)="day.day = $event.target.value">
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

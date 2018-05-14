@@ -91,7 +91,7 @@ namespace Olimp.BLL.Operations
             {
                 for (var col = 0; col < commandSize / 2; col++)
                 {
-                    DbHelper.СreateGameForTurnament(turnamentId, table[row, col][0].id_command, table[row, col][1].id_command, row + 1);
+                    DbHelper.СreateGameForTurnament(turnamentId, table[row, col][0].id_command, table[row, col][1].id_command, table[row, col][0].command_name, table[row, col][1].command_name, row + 1);
                 }
             }
         }

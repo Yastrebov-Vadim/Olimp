@@ -7,7 +7,7 @@ import { Common } from '../../../model/user/common';
 import { TurnamentAdminService } from '../../../services/admin/turnament';
 import { ElementRequest } from '../../../classes/admin/requests/ElementRequest';
 import { SaveTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest } from '../../../classes/admin/requests/turnamentRequest';
-import { GetTurnament, GameTurnament } from '../../../model/admin/turnament';
+import { GetTurnament, GameTurnament, DayGame } from '../../../model/admin/turnament';
 
 @Component({
     selector: 'tuning-turnament',
@@ -22,14 +22,15 @@ export class TuningTurnament implements OnInit {
     public cause: string = null;
     public commandId: string = null;
     public index: number = null;
+    public isCalc: boolean = false;
     public rowSize: number[] = new Array<number>();
     public colSize: number[] = new Array<number>();
-    public tours = [];
+    public days: DayGame[] = new Array<DayGame>();
     public table = new Array();
     public turnament: GetTurnament = new GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null)
 
     public myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'yyyy-mm-dd'
+        dateFormat: 'dd.mm.yyyy'
     };
 
     constructor(
@@ -55,10 +56,8 @@ export class TuningTurnament implements OnInit {
         self.busy = self.turnamentService.GetTurnament(new ElementRequest(id)).then(response => {
             self.turnament = response.turnament;
             self.page = self.turnament.step > 1 ? 2 : 1;
+            self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
-
-            for (var i = 1; i < self.turnament.positionCommand.length; i++)
-                self.tours.push(self.turnament.gameTurnament.filter(x => x.tour == i));
         });
     }
 
@@ -67,14 +66,16 @@ export class TuningTurnament implements OnInit {
 
         var commandOneId = self.turnament.positionCommand[row - 1].commandId;
         var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
+        var result = "";
+        self.turnament.groupTourNumber.forEach(gt => gt.groupDateStart.forEach(gd => gd.gameTurnament.forEach(t => {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
 
-        for (var i = 0; i < self.turnament.gameTurnament.length; i++) {
-            if (self.turnament.gameTurnament[i].idCommandOne == commandOneId && self.turnament.gameTurnament[i].idCommandTwo == commandTwoId)
-                return self.turnament.gameTurnament[i].commandOneGoals + " -- " + self.turnament.gameTurnament[i].commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        })));
 
-            if (self.turnament.gameTurnament[i].idCommandOne == commandTwoId && self.turnament.gameTurnament[i].idCommandTwo == commandOneId)
-                return self.turnament.gameTurnament[i].commandTwoGoals + " -- " + self.turnament.gameTurnament[i].commandOneGoals;
-        }
+        return result;
     }
 
     public getTable() {
@@ -150,6 +151,7 @@ export class TuningTurnament implements OnInit {
 
         self.busy = self.turnamentService.ChangeStep(new TurnamentStepRequest(self.turnament.id, step)).then(response => {
             self.turnament.step = step;
+            self.page = step > 1 ? 2 : 1;
             self.toastr.success("Смена этапа");
         });
     }
@@ -202,10 +204,46 @@ export class TuningTurnament implements OnInit {
 
     public calculateTable() {
         var self = this;
-        //   self.getTur();
+
         self.busy = self.turnamentService.CalculateTable(new ElementRequest(self.turnament.id)).then(response => {
-            //  self.turnament.commands[index].status = true;
+            self.getTurnament(self.id);
             self.toastr.success("Турнирная табляца построена");
         });
     }
+
+    public selectDay(day) {
+        var self = this;
+
+        if (day > self.turnament.positionCommand.length / 2) {
+            self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
+            return;
+        }
+
+        self.days = new Array<DayGame>();
+
+        for (let i = 0; i < day; i++) {
+            self.days.push(new DayGame(null));
+        }
+    }
+
+    public divideForDay(tour) {
+        var self = this;
+
+        self.days.forEach(x => {
+            if (x.day == null) {
+                self.toastr.error("Не все даты звполнены");
+                return;
+            }
+        })
+
+        //self.busy = self.turnamentService.CalculateTable(new ElementRequest(self.turnament.id)).then(response => {
+        //    self.getTurnament(self.id);
+        //});
+    }
+
+    public selectDate(e) {
+        var self = this;
+        console.dir(e);
+    }
+    
 } 

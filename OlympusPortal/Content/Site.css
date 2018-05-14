@@ -1170,6 +1170,14 @@ header {
         display: inline-table;
     }
 
+    .hide + label ~ div {
+        display: none;
+    }
+
+    .hide:checked + label + div {
+        display: inline-table;
+    }
+
     .hide:checked + label {
         background-image: url(./img/up-arrow.png);
     }
@@ -2501,4 +2509,79 @@ header {
     font-size: 18px !important;
     margin-left: 40px !important;
     margin-top: 12px !important;
+}
+
+.tour-block {
+    border: 0px solid;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: left;
+    background-color: #353535;
+}
+
+.game-block {
+    border: 1px solid #585858;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.tour-number {
+    margin: auto;
+    width: 100px;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.game-points {
+    color: #35e409;
+    font-size: 16px;
+}
+
+.game-command-name {
+    display: inline-block;
+    font-size: 20px;
+    color: #23c0f1;
+}
+
+.game-command-name-block {
+    font-size: 20px;
+    color: red;
+}
+
+.game-group-date {
+    border: 1px solid;
+    padding: 10px;
+}
+
+.date-start-game {
+    float: right;
+}
+
+.day-play-game {
+    margin: auto;
+    width: 100px;
+    font-size: 18px;
+}
+
+.game-day-button {
+    border-radius: 5px !important;
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+}
+
+.game-day-button-open {
+    border-radius: 5px;
+    padding: 8px 10px 8px 10px;
+    width: 160px;
+    text-align: right;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.day-value {
+    margin-top: 15px;
 }

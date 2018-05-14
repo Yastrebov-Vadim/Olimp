@@ -33,12 +33,12 @@ export class GetTurnament {
     public contributionTournament: number;
     public commands: CommandForTurnament[];
     public positionCommand: PositionCommand[];
-    public gameTurnament: GameTurnament[];
+    public groupTourNumber: GroupTourNumber[];
 
     constructor(id: string, name: string, dateStart: Date, dateEnd: Date, type: number,
         stateCode: boolean, step: number, description: string, contributionGame: number,
         contributionTournament: number, commands: CommandForTurnament[], positionCommand: PositionCommand[],
-        gameTurnament: GameTurnament[]) {
+        groupTourNumber: GroupTourNumber[]) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -51,7 +51,7 @@ export class GetTurnament {
         this.contributionTournament = contributionTournament;
         this.commands = commands;
         this.positionCommand = positionCommand;
-        this.gameTurnament = gameTurnament;
+        this.groupTourNumber = groupTourNumber;
     }
 }
 
@@ -77,6 +77,8 @@ export class GameTurnament {
     public id: string;
     public idCommandOne: string;
     public idCommandTwo: string;
+    public commandOneName: string;
+    public commandTwoName: string;
     public tour: number;
     public dateStart: Date;
     public commandOneGoals: number;
@@ -84,15 +86,46 @@ export class GameTurnament {
     public commandOnePoints: number;
     public commandTwoPoints: number;
 
-    constructor(id: string, idCommandOne: string, idCommandTwo: string, tour: number,
-        dateStart: Date = null, commandOneGoals: number, commandTwoGoals: number,
+    constructor(id: string, idCommandOne: string, idCommandTwo: string, commandOneName: string, commandTwoName: string,
+        tour: number, dateStart: Date = null, commandOneGoals: number, commandTwoGoals: number,
         commandOnePoints: number, commandTwoPoints: number) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
+        this.commandOneName = commandOneName;
+        this.commandTwoName = commandTwoName;
+        this.dateStart = dateStart;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
         this.commandOnePoints = commandOnePoints;
         this.commandTwoPoints = commandTwoPoints;
+    }
+}
+
+export class GroupDateStart {
+    public dateStart: string;
+    public gameTurnament: GameTurnament[];
+
+    constructor(dateStart: string, gameTurnament: GameTurnament[]) {
+        this.dateStart = dateStart;
+        this.gameTurnament = gameTurnament;
+    }
+}
+
+export class GroupTourNumber {
+    public numberTour: number;
+    public groupDateStart: GroupDateStart[];
+
+    constructor(numberTour: number, groupDateStart: GroupDateStart[]) {
+        this.numberTour = numberTour;
+        this.groupDateStart = groupDateStart;
+    }
+}
+
+export class DayGame {
+    public day: Date;
+
+    constructor(day: Date) {
+        this.day = day;
     }
 }

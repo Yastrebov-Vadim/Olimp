@@ -60,6 +60,8 @@
           <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id_command_one" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id_command_two" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="command_one_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="command_two_name" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="number_tour" Type="int" Nullable="false" />
           <Property Name="date_start" Type="date" />
           <Property Name="command_one_goals" Type="int" Nullable="false" />
@@ -310,6 +312,8 @@
           <Property Name="command_one_points" Type="Int32" Nullable="false" />
           <Property Name="command_two_points" Type="Int32" Nullable="false" />
           <Property Name="state_code" Type="Boolean" Nullable="false" />
+          <Property Name="command_one_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="command_two_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -452,6 +456,8 @@
           <EntitySetMapping Name="game_for_turnament">
             <EntityTypeMapping TypeName="OlimpModel.game_for_turnament">
               <MappingFragment StoreEntitySet="game_for_turnament">
+                <ScalarProperty Name="command_two_name" ColumnName="command_two_name" />
+                <ScalarProperty Name="command_one_name" ColumnName="command_one_name" />
                 <ScalarProperty Name="state_code" ColumnName="state_code" />
                 <ScalarProperty Name="command_two_points" ColumnName="command_two_points" />
                 <ScalarProperty Name="command_one_points" ColumnName="command_one_points" />

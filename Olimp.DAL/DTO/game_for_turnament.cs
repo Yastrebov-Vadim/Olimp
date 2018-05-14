@@ -25,5 +25,7 @@ namespace Olimp.DAL.DTO
         public int command_one_points { get; set; }
         public int command_two_points { get; set; }
         public bool state_code { get; set; }
+        public string command_one_name { get; set; }
+        public string command_two_name { get; set; }
     }
 }

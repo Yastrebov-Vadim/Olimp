@@ -29,7 +29,7 @@ namespace Olimp.BLL.Operations
             }
 
             var positionCommands = new List<PositionCommand>();
-            var gameTurnament = new List<GameTurnament>();
+            var groupTourNumber = new List<GroupTourNumber>();
 
             if (turnament.step > 1)
             {
@@ -59,25 +59,55 @@ namespace Olimp.BLL.Operations
 
                 if (games.Any())
                 {
-                    foreach (var element in games)
+                    var groupTours = games.GroupBy(x => x.number_tour).ToList();
+                    
+                    for (var i = 0; i < groupTours.Count; i++)
                     {
-                        var game = new GameTurnament
+                        var groupsDate = groupTours[i].GroupBy(x => x.date_start).ToList();
+
+                        var groupsDateStart = new List<GroupDateStart>();
+
+                        foreach (var groupDate in groupsDate)
                         {
-                            Id = element.id.ToString(),
-                            IdCommandOne = element.id_command_one.ToString(),
-                            IdCommandTwo = element.id_command_two.ToString(),
-                            CommandOneGoals = element.command_one_goals,
-                            CommandTwoGoals = element.command_two_goals,
-                            CommandOnePoints = element.command_one_points,
-                            CommandTwoPoints = element.command_two_points,
-                            Tour =element.number_tour,
-                            DateStart = element.date_start
+                            var gamesTurnament = new List<GameTurnament>();
+
+                            foreach (var element in groupDate)
+                            {
+                                var game = new GameTurnament
+                                {
+                                    Id = element.id.ToString(),
+                                    IdCommandOne = element.id_command_one.ToString(),
+                                    IdCommandTwo = element.id_command_two.ToString(),
+                                    CommandOneName = element.command_one_name,
+                                    CommandTwoName = element.command_two_name,
+                                    CommandOneGoals = element.command_one_goals,
+                                    CommandTwoGoals = element.command_two_goals,
+                                    CommandOnePoints = element.command_one_points,
+                                    CommandTwoPoints = element.command_two_points,
+                                    Tour = element.number_tour,
+                                    DateStart = element.date_start
+                                };
+
+                                gamesTurnament.Add(game);
+                            };
+
+                            groupsDateStart.Add(new GroupDateStart
+                            {
+                                DateStart = gamesTurnament.First().DateStart,
+                                GameTurnament = gamesTurnament
+                            });
                         };
 
-                        gameTurnament.Add(game);
+                        groupTourNumber.Add(new GroupTourNumber
+                        {
+                            NumberTour = groupsDateStart.First().GameTurnament.First().Tour,
+                            GroupDateStart = groupsDateStart
+                        });
                     };
                 };
             };
+
+            groupTourNumber.Sort((a, b) => a.NumberTour <= b.NumberTour ? -1 : 1);
 
             var item = new TurnamentAdmin
             {
@@ -93,7 +123,7 @@ namespace Olimp.BLL.Operations
                 ContributionTournament = turnament.сontribution_tournament,
                 Commands = commandsForTurnament,
                 PositionCommand = positionCommands,
-                GameTurnament = gameTurnament
+                GroupTourNumber = groupTourNumber
             };
 
             var response = new GetTurnamentResponse { Turnament = item };
