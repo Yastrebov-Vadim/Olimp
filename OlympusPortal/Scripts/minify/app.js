@@ -1119,6 +1119,14 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.changeStep, request);
     };
+    TurnamentAdminService.prototype.ChangeArena = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeArena, request);
+    };
+    TurnamentAdminService.prototype.ChangeDate = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeDate, request);
+    };
     TurnamentAdminService.prototype.AcceptDeclare = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.acceptDeclare, request);
@@ -1130,6 +1138,26 @@ var TurnamentAdminService = (function () {
     TurnamentAdminService.prototype.CalculateTable = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.calculateTable, request);
+    };
+    TurnamentAdminService.prototype.DivideForDay = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.divideForDay, request);
+    };
+    TurnamentAdminService.prototype.GetArena = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getArena, null);
+    };
+    TurnamentAdminService.prototype.ChangeStatusTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeStatusTour, request);
+    };
+    TurnamentAdminService.prototype.CompleteGame = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.completeGame, request);
+    };
+    TurnamentAdminService.prototype.CloseTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.closeTour, request);
     };
     TurnamentAdminService = __decorate([
         core_1.Injectable(),
@@ -3006,15 +3034,78 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var ng2_toastr_1 = __webpack_require__(21);
 var page_1 = __webpack_require__(38);
+var turnament_1 = __webpack_require__(378);
+var turnament_2 = __webpack_require__(955);
+var elementTypeRequest_1 = __webpack_require__(954);
 var CurrentTournaments = (function () {
-    function CurrentTournaments(toastr, vcr, pageService) {
+    function CurrentTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.pageService = pageService;
+        this.turnamentService = turnamentService;
+        this.isChecked = false;
+        this.isTur = false;
     }
     CurrentTournaments.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
+    };
+    CurrentTournaments.prototype.getTournaments = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(3)).then(function (response) {
+            self.turnaments = response.turnaments;
+            self.turnaments.forEach(function (x) {
+                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+            });
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
+    };
+    CurrentTournaments.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {
+        var self = this;
+        var commandOneId = positionCommand[row - 1].commandId;
+        var commandTwoId = positionCommand[col - 1].commandId;
+        var result = "";
+        groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        }); }); });
+        return result;
+    };
+    CurrentTournaments.prototype.getTable = function (positionCommand, groupTourNumber) {
+        var self = this;
+        var commandSize = positionCommand.length;
+        var rowSize = new Array();
+        var colSize = new Array();
+        var table = new Array(commandSize + 1);
+        for (var i = 0; i < commandSize + 1; i++) {
+            rowSize.push(i);
+            table[i] = new Array(commandSize + 3);
+        }
+        for (var i = 0; i < commandSize + 3; i++)
+            colSize.push(i);
+        for (var row = 0; row < table.length; row++) {
+            for (var col = 0; col < table[row].length; col++) {
+                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
+                    table[row][col] = self.getResult(positionCommand, groupTourNumber, row, col);
+                if (row != 0 && col == commandSize + 1)
+                    table[row][col] = positionCommand[row - 1].points;
+                if (row != 0 && col == commandSize + 2)
+                    table[row][col] = positionCommand[row - 1].place;
+                if (row == 0 && col < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[col - 1].commandName;
+                if (col == 0 && row < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[row - 1].commandName;
+                if (row == 0 && col == commandSize + 1)
+                    table[row][col] = "Очки";
+                if (row == 0 && col == commandSize + 2)
+                    table[row][col] = "Место";
+            }
+        }
+        return new turnament_2.Table(rowSize, colSize, table);
     };
     CurrentTournaments = __decorate([
         core_1.Component({
@@ -3023,7 +3114,8 @@ var CurrentTournaments = (function () {
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
-            page_1.PageService])
+            page_1.PageService,
+            turnament_1.TurnamentService])
     ], CurrentTournaments);
     return CurrentTournaments;
 }());
@@ -3053,6 +3145,7 @@ var page_1 = __webpack_require__(38);
 var turnament_1 = __webpack_require__(378);
 var command_1 = __webpack_require__(924);
 var elementtRequest_1 = __webpack_require__(379);
+var elementTypeRequest_1 = __webpack_require__(954);
 var NewTournaments = (function () {
     function NewTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
@@ -3069,7 +3162,7 @@ var NewTournaments = (function () {
     };
     NewTournaments.prototype.getTournaments = function () {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser().then(function (response) {
+        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
             self.turnaments = response.turnaments;
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;
@@ -3123,9 +3216,9 @@ var TurnamentService = (function () {
         this.tranport = tranport;
         this.urls = new urls_1.Urls();
     }
-    TurnamentService.prototype.GetTurnamentsForUser = function () {
+    TurnamentService.prototype.GetTurnamentsForUser = function (request) {
         var self = this;
-        return this.tranport.postData(self.urls.getTurnamentsForUser, null);
+        return this.tranport.postData(self.urls.getTurnamentsForUser, request);
     };
     TurnamentService.prototype.DeclareTournament = function (request) {
         var self = this;
@@ -4359,6 +4452,7 @@ var TuningTurnament = (function () {
         this.colSize = new Array();
         this.days = new Array();
         this.table = new Array();
+        this.arens = new Array();
         this.turnament = new turnament_2.GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
         this.myDatePickerOptions = {
             dateFormat: 'dd.mm.yyyy'
@@ -4368,6 +4462,7 @@ var TuningTurnament = (function () {
             self.id = params["key"];
         });
         self.getTurnament(self.id);
+        self.getArena();
     }
     TuningTurnament.prototype.ngOnInit = function () {
     };
@@ -4378,6 +4473,12 @@ var TuningTurnament = (function () {
             self.page = self.turnament.step > 1 ? 2 : 1;
             self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
+        });
+    };
+    TuningTurnament.prototype.getArena = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetArena().then(function (response) {
+            self.arens = response.arens;
         });
     };
     TuningTurnament.prototype.getResult = function (row, col) {
@@ -4449,12 +4550,33 @@ var TuningTurnament = (function () {
             self.toastr.success("Смена этапа");
         });
     };
+    TuningTurnament.prototype.changeArena = function (arena, date, tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeArena(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, date, null, arena, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    TuningTurnament.prototype.changeDate = function (newDate, date, tour) {
+        var self = this;
+        var nowDate = date == null ? null : date;
+        self.busy = self.turnamentService.ChangeDate(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, nowDate, newDate, null, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
     TuningTurnament.prototype.completeRegistration = function () {
         var self = this;
         self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
             self.turnament.step = 2;
             self.page = 2;
             self.toastr.success("Этап построения");
+        });
+    };
+    TuningTurnament.prototype.startTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 3)).then(function (response) {
+            self.turnament.step = 2;
+            self.getTurnament(self.id);
+            self.toastr.success("Этап в процессе");
         });
     };
     TuningTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
@@ -4498,23 +4620,58 @@ var TuningTurnament = (function () {
             self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
             return;
         }
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
         self.days = new Array();
         for (var i = 0; i < day; i++) {
-            self.days.push(new turnament_2.DayGame(null));
+            self.days.push(new turnament_2.DayGame(null, null));
         }
     };
     TuningTurnament.prototype.divideForDay = function (tour) {
         var self = this;
-        self.days.forEach(function (x) {
-            if (x.day == null) {
-                self.toastr.error("Не все даты звполнены");
-                return;
-            }
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+        var isValid = true;
+        if (self.days.length > 0)
+            self.days.forEach(function (x) {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            });
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.id, tour, self.days)).then(function (response) {
+                self.days = new Array();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    };
+    TuningTurnament.prototype.activTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, 1)).then(function (response) {
+            self.turnament.groupTourNumber[tour - 1].status = 1;
+            self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
+            self.toastr.success("Тур активен");
         });
     };
-    TuningTurnament.prototype.selectDate = function (e) {
+    TuningTurnament.prototype.completeGame = function (id, oneGols, twoGols) {
         var self = this;
-        console.dir(e);
+        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.id, id, oneGols, twoGols)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    };
+    TuningTurnament.prototype.closeTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, null)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
     };
     TuningTurnament = __decorate([
         core_1.Component({
@@ -4684,9 +4841,16 @@ var Urls = (function () {
         this.getTurnament = 'api/TurnamentAdmin/GetTurnament';
         this.saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
         this.changeStep = 'api/TurnamentAdmin/ChangeStep';
+        this.changeStatusTour = 'api/TurnamentAdmin/ChangeStatusTour';
+        this.changeArena = 'api/TurnamentAdmin/ChangeArena';
+        this.changeDate = 'api/TurnamentAdmin/ChangeDate';
         this.acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
         this.removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
         this.calculateTable = 'api/TurnamentAdmin/CalculateTable';
+        this.divideForDay = 'api/TurnamentAdmin/DivideForDay';
+        this.getArena = 'api/TurnamentAdmin/GetArena';
+        this.completeGame = 'api/TurnamentAdmin/CompleteGame';
+        this.closeTour = 'api/TurnamentAdmin/CloseTour';
         this.addImgNewsTypeText = 'api/FileAdmin/AddImgNewsTypeText';
         this.addImgNewsTypePhoto = 'api/FileAdmin/AddImgNewsTypePhoto';
         this.addVideoForNews = 'api/FileAdmin/AddVideoForNews';
@@ -7785,7 +7949,7 @@ module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message
 /***/ 923:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"current-tournaments-content\">\r\n        <div class=\"tournaments-photo\" [style.background-image]=\"'url(./content/img/slade_home/slade1.jpg)'\"></div>\r\n        <div class=\"title-tournaments\">\r\n            <div class=\"tournaments-text\">\r\n                Чемпионат саратова по минифутболу 2018\r\n            </div>\r\n        </div>\r\n        <div class=\"tournaments-registration-block\">\r\n            <div class=\"tournaments-date\">\r\n                C 12.12.2017\r\n            </div>\r\n            <form class=\"example-form\">\r\n                <button mat-button class=\"tournaments-registration\">Учавствовать</button>\r\n            </form>\r\n        </div>\r\n\r\n\r\n        <div class=\"tournaments-command-content\">\r\n            <div class=\"tournaments-command-title\">\r\n                Команды\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number title-header\">\r\n                    №\r\n                </div>\r\n                <div class=\"tournaments-command-name title-header\">\r\n                    Названия команд участников турнира\r\n                </div>\r\n                <div class=\"tournaments-command-status title-header\">\r\n                    Статус заявки\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    1\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Зенит\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    2\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Дрова\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка принята\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    3\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Арсенал\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"current-tournaments-content\">\r\n        <div class=\"tournaments-photo\" [style.background-image]=\"'url(./content/img/slade_home/slade1.jpg)'\"></div>\r\n        <div class=\"title-tournaments\">\r\n            <div class=\"tournaments-text\">\r\n                Чемпионат саратова по минифутболу 2018\r\n            </div>\r\n        </div>\r\n        <div class=\"tournaments-registration-block\">\r\n            <div class=\"tournaments-date\">\r\n                C 12.12.2017\r\n            </div>\r\n            <form class=\"example-form\">\r\n                <button mat-button class=\"tournaments-registration\">Учавствовать</button>\r\n            </form>\r\n        </div>\r\n\r\n\r\n        <div class=\"tournaments-command-content\">\r\n            <div class=\"tournaments-command-title\">\r\n                Команды\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number title-header\">\r\n                    №\r\n                </div>\r\n                <div class=\"tournaments-command-name title-header\">\r\n                    Названия команд участников турнира\r\n                </div>\r\n                <div class=\"tournaments-command-status title-header\">\r\n                    Статус заявки\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    1\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Зенит\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    2\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Дрова\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка принята\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-command\">\r\n                <div class=\"tournaments-command-number\">\r\n                    3\r\n                </div>\r\n                <div class=\"tournaments-command-name\">\r\n                    Арсенал\r\n                </div>\r\n                <div class=\"tournaments-command-status\">\r\n                    Заявка подана\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\" *ngIf=\"isTur\">\r\n            Проходяшие турниры\r\n        </div>\r\n        <div class=\"tournaments-log-text no-log\" *ngIf=\"!isTur\">\r\n            Нет идущих чемпионатов\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div class=\"current-turnament-table\">\r\n                <table class=\"lk-command\">\r\n                    <tr *ngFor=\"let row of turnament.tableTutnament.rowSize; let r = index\">\r\n                        <td *ngFor=\"let col of turnament.tableTutnament.colSize; let c = index\">\r\n                            {{turnament.tableTutnament.table[r][c]}}\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n\r\n            <div class=\"current-tournaments-command-content\">\r\n                <div class=\"current-tours inline-block\">\r\n                    Туры\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <div class=\"current-tour-content\">\r\n                    <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" [ngClass]=\"groupTour.status == 0 ? 'current-tour-opacity' : ''\" class=\"current-tour-block\">\r\n                        <div class=\"current-tour-number\"[ngClass]=\"groupTour.status == 1 ? 'active-tour' : ''\" >\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"current-game-group-date\">\r\n                            <div class=\"current-day-play-game\">\r\n                                <div class=\"place-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                Место: {{tour.arena}}\r\n                                </div>\r\n                                День {{d+1}}\r\n                                <div class=\"date-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
@@ -8003,7 +8167,7 @@ module.exports = "<div class=\"admin-new-news-content\" [ngBusy]=\"{busy: busy, 
 /***/ 938:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление турнирами\r\n    </div>\r\n\r\n\r\n    <div class=\"admin-list-news-block\">\r\n\r\n        <ul>\r\n            <li *ngFor=\"let turnament of turnaments; let i = index\">\r\n                <div><p>Название -</p> {{turnament.name}} </div>\r\n                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>\r\n                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>\r\n                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>\r\n                <div><p>Дата завершения -</p> {{ turnament.dateEnd | date:'dd-MM-yyyy'}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editTurnament(turnament.id)\">Открыть</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectTurnament(turnament.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n\r\n    </div>\r\n\r\n    <div class=\"admin-add-turnament-block\">\r\n        <div class=\"add-news-title\">Добавить турнир</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип турнира</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isOut\" (change)=\"isMixture=false\">\r\n                На выбывание\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isMixture\" (change)=\"isOut=false\">\r\n                Смешанный\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isOut || isMixture) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)\">Создать</button>\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить турнир?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellTurnament()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление турнирами\r\n    </div>\r\n\r\n\r\n    <div class=\"admin-list-news-block\">\r\n\r\n        <ul>\r\n            <li *ngFor=\"let turnament of turnaments; let i = index\">\r\n                <div><p>Название -</p> {{turnament.name}} </div>\r\n                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>\r\n                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>\r\n                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editTurnament(turnament.id)\">Открыть</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectTurnament(turnament.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n\r\n    </div>\r\n\r\n    <div class=\"admin-add-turnament-block\">\r\n        <div class=\"add-news-title\">Добавить турнир</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип турнира</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isOut\" (change)=\"isMixture=false\">\r\n                На выбывание\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isMixture\" (change)=\"isOut=false\">\r\n                Смешанный\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isOut || isMixture) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)\">Создать</button>\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить турнир?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellTurnament()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -8028,6 +8192,15 @@ var TurnamentStepRequest = (function () {
     return TurnamentStepRequest;
 }());
 exports.TurnamentStepRequest = TurnamentStepRequest;
+var TourStepRequest = (function () {
+    function TourStepRequest(turnamentId, tour, step) {
+        this.turnamentId = turnamentId;
+        this.tour = tour;
+        this.step = step;
+    }
+    return TourStepRequest;
+}());
+exports.TourStepRequest = TourStepRequest;
 var DeclareRequest = (function () {
     function DeclareRequest(turnamentId, commandId) {
         this.turnamentId = turnamentId;
@@ -8045,6 +8218,36 @@ var RemoveDeclareRequest = (function () {
     return RemoveDeclareRequest;
 }());
 exports.RemoveDeclareRequest = RemoveDeclareRequest;
+var DivideForDayRequest = (function () {
+    function DivideForDayRequest(turnamentId, tour, days) {
+        this.turnamentId = turnamentId;
+        this.tour = tour;
+        this.days = days;
+    }
+    return DivideForDayRequest;
+}());
+exports.DivideForDayRequest = DivideForDayRequest;
+var ChangeGameDayRequest = (function () {
+    function ChangeGameDayRequest(turnamentId, startDate, newStartDate, arena, tour) {
+        this.turnamentId = turnamentId;
+        this.startDate = startDate;
+        this.newStartDate = newStartDate;
+        this.arena = arena;
+        this.tour = tour;
+    }
+    return ChangeGameDayRequest;
+}());
+exports.ChangeGameDayRequest = ChangeGameDayRequest;
+var CompleteGameRequest = (function () {
+    function CompleteGameRequest(turnamentId, gameId, commandOneGoals, commandTwoGoals) {
+        this.turnamentId = turnamentId;
+        this.gameId = gameId;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+    }
+    return CompleteGameRequest;
+}());
+exports.CompleteGameRequest = CompleteGameRequest;
 
 
 /***/ }),
@@ -8100,14 +8303,16 @@ var PositionCommand = (function () {
 }());
 exports.PositionCommand = PositionCommand;
 var GameTurnament = (function () {
-    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, dateStart, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
-        if (dateStart === void 0) { dateStart = null; }
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
         this.commandOneName = commandOneName;
         this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
         this.dateStart = dateStart;
+        this.arena = arena;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
         this.commandOnePoints = commandOnePoints;
@@ -8117,28 +8322,39 @@ var GameTurnament = (function () {
 }());
 exports.GameTurnament = GameTurnament;
 var GroupDateStart = (function () {
-    function GroupDateStart(dateStart, gameTurnament) {
+    function GroupDateStart(dateStart, arena, gameTurnament) {
         this.dateStart = dateStart;
+        this.arena = arena;
         this.gameTurnament = gameTurnament;
     }
     return GroupDateStart;
 }());
 exports.GroupDateStart = GroupDateStart;
 var GroupTourNumber = (function () {
-    function GroupTourNumber(numberTour, groupDateStart) {
+    function GroupTourNumber(numberTour, status, groupDateStart) {
         this.numberTour = numberTour;
+        this.status = status;
         this.groupDateStart = groupDateStart;
     }
     return GroupTourNumber;
 }());
 exports.GroupTourNumber = GroupTourNumber;
 var DayGame = (function () {
-    function DayGame(day) {
+    function DayGame(day, arena) {
         this.day = day;
+        this.arena = arena;
     }
     return DayGame;
 }());
 exports.DayGame = DayGame;
+var Arena = (function () {
+    function Arena(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Arena;
+}());
+exports.Arena = Arena;
 
 
 /***/ }),
@@ -8146,7 +8362,7 @@ exports.DayGame = DayGame;
 /***/ 941:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2 && isCalc\" mat-button class=\"calculate-table button-active\" (click)=\"calculateTable()\">Расчитать таблицу</button>\r\n\r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n\r\n            <table class=\"lk-command\">\r\n                <tr *ngFor=\"let row of rowSize; let r = index\">\r\n                    <td *ngFor=\"let col of colSize; let c = index\">\r\n                        {{table[r][c]}}\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n            <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" class=\"tour-block\">\r\n                <div class=\"tour-number\">\r\n                    Тур № {{groupTour.numberTour}}\r\n                </div>\r\n\r\n                <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"game-group-date\">\r\n                    <div class=\"day-play-game\">\r\n                        День {{d+1}}<br />\r\n                    </div>\r\n\r\n                    <div class=\"date-start-game\">\r\n                        Дата игр <br />\r\n                        <input type=\"datetime-local\" [ngModel]=\"tour.dateStart\">\r\n                    </div>\r\n                    <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                        <div class=\"game-points\">\r\n                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                        </div>\r\n                        <div class=\"game-command-name-block\">\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandOneName}}\r\n                            </div>\r\n                            VS\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandTwoName}}\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'divide' + t}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'divide' + t}}\" class=\"tournaments-command-open game-day-button-open\">Разбить на дни</label>\r\n\r\n                <div>\r\n                    <div class=\"inline-block\">\r\n                        Выберете колличество дней  <input type=\"number\" value=\"0\" (change)=\"selectDay($event.target.value)\" />\r\n                    </div>\r\n                    <button mat-button class=\"game-day-button button-active\" (click)=\"divideForDay(groupTour.numberTour)\">Сохранить</button>\r\n                    <div>\r\n                        <div *ngFor=\"let day of days; let w = index\" class=\"day-value\">\r\n                            День {{w+1}}\r\n                            <input type=\"datetime-local\" [ngModel]=\"day.day\" (change)=\"day.day = $event.target.value\">\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button *ngIf=\"turnament.step == 2\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">В процесс</button>\r\n    <button *ngIf=\"turnament.step == 3\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">Завершить турнир</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2 && isCalc\" mat-button class=\"calculate-table button-active\" (click)=\"calculateTable()\">Расчитать таблицу</button>\r\n\r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, j)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n\r\n            <table class=\"lk-command\">\r\n                <tr *ngFor=\"let row of rowSize; let r = index\">\r\n                    <td *ngFor=\"let col of colSize; let c = index\">\r\n                        {{table[r][c]}}\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n            <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" class=\"tour-block\">\r\n                <button *ngIf=\"groupTour.status == 0 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"activTour(groupTour.numberTour)\">Активировать тур</button>\r\n                <button *ngIf=\"groupTour.status == 2 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"closeTour(groupTour.numberTour)\">Завершить тур</button>\r\n                <div class=\"tour-number\">\r\n                    Тур № {{groupTour.numberTour}}\r\n                </div>\r\n\r\n                <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"game-group-date\">\r\n                    <div class=\"day-play-game\">\r\n                        День {{d+1}}<br />\r\n                    </div>\r\n\r\n                    <div class=\"date-start-game\" *ngIf=\"groupTour.status != 2 && groupTour.status != 3\">\r\n                        Дата игр <br />\r\n                        <input type=\"datetime-local\" [ngModel]=\"tour.dateStart\" (change)=\"changeDate($event.target.value, tour.dateStart, t+1)\">\r\n                        <br />\r\n                        Место <br />\r\n                        <select [(ngModel)]=\"tour.arena\" (change)=\"changeArena($event.target.value, tour.dateStart, t+1)\">\r\n                            <option [value]=\"arena.id\" *ngFor=\"let arena of arens\">\r\n                                {{arena.name}}\r\n                            </option>\r\n                        </select>\r\n                    </div>\r\n                    <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                        <div *ngIf=\"game.status != 1\" class=\"game-points\">\r\n                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                        </div>\r\n                        <div *ngIf=\"game.status == 1\" class=\"game-points\">\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandOneGoals\" (change)=\"game.commandOneGoals = $event.target.value\" />\r\n                            -\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandTwoGoals\" (change)=\"game.commandTwoGoals = $event.target.value\" />\r\n                        </div>\r\n\r\n                        <div class=\"game-command-name-block\">\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandOneName}}\r\n                            </div>\r\n                            VS\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandTwoName}}\r\n                            </div>\r\n                        </div>\r\n\r\n                        <button *ngIf=\"game.status == 1\" mat-button class=\"game-complete-button button-active\" (click)=\"completeGame(game.id, game.commandOneGoals, game.commandTwoGoals)\">Завершить</button>\r\n                    </div>\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'divide' + t}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label *ngIf=\"turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3\" for=\"{{'divide' + t}}\" class=\"tournaments-command-open game-day-button-open\">Разбить на дни</label>\r\n\r\n                <div *ngIf=\"turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3\">\r\n                    <div class=\"inline-block\">\r\n                        Выберете колличество дней  <input type=\"number\" value=\"0\" (change)=\"selectDay($event.target.value)\" />\r\n                    </div>\r\n                    <button mat-button class=\"game-day-button button-active\" (click)=\"divideForDay(groupTour.numberTour)\">Сохранить</button>\r\n                    <div>\r\n                        <div *ngFor=\"let day of days; let w = index\" class=\"day-value\">\r\n                            День {{w+1}}\r\n                            <input type=\"datetime-local\" [ngModel]=\"day.day\" (change)=\"day.day = $event.target.value\">\r\n                            Место\r\n                            <select [(ngModel)]=\"day.arena\">\r\n                                <option *ngFor=\"let arena of arens\" [value]=\"arena.id\">\r\n                                    {{arena.name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
@@ -8648,6 +8864,107 @@ var TurnamentStep = (function () {
     return TurnamentStep;
 }());
 exports.TurnamentStep = TurnamentStep;
+
+
+/***/ }),
+
+/***/ 954:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementTypeRequest = (function () {
+    function ElementTypeRequest(type) {
+        this.type = type;
+    }
+    return ElementTypeRequest;
+}());
+exports.ElementTypeRequest = ElementTypeRequest;
+
+
+/***/ }),
+
+/***/ 955:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GetTurnamentForUser = (function () {
+    function GetTurnamentForUser(id, name, dateStart, dateEnd, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return GetTurnamentForUser;
+}());
+exports.GetTurnamentForUser = GetTurnamentForUser;
+var PositionCommand = (function () {
+    function PositionCommand(id, position, commandId, commandName, points, place) {
+        this.id = id;
+        this.position = position;
+        this.commandId = commandId;
+        this.commandName = commandName;
+        this.points = points;
+        this.place = place;
+    }
+    return PositionCommand;
+}());
+exports.PositionCommand = PositionCommand;
+var GroupTourNumber = (function () {
+    function GroupTourNumber(numberTour, status, groupDateStart) {
+        this.numberTour = numberTour;
+        this.status = status;
+        this.groupDateStart = groupDateStart;
+    }
+    return GroupTourNumber;
+}());
+exports.GroupTourNumber = GroupTourNumber;
+var GroupDateStart = (function () {
+    function GroupDateStart(dateStart, arena, gameTurnament) {
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.gameTurnament = gameTurnament;
+    }
+    return GroupDateStart;
+}());
+exports.GroupDateStart = GroupDateStart;
+var GameTurnament = (function () {
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
+        this.id = id;
+        this.idCommandOne = idCommandOne;
+        this.idCommandTwo = idCommandTwo;
+        this.commandOneName = commandOneName;
+        this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+        this.commandOnePoints = commandOnePoints;
+        this.commandTwoPoints = commandTwoPoints;
+    }
+    return GameTurnament;
+}());
+exports.GameTurnament = GameTurnament;
+var Table = (function () {
+    function Table(rowSize, colSize, table) {
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.table = table;
+    }
+    return Table;
+}());
+exports.Table = Table;
 
 
 /***/ })

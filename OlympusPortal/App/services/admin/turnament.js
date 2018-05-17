@@ -42,6 +42,14 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.changeStep, request);
     };
+    TurnamentAdminService.prototype.ChangeArena = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeArena, request);
+    };
+    TurnamentAdminService.prototype.ChangeDate = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeDate, request);
+    };
     TurnamentAdminService.prototype.AcceptDeclare = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.acceptDeclare, request);
@@ -53,6 +61,26 @@ var TurnamentAdminService = (function () {
     TurnamentAdminService.prototype.CalculateTable = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.calculateTable, request);
+    };
+    TurnamentAdminService.prototype.DivideForDay = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.divideForDay, request);
+    };
+    TurnamentAdminService.prototype.GetArena = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getArena, null);
+    };
+    TurnamentAdminService.prototype.ChangeStatusTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeStatusTour, request);
+    };
+    TurnamentAdminService.prototype.CompleteGame = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.completeGame, request);
+    };
+    TurnamentAdminService.prototype.CloseTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.closeTour, request);
     };
     TurnamentAdminService = __decorate([
         core_1.Injectable(),

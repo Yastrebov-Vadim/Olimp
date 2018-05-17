@@ -1,4 +1,4 @@
-﻿import { TurnamentInfo, GetTurnament } from '../../../model/admin/turnament';
+﻿import { TurnamentInfo, GetTurnament, Arena } from '../../../model/admin/turnament';
 
 export class TurnamentInfoResponse {
     turnaments: TurnamentInfo[]
@@ -13,5 +13,13 @@ export class GetTurnamentResponse {
 
     constructor(turnament: GetTurnament) {
         this.turnament = turnament
+    }
+}
+
+export class GetArenaResponse {
+    arens: Arena[]
+
+    constructor(arens: Arena[]) {
+        this.arens = arens
     }
 }

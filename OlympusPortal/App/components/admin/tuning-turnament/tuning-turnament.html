@@ -24,6 +24,8 @@
 
     <button *ngIf="turnament.step == 0" mat-button class="open-reg-button-turnament button-active" (click)="openRegistration()">Открыть для регистрации</button>
     <button *ngIf="turnament.step == 1" mat-button class="open-reg-button-turnament button-active" (click)="completeRegistration()">Завершить регистрацию</button>
+    <button *ngIf="turnament.step == 2" mat-button class="open-reg-button-turnament button-active" (click)="startTurnament()">В процесс</button>
+    <button *ngIf="turnament.step == 3" mat-button class="open-reg-button-turnament button-active" (click)="startTurnament()">Завершить турнир</button>
     <button mat-button class="button-back" (click)="back()">Назад</button>
 
     <div class="admin-tuning-turnament">
@@ -112,7 +114,7 @@
                     <td *ngIf="command.status" class="adopted">
                         принята
                     </td>
-                    <td *ngIf="command.status" class="delet-player delet-player-img" (click)="selectDeclare(command.id, i)" data-toggle="modal" data-target="#myModal"></td>
+                    <td *ngIf="command.status" class="delet-player delet-player-img" (click)="selectDeclare(command.id, j)" data-toggle="modal" data-target="#myModal"></td>
                     <td *ngIf="!command.status"></td>
                 </tr>
             </table>
@@ -128,6 +130,8 @@
                 </tr>
             </table>
             <div *ngFor="let groupTour of turnament.groupTourNumber; let t = index" class="tour-block">
+                <button *ngIf="groupTour.status == 0 && turnament.step == 3" mat-button class="active-tour-button button-active" (click)="activTour(groupTour.numberTour)">Активировать тур</button>
+                <button *ngIf="groupTour.status == 2 && turnament.step == 3" mat-button class="active-tour-button button-active" (click)="closeTour(groupTour.numberTour)">Завершить тур</button>
                 <div class="tour-number">
                     Тур № {{groupTour.numberTour}}
                 </div>
@@ -137,14 +141,27 @@
                         День {{d+1}}<br />
                     </div>
 
-                    <div class="date-start-game">
+                    <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
                         Дата игр <br />
-                        <input type="datetime-local" [ngModel]="tour.dateStart">
+                        <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate($event.target.value, tour.dateStart, t+1)">
+                        <br />
+                        Место <br />
+                        <select [(ngModel)]="tour.arena" (change)="changeArena($event.target.value, tour.dateStart, t+1)">
+                            <option [value]="arena.id" *ngFor="let arena of arens">
+                                {{arena.name}}
+                            </option>
+                        </select>
                     </div>
                     <div *ngFor="let game of tour.gameTurnament" class="game-block">
-                        <div class="game-points">
+                        <div *ngIf="game.status != 1" class="game-points">
                             {{game.commandOneGoals}} - {{game.commandTwoGoals}}
                         </div>
+                        <div *ngIf="game.status == 1" class="game-points">
+                            <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="game.commandOneGoals = $event.target.value" />
+                            -
+                            <input type="number" class="goals-command" [ngModel]="game.commandTwoGoals" (change)="game.commandTwoGoals = $event.target.value" />
+                        </div>
+
                         <div class="game-command-name-block">
                             <div class="game-command-name">
                                 {{game.commandOneName}}
@@ -154,13 +171,15 @@
                                 {{game.commandTwoName}}
                             </div>
                         </div>
+
+                        <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGame(game.id, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
                     </div>
                 </div>
 
                 <input type="checkbox" id="{{'divide' + t}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
-                <label for="{{'divide' + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
+                <label *ngIf="turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3" for="{{'divide' + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
 
-                <div>
+                <div *ngIf="turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3">
                     <div class="inline-block">
                         Выберете колличество дней  <input type="number" value="0" (change)="selectDay($event.target.value)" />
                     </div>
@@ -169,8 +188,13 @@
                         <div *ngFor="let day of days; let w = index" class="day-value">
                             День {{w+1}}
                             <input type="datetime-local" [ngModel]="day.day" (change)="day.day = $event.target.value">
+                            Место
+                            <select [(ngModel)]="day.arena">
+                                <option *ngFor="let arena of arens" [value]="arena.id">
+                                    {{arena.name}}
+                                </option>
+                            </select>
                         </div>
-
                     </div>
                 </div>
             </div>

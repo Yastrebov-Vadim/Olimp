@@ -9,7 +9,7 @@ namespace OlympusPortal.Controllers.API
     public class TurnamentController : ApiBaseController
     {
         [HttpPost]
-        public GetTurnamentsForUserResponse GetTurnamentsForUser() => GetTurnamentsForUserBLL.Execute();
+        public GetTurnamentsForUserResponse GetTurnamentsForUser(ElementTypeRequest request) => GetTurnamentsForUserBLL.Execute(request);
 
         [Authorize]
         [HttpPost]

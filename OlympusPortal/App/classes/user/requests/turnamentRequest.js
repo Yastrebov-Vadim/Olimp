@@ -1,0 +1,1 @@
+//# sourceMappingURL=turnamentRequest.js.map

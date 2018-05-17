@@ -45,14 +45,16 @@ var PositionCommand = (function () {
 }());
 exports.PositionCommand = PositionCommand;
 var GameTurnament = (function () {
-    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, dateStart, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
-        if (dateStart === void 0) { dateStart = null; }
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
         this.commandOneName = commandOneName;
         this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
         this.dateStart = dateStart;
+        this.arena = arena;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
         this.commandOnePoints = commandOnePoints;
@@ -62,19 +64,37 @@ var GameTurnament = (function () {
 }());
 exports.GameTurnament = GameTurnament;
 var GroupDateStart = (function () {
-    function GroupDateStart(dateStart, gameTurnament) {
+    function GroupDateStart(dateStart, arena, gameTurnament) {
         this.dateStart = dateStart;
+        this.arena = arena;
         this.gameTurnament = gameTurnament;
     }
     return GroupDateStart;
 }());
 exports.GroupDateStart = GroupDateStart;
 var GroupTourNumber = (function () {
-    function GroupTourNumber(numberTour, groupDateStart) {
+    function GroupTourNumber(numberTour, status, groupDateStart) {
         this.numberTour = numberTour;
+        this.status = status;
         this.groupDateStart = groupDateStart;
     }
     return GroupTourNumber;
 }());
 exports.GroupTourNumber = GroupTourNumber;
+var DayGame = (function () {
+    function DayGame(day, arena) {
+        this.day = day;
+        this.arena = arena;
+    }
+    return DayGame;
+}());
+exports.DayGame = DayGame;
+var Arena = (function () {
+    function Arena(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Arena;
+}());
+exports.Arena = Arena;
 //# sourceMappingURL=turnament.js.map

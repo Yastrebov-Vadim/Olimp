@@ -43,9 +43,16 @@
     readonly getTurnament = 'api/TurnamentAdmin/GetTurnament';
     readonly saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
     readonly changeStep = 'api/TurnamentAdmin/ChangeStep';
+    readonly changeStatusTour = 'api/TurnamentAdmin/ChangeStatusTour';
+    readonly changeArena = 'api/TurnamentAdmin/ChangeArena';
+    readonly changeDate = 'api/TurnamentAdmin/ChangeDate';
     readonly acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
     readonly removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
     readonly calculateTable = 'api/TurnamentAdmin/CalculateTable';
+    readonly divideForDay = 'api/TurnamentAdmin/DivideForDay';
+    readonly getArena = 'api/TurnamentAdmin/GetArena';
+    readonly completeGame = 'api/TurnamentAdmin/CompleteGame';
+    readonly closeTour = 'api/TurnamentAdmin/CloseTour';
     
     readonly addImgNewsTypeText = 'api/FileAdmin/AddImgNewsTypeText';
     readonly addImgNewsTypePhoto = 'api/FileAdmin/AddImgNewsTypePhoto';

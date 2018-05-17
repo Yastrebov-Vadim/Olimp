@@ -33,5 +33,26 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void CalculateTable(ElementRequest request) => CalculateTableBLL.Execute(request);
+
+        [HttpPost]
+        public void DivideForDay(DivideForDayRequest request) => DivideForDayBLL.Execute(request);
+
+        [HttpPost]
+        public GetArenaResponse GetArena() => GetArenaBLL.Execute();
+
+        [HttpPost]
+        public void ChangeArena(ChangeGameDayRequest request) => ChangeArenaBLL.Execute(request);
+
+        [HttpPost]
+        public void ChangeDate(ChangeGameDayRequest request) => ChangeDateBLL.Execute(request);
+        
+        [HttpPost]
+        public void ChangeStatusTour(TourStepRequest request) => ChangeStatusTourBLL.Execute(request);
+
+        [HttpPost]
+        public void CompleteGame(CompleteGameRequest request) => CompleteGameBLL.Execute(request);
+
+        [HttpPost]
+        public void CloseTour(TourStepRequest request) => CloseTourBLL.Execute(request);
     }
 }

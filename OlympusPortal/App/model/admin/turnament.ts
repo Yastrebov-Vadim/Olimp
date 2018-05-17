@@ -80,21 +80,26 @@ export class GameTurnament {
     public commandOneName: string;
     public commandTwoName: string;
     public tour: number;
+    public status: number;
     public dateStart: Date;
+    public arena: string;
     public commandOneGoals: number;
     public commandTwoGoals: number;
     public commandOnePoints: number;
     public commandTwoPoints: number;
 
     constructor(id: string, idCommandOne: string, idCommandTwo: string, commandOneName: string, commandTwoName: string,
-        tour: number, dateStart: Date = null, commandOneGoals: number, commandTwoGoals: number,
+        tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: number, commandTwoGoals: number,
         commandOnePoints: number, commandTwoPoints: number) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
         this.commandOneName = commandOneName;
         this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
         this.dateStart = dateStart;
+        this.arena = arena;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
         this.commandOnePoints = commandOnePoints;
@@ -104,28 +109,43 @@ export class GameTurnament {
 
 export class GroupDateStart {
     public dateStart: string;
+    public arena: string;
     public gameTurnament: GameTurnament[];
 
-    constructor(dateStart: string, gameTurnament: GameTurnament[]) {
+    constructor(dateStart: string, arena: string, gameTurnament: GameTurnament[]) {
         this.dateStart = dateStart;
+        this.arena = arena;
         this.gameTurnament = gameTurnament;
     }
 }
 
 export class GroupTourNumber {
     public numberTour: number;
+    public status: number;
     public groupDateStart: GroupDateStart[];
 
-    constructor(numberTour: number, groupDateStart: GroupDateStart[]) {
+    constructor(numberTour: number, status: number, groupDateStart: GroupDateStart[]) {
         this.numberTour = numberTour;
+        this.status = status;
         this.groupDateStart = groupDateStart;
     }
 }
 
 export class DayGame {
     public day: Date;
-
-    constructor(day: Date) {
+    public arena: string;
+    constructor(day: Date, arena: string) {
         this.day = day;
+        this.arena = arena;
+    }
+}
+
+export class Arena {
+    public id: string;
+    public name: string;
+
+    constructor(id: string, name: string) {
+        this.id = id;
+        this.name = name;
     }
 }

@@ -15,6 +15,7 @@ var page_1 = require("../../../services/page");
 var turnament_1 = require("../../../services/user/turnament");
 var command_1 = require("../../../model/user/command");
 var elementtRequest_1 = require("../../../classes/user/requests/elementtRequest");
+var elementTypeRequest_1 = require("../../../classes/user/requests/elementTypeRequest");
 var NewTournaments = (function () {
     function NewTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
@@ -31,7 +32,7 @@ var NewTournaments = (function () {
     };
     NewTournaments.prototype.getTournaments = function () {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser().then(function (response) {
+        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
             self.turnaments = response.turnaments;
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;

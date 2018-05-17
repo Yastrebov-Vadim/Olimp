@@ -32,6 +32,7 @@ var TuningTurnament = (function () {
         this.colSize = new Array();
         this.days = new Array();
         this.table = new Array();
+        this.arens = new Array();
         this.turnament = new turnament_2.GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
         this.myDatePickerOptions = {
             dateFormat: 'dd.mm.yyyy'
@@ -41,6 +42,7 @@ var TuningTurnament = (function () {
             self.id = params["key"];
         });
         self.getTurnament(self.id);
+        self.getArena();
     }
     TuningTurnament.prototype.ngOnInit = function () {
     };
@@ -51,6 +53,12 @@ var TuningTurnament = (function () {
             self.page = self.turnament.step > 1 ? 2 : 1;
             self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
+        });
+    };
+    TuningTurnament.prototype.getArena = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetArena().then(function (response) {
+            self.arens = response.arens;
         });
     };
     TuningTurnament.prototype.getResult = function (row, col) {
@@ -122,12 +130,33 @@ var TuningTurnament = (function () {
             self.toastr.success("Смена этапа");
         });
     };
+    TuningTurnament.prototype.changeArena = function (arena, date, tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeArena(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, date, null, arena, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    TuningTurnament.prototype.changeDate = function (newDate, date, tour) {
+        var self = this;
+        var nowDate = date == null ? null : date;
+        self.busy = self.turnamentService.ChangeDate(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, nowDate, newDate, null, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
     TuningTurnament.prototype.completeRegistration = function () {
         var self = this;
         self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
             self.turnament.step = 2;
             self.page = 2;
             self.toastr.success("Этап построения");
+        });
+    };
+    TuningTurnament.prototype.startTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 3)).then(function (response) {
+            self.turnament.step = 2;
+            self.getTurnament(self.id);
+            self.toastr.success("Этап в процессе");
         });
     };
     TuningTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
@@ -171,15 +200,58 @@ var TuningTurnament = (function () {
             self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
             return;
         }
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
         self.days = new Array();
         for (var i = 0; i < day; i++) {
-            self.days.push(new Date());
+            self.days.push(new turnament_2.DayGame(null, null));
         }
     };
     TuningTurnament.prototype.divideForDay = function (tour) {
         var self = this;
-        console.dir(tour);
-        var sd = self.days;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+        var isValid = true;
+        if (self.days.length > 0)
+            self.days.forEach(function (x) {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            });
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.id, tour, self.days)).then(function (response) {
+                self.days = new Array();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    };
+    TuningTurnament.prototype.activTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, 1)).then(function (response) {
+            self.turnament.groupTourNumber[tour - 1].status = 1;
+            self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
+            self.toastr.success("Тур активен");
+        });
+    };
+    TuningTurnament.prototype.completeGame = function (id, oneGols, twoGols) {
+        var self = this;
+        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.id, id, oneGols, twoGols)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    };
+    TuningTurnament.prototype.closeTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, null)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
     };
     TuningTurnament = __decorate([
         core_1.Component({

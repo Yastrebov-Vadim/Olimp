@@ -18,9 +18,9 @@ var TurnamentService = (function () {
         this.tranport = tranport;
         this.urls = new urls_1.Urls();
     }
-    TurnamentService.prototype.GetTurnamentsForUser = function () {
+    TurnamentService.prototype.GetTurnamentsForUser = function (request) {
         var self = this;
-        return this.tranport.postData(self.urls.getTurnamentsForUser, null);
+        return this.tranport.postData(self.urls.getTurnamentsForUser, request);
     };
     TurnamentService.prototype.DeclareTournament = function (request) {
         var self = this;

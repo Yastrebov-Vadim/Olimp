@@ -758,13 +758,13 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static List<turnament> GetTurnamentsForUser()
+        public static List<turnament> GetTurnamentsForUser(int type)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
                 IQueryable<turnament> query = context.turnaments;
 
-                return query.Where(x => x.step == 1).ToList();
+                return query.Where(x => x.step == type).ToList();
             }
         }
 
@@ -959,7 +959,8 @@ namespace Olimp.DAL.Assest
                     command_two_goals = 0,
                     command_one_points = 0,
                     command_two_points = 0,
-                    state_code = false
+                    state_code = false,
+                    status_code = 0
                 };
 
                 context.game_for_turnament.Add(game);
@@ -986,5 +987,197 @@ namespace Olimp.DAL.Assest
                 return query.Where(x => x.id_turnament == turnamentId).ToList();
             }
         }
+
+        public static void DivideForDay(Guid turnamentId, int tour, List<DateTime> days, List<string> arens)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+
+                int i = 0;
+                var splits = from item in game
+                             group item by i++ % days.Count into part
+                             select part.ToList();
+
+                var gameDays = splits.ToList();
+                var j = 0;
+
+                gameDays.ForEach(x =>
+                {
+                    x.ForEach(y =>
+                    {
+                        y.date_start = days[j];
+                        y.id_arena = Guid.Parse(arens[j]);
+                        context.SaveChanges();
+                    });
+
+                    j++;
+                });
+            }
+        }
+
+        public static List<game_arena> GetArens()
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_arena> query = context.game_arena;
+
+                return query.ToList();
+            }
+        }
+
+        public static void ChangeArena(Guid turnamentId, int tour, DateTime? startDate, Guid arena)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+                var game = new List<game_for_turnament>();
+
+                if (startDate == null)
+                    game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+                else
+                    game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour && x.date_start == startDate).ToList();
+
+                game.ForEach(x =>
+                {
+                    x.id_arena = arena;
+                    context.SaveChanges();
+                });
+            }
+        }
+
+        public static void ChangeDate(Guid turnamentId, int tour, DateTime? startDate, DateTime NewStartDate)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+                var game = new List<game_for_turnament>();
+
+                if (startDate == null)
+                    game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+                else
+                    game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour && x.date_start == startDate).ToList();
+
+                game.ForEach(x =>
+                {
+                    x.date_start = NewStartDate;
+                    context.SaveChanges();
+                });
+            }
+        }
+
+        public static void ChangeStatusTour(Guid turnamentId, int tour, int step)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+
+                game.ForEach(x =>
+                {
+                    x.status_code = step;
+                    context.SaveChanges();
+                });
+            }
+        }
+
+        public static List<game_for_turnament> GetGameForTout(Guid turnamentId, int tour)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                return query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+            }
+        }
+
+        public static string GetArenaName(Guid? arenaId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                if (arenaId == null)
+                    return string.Empty;
+
+                IQueryable<game_arena> query = context.game_arena;
+
+                var arena = query.Where(x => x.id == arenaId).FirstOrDefault();
+
+                if (arena == null)
+                    throw new ApplicationException("Арена не найдена");
+
+                return arena.name;
+            }
+        }
+
+        public static void CompleteGame(Guid turnamentId, Guid gameId, int commandOneGoals, int commandTwoGoals)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id == gameId).FirstOrDefault();
+
+                game.command_one_goals = commandOneGoals;
+                game.command_two_goals = commandTwoGoals;
+                game.command_one_points = commandOneGoals == commandTwoGoals ? 1 : commandOneGoals > commandTwoGoals ? 3 : 0;
+                game.command_two_points = commandOneGoals == commandTwoGoals ? 1 : commandOneGoals < commandTwoGoals ? 3 : 0;
+                game.status_code = 2;
+
+                context.SaveChanges();
+
+                EditPoints(turnamentId, game.id_command_one, game.command_one_points);
+                EditPoints(turnamentId, game.id_command_two, game.command_two_points);
+            }
+        }
+
+        public static void EditPoints(Guid turnamentId, Guid commandId, int points)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<position_command_for_turnament> query = context.position_command_for_turnament;
+
+                var position = query.Where(x => x.id_turnament == turnamentId && x.id_command == commandId).FirstOrDefault();
+
+                if (position == null)
+                    throw new ApplicationException("Позиция не найдена");
+
+                position.points += points;
+
+                context.SaveChanges();
+            }
+        }
+
+        public static void CloseTour(Guid turnamentId, int tour)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_turnament == turnamentId && x.number_tour == tour).ToList();
+
+                game.ForEach(x =>
+                {
+                    x.status_code = 3;
+                    context.SaveChanges();
+                });
+            }
+        }
+
+        public static void SavePlaceCommand(Guid turnamentId, Guid commandId, int place)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<position_command_for_turnament> query = context.position_command_for_turnament;
+
+                var position = query.Where(x => x.id_turnament == turnamentId && x.id_command == commandId).FirstOrDefault();
+
+                position.place = place;
+                context.SaveChanges();
+            }
+        }
     }
 }
+

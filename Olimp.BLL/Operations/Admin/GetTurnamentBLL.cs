@@ -85,7 +85,9 @@ namespace Olimp.BLL.Operations
                                     CommandOnePoints = element.command_one_points,
                                     CommandTwoPoints = element.command_two_points,
                                     Tour = element.number_tour,
-                                    DateStart = element.date_start
+                                    DateStart = element.date_start,
+                                    Arena = element.id_arena.ToString(),
+                                    Status = element.status_code
                                 };
 
                                 gamesTurnament.Add(game);
@@ -94,13 +96,17 @@ namespace Olimp.BLL.Operations
                             groupsDateStart.Add(new GroupDateStart
                             {
                                 DateStart = gamesTurnament.First().DateStart,
+                                Arena = gamesTurnament.First().Arena,
                                 GameTurnament = gamesTurnament
                             });
                         };
 
+                        groupsDateStart.Sort((a, b) => a.DateStart <= b.DateStart ? -1 : 1);
+
                         groupTourNumber.Add(new GroupTourNumber
                         {
                             NumberTour = groupsDateStart.First().GameTurnament.First().Tour,
+                            Status = groupsDateStart.First().GameTurnament.Min(x=>x.Status),
                             GroupDateStart = groupsDateStart
                         });
                     };

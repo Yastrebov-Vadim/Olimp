@@ -40,16 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Admin\Arena.cs" />
     <Compile Include="Models\Admin\GroupTourNumber.cs" />
     <Compile Include="Models\Admin\GroupDateStart.cs" />
     <Compile Include="Models\Admin\GameTurnament.cs" />
+    <Compile Include="Models\Admin\DayGame.cs" />
     <Compile Include="Models\Admin\PositionCommand.cs" />
     <Compile Include="Models\Admin\FotoForNews.cs" />
+    <Compile Include="Models\Admin\Request\ChangeGameDayRequest.cs" />
+    <Compile Include="Models\Admin\Request\CompleteGameRequest.cs" />
+    <Compile Include="Models\Admin\Request\TourStepRequest.cs" />
+    <Compile Include="Models\Admin\Request\DivideForDayRequest.cs" />
     <Compile Include="Models\Admin\Request\RemoveDeclareRequest.cs" />
     <Compile Include="Models\Admin\Request\DeclareRequest.cs" />
-    <Compile Include="Models\Admin\Request\OpenRegistrationRequest.cs" />
+    <Compile Include="Models\Admin\Request\ChangeStepRequest.cs" />
     <Compile Include="Models\Admin\Request\SaveTurnamentInfoRequest.cs" />
     <Compile Include="Models\Admin\Response\GetTurnamentResponse.cs" />
+    <Compile Include="Models\Admin\Response\GetArenaResponse.cs" />
     <Compile Include="Models\Admin\TurnamentAdmin.cs" />
     <Compile Include="Models\Admin\TurnamentsInfo.cs" />
     <Compile Include="Models\Admin\Photo.cs" />
@@ -68,6 +75,7 @@
     <Compile Include="Models\FullNews.cs" />
     <Compile Include="Models\Enum\Role.cs" />
     <Compile Include="Models\User\Player.cs" />
+    <Compile Include="Models\User\Request\ElementTypeRequest.cs" />
     <Compile Include="Models\User\Request\GetPhotoRequest.cs" />
     <Compile Include="Models\User\Request\TopRequest.cs" />
     <Compile Include="Models\User\Request\AuthorizationRequest.cs" />
@@ -85,7 +93,14 @@
     <Compile Include="Models\User\Response\GetCommandsResponse.cs" />
     <Compile Include="Models\User\Response\GetAllNewsResponse.cs" />
     <Compile Include="Models\User\Turnament.cs" />
+    <Compile Include="Operations\Admin\CloseTourBLL.cs" />
+    <Compile Include="Operations\Admin\ChangeStatusTourBLL.cs" />
+    <Compile Include="Operations\Admin\ChangeDateBLL.cs" />
+    <Compile Include="Operations\Admin\ChangeArenaBLL.cs" />
+    <Compile Include="Operations\Admin\DivideForDayBLL.cs" />
     <Compile Include="Operations\Admin\CalculateTableBLL.cs" />
+    <Compile Include="Operations\Admin\GetArenaBLL.cs" />
+    <Compile Include="Operations\Admin\CompleteGameBLL.cs" />
     <Compile Include="Operations\Admin\RemoveDeclareBLL.cs" />
     <Compile Include="Operations\Admin\AcceptDeclareBLL.cs" />
     <Compile Include="Operations\Admin\AddTurnamentBLL.cs" />

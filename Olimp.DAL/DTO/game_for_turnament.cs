@@ -18,14 +18,16 @@ namespace Olimp.DAL.DTO
         public System.Guid id_turnament { get; set; }
         public System.Guid id_command_one { get; set; }
         public System.Guid id_command_two { get; set; }
+        public string command_one_name { get; set; }
+        public string command_two_name { get; set; }
         public int number_tour { get; set; }
         public Nullable<System.DateTime> date_start { get; set; }
+        public Nullable<System.Guid> id_arena { get; set; }
         public int command_one_goals { get; set; }
         public int command_two_goals { get; set; }
         public int command_one_points { get; set; }
         public int command_two_points { get; set; }
+        public int status_code { get; set; }
         public bool state_code { get; set; }
-        public string command_one_name { get; set; }
-        public string command_two_name { get; set; }
     }
 }

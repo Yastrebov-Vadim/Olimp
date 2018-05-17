@@ -6,8 +6,8 @@ import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { Common } from '../../../model/user/common';
 import { TurnamentAdminService } from '../../../services/admin/turnament';
 import { ElementRequest } from '../../../classes/admin/requests/ElementRequest';
-import { SaveTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest } from '../../../classes/admin/requests/turnamentRequest';
-import { GetTurnament, GameTurnament, DayGame } from '../../../model/admin/turnament';
+import { SaveTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../classes/admin/requests/turnamentRequest';
+import { GetTurnament, GameTurnament, DayGame, Arena } from '../../../model/admin/turnament';
 
 @Component({
     selector: 'tuning-turnament',
@@ -27,6 +27,7 @@ export class TuningTurnament implements OnInit {
     public colSize: number[] = new Array<number>();
     public days: DayGame[] = new Array<DayGame>();
     public table = new Array();
+    public arens: Arena[] = new Array<Arena>();
     public turnament: GetTurnament = new GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null)
 
     public myDatePickerOptions: IMyDpOptions = {
@@ -46,6 +47,7 @@ export class TuningTurnament implements OnInit {
             });
 
         self.getTurnament(self.id);
+        self.getArena();
     }
 
     ngOnInit(): void {
@@ -58,6 +60,13 @@ export class TuningTurnament implements OnInit {
             self.page = self.turnament.step > 1 ? 2 : 1;
             self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
+        });
+    }
+
+    public getArena() {
+        var self = this;
+        self.busy = self.turnamentService.GetArena().then(response => {
+            self.arens = response.arens;
         });
     }
 
@@ -156,6 +165,22 @@ export class TuningTurnament implements OnInit {
         });
     }
 
+    public changeArena(arena: string, date: Date, tour: number) {
+        var self = this;
+
+        self.busy = self.turnamentService.ChangeArena(new ChangeGameDayRequest(self.turnament.id, date, null, arena, tour)).then(response => {
+            self.toastr.success("Сохранено");
+        });
+    }
+
+    public changeDate(newDate: Date, date: Date, tour: number) {
+        var self = this;
+        var nowDate = date == null ? null : date;
+        self.busy = self.turnamentService.ChangeDate(new ChangeGameDayRequest(self.turnament.id, nowDate, newDate, null, tour)).then(response => {
+            self.toastr.success("Сохранено");
+        });
+    }
+
     public completeRegistration() {
         var self = this;
 
@@ -163,6 +188,16 @@ export class TuningTurnament implements OnInit {
             self.turnament.step = 2;
             self.page = 2;
             self.toastr.success("Этап построения");
+        });
+    }
+
+    public startTurnament() {
+        var self = this;
+
+        self.busy = self.turnamentService.ChangeStep(new TurnamentStepRequest(self.turnament.id, 3)).then(response => {
+            self.turnament.step = 2;
+            self.getTurnament(self.id);
+            self.toastr.success("Этап в процессе");
         });
     }
 
@@ -219,31 +254,68 @@ export class TuningTurnament implements OnInit {
             return;
         }
 
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
+
         self.days = new Array<DayGame>();
 
         for (let i = 0; i < day; i++) {
-            self.days.push(new DayGame(null));
+            self.days.push(new DayGame(null, null));
         }
     }
 
-    public divideForDay(tour) {
+    public divideForDay(tour: number) {
         var self = this;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
 
-        self.days.forEach(x => {
-            if (x.day == null) {
-                self.toastr.error("Не все даты звполнены");
-                return;
-            }
-        })
+        var isValid = true;
 
-        //self.busy = self.turnamentService.CalculateTable(new ElementRequest(self.turnament.id)).then(response => {
-        //    self.getTurnament(self.id);
-        //});
+        if (self.days.length > 0)
+            self.days.forEach(x => {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            })
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new DivideForDayRequest(self.turnament.id, tour, self.days)).then(response => {
+                self.days = new Array<DayGame>();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
     }
 
-    public selectDate(e) {
+    public activTour(tour) {
         var self = this;
-        console.dir(e);
+
+        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.id, tour, 1)).then(response => {
+            self.turnament.groupTourNumber[tour - 1].status = 1;
+            self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(x => x.gameTurnament.forEach(y => y.status = 1));
+            self.toastr.success("Тур активен");
+        });
     }
-    
+
+    public completeGame(id, oneGols, twoGols) {
+        var self = this;
+
+        self.busy = self.turnamentService.CompleteGame(new CompleteGameRequest(self.turnament.id, id, oneGols, twoGols)).then(response => {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    }
+
+    public closeTour(tour) {
+        var self = this;
+
+        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.id, tour, null)).then(response => {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
+    }
 } 

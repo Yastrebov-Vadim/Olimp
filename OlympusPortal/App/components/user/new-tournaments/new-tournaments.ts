@@ -7,6 +7,7 @@ import { TurnamentService } from '../../../services/user/turnament';
 import { GetTurnamentForUser } from '../../../model/user/turnament';
 import { CommandForTurnament } from '../../../model/user/command';
 import { ElementRequest } from '../../../classes/user/requests/elementtRequest';
+import { ElementTypeRequest } from '../../../classes/user/requests/elementTypeRequest';
 
 @Component({
     selector: 'new-tournaments',
@@ -34,7 +35,7 @@ export class NewTournaments implements OnInit {
 
     public getTournaments() {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser().then(response => {
+        self.busy = self.turnamentService.GetTurnamentsForUser(new ElementTypeRequest(1)).then(response => {
             self.turnaments = response.turnaments;
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;

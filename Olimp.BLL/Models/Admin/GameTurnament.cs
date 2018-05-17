@@ -10,7 +10,9 @@ namespace Olimp.BLL.Models
         public string CommandOneName { get; set; }
         public string CommandTwoName { get; set; }
         public int Tour { get; set; }
+        public int Status { get; set; }
         public DateTime? DateStart { get; set; }
+        public string Arena { get; set; }
         public int CommandOneGoals { get; set; }
         public int CommandTwoGoals { get; set; }
         public int CommandOnePoints { get; set; }

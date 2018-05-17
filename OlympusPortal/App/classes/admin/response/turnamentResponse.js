@@ -14,4 +14,11 @@ var GetTurnamentResponse = (function () {
     return GetTurnamentResponse;
 }());
 exports.GetTurnamentResponse = GetTurnamentResponse;
+var GetArenaResponse = (function () {
+    function GetArenaResponse(arens) {
+        this.arens = arens;
+    }
+    return GetArenaResponse;
+}());
+exports.GetArenaResponse = GetArenaResponse;
 //# sourceMappingURL=turnamentResponse.js.map

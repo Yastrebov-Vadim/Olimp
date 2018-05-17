@@ -218,6 +218,8 @@
     <TypeScriptCompile Include="App\classes\admin\response\photoResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\elementResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\newsResponse.ts" />
+    <TypeScriptCompile Include="App\classes\user\requests\elementTypeRequest.ts" />
+    <TypeScriptCompile Include="App\classes\user\requests\turnamentRequest.ts" />
     <TypeScriptCompile Include="App\classes\user\requests\photoRequest.ts" />
     <TypeScriptCompile Include="App\classes\user\requests\elementtRequest.ts" />
     <TypeScriptCompile Include="App\classes\user\requests\newsRequest.ts" />
