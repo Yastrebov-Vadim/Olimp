@@ -1,55 +1,84 @@
-﻿<div class="registration-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
-    <div class="login-button" [ngClass]="selectPage == 1 ? 'active-button' : 'unactive-button'" (click)="userPage(1)">Вход</div>
-    <div class="registration-button" [ngClass]="selectPage == 2 ? 'active-button' : 'unactive-button'" (click)="userPage(2)">Регистрация</div>
-    <div class="reestablish-button" [ngClass]="selectPage == 3 ? 'active-button' : 'unactive-button'" (click)="userPage(3)">Забыли пароль?</div>
-
-    <div class="login-content" *ngIf="selectPage == 1">
-        <form class="example-form">
-            <mat-form-field class="example-full-width login">
-                <input matInput placeholder="Логин" name="login" [(ngModel)]="user.login">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width passvord">
-                <input type="password" matInput placeholder="Пароль" name="password" [(ngModel)]="user.password">
-            </mat-form-field>
-
-            <button mat-button class="button-come-in" (click)='Authorization()'>Войти</button>
-        </form>
+﻿<div class="past-tournaments" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="tournaments-not">
+        <div class="tournaments-not-photo">
+        </div>
+        <div class="tournaments-log-text">
+            Прошедшие турниры
+        </div>
     </div>
+    <div class="news-block" *ngFor="let turnament of turnaments; let i = index">
+        <div class="current-tournaments-content">
 
-    <div class="login-content-registration" *ngIf="selectPage == 2">
-        <form class="example-form">
-            <mat-form-field class="example-full-width login">
-                <input matInput placeholder="Введите логин" value="">
-            </mat-form-field>
+            <div class="title-tournaments">
+                <div class="tournaments-date">
+                    C {{turnament.dateStart}}
+                </div>
+                <div class="tournaments-text">
+                    {{turnament.name}}
+                </div>
+            </div>
 
-            <mat-form-field class="example-full-width passvord">
-                <input type="password" matInput placeholder="Введите пароль" value="">
-            </mat-form-field>
+            <div class="tournaments-description">
+                {{turnament.description}}
+            </div>
 
-            <mat-form-field class="example-full-width passvord">
-                <input type="password" matInput placeholder="Повторите пароль" value="">
-            </mat-form-field>
+        
+            <div class="current-tournaments-command-content">
+                <div class="current-tours inline-block">
+                    Раскрыть
+                </div>
 
-            <button mat-button class="button-registration">Зарегистрировать</button>
-        </form>
-    </div>
+                <input type="checkbox" id="{{'tur'+i}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                <label for="{{'tur'+i}}" class="tournaments-command-open"></label>
 
-    <div class="login-content-registration" *ngIf="selectPage == 3">
-        <form class="example-form">
-            <mat-form-field class="example-full-width login">
-                <input matInput placeholder="Введите логин" value="">
-            </mat-form-field>
+                <div class="current-tour-content">
 
-            <mat-form-field class="example-full-width passvord">
-                <input type="password" matInput placeholder="Введите новый пароль" value="">
-            </mat-form-field>
+                    <div class="current-turnament-table">
+                        <div>
+                            <table class="lk-command">
+                                <tr *ngFor="let row of turnament.tableTutnament.rowSize; let r = index">
+                                    <td *ngFor="let col of turnament.tableTutnament.colSize; let c = index">
+                                        {{turnament.tableTutnament.table[r][c]}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
 
-            <mat-form-field class="example-full-width passvord">
-                <input type="password" matInput placeholder="Повторите новый пароль" value="">
-            </mat-form-field>
+                    <div *ngFor="let groupTour of turnament.groupTourNumber; let t = index" [ngClass]="groupTour.status == 0 ? 'current-tour-opacity' : ''" class="current-tour-block">
+                        <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
+                            Тур № {{groupTour.numberTour}}
+                        </div>
+                        <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
+                            <div class="current-day-play-game">
+                                <div class="place-start-game" *ngIf="groupTour.status != 0">
+                                    Место: {{tour.arena}}
+                                </div>
+                                День {{d+1}}
+                                <div class="date-start-game" *ngIf="groupTour.status != 0">
+                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                </div>
+                            </div>
 
-            <button mat-button class="button-registration">Изменить пароль</button>
-        </form>
+                            <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                                <div class="game-points">
+                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                </div>
+
+                                <div class="game-command-name-block">
+                                    <div class="game-command-name">
+                                        {{game.commandOneName}}
+                                    </div>
+                                    VS
+                                    <div class="game-command-name">
+                                        {{game.commandTwoName}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

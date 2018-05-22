@@ -4,8 +4,13 @@
     </div>
 
     <div class="admin-list-news-block">
+        <div class="filter-button-block">
+            <div class="filter-button" [ngClass]="type == 1 ? 'filter-button-active' : ''" (click)="type=1">Текстовые</div>
+            <div class="filter-button" [ngClass]="type == 2 ? 'filter-button-active' : ''" (click)="type=2">Фото</div>
+            <div class="filter-button" [ngClass]="type == 3 ? 'filter-button-active' : ''" (click)="type=3">Видео</div>
+        </div>
         <ul>
-            <li *ngFor="let news of newsInfo; let i = index">
+            <li *ngFor="let news of getNewsForType(type); let i = index">
                 <div><p>Название -</p> {{news.title}} </div>
                 <div><p>Тип новости -</p> {{news.type | newsType}} </div>
                 <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>

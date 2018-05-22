@@ -12,8 +12,7 @@
     </div>
 
     <div class="news-block" *ngFor="let turnament of turnaments; let i = index">
-        <div class="current-tournaments-content">
-
+        <div class="current-tournaments-content" *ngIf="turnament.type == 1">
             <div class="title-tournaments">
                 <div class="tournaments-date">
                     C {{turnament.dateStart}}
@@ -28,13 +27,15 @@
             </div>
 
             <div class="current-turnament-table">
-                <table class="lk-command">
-                    <tr *ngFor="let row of turnament.tableTutnament.rowSize; let r = index">
-                        <td *ngFor="let col of turnament.tableTutnament.colSize; let c = index">
-                            {{turnament.tableTutnament.table[r][c]}}
-                        </td>
-                    </tr>
-                </table>
+                <div>
+                    <table class="lk-command">
+                        <tr *ngFor="let row of turnament.tableTutnament.rowSize; let r = index">
+                            <td *ngFor="let col of turnament.tableTutnament.colSize; let c = index">
+                                {{turnament.tableTutnament.table[r][c]}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div class="current-tournaments-command-content">
@@ -47,13 +48,13 @@
 
                 <div class="current-tour-content">
                     <div *ngFor="let groupTour of turnament.groupTourNumber; let t = index" [ngClass]="groupTour.status == 0 ? 'current-tour-opacity' : ''" class="current-tour-block">
-                        <div class="current-tour-number"[ngClass]="groupTour.status == 1 ? 'active-tour' : ''" >
+                        <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
                             Тур № {{groupTour.numberTour}}
                         </div>
                         <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
                             <div class="current-day-play-game">
                                 <div class="place-start-game" *ngIf="groupTour.status != 0">
-                                Место: {{tour.arena}}
+                                    Место: {{tour.arena}}
                                 </div>
                                 День {{d+1}}
                                 <div class="date-start-game" *ngIf="groupTour.status != 0">
@@ -80,6 +81,79 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="current-tournaments-content" *ngIf="turnament.type == 2">
+            <div class="title-tournaments">
+                <div class="tournaments-date">
+                    C {{turnament.dateStart}}
+                </div>
+                <div class="tournaments-text">
+                    {{turnament.name}}
+                </div>
+            </div>
+
+            <div class="tournaments-description">
+                {{turnament.description}}
+            </div>
+
+            <div *ngFor="let turnamentGroups of turnament.turnamentGroups; let j = index" class="group-for-turnament">
+                <div class="group-number">
+                    Группа - {{j+1}}
+                </div>
+
+                <div class="turnament-table-scrol">
+                    <table class="lk-command">
+                        <tr *ngFor="let row of turnamentGroups.tableTutnament.rowSize; let r = index">
+                            <td *ngFor="let col of turnamentGroups.tableTutnament.colSize; let c = index">
+                                {{turnamentGroups.tableTutnament.table[r][c]}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="current-tours inline-block">
+                    Туры
+                </div>
+
+                <input type="checkbox" id="{{'tur'+i+j}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                <label for="{{'tur'+i+j}}" class="tournaments-command-open"></label>
+                <div class="current-tour-content">
+                    <div *ngFor="let groupTour of turnamentGroups.groupTourNumber; let t = index" [ngClass]="groupTour.status == 0 ? 'current-tour-opacity' : ''" class="current-tour-block">
+                        <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
+                            Тур № {{groupTour.numberTour}}
+                        </div>
+                        <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
+                            <div class="current-day-play-game">
+                                <div class="place-start-game" *ngIf="groupTour.status != 0">
+                                    Место: {{tour.arena}}
+                                </div>
+                                День {{d+1}}
+                                <div class="date-start-game" *ngIf="groupTour.status != 0">
+                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                </div>
+                            </div>
+
+                            <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                                <div class="game-points">
+                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                </div>
+
+                                <div class="game-command-name-block">
+                                    <div class="game-command-name">
+                                        {{game.commandOneName}}
+                                    </div>
+                                    VS
+                                    <div class="game-command-name">
+                                        {{game.commandTwoName}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

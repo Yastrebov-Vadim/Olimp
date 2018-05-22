@@ -21,6 +21,7 @@ export class NewsAdmin implements OnInit {
     public isVideo: boolean = false;
     public idNews: string = null;
     public index: number = null;
+    public type: number = 1;
     public newsInfo: GetNewsInfo[];
 
     constructor(
@@ -101,5 +102,13 @@ export class NewsAdmin implements OnInit {
         self.busy = self.newsService.ActiveNews(new ElementRequest(id)).then(response => {
             self.toastr.success("Новость " + response.txt);
         });
+    }
+
+    public getNewsForType(type) {
+        var self = this;
+
+        if (self.newsInfo)
+            return self.newsInfo.filter(x => x.type == type);
+        else self.newsInfo;
     }
 }

@@ -8,5 +8,6 @@
         public string CommandName { get; set; }
         public int Points { get; set; }
         public int Place { get; set; }
+        public bool FakeCode { get; set; }
     }
 }

@@ -650,7 +650,7 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static string AddTurnament(int type)
+        public static turnament AddTurnament(int type)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
@@ -669,7 +669,7 @@ namespace Olimp.DAL.Assest
                 context.turnaments.Add(turnament);
                 context.SaveChanges();
 
-                return turnament.id.ToString();
+                return turnament;
             }
         }
 
@@ -792,7 +792,7 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static List<Command> GetCommandForTurnament(Guid turnamentId)
+        public static List<Command> GetCommandForTurnament(Guid turnamentId, bool state)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
@@ -812,6 +812,10 @@ namespace Olimp.DAL.Assest
 
                 foreach (var command in commands)
                 {
+                    if (!state)
+                        if (!command.status)
+                            continue;
+
                     var item = new Command
                     {
                         Id = command.id.ToString(),
@@ -820,6 +824,7 @@ namespace Olimp.DAL.Assest
                     };
 
                     response.Add(item);
+
                 }
 
                 return response;
@@ -866,6 +871,21 @@ namespace Olimp.DAL.Assest
                     throw new ApplicationException("Турнир не найден");
 
                 return turnament.name;
+            }
+        }
+
+        public static string GetTurnamentNameForGroup(Guid grouptId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<group_for_turnament> query = context.group_for_turnament;
+
+                var group = query.Where(x => x.id == grouptId).FirstOrDefault();
+
+                if (group == null)
+                    throw new ApplicationException("Группа не найдена");
+
+                return GetTurnamentName(group.id_turnament);
             }
         }
 
@@ -931,7 +951,8 @@ namespace Olimp.DAL.Assest
                         command_name = command.Name,
                         id_command = Guid.Parse(command.Id),
                         id_turnament = turnamentId,
-                        position = index
+                        position = index,
+                        fake_code = command.FakeCode
                     };
 
                     index++;
@@ -942,29 +963,32 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static void СreateGameForTurnament(Guid turnamentId, Guid commandOneId, Guid commandTwoId, string commandOneName, string commandTwoName, int tout)
+        public static void СreateGameForTurnament(Guid turnamentId, Guid commandOneId, Guid commandTwoId, string commandOneName, string commandTwoName, int tout, bool fakeCode)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
-                game_for_turnament game = new game_for_turnament
+                if (!fakeCode)
                 {
-                    id = Guid.NewGuid(),
-                    id_turnament = turnamentId,
-                    id_command_one = commandOneId,
-                    id_command_two = commandTwoId,
-                    command_one_name = commandOneName,
-                    command_two_name = commandTwoName,
-                    number_tour = tout,
-                    command_one_goals = 0,
-                    command_two_goals = 0,
-                    command_one_points = 0,
-                    command_two_points = 0,
-                    state_code = false,
-                    status_code = 0
-                };
+                    game_for_turnament game = new game_for_turnament
+                    {
+                        id = Guid.NewGuid(),
+                        id_turnament = turnamentId,
+                        id_command_one = commandOneId,
+                        id_command_two = commandTwoId,
+                        command_one_name = commandOneName,
+                        command_two_name = commandTwoName,
+                        number_tour = tout,
+                        command_one_goals = 0,
+                        command_two_goals = 0,
+                        command_one_points = 0,
+                        command_two_points = 0,
+                        state_code = false,
+                        status_code = 0
+                    };
 
-                context.game_for_turnament.Add(game);
-                context.SaveChanges();
+                    context.game_for_turnament.Add(game);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -1150,7 +1174,7 @@ namespace Olimp.DAL.Assest
             }
         }
 
-        public static void CloseTour(Guid turnamentId, int tour)
+        public static List<game_for_turnament> CloseTour(Guid turnamentId, int tour)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
@@ -1163,6 +1187,8 @@ namespace Olimp.DAL.Assest
                     x.status_code = 3;
                     context.SaveChanges();
                 });
+
+                return game;
             }
         }
 
@@ -1176,6 +1202,45 @@ namespace Olimp.DAL.Assest
 
                 position.place = place;
                 context.SaveChanges();
+            }
+        }
+
+        public static List<group_for_turnament> GetTurnamentGroups(Guid turnamentId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<group_for_turnament> query = context.group_for_turnament;
+
+                var groups = query.Where(x => x.id_turnament == turnamentId).ToList();
+
+                if (groups == null)
+                    return new List<group_for_turnament>();
+
+                return groups;
+            }
+        }
+
+        public static List<group_for_turnament> СreateGroupForTurnament(Guid turnamentId, int countGroup)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var groupsTurnament = new List<group_for_turnament>();
+
+                for (var i = 1; i <= countGroup; i++)
+                {
+                    group_for_turnament group = new group_for_turnament
+                    {
+                        id = Guid.NewGuid(),
+                        id_turnament = turnamentId,
+                        position = i
+                    };
+
+                    groupsTurnament.Add(group);
+                    context.group_for_turnament.Add(group);
+                    context.SaveChanges();
+                }
+
+                return groupsTurnament;
             }
         }
     }

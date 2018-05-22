@@ -34,7 +34,14 @@ var CurrentTournaments = (function () {
         self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(3)).then(function (response) {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(function (x) {
-                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                if (x.type == 1) {
+                    x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                }
+                else {
+                    x.turnamentGroups.forEach(function (g) {
+                        g.tableTutnament = self.getTable(g.positionCommand, g.groupTourNumber);
+                    });
+                }
             });
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;

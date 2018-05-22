@@ -13,8 +13,11 @@ namespace Olimp.BLL.Operations
         public static void Execute(ElementRequest request)
         {
             var turnamentId = Guid.Parse(request.Txt);
-            var command = DbHelper.GetCommandForTurnament(turnamentId);
+            var command = DbHelper.GetCommandForTurnament(turnamentId, false);
 
+            if(command.Count < 3)
+                throw new ApplicationException("Ошибка: Минимальное колличество комманд для проведения турнира 4");
+            
             for (int i = command.Count - 1; i >= 1; i--)
             {
                 Random rand = new Random();
@@ -23,7 +26,7 @@ namespace Olimp.BLL.Operations
                 command[j] = command[i];
                 command[i] = temp;
             }
-
+            
             DbHelper.СreatePositionCommand(command, turnamentId);
 
             CreateTour(turnamentId);
@@ -34,6 +37,12 @@ namespace Olimp.BLL.Operations
             var positions = DbHelper.GetPositionCommand(turnamentId);
 
             positions.Sort((a, b) => a.position <= b.position ? -1 : 1);
+
+            if (positions.Count % 2 != 0)
+                positions.Add(new position_command_for_turnament
+                {
+                   fake_code = true
+                });
 
             commandSize = positions.Count;
 
@@ -91,7 +100,7 @@ namespace Olimp.BLL.Operations
             {
                 for (var col = 0; col < commandSize / 2; col++)
                 {
-                    DbHelper.СreateGameForTurnament(turnamentId, table[row, col][0].id_command, table[row, col][1].id_command, table[row, col][0].command_name, table[row, col][1].command_name, row + 1);
+                    DbHelper.СreateGameForTurnament(turnamentId, table[row, col][0].id_command, table[row, col][1].id_command, table[row, col][0].command_name, table[row, col][1].command_name, row + 1, table[row, col][0].fake_code || table[row, col][1].fake_code);
                 }
             }
         }

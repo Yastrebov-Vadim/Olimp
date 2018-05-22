@@ -1255,7 +1255,7 @@ header {
 }
 
 .tournaments-description {
-    padding: 20px 20px 0px 20px;
+    padding: 20px;
     font-size: 18px;
 }
 
@@ -1680,7 +1680,7 @@ header {
 
 .hide:checked + label + div {
     display: inline-table;
-    width: 899px;
+    width: 896px;
 }
 
 /*новости*/
@@ -1795,14 +1795,6 @@ header {
             .nav .pages li:last-child {
                 cursor: none;
             }
-
-.first-page {
-    color: red;
-}
-
-.last-page {
-    color: red;
-}
 
 .button-photo-left {
     height: 32px;
@@ -2695,4 +2687,43 @@ header {
 
 .active-tour {
     color: #06f706;
+}
+
+.turnament-table-scrol {
+    overflow-x: scroll;
+}
+
+.past-tournaments {
+    width: 1040px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.filter-button {
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px solid;
+    padding: 5px 10px;
+    margin: -2px;
+}
+
+.filter-button-active {
+    border-bottom: 1px solid #23c0f1;
+}
+
+.filter-button-block {
+    text-align: center;
+    padding: 10px;
+}
+
+.group-for-turnament {
+    margin-bottom: 20px;
+    border: 1px solid #36d1de;
+    padding: 8px 0px 20px 0px;
+}
+
+.group-number {
+    font-size: 20px;
+    padding: 0px 0px 10px 10px;
+    color: #ffe30d;
 }

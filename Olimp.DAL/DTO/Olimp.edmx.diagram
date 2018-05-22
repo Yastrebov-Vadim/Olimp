@@ -18,6 +18,7 @@
         <EntityTypeShape EntityType="OlimpModel.position_command_for_turnament" Width="1.5" PointX="7.625" PointY="3.875" />
         <EntityTypeShape EntityType="OlimpModel.game_arena" Width="1.5" PointX="11.125" PointY="0.75" />
         <EntityTypeShape EntityType="OlimpModel.game_for_turnament" Width="1.5" PointX="9.375" PointY="0.625" />
+        <EntityTypeShape EntityType="OlimpModel.group_for_turnament" Width="1.5" PointX="11.375" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

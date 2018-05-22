@@ -40,7 +40,8 @@
     readonly addTurnament = 'api/TurnamentAdmin/AddTurnament';
     readonly getTurnamentInfo = 'api/TurnamentAdmin/GetTurnamentInfo';
     readonly dellTurnament = 'api/TurnamentAdmin/DellTurnament';
-    readonly getTurnament = 'api/TurnamentAdmin/GetTurnament';
+    readonly getTurnamentCircle = 'api/TurnamentAdmin/GetTurnamentCircle';
+    readonly getTurnamentMixed = 'api/TurnamentAdmin/GetTurnamentMixed';
     readonly saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
     readonly changeStep = 'api/TurnamentAdmin/ChangeStep';
     readonly changeStatusTour = 'api/TurnamentAdmin/ChangeStatusTour';
@@ -49,6 +50,7 @@
     readonly acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
     readonly removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
     readonly calculateTable = 'api/TurnamentAdmin/CalculateTable';
+    readonly calculateGroup = 'api/TurnamentAdmin/CalculateGroup';
     readonly divideForDay = 'api/TurnamentAdmin/DivideForDay';
     readonly getArena = 'api/TurnamentAdmin/GetArena';
     readonly completeGame = 'api/TurnamentAdmin/CompleteGame';

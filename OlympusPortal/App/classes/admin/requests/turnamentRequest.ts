@@ -1,8 +1,16 @@
-﻿import { GetTurnament, DayGame } from '../../../model/admin/turnament';
-export class SaveTurnamentInfoRequest {
-    turnament: GetTurnament
+﻿import { GetCircleTurnament,GetMixedTurnament, DayGame } from '../../../model/admin/turnament';
+export class SaveCircleTurnamentInfoRequest {
+    turnament: GetCircleTurnament
 
-    constructor(turnament: GetTurnament) {
+    constructor(turnament: GetCircleTurnament) {
+        this.turnament = turnament;
+    }
+}
+
+export class SaveMixedTurnamentInfoRequest {
+    turnament: GetMixedTurnament
+
+    constructor(turnament: GetMixedTurnament) {
         this.turnament = turnament;
     }
 }
@@ -19,11 +27,13 @@ export class TurnamentStepRequest {
 
 export class TourStepRequest {
     turnamentId: string
+    turnamentType: number
     tour: number
     step: number
 
-    constructor(turnamentId: string, tour: number, step: number) {
+    constructor(turnamentId: string, turnamentType: number, tour: number, step: number) {
         this.turnamentId = turnamentId;
+        this.turnamentType = turnamentType;
         this.tour = tour;
         this.step = step;
     }
@@ -90,5 +100,15 @@ export class CompleteGameRequest {
         this.gameId = gameId;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
+    }
+}
+
+export class CalculateGroupRequest {
+    turnamentId: string;
+    groupCount: number;
+
+    constructor(turnamentId: string, groupCount: number) {
+        this.turnamentId = turnamentId;
+        this.groupCount = groupCount;
     }
 }

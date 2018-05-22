@@ -1,4 +1,4 @@
-﻿import { TurnamentInfo, GetTurnament, Arena } from '../../../model/admin/turnament';
+﻿import { TurnamentInfo, GetCircleTurnament, GetMixedTurnament, Arena } from '../../../model/admin/turnament';
 
 export class TurnamentInfoResponse {
     turnaments: TurnamentInfo[]
@@ -8,10 +8,18 @@ export class TurnamentInfoResponse {
     }
 }
 
-export class GetTurnamentResponse {
-    turnament: GetTurnament
+export class GetCircleTurnamentResponse {
+    turnament: GetCircleTurnament
 
-    constructor(turnament: GetTurnament) {
+    constructor(turnament: GetCircleTurnament) {
+        this.turnament = turnament
+    }
+}
+
+export class GetMixedTurnamentResponse {
+    turnament: GetMixedTurnament
+
+    constructor(turnament: GetMixedTurnament) {
         this.turnament = turnament
     }
 }

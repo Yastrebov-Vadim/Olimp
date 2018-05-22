@@ -45,6 +45,8 @@
     <Compile Include="Models\Admin\GroupDateStart.cs" />
     <Compile Include="Models\Admin\GameTurnament.cs" />
     <Compile Include="Models\Admin\DayGame.cs" />
+    <Compile Include="Models\Admin\Request\CalculateGroupRequest.cs" />
+    <Compile Include="Models\Admin\TurnamentGroups.cs" />
     <Compile Include="Models\Admin\PositionCommand.cs" />
     <Compile Include="Models\Admin\FotoForNews.cs" />
     <Compile Include="Models\Admin\Request\ChangeGameDayRequest.cs" />
@@ -55,9 +57,12 @@
     <Compile Include="Models\Admin\Request\DeclareRequest.cs" />
     <Compile Include="Models\Admin\Request\ChangeStepRequest.cs" />
     <Compile Include="Models\Admin\Request\SaveTurnamentInfoRequest.cs" />
-    <Compile Include="Models\Admin\Response\GetTurnamentResponse.cs" />
+    <Compile Include="Models\Admin\Response\ElementTypeResponse.cs" />
+    <Compile Include="Models\Admin\Response\GetMixedTurnamentResponse.cs" />
+    <Compile Include="Models\Admin\Response\GetCircleTurnamentResponse.cs" />
     <Compile Include="Models\Admin\Response\GetArenaResponse.cs" />
-    <Compile Include="Models\Admin\TurnamentAdmin.cs" />
+    <Compile Include="Models\Admin\MixedTurnamentAdmin.cs" />
+    <Compile Include="Models\Admin\CircleTurnamentAdmin.cs" />
     <Compile Include="Models\Admin\TurnamentsInfo.cs" />
     <Compile Include="Models\Admin\Photo.cs" />
     <Compile Include="Models\Admin\NewsInfo.cs" />
@@ -93,14 +98,19 @@
     <Compile Include="Models\User\Response\GetCommandsResponse.cs" />
     <Compile Include="Models\User\Response\GetAllNewsResponse.cs" />
     <Compile Include="Models\User\Turnament.cs" />
+    <Compile Include="Operations\Admin\CalculateGroupBLL.cs" />
     <Compile Include="Operations\Admin\CloseTourBLL.cs" />
     <Compile Include="Operations\Admin\ChangeStatusTourBLL.cs" />
     <Compile Include="Operations\Admin\ChangeDateBLL.cs" />
     <Compile Include="Operations\Admin\ChangeArenaBLL.cs" />
     <Compile Include="Operations\Admin\DivideForDayBLL.cs" />
     <Compile Include="Operations\Admin\CalculateTableBLL.cs" />
+    <Compile Include="Operations\Admin\GetGroupTourNumberBLL.cs" />
+    <Compile Include="Operations\Admin\GetTurnamentGroupsBLL.cs" />
+    <Compile Include="Operations\Admin\GetPositionCommandBLL.cs" />
     <Compile Include="Operations\Admin\GetArenaBLL.cs" />
     <Compile Include="Operations\Admin\CompleteGameBLL.cs" />
+    <Compile Include="Operations\Admin\GetTurnamentMixedBLL.cs" />
     <Compile Include="Operations\Admin\RemoveDeclareBLL.cs" />
     <Compile Include="Operations\Admin\AcceptDeclareBLL.cs" />
     <Compile Include="Operations\Admin\AddTurnamentBLL.cs" />
@@ -111,7 +121,7 @@
     <Compile Include="Operations\Admin\DelVideoNewsBLL.cs" />
     <Compile Include="Operations\Admin\DellPhotoBLL.cs" />
     <Compile Include="Operations\Admin\ActiveNewsBLL.cs" />
-    <Compile Include="Operations\Admin\GetTurnamentBLL.cs" />
+    <Compile Include="Operations\Admin\GetTurnamentCircleBLL.cs" />
     <Compile Include="Operations\Admin\GetTurnamentInfoBLL.cs" />
     <Compile Include="Operations\Admin\SaveTurnamentInfoBLL.cs" />
     <Compile Include="Operations\Admin\SaveNewsBLL.cs" />
@@ -137,7 +147,7 @@
     <Compile Include="Operations\User\SignInUserBLL.cs" />
     <Compile Include="Operations\User\RegistrationBLL.cs" />
     <Compile Include="Operations\User\ReplacePassvordBLL.cs" />
-    <Compile Include="Operations\User\SendEmailBLL.cs" />
+    <Compile Include="Operations\SendEmailBLL.cs" />
     <Compile Include="Operations\User\SingCodeToEmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

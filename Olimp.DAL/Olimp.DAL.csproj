@@ -72,6 +72,9 @@
     <Compile Include="DTO\game_for_turnament.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\group_for_turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\img_for_news.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>

@@ -79,6 +79,14 @@
           <Property Name="status_code" Type="int" Nullable="false" />
           <Property Name="state_code" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="group_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="img_for_news">
           <Key>
             <PropertyRef Name="id" />
@@ -126,6 +134,7 @@
           <Property Name="command_name" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="points" Type="int" Nullable="false" />
           <Property Name="place" Type="int" Nullable="false" />
+          <Property Name="fake_code" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="turnament">
           <Key>
@@ -161,6 +170,7 @@
           <EntitySet Name="email_code" EntityType="Self.email_code" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="game_arena" EntityType="Self.game_arena" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="game_for_turnament" EntityType="Self.game_for_turnament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group_for_turnament" EntityType="Self.group_for_turnament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="img_for_news" EntityType="Self.img_for_news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="dbo" store:Type="Tables" />
@@ -229,6 +239,7 @@
           <EntitySet Name="position_command_for_turnament" EntityType="OlimpModel.position_command_for_turnament" />
           <EntitySet Name="game_arena" EntityType="OlimpModel.game_arena" />
           <EntitySet Name="game_for_turnament" EntityType="OlimpModel.game_for_turnament" />
+          <EntitySet Name="group_for_turnament" EntityType="OlimpModel.group_for_turnament" />
         </EntityContainer>
         <EntityType Name="img_for_news">
           <Key>
@@ -307,6 +318,7 @@
           <Property Name="command_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="points" Type="Int32" Nullable="false" />
           <Property Name="place" Type="Int32" Nullable="false" />
+          <Property Name="fake_code" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="game_arena">
           <Key>
@@ -334,6 +346,14 @@
           <Property Name="command_two_points" Type="Int32" Nullable="false" />
           <Property Name="status_code" Type="Int32" Nullable="false" />
           <Property Name="state_code" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="group_for_turnament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id_turnament" Type="Guid" Nullable="false" />
+          <Property Name="position" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -463,6 +483,7 @@
           <EntitySetMapping Name="position_command_for_turnament">
             <EntityTypeMapping TypeName="OlimpModel.position_command_for_turnament">
               <MappingFragment StoreEntitySet="position_command_for_turnament">
+                <ScalarProperty Name="fake_code" ColumnName="fake_code" />
                 <ScalarProperty Name="place" ColumnName="place" />
                 <ScalarProperty Name="points" ColumnName="points" />
                 <ScalarProperty Name="command_name" ColumnName="command_name" />
@@ -497,6 +518,15 @@
                 <ScalarProperty Name="command_one_name" ColumnName="command_one_name" />
                 <ScalarProperty Name="id_command_two" ColumnName="id_command_two" />
                 <ScalarProperty Name="id_command_one" ColumnName="id_command_one" />
+                <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group_for_turnament">
+            <EntityTypeMapping TypeName="OlimpModel.group_for_turnament">
+              <MappingFragment StoreEntitySet="group_for_turnament">
+                <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

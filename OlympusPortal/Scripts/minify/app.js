@@ -232,19 +232,156 @@ exports.VgUtils = VgUtils;
 
 "use strict";
 
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var ElementRequest = (function () {
-    function ElementRequest(txt) {
-        this.txt = txt;
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(51);
+var TurnamentService = (function () {
+    function TurnamentService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
     }
-    return ElementRequest;
+    TurnamentService.prototype.GetTurnamentsForUser = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentsForUser, request);
+    };
+    TurnamentService.prototype.DeclareTournament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.declareTournament, request);
+    };
+    TurnamentService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], TurnamentService);
+    return TurnamentService;
 }());
-exports.ElementRequest = ElementRequest;
+exports.TurnamentService = TurnamentService;
 
 
 /***/ }),
 
-/***/ 198:
+/***/ 145:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(51);
+var TurnamentAdminService = (function () {
+    function TurnamentAdminService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    TurnamentAdminService.prototype.GetTurnamentInfo = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentInfo, null);
+    };
+    TurnamentAdminService.prototype.AddTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.addTurnament, request);
+    };
+    TurnamentAdminService.prototype.DellTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.dellTurnament, request);
+    };
+    TurnamentAdminService.prototype.GetTurnamentCircle = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentCircle, request);
+    };
+    TurnamentAdminService.prototype.GetTurnamentMixed = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentMixed, request);
+    };
+    TurnamentAdminService.prototype.SaveCircleTurnamentInfo = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
+    };
+    TurnamentAdminService.prototype.SaveMixedTurnamentInfo = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
+    };
+    TurnamentAdminService.prototype.ChangeStep = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeStep, request);
+    };
+    TurnamentAdminService.prototype.ChangeArena = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeArena, request);
+    };
+    TurnamentAdminService.prototype.ChangeDate = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeDate, request);
+    };
+    TurnamentAdminService.prototype.AcceptDeclare = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.acceptDeclare, request);
+    };
+    TurnamentAdminService.prototype.RemoveDeclare = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.removeDeclare, request);
+    };
+    TurnamentAdminService.prototype.CalculateTable = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.calculateTable, request);
+    };
+    TurnamentAdminService.prototype.CalculateGroup = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.calculateGroup, request);
+    };
+    TurnamentAdminService.prototype.DivideForDay = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.divideForDay, request);
+    };
+    TurnamentAdminService.prototype.GetArena = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getArena, null);
+    };
+    TurnamentAdminService.prototype.ChangeStatusTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.changeStatusTour, request);
+    };
+    TurnamentAdminService.prototype.CompleteGame = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.completeGame, request);
+    };
+    TurnamentAdminService.prototype.CloseTour = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.closeTour, request);
+    };
+    TurnamentAdminService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], TurnamentAdminService);
+    return TurnamentAdminService;
+}());
+exports.TurnamentAdminService = TurnamentAdminService;
+
+
+/***/ }),
+
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -339,7 +476,7 @@ exports.PromiseTrackerService = PromiseTrackerService;
 
 /***/ }),
 
-/***/ 199:
+/***/ 200:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -357,7 +494,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = __webpack_require__(1);
-var busy_config_1 = __webpack_require__(200);
+var busy_config_1 = __webpack_require__(201);
 var BusyService = (function () {
     function BusyService(config) {
         this.config = config || new busy_config_1.BusyConfig();
@@ -374,7 +511,7 @@ exports.BusyService = BusyService;
 
 /***/ }),
 
-/***/ 200:
+/***/ 201:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -401,7 +538,7 @@ exports.BUSY_CONFIG_DEFAULTS = {
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -409,13 +546,13 @@ exports.BUSY_CONFIG_DEFAULTS = {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var Observable_1 = __webpack_require__(0);
-var TimerObservable_1 = __webpack_require__(268);
+var TimerObservable_1 = __webpack_require__(271);
 var vg_states_1 = __webpack_require__(86);
 var vg_api_1 = __webpack_require__(28);
-var vg_events_1 = __webpack_require__(202);
+var vg_events_1 = __webpack_require__(203);
 var Subject_1 = __webpack_require__(5);
 __webpack_require__(136);
-__webpack_require__(286);
+__webpack_require__(289);
 var VgMedia = (function () {
     function VgMedia(api, ref) {
         this.api = api;
@@ -858,7 +995,7 @@ exports.VgMedia = VgMedia;
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -910,7 +1047,7 @@ exports.VgEvents = VgEvents;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -928,7 +1065,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var NewsService = (function () {
     function NewsService(tranport) {
         this.tranport = tranport;
@@ -953,7 +1090,118 @@ exports.NewsService = NewsService;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GetTurnamentForUser = (function () {
+    function GetTurnamentForUser(id, name, dateStart, dateEnd, description, contributionGame, contributionTournament, type, commands, positionCommand, groupTourNumber, turnamentGroups) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.type = type;
+        this.commands = commands;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+        this.turnamentGroups = turnamentGroups;
+    }
+    return GetTurnamentForUser;
+}());
+exports.GetTurnamentForUser = GetTurnamentForUser;
+var TurnamentGroups = (function () {
+    function TurnamentGroups(positionCommand, groupTourNumber) {
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return TurnamentGroups;
+}());
+exports.TurnamentGroups = TurnamentGroups;
+var PositionCommand = (function () {
+    function PositionCommand(id, position, commandId, commandName, points, place) {
+        this.id = id;
+        this.position = position;
+        this.commandId = commandId;
+        this.commandName = commandName;
+        this.points = points;
+        this.place = place;
+    }
+    return PositionCommand;
+}());
+exports.PositionCommand = PositionCommand;
+var GroupTourNumber = (function () {
+    function GroupTourNumber(numberTour, status, groupDateStart) {
+        this.numberTour = numberTour;
+        this.status = status;
+        this.groupDateStart = groupDateStart;
+    }
+    return GroupTourNumber;
+}());
+exports.GroupTourNumber = GroupTourNumber;
+var GroupDateStart = (function () {
+    function GroupDateStart(dateStart, arena, gameTurnament) {
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.gameTurnament = gameTurnament;
+    }
+    return GroupDateStart;
+}());
+exports.GroupDateStart = GroupDateStart;
+var GameTurnament = (function () {
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
+        this.id = id;
+        this.idCommandOne = idCommandOne;
+        this.idCommandTwo = idCommandTwo;
+        this.commandOneName = commandOneName;
+        this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+        this.commandOnePoints = commandOnePoints;
+        this.commandTwoPoints = commandTwoPoints;
+    }
+    return GameTurnament;
+}());
+exports.GameTurnament = GameTurnament;
+var Table = (function () {
+    function Table(rowSize, colSize, table) {
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.table = table;
+    }
+    return Table;
+}());
+exports.Table = Table;
+
+
+/***/ }),
+
+/***/ 206:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementTypeRequest = (function () {
+    function ElementTypeRequest(type) {
+        this.type = type;
+    }
+    return ElementTypeRequest;
+}());
+exports.ElementTypeRequest = ElementTypeRequest;
+
+
+/***/ }),
+
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -971,7 +1219,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var AuthenticationService = (function () {
     function AuthenticationService(tranport) {
         this.tranport = tranport;
@@ -1012,7 +1260,7 @@ exports.AuthenticationService = AuthenticationService;
 
 /***/ }),
 
-/***/ 205:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1030,7 +1278,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var NewsAdminService = (function () {
     function NewsAdminService(tranport) {
         this.tranport = tranport;
@@ -1071,101 +1319,19 @@ exports.NewsAdminService = NewsAdminService;
 
 /***/ }),
 
-/***/ 206:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-__webpack_require__(44);
-var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
-var TurnamentAdminService = (function () {
-    function TurnamentAdminService(tranport) {
-        this.tranport = tranport;
-        this.urls = new urls_1.Urls();
+var ElementRequest = (function () {
+    function ElementRequest(txt) {
+        this.txt = txt;
     }
-    TurnamentAdminService.prototype.GetTurnamentInfo = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.getTurnamentInfo, null);
-    };
-    TurnamentAdminService.prototype.AddTurnament = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.addTurnament, request);
-    };
-    TurnamentAdminService.prototype.DellTurnament = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.dellTurnament, request);
-    };
-    TurnamentAdminService.prototype.GetTurnament = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.getTurnament, request);
-    };
-    TurnamentAdminService.prototype.SaveTurnamentInfo = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
-    };
-    TurnamentAdminService.prototype.ChangeStep = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.changeStep, request);
-    };
-    TurnamentAdminService.prototype.ChangeArena = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.changeArena, request);
-    };
-    TurnamentAdminService.prototype.ChangeDate = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.changeDate, request);
-    };
-    TurnamentAdminService.prototype.AcceptDeclare = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.acceptDeclare, request);
-    };
-    TurnamentAdminService.prototype.RemoveDeclare = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.removeDeclare, request);
-    };
-    TurnamentAdminService.prototype.CalculateTable = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.calculateTable, request);
-    };
-    TurnamentAdminService.prototype.DivideForDay = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.divideForDay, request);
-    };
-    TurnamentAdminService.prototype.GetArena = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.getArena, null);
-    };
-    TurnamentAdminService.prototype.ChangeStatusTour = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.changeStatusTour, request);
-    };
-    TurnamentAdminService.prototype.CompleteGame = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.completeGame, request);
-    };
-    TurnamentAdminService.prototype.CloseTour = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.closeTour, request);
-    };
-    TurnamentAdminService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [transport_1.TransportService])
-    ], TurnamentAdminService);
-    return TurnamentAdminService;
+    return ElementRequest;
 }());
-exports.TurnamentAdminService = TurnamentAdminService;
+exports.ElementRequest = ElementRequest;
 
 
 /***/ }),
@@ -1468,7 +1634,7 @@ exports.VgAPI = VgAPI;
 
 /***/ }),
 
-/***/ 364:
+/***/ 367:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1484,11 +1650,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var Subscription_1 = __webpack_require__(12);
-var util_1 = __webpack_require__(876);
-var promise_tracker_service_1 = __webpack_require__(198);
-var busy_service_1 = __webpack_require__(199);
-var busy_component_1 = __webpack_require__(365);
-var busy_backdrop_component_1 = __webpack_require__(366);
+var util_1 = __webpack_require__(881);
+var promise_tracker_service_1 = __webpack_require__(199);
+var busy_service_1 = __webpack_require__(200);
+var busy_component_1 = __webpack_require__(368);
+var busy_backdrop_component_1 = __webpack_require__(369);
 var BusyDirective = (function () {
     function BusyDirective(service, tracker, cfResolver, vcRef, injector) {
         this.service = service;
@@ -1581,7 +1747,7 @@ exports.BusyDirective = BusyDirective;
 
 /***/ }),
 
-/***/ 365:
+/***/ 368:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1596,7 +1762,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var promise_tracker_service_1 = __webpack_require__(198);
+var promise_tracker_service_1 = __webpack_require__(199);
 var inactiveStyle = core_1.style({
     opacity: 0,
     transform: 'translateY(-40px)'
@@ -1638,7 +1804,7 @@ exports.BusyComponent = BusyComponent;
 
 /***/ }),
 
-/***/ 366:
+/***/ 369:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1653,7 +1819,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var promise_tracker_service_1 = __webpack_require__(198);
+var promise_tracker_service_1 = __webpack_require__(199);
 var inactiveStyle = core_1.style({
     opacity: 0,
 });
@@ -1690,7 +1856,7 @@ exports.BusyBackdropComponent = BusyBackdropComponent;
 
 /***/ }),
 
-/***/ 367:
+/***/ 370:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1706,9 +1872,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var http_1 = __webpack_require__(55);
-var index_1 = __webpack_require__(879);
-var Utils_1 = __webpack_require__(882);
+var http_1 = __webpack_require__(56);
+var index_1 = __webpack_require__(884);
+var Utils_1 = __webpack_require__(887);
 var DYNAMIC_SELECTOR = 'DynamicComponent';
 var DynamicComponentMetadata = (function () {
     function DynamicComponentMetadata(selector, template) {
@@ -1901,13 +2067,13 @@ exports.DynamicComponent = DynamicComponent;
 
 /***/ }),
 
-/***/ 368:
+/***/ 371:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(166);
 __webpack_require__(167);
+__webpack_require__(168);
 exports.PROP_METADATA = 'propMetadata';
 exports.ANNOTATIONS_METADATA = 'annotations';
 function PropertyAnnotationFactory(annotationMetadata) {
@@ -1928,14 +2094,14 @@ exports.PropertyAnnotationFactory = PropertyAnnotationFactory;
 
 /***/ }),
 
-/***/ 369:
+/***/ 372:
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(e,r){ true?module.exports=r():"function"==typeof define&&define.amd?define([],r):"object"==typeof exports?exports.textMaskCore=r():e.textMaskCore=r()}(this,function(){return function(e){function r(n){if(t[n])return t[n].exports;var o=t[n]={exports:{},id:n,loaded:!1};return e[n].call(o.exports,o,o.exports,r),o.loaded=!0,o.exports}var t={};return r.m=e,r.c=t,r.p="",r(0)}([function(e,r,t){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(r,"__esModule",{value:!0});var o=t(3);Object.defineProperty(r,"conformToMask",{enumerable:!0,get:function(){return n(o).default}});var i=t(2);Object.defineProperty(r,"adjustCaretPosition",{enumerable:!0,get:function(){return n(i).default}});var a=t(5);Object.defineProperty(r,"createTextMaskInputElement",{enumerable:!0,get:function(){return n(a).default}})},function(e,r){"use strict";Object.defineProperty(r,"__esModule",{value:!0}),r.placeholderChar="_"},function(e,r){"use strict";function t(e){var r=e.previousConformedValue,t=void 0===r?o:r,i=e.previousPlaceholder,a=void 0===i?o:i,u=e.currentCaretPosition,l=void 0===u?0:u,s=e.conformedValue,f=e.rawValue,d=e.placeholderChar,c=e.placeholder,v=e.indexesOfPipedChars,p=void 0===v?n:v,h=e.caretTrapIndexes,g=void 0===h?n:h;if(0===l)return 0;var m=f.length,y=t.length,b=c.length,C=s.length,P=m-y,x=P>0,O=0===y,k=P>1&&!x&&!O;if(k)return l;var j=x&&(t===s||s===c),M=0,T=void 0,w=void 0;if(j)M=l-P;else{var _=s.toLowerCase(),V=f.toLowerCase(),S=V.substr(0,l).split(o),N=S.filter(function(e){return _.indexOf(e)!==-1});w=N[N.length-1];var E=a.substr(0,N.length).split(o).filter(function(e){return e!==d}).length,A=c.substr(0,N.length).split(o).filter(function(e){return e!==d}).length,R=A!==E,I=void 0!==a[N.length-1]&&void 0!==c[N.length-2]&&a[N.length-1]!==d&&a[N.length-1]!==c[N.length-1]&&a[N.length-1]===c[N.length-2];!x&&(R||I)&&E>0&&c.indexOf(w)>-1&&void 0!==f[l]&&(T=!0,w=f[l]);for(var J=p.map(function(e){return _[e]}),q=J.filter(function(e){return e===w}).length,F=N.filter(function(e){return e===w}).length,L=c.substr(0,c.indexOf(d)).split(o).filter(function(e,r){return e===w&&f[r]!==e}).length,W=L+F+q+(T?1:0),z=0,B=0;B<C;B++){var D=_[B];if(M=B+1,D===w&&z++,z>=W)break}}if(x){for(var G=M,H=M;H<=b;H++)if(c[H]===d&&(G=H),c[H]===d||g.indexOf(H)!==-1||H===b)return G}else if(T){for(var K=M-1;K>=0;K--)if(s[K]===w||g.indexOf(K)!==-1||0===K)return K}else for(var Q=M;Q>=0;Q--)if(c[Q-1]===d||g.indexOf(Q)!==-1||0===Q)return Q}Object.defineProperty(r,"__esModule",{value:!0}),r.default=t;var n=[],o=""},function(e,r,t){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:a,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:a,t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=t.guide,u=void 0===n||n,l=t.previousConformedValue,s=void 0===l?a:l,f=t.placeholderChar,d=void 0===f?i.placeholderChar:f,c=t.placeholder,v=void 0===c?(0,o.convertMaskToPlaceholder)(r,d):c,p=t.currentCaretPosition,h=t.keepCharPositions,g=u===!1&&void 0!==s,m=e.length,y=s.length,b=v.length,C=r.length,P=m-y,x=P>0,O=p+(x?-P:0),k=O+Math.abs(P);if(h===!0&&!x){for(var j=a,M=O;M<k;M++)v[M]===d&&(j+=d);e=e.slice(0,O)+j+e.slice(O,m)}for(var T=e.split(a).map(function(e,r){return{char:e,isNew:r>=O&&r<k}}),w=m-1;w>=0;w--){var _=T[w].char;if(_!==d){var V=w>=O&&y===C;_===v[V?w-P:w]&&T.splice(w,1)}}var S=a,N=!1;e:for(var E=0;E<b;E++){var A=v[E];if(A===d){if(T.length>0)for(;T.length>0;){var R=T.shift(),I=R.char,J=R.isNew;if(I===d&&g!==!0){S+=d;continue e}if(r[E].test(I)){if(h===!0&&J!==!1&&s!==a&&u!==!1&&x){for(var q=T.length,F=null,L=0;L<q;L++){var W=T[L];if(W.char!==d&&W.isNew===!1)break;if(W.char===d){F=L;break}}null!==F?(S+=I,T.splice(F,1)):E--}else S+=I;continue e}N=!0}g===!1&&(S+=v.substr(E,b));break}S+=A}if(g&&x===!1){for(var z=null,B=0;B<S.length;B++)v[B]===d&&(z=B);S=null!==z?S.substr(0,z+1):a}return{conformedValue:S,meta:{someCharsRejected:N}}}Object.defineProperty(r,"__esModule",{value:!0}),r.default=n;var o=t(4),i=t(1),a=""},function(e,r,t){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:l,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:u.placeholderChar;if(e.indexOf(r)!==-1)throw new Error("Placeholder character must not be used as part of the mask. Please specify a character that is not present in your mask as your placeholder character.\n\n"+("The placeholder character that was received is: "+JSON.stringify(r)+"\n\n")+("The mask that was received is: "+JSON.stringify(e)));return e.map(function(e){return e instanceof RegExp?r:e}).join("")}function o(e){return"string"==typeof e||e instanceof String}function i(e){return"number"==typeof e&&void 0===e.length&&!isNaN(e)}function a(e){for(var r=[],t=void 0;t=e.indexOf(s),t!==-1;)r.push(t),e.splice(t,1);return{maskWithoutCaretTraps:e,indexes:r}}Object.defineProperty(r,"__esModule",{value:!0}),r.convertMaskToPlaceholder=n,r.isString=o,r.isNumber=i,r.processCaretTraps=a;var u=t(1),l=[],s="[]"},function(e,r,t){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function o(e){var r={previousConformedValue:void 0,previousPlaceholder:void 0};return{state:r,update:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:e,o=n.inputElement,s=n.mask,d=n.guide,m=n.pipe,b=n.placeholderChar,C=void 0===b?p.placeholderChar:b,P=n.keepCharPositions,x=void 0!==P&&P,O=n.showMask,k=void 0!==O&&O;if("undefined"==typeof t&&(t=o.value),t!==r.previousConformedValue){("undefined"==typeof s?"undefined":l(s))===y&&void 0!==s.pipe&&void 0!==s.mask&&(m=s.pipe,s=s.mask);var j=void 0,M=void 0;if(s instanceof Array&&(j=(0,v.convertMaskToPlaceholder)(s,C)),s!==!1){var T=a(t),w=o.selectionEnd,_=r.previousConformedValue,V=r.previousPlaceholder,S=void 0;if(("undefined"==typeof s?"undefined":l(s))===h){if(M=s(T,{currentCaretPosition:w,previousConformedValue:_,placeholderChar:C}),M===!1)return;var N=(0,v.processCaretTraps)(M),E=N.maskWithoutCaretTraps,A=N.indexes;M=E,S=A,j=(0,v.convertMaskToPlaceholder)(M,C)}else M=s;var R={previousConformedValue:_,guide:d,placeholderChar:C,pipe:m,placeholder:j,currentCaretPosition:w,keepCharPositions:x},I=(0,c.default)(T,M,R),J=I.conformedValue,q=("undefined"==typeof m?"undefined":l(m))===h,F={};q&&(F=m(J,u({rawValue:T},R)),F===!1?F={value:_,rejected:!0}:(0,v.isString)(F)&&(F={value:F}));var L=q?F.value:J,W=(0,f.default)({previousConformedValue:_,previousPlaceholder:V,conformedValue:L,placeholder:j,rawValue:T,currentCaretPosition:w,placeholderChar:C,indexesOfPipedChars:F.indexesOfPipedChars,caretTrapIndexes:S}),z=L===j&&0===W,B=k?j:g,D=z?B:L;r.previousConformedValue=D,r.previousPlaceholder=j,o.value!==D&&(o.value=D,i(o,W))}}}}}function i(e,r){document.activeElement===e&&(b?C(function(){return e.setSelectionRange(r,r,m)},0):e.setSelectionRange(r,r,m))}function a(e){if((0,v.isString)(e))return e;if((0,v.isNumber)(e))return String(e);if(void 0===e||null===e)return g;throw new Error("The 'value' provided to Text Mask needs to be a string or a number. The value received was:\n\n "+JSON.stringify(e))}Object.defineProperty(r,"__esModule",{value:!0});var u=Object.assign||function(e){for(var r=1;r<arguments.length;r++){var t=arguments[r];for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&(e[n]=t[n])}return e},l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};r.default=o;var s=t(2),f=n(s),d=t(3),c=n(d),v=t(4),p=t(1),h="function",g="",m="none",y="object",b="undefined"!=typeof navigator&&/Android/i.test(navigator.userAgent),C="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:setTimeout}])});
 
 /***/ }),
 
-/***/ 370:
+/***/ 373:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1943,8 +2109,8 @@ exports.PropertyAnnotationFactory = PropertyAnnotationFactory;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyDatePicker; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_my_date_picker_locale_service__ = __webpack_require__(887);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_my_date_picker_util_service__ = __webpack_require__(888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_my_date_picker_locale_service__ = __webpack_require__(892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_my_date_picker_util_service__ = __webpack_require__(893);
 
 
 
@@ -2706,7 +2872,7 @@ var MyDatePicker = (function () {
 
 /***/ }),
 
-/***/ 371:
+/***/ 374:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2716,7 +2882,7 @@ var core_1 = __webpack_require__(1);
 var vg_api_1 = __webpack_require__(28);
 var vg_fullscreen_api_1 = __webpack_require__(142);
 var vg_utils_1 = __webpack_require__(143);
-var vg_media_1 = __webpack_require__(201);
+var vg_media_1 = __webpack_require__(202);
 var vg_controls_hidden_1 = __webpack_require__(87);
 var VgPlayer = (function () {
     function VgPlayer(ref, api, fsAPI, controlsHidden) {
@@ -2791,14 +2957,14 @@ exports.VgPlayer = VgPlayer;
 
 /***/ }),
 
-/***/ 372:
+/***/ 375:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var vg_events_1 = __webpack_require__(202);
+var vg_events_1 = __webpack_require__(203);
 var Observable_1 = __webpack_require__(0);
 __webpack_require__(136);
 var VgCuePoints = (function () {
@@ -2872,7 +3038,7 @@ exports.VgCuePoints = VgCuePoints;
 
 /***/ }),
 
-/***/ 373:
+/***/ 376:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2888,11 +3054,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var public_1 = __webpack_require__(88);
-var newsRequest_1 = __webpack_require__(374);
+var newsRequest_1 = __webpack_require__(377);
 var page_1 = __webpack_require__(38);
-var news_1 = __webpack_require__(203);
+var news_1 = __webpack_require__(204);
 var Home = (function () {
     function Home(toastr, vcr, home, pageService, newsService) {
         this.toastr = toastr;
@@ -2930,7 +3096,7 @@ var Home = (function () {
     Home = __decorate([
         core_1.Component({
             selector: 'home',
-            template: __webpack_require__(921)
+            template: __webpack_require__(926)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -2945,7 +3111,7 @@ exports.Home = Home;
 
 /***/ }),
 
-/***/ 374:
+/***/ 377:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2962,7 +3128,7 @@ exports.TopRequest = TopRequest;
 
 /***/ }),
 
-/***/ 375:
+/***/ 378:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2978,7 +3144,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
 var Comand = (function () {
@@ -3002,7 +3168,7 @@ var Comand = (function () {
     Comand = __decorate([
         core_1.Component({
             selector: 'command',
-            template: __webpack_require__(922)
+            template: __webpack_require__(927)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3016,7 +3182,7 @@ exports.Comand = Comand;
 
 /***/ }),
 
-/***/ 376:
+/***/ 379:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3032,11 +3198,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var page_1 = __webpack_require__(38);
-var turnament_1 = __webpack_require__(378);
-var turnament_2 = __webpack_require__(955);
-var elementTypeRequest_1 = __webpack_require__(954);
+var turnament_1 = __webpack_require__(144);
+var turnament_2 = __webpack_require__(205);
+var elementTypeRequest_1 = __webpack_require__(206);
 var CurrentTournaments = (function () {
     function CurrentTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
@@ -3056,7 +3222,14 @@ var CurrentTournaments = (function () {
         self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(3)).then(function (response) {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(function (x) {
-                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                if (x.type == 1) {
+                    x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                }
+                else {
+                    x.turnamentGroups.forEach(function (g) {
+                        g.tableTutnament = self.getTable(g.positionCommand, g.groupTourNumber);
+                    });
+                }
             });
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;
@@ -3110,7 +3283,7 @@ var CurrentTournaments = (function () {
     CurrentTournaments = __decorate([
         core_1.Component({
             selector: 'current-tournaments',
-            template: __webpack_require__(923)
+            template: __webpack_require__(928)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3120,134 +3293,6 @@ var CurrentTournaments = (function () {
     return CurrentTournaments;
 }());
 exports.CurrentTournaments = CurrentTournaments;
-
-
-/***/ }),
-
-/***/ 377:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var page_1 = __webpack_require__(38);
-var turnament_1 = __webpack_require__(378);
-var command_1 = __webpack_require__(924);
-var elementtRequest_1 = __webpack_require__(379);
-var elementTypeRequest_1 = __webpack_require__(954);
-var NewTournaments = (function () {
-    function NewTournaments(toastr, vcr, pageService, turnamentService) {
-        this.toastr = toastr;
-        this.vcr = vcr;
-        this.pageService = pageService;
-        this.turnamentService = turnamentService;
-        this.isChecked = false;
-        this.isTur = false;
-    }
-    NewTournaments.prototype.ngOnInit = function () {
-        var self = this;
-        self.pageService.recipeSelected.emit(2);
-        self.getTournaments();
-    };
-    NewTournaments.prototype.getTournaments = function () {
-        var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
-            self.turnaments = response.turnaments;
-            self.isTur = self.turnaments.length > 0;
-            self.isChecked = self.turnaments.length < 2;
-        });
-    };
-    NewTournaments.prototype.declareTournament = function (id, index) {
-        var self = this;
-        self.busy = self.turnamentService.DeclareTournament(new elementtRequest_1.ElementRequest(id)).then(function (response) {
-            self.turnaments[index].commands.push(new command_1.CommandForTurnament(null, response.txt, false));
-            self.toastr.success("Заявка подана");
-        });
-    };
-    NewTournaments = __decorate([
-        core_1.Component({
-            selector: 'new-tournaments',
-            template: __webpack_require__(925)
-        }),
-        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
-            core_1.ViewContainerRef,
-            page_1.PageService,
-            turnament_1.TurnamentService])
-    ], NewTournaments);
-    return NewTournaments;
-}());
-exports.NewTournaments = NewTournaments;
-
-
-/***/ }),
-
-/***/ 378:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-__webpack_require__(44);
-var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
-var TurnamentService = (function () {
-    function TurnamentService(tranport) {
-        this.tranport = tranport;
-        this.urls = new urls_1.Urls();
-    }
-    TurnamentService.prototype.GetTurnamentsForUser = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.getTurnamentsForUser, request);
-    };
-    TurnamentService.prototype.DeclareTournament = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.declareTournament, request);
-    };
-    TurnamentService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [transport_1.TransportService])
-    ], TurnamentService);
-    return TurnamentService;
-}());
-exports.TurnamentService = TurnamentService;
-
-
-/***/ }),
-
-/***/ 379:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ElementRequest = (function () {
-    function ElementRequest(txt) {
-        this.txt = txt;
-    }
-    return ElementRequest;
-}());
-exports.ElementRequest = ElementRequest;
 
 
 /***/ }),
@@ -3287,35 +3332,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var page_1 = __webpack_require__(38);
-var PastTournaments = (function () {
-    function PastTournaments(toastr, vcr, pageService) {
+var turnament_1 = __webpack_require__(144);
+var command_1 = __webpack_require__(929);
+var elementtRequest_1 = __webpack_require__(381);
+var elementTypeRequest_1 = __webpack_require__(206);
+var NewTournaments = (function () {
+    function NewTournaments(toastr, vcr, pageService, turnamentService) {
         this.toastr = toastr;
         this.vcr = vcr;
         this.pageService = pageService;
+        this.turnamentService = turnamentService;
+        this.isChecked = false;
+        this.isTur = false;
     }
-    PastTournaments.prototype.ngOnInit = function () {
+    NewTournaments.prototype.ngOnInit = function () {
         var self = this;
         self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
     };
-    PastTournaments = __decorate([
+    NewTournaments.prototype.getTournaments = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
+            self.turnaments = response.turnaments;
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
+    };
+    NewTournaments.prototype.declareTournament = function (id, index) {
+        var self = this;
+        self.busy = self.turnamentService.DeclareTournament(new elementtRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnaments[index].commands.push(new command_1.CommandForTurnament(null, response.txt, false));
+            self.toastr.success("Заявка подана");
+        });
+    };
+    NewTournaments = __decorate([
         core_1.Component({
-            selector: 'past-tournaments',
-            template: __webpack_require__(926)
+            selector: 'new-tournaments',
+            template: __webpack_require__(930)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
-            page_1.PageService])
-    ], PastTournaments);
-    return PastTournaments;
+            page_1.PageService,
+            turnament_1.TurnamentService])
+    ], NewTournaments);
+    return NewTournaments;
 }());
-exports.PastTournaments = PastTournaments;
+exports.NewTournaments = NewTournaments;
 
 
 /***/ }),
 
 /***/ 381:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementRequest = (function () {
+    function ElementRequest(txt) {
+        this.txt = txt;
+    }
+    return ElementRequest;
+}());
+exports.ElementRequest = ElementRequest;
+
+
+/***/ }),
+
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3331,16 +3417,124 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var http_1 = __webpack_require__(55);
+var ng2_toastr_1 = __webpack_require__(19);
 var page_1 = __webpack_require__(38);
-var account_1 = __webpack_require__(382);
-var authentication_1 = __webpack_require__(204);
-var image_1 = __webpack_require__(383);
-var account_2 = __webpack_require__(927);
-var common_1 = __webpack_require__(73);
-var elementtRequest_1 = __webpack_require__(379);
+var turnament_1 = __webpack_require__(144);
+var turnament_2 = __webpack_require__(205);
+var elementTypeRequest_1 = __webpack_require__(206);
+var PastTournaments = (function () {
+    function PastTournaments(toastr, vcr, pageService, turnamentService) {
+        this.toastr = toastr;
+        this.vcr = vcr;
+        this.pageService = pageService;
+        this.turnamentService = turnamentService;
+        this.isChecked = false;
+        this.isTur = false;
+    }
+    PastTournaments.prototype.ngOnInit = function () {
+        var self = this;
+        self.pageService.recipeSelected.emit(2);
+        self.getTournaments();
+    };
+    PastTournaments.prototype.getTournaments = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(4)).then(function (response) {
+            self.turnaments = response.turnaments;
+            self.turnaments.forEach(function (x) {
+                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+            });
+            self.isTur = self.turnaments.length > 0;
+            self.isChecked = self.turnaments.length < 2;
+        });
+    };
+    PastTournaments.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {
+        var self = this;
+        var commandOneId = positionCommand[row - 1].commandId;
+        var commandTwoId = positionCommand[col - 1].commandId;
+        var result = "";
+        groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        }); }); });
+        return result;
+    };
+    PastTournaments.prototype.getTable = function (positionCommand, groupTourNumber) {
+        var self = this;
+        var commandSize = positionCommand.length;
+        var rowSize = new Array();
+        var colSize = new Array();
+        var table = new Array(commandSize + 1);
+        for (var i = 0; i < commandSize + 1; i++) {
+            rowSize.push(i);
+            table[i] = new Array(commandSize + 3);
+        }
+        for (var i = 0; i < commandSize + 3; i++)
+            colSize.push(i);
+        for (var row = 0; row < table.length; row++) {
+            for (var col = 0; col < table[row].length; col++) {
+                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
+                    table[row][col] = self.getResult(positionCommand, groupTourNumber, row, col);
+                if (row != 0 && col == commandSize + 1)
+                    table[row][col] = positionCommand[row - 1].points;
+                if (row != 0 && col == commandSize + 2)
+                    table[row][col] = positionCommand[row - 1].place;
+                if (row == 0 && col < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[col - 1].commandName;
+                if (col == 0 && row < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[row - 1].commandName;
+                if (row == 0 && col == commandSize + 1)
+                    table[row][col] = "Очки";
+                if (row == 0 && col == commandSize + 2)
+                    table[row][col] = "Место";
+            }
+        }
+        return new turnament_2.Table(rowSize, colSize, table);
+    };
+    PastTournaments = __decorate([
+        core_1.Component({
+            selector: 'past-tournaments',
+            template: __webpack_require__(931)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            core_1.ViewContainerRef,
+            page_1.PageService,
+            turnament_1.TurnamentService])
+    ], PastTournaments);
+    return PastTournaments;
+}());
+exports.PastTournaments = PastTournaments;
+
+
+/***/ }),
+
+/***/ 383:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var http_1 = __webpack_require__(56);
+var page_1 = __webpack_require__(38);
+var account_1 = __webpack_require__(384);
+var authentication_1 = __webpack_require__(207);
+var image_1 = __webpack_require__(385);
+var account_2 = __webpack_require__(932);
+var common_1 = __webpack_require__(65);
+var elementtRequest_1 = __webpack_require__(381);
 var Cabinet = (function () {
     function Cabinet(toastr, pageService, accountService, imgService, authenticationService, router, http) {
         this.toastr = toastr;
@@ -3472,7 +3666,7 @@ var Cabinet = (function () {
     Cabinet = __decorate([
         core_1.Component({
             selector: 'cabinet',
-            template: __webpack_require__(928)
+            template: __webpack_require__(933)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -3489,7 +3683,7 @@ exports.Cabinet = Cabinet;
 
 /***/ }),
 
-/***/ 382:
+/***/ 384:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3507,7 +3701,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var AccountService = (function () {
     function AccountService(tranport) {
         this.tranport = tranport;
@@ -3540,7 +3734,7 @@ exports.AccountService = AccountService;
 
 /***/ }),
 
-/***/ 383:
+/***/ 385:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3558,7 +3752,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var ImageService = (function () {
     function ImageService(tranport) {
         this.tranport = tranport;
@@ -3579,7 +3773,7 @@ exports.ImageService = ImageService;
 
 /***/ }),
 
-/***/ 384:
+/***/ 386:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3595,10 +3789,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var news_1 = __webpack_require__(203);
+var ng2_toastr_1 = __webpack_require__(19);
+var news_1 = __webpack_require__(204);
 var page_1 = __webpack_require__(38);
-var newsRequest_1 = __webpack_require__(374);
+var newsRequest_1 = __webpack_require__(377);
 var News = (function () {
     function News(toastr, vcr, newsService, pageService) {
         this.toastr = toastr;
@@ -3625,7 +3819,7 @@ var News = (function () {
     News = __decorate([
         core_1.Component({
             selector: 'news',
-            template: __webpack_require__(929)
+            template: __webpack_require__(934)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3639,7 +3833,7 @@ exports.News = News;
 
 /***/ }),
 
-/***/ 385:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3655,12 +3849,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
-var photo_1 = __webpack_require__(930);
-var photoRequest_1 = __webpack_require__(931);
-var photoResponse_1 = __webpack_require__(932);
+var photo_1 = __webpack_require__(935);
+var photoRequest_1 = __webpack_require__(936);
+var photoResponse_1 = __webpack_require__(937);
 var Photo = (function () {
     function Photo(toastr, vcr, home, pageService) {
         this.toastr = toastr;
@@ -3770,7 +3964,7 @@ var Photo = (function () {
     Photo = __decorate([
         core_1.Component({
             selector: 'photo',
-            template: __webpack_require__(933)
+            template: __webpack_require__(938)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -3784,7 +3978,7 @@ exports.Photo = Photo;
 
 /***/ }),
 
-/***/ 386:
+/***/ 388:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3800,14 +3994,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var http_1 = __webpack_require__(55);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var http_1 = __webpack_require__(56);
 var page_1 = __webpack_require__(38);
-var authentication_1 = __webpack_require__(387);
-var common_1 = __webpack_require__(73);
-var login_1 = __webpack_require__(934);
-var authorizationRequest_1 = __webpack_require__(388);
+var authentication_1 = __webpack_require__(389);
+var common_1 = __webpack_require__(65);
+var login_1 = __webpack_require__(939);
+var authorizationRequest_1 = __webpack_require__(390);
 var Login = (function () {
     function Login(toastr, pageService, router, http, authenticationService) {
         this.toastr = toastr;
@@ -3864,7 +4058,7 @@ var Login = (function () {
     Login = __decorate([
         core_1.Component({
             selector: 'login',
-            template: __webpack_require__(935)
+            template: __webpack_require__(940)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -3879,7 +4073,7 @@ exports.Login = Login;
 
 /***/ }),
 
-/***/ 387:
+/***/ 389:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3897,7 +4091,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var AuthenticationAdminService = (function () {
     function AuthenticationAdminService(tranport) {
         this.tranport = tranport;
@@ -3926,7 +4120,7 @@ exports.AuthenticationAdminService = AuthenticationAdminService;
 
 /***/ }),
 
-/***/ 388:
+/***/ 390:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3945,7 +4139,7 @@ exports.AuthorizationRequest = AuthorizationRequest;
 
 /***/ }),
 
-/***/ 389:
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3961,13 +4155,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var http_1 = __webpack_require__(55);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var http_1 = __webpack_require__(56);
 var page_1 = __webpack_require__(38);
-var news_1 = __webpack_require__(205);
-var common_1 = __webpack_require__(73);
-var ElementRequest_1 = __webpack_require__(144);
+var news_1 = __webpack_require__(208);
+var common_1 = __webpack_require__(65);
+var ElementRequest_1 = __webpack_require__(209);
 var NewsAdmin = (function () {
     function NewsAdmin(toastr, pageService, newsService, router, http) {
         this.toastr = toastr;
@@ -3980,6 +4174,7 @@ var NewsAdmin = (function () {
         this.isVideo = false;
         this.idNews = null;
         this.index = null;
+        this.type = 1;
         var self = this;
     }
     NewsAdmin.prototype.ngOnInit = function () {
@@ -4037,10 +4232,17 @@ var NewsAdmin = (function () {
             self.toastr.success("Новость " + response.txt);
         });
     };
+    NewsAdmin.prototype.getNewsForType = function (type) {
+        var self = this;
+        if (self.newsInfo)
+            return self.newsInfo.filter(function (x) { return x.type == type; });
+        else
+            self.newsInfo;
+    };
     NewsAdmin = __decorate([
         core_1.Component({
             selector: 'news-admin',
-            template: __webpack_require__(936)
+            template: __webpack_require__(941)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -4055,7 +4257,7 @@ exports.NewsAdmin = NewsAdmin;
 
 /***/ }),
 
-/***/ 390:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4071,15 +4273,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var news_1 = __webpack_require__(205);
-var file_1 = __webpack_require__(391);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var news_1 = __webpack_require__(208);
+var file_1 = __webpack_require__(393);
 var public_1 = __webpack_require__(88);
-var ElementRequest_1 = __webpack_require__(144);
-var news_2 = __webpack_require__(392);
-var common_1 = __webpack_require__(73);
-var news_3 = __webpack_require__(392);
+var ElementRequest_1 = __webpack_require__(209);
+var news_2 = __webpack_require__(394);
+var common_1 = __webpack_require__(65);
+var news_3 = __webpack_require__(394);
 var AddNews = (function () {
     function AddNews(toastr, newsService, fileService, home, router, route) {
         this.toastr = toastr;
@@ -4189,7 +4391,7 @@ var AddNews = (function () {
     AddNews = __decorate([
         core_1.Component({
             selector: 'add-news',
-            template: __webpack_require__(937)
+            template: __webpack_require__(942)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             news_1.NewsAdminService,
@@ -4205,7 +4407,7 @@ exports.AddNews = AddNews;
 
 /***/ }),
 
-/***/ 391:
+/***/ 393:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4223,7 +4425,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var FileService = (function () {
     function FileService(tranport) {
         this.tranport = tranport;
@@ -4256,7 +4458,7 @@ exports.FileService = FileService;
 
 /***/ }),
 
-/***/ 392:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4313,7 +4515,7 @@ exports.UrlPhotosNews = UrlPhotosNews;
 
 /***/ }),
 
-/***/ 393:
+/***/ 395:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4329,13 +4531,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var http_1 = __webpack_require__(55);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var http_1 = __webpack_require__(56);
 var page_1 = __webpack_require__(38);
-var turnament_1 = __webpack_require__(206);
-var ElementRequest_1 = __webpack_require__(144);
-var common_1 = __webpack_require__(73);
+var turnament_1 = __webpack_require__(145);
+var ElementRequest_1 = __webpack_require__(209);
+var common_1 = __webpack_require__(65);
 var Turnament = (function () {
     function Turnament(toastr, pageService, turnamentService, router, http) {
         this.toastr = toastr;
@@ -4345,6 +4547,7 @@ var Turnament = (function () {
         this.http = http;
         this.idTurnament = null;
         this.index = null;
+        this.step = 0;
         var self = this;
     }
     Turnament.prototype.ngOnInit = function () {
@@ -4367,7 +4570,8 @@ var Turnament = (function () {
         self.busy = self.turnamentService.AddTurnament(new ElementRequest_1.ElementRequest(type)).then(function (response) {
             self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
                 queryParams: {
-                    key: response.txt
+                    key: response.id,
+                    type: response.type
                 }
             });
         });
@@ -4388,18 +4592,26 @@ var Turnament = (function () {
             self.toastr.success("Турнир удален");
         });
     };
-    Turnament.prototype.editTurnament = function (id) {
+    Turnament.prototype.editTurnament = function (id, type) {
         var self = this;
         self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
             queryParams: {
-                key: id
+                key: id,
+                type: type
             }
         });
+    };
+    Turnament.prototype.getTurnamrntForType = function (step) {
+        var self = this;
+        if (self.turnaments)
+            return self.turnaments.filter(function (x) { return x.step == step; });
+        else
+            self.turnaments;
     };
     Turnament = __decorate([
         core_1.Component({
             selector: 'turnament',
-            template: __webpack_require__(938)
+            template: __webpack_require__(943)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             page_1.PageService,
@@ -4414,7 +4626,7 @@ exports.Turnament = Turnament;
 
 /***/ }),
 
-/***/ 394:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4430,258 +4642,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var common_1 = __webpack_require__(73);
-var turnament_1 = __webpack_require__(206);
-var ElementRequest_1 = __webpack_require__(144);
-var turnamentRequest_1 = __webpack_require__(939);
-var turnament_2 = __webpack_require__(940);
+var router_1 = __webpack_require__(49);
 var TuningTurnament = (function () {
-    function TuningTurnament(toastr, router, turnamentService, route) {
-        this.toastr = toastr;
-        this.router = router;
-        this.turnamentService = turnamentService;
+    function TuningTurnament(route) {
         this.route = route;
-        this.page = 1;
-        this.cause = null;
-        this.commandId = null;
-        this.index = null;
-        this.isCalc = false;
-        this.rowSize = new Array();
-        this.colSize = new Array();
-        this.days = new Array();
-        this.table = new Array();
-        this.arens = new Array();
-        this.turnament = new turnament_2.GetTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
-        this.myDatePickerOptions = {
-            dateFormat: 'dd.mm.yyyy'
-        };
         var self = this;
         route.queryParams.subscribe(function (params) {
             self.id = params["key"];
+            self.type = params["type"];
         });
-        self.getTurnament(self.id);
-        self.getArena();
     }
-    TuningTurnament.prototype.ngOnInit = function () {
-    };
-    TuningTurnament.prototype.getTurnament = function (id) {
-        var self = this;
-        self.busy = self.turnamentService.GetTurnament(new ElementRequest_1.ElementRequest(id)).then(function (response) {
-            self.turnament = response.turnament;
-            self.page = self.turnament.step > 1 ? 2 : 1;
-            self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
-            self.getTable();
-        });
-    };
-    TuningTurnament.prototype.getArena = function () {
-        var self = this;
-        self.busy = self.turnamentService.GetArena().then(function (response) {
-            self.arens = response.arens;
-        });
-    };
-    TuningTurnament.prototype.getResult = function (row, col) {
-        var self = this;
-        var commandOneId = self.turnament.positionCommand[row - 1].commandId;
-        var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
-        var result = "";
-        self.turnament.groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
-            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
-            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
-        }); }); });
-        return result;
-    };
-    TuningTurnament.prototype.getTable = function () {
-        var self = this;
-        var commandSize = self.turnament.positionCommand.length;
-        self.rowSize = new Array();
-        self.colSize = new Array();
-        self.table = new Array(commandSize + 1);
-        for (var i = 0; i < commandSize + 1; i++) {
-            self.rowSize.push(i);
-            self.table[i] = new Array(commandSize + 3);
-        }
-        for (var i = 0; i < commandSize + 3; i++)
-            self.colSize.push(i);
-        for (var row = 0; row < self.table.length; row++) {
-            for (var col = 0; col < self.table[row].length; col++) {
-                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
-                    self.table[row][col] = self.getResult(row, col);
-                if (row != 0 && col == commandSize + 1)
-                    self.table[row][col] = self.turnament.positionCommand[row - 1].points;
-                if (row != 0 && col == commandSize + 2)
-                    self.table[row][col] = self.turnament.positionCommand[row - 1].place;
-                if (row == 0 && col < commandSize + 1 && row != col)
-                    self.table[row][col] = self.turnament.positionCommand[col - 1].commandName;
-                if (col == 0 && row < commandSize + 1 && row != col)
-                    self.table[row][col] = self.turnament.positionCommand[row - 1].commandName;
-                if (row == 0 && col == commandSize + 1)
-                    self.table[row][col] = "Очки";
-                if (row == 0 && col == commandSize + 2)
-                    self.table[row][col] = "Место";
-            }
-        }
-    };
-    TuningTurnament.prototype.back = function () {
-        var self = this;
-        self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.Turnament], {});
-    };
-    TuningTurnament.prototype.saveTurnament = function () {
-        var self = this;
-        self.busy = self.turnamentService.SaveTurnamentInfo(new turnamentRequest_1.SaveTurnamentInfoRequest(self.turnament)).then(function (response) {
-            self.toastr.success("Сохранено");
-        });
-    };
-    TuningTurnament.prototype.openRegistration = function () {
-        var self = this;
-        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 1)).then(function (response) {
-            self.turnament.step = 1;
-            self.toastr.success("Этап регистрации");
-        });
-    };
-    TuningTurnament.prototype.changeStep = function (step) {
-        var self = this;
-        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, step)).then(function (response) {
-            self.turnament.step = step;
-            self.page = step > 1 ? 2 : 1;
-            self.toastr.success("Смена этапа");
-        });
-    };
-    TuningTurnament.prototype.changeArena = function (arena, date, tour) {
-        var self = this;
-        self.busy = self.turnamentService.ChangeArena(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, date, null, arena, tour)).then(function (response) {
-            self.toastr.success("Сохранено");
-        });
-    };
-    TuningTurnament.prototype.changeDate = function (newDate, date, tour) {
-        var self = this;
-        var nowDate = date == null ? null : date;
-        self.busy = self.turnamentService.ChangeDate(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, nowDate, newDate, null, tour)).then(function (response) {
-            self.toastr.success("Сохранено");
-        });
-    };
-    TuningTurnament.prototype.completeRegistration = function () {
-        var self = this;
-        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
-            self.turnament.step = 2;
-            self.page = 2;
-            self.toastr.success("Этап построения");
-        });
-    };
-    TuningTurnament.prototype.startTurnament = function () {
-        var self = this;
-        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 3)).then(function (response) {
-            self.turnament.step = 2;
-            self.getTurnament(self.id);
-            self.toastr.success("Этап в процессе");
-        });
-    };
-    TuningTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
-        var self = this;
-        self.busy = self.turnamentService.AcceptDeclare(new turnamentRequest_1.DeclareRequest(turnamentId, commandId)).then(function (response) {
-            self.turnament.commands[index].status = true;
-            self.toastr.success("Заявка принята");
-        });
-    };
-    TuningTurnament.prototype.selectDeclare = function (commandId, index) {
-        var self = this;
-        self.commandId = commandId;
-        self.index = index;
-    };
-    TuningTurnament.prototype.removeDeclare = function () {
-        var self = this;
-        if (self.commandId == null && self.index == null)
-            return;
-        if (self.cause == null || self.cause == "") {
-            self.toastr.error("Укажите причину отказа");
-            return;
-        }
-        self.busy = self.turnamentService.RemoveDeclare(new turnamentRequest_1.RemoveDeclareRequest(self.turnament.id, self.commandId, self.cause)).then(function (response) {
-            self.turnament.commands.splice(self.index, 1);
-            self.commandId = null;
-            self.index = null;
-            self.cause = null;
-            self.toastr.success("Заявка отклонена");
-        });
-    };
-    TuningTurnament.prototype.calculateTable = function () {
-        var self = this;
-        self.busy = self.turnamentService.CalculateTable(new ElementRequest_1.ElementRequest(self.turnament.id)).then(function (response) {
-            self.getTurnament(self.id);
-            self.toastr.success("Турнирная табляца построена");
-        });
-    };
-    TuningTurnament.prototype.selectDay = function (day) {
-        var self = this;
-        if (day > self.turnament.positionCommand.length / 2) {
-            self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
-            return;
-        }
-        if (day < 1) {
-            self.toastr.error("Колличество дней не может быть меньше 1 дня");
-            return;
-        }
-        self.days = new Array();
-        for (var i = 0; i < day; i++) {
-            self.days.push(new turnament_2.DayGame(null, null));
-        }
-    };
-    TuningTurnament.prototype.divideForDay = function (tour) {
-        var self = this;
-        if (self.days.length == 0) {
-            self.toastr.error("Не выбрана дата");
-            return;
-        }
-        var isValid = true;
-        if (self.days.length > 0)
-            self.days.forEach(function (x) {
-                if (x.day == null || x.arena == null) {
-                    self.toastr.error("Не все поля заполнены");
-                    isValid = false;
-                    return;
-                }
-            });
-        if (isValid)
-            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.id, tour, self.days)).then(function (response) {
-                self.days = new Array();
-                self.getTurnament(self.id);
-                self.toastr.success("Игры распределены по дням");
-            });
-    };
-    TuningTurnament.prototype.activTour = function (tour) {
-        var self = this;
-        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, 1)).then(function (response) {
-            self.turnament.groupTourNumber[tour - 1].status = 1;
-            self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
-            self.toastr.success("Тур активен");
-        });
-    };
-    TuningTurnament.prototype.completeGame = function (id, oneGols, twoGols) {
-        var self = this;
-        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.id, id, oneGols, twoGols)).then(function (response) {
-            self.getTurnament(self.id);
-            self.toastr.success("Игра завершена");
-        });
-    };
-    TuningTurnament.prototype.closeTour = function (tour) {
-        var self = this;
-        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, tour, null)).then(function (response) {
-            self.getTurnament(self.id);
-            self.toastr.success("Тур завершен");
-        });
-    };
     TuningTurnament = __decorate([
         core_1.Component({
             selector: 'tuning-turnament',
-            template: __webpack_require__(941)
+            template: __webpack_require__(944)
         }),
-        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
-            router_1.Router,
-            turnament_1.TurnamentAdminService,
-            router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute])
     ], TuningTurnament);
     return TuningTurnament;
 }());
@@ -4690,7 +4666,7 @@ exports.TuningTurnament = TuningTurnament;
 
 /***/ }),
 
-/***/ 395:
+/***/ 397:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4708,7 +4684,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 __webpack_require__(44);
 var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
+var urls_1 = __webpack_require__(51);
 var EmailService = (function () {
     function EmailService(tranport) {
         this.tranport = tranport;
@@ -4729,6 +4705,272 @@ exports.EmailService = EmailService;
 
 /***/ }),
 
+/***/ 398:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ElementRequest = (function () {
+    function ElementRequest(txt) {
+        this.txt = txt;
+    }
+    return ElementRequest;
+}());
+exports.ElementRequest = ElementRequest;
+
+
+/***/ }),
+
+/***/ 399:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SaveCircleTurnamentInfoRequest = (function () {
+    function SaveCircleTurnamentInfoRequest(turnament) {
+        this.turnament = turnament;
+    }
+    return SaveCircleTurnamentInfoRequest;
+}());
+exports.SaveCircleTurnamentInfoRequest = SaveCircleTurnamentInfoRequest;
+var SaveMixedTurnamentInfoRequest = (function () {
+    function SaveMixedTurnamentInfoRequest(turnament) {
+        this.turnament = turnament;
+    }
+    return SaveMixedTurnamentInfoRequest;
+}());
+exports.SaveMixedTurnamentInfoRequest = SaveMixedTurnamentInfoRequest;
+var TurnamentStepRequest = (function () {
+    function TurnamentStepRequest(id, step) {
+        this.id = id;
+        this.step = step;
+    }
+    return TurnamentStepRequest;
+}());
+exports.TurnamentStepRequest = TurnamentStepRequest;
+var TourStepRequest = (function () {
+    function TourStepRequest(turnamentId, turnamentType, tour, step) {
+        this.turnamentId = turnamentId;
+        this.turnamentType = turnamentType;
+        this.tour = tour;
+        this.step = step;
+    }
+    return TourStepRequest;
+}());
+exports.TourStepRequest = TourStepRequest;
+var DeclareRequest = (function () {
+    function DeclareRequest(turnamentId, commandId) {
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+    }
+    return DeclareRequest;
+}());
+exports.DeclareRequest = DeclareRequest;
+var RemoveDeclareRequest = (function () {
+    function RemoveDeclareRequest(turnamentId, commandId, cause) {
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.cause = cause;
+    }
+    return RemoveDeclareRequest;
+}());
+exports.RemoveDeclareRequest = RemoveDeclareRequest;
+var DivideForDayRequest = (function () {
+    function DivideForDayRequest(turnamentId, tour, days) {
+        this.turnamentId = turnamentId;
+        this.tour = tour;
+        this.days = days;
+    }
+    return DivideForDayRequest;
+}());
+exports.DivideForDayRequest = DivideForDayRequest;
+var ChangeGameDayRequest = (function () {
+    function ChangeGameDayRequest(turnamentId, startDate, newStartDate, arena, tour) {
+        this.turnamentId = turnamentId;
+        this.startDate = startDate;
+        this.newStartDate = newStartDate;
+        this.arena = arena;
+        this.tour = tour;
+    }
+    return ChangeGameDayRequest;
+}());
+exports.ChangeGameDayRequest = ChangeGameDayRequest;
+var CompleteGameRequest = (function () {
+    function CompleteGameRequest(turnamentId, gameId, commandOneGoals, commandTwoGoals) {
+        this.turnamentId = turnamentId;
+        this.gameId = gameId;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+    }
+    return CompleteGameRequest;
+}());
+exports.CompleteGameRequest = CompleteGameRequest;
+var CalculateGroupRequest = (function () {
+    function CalculateGroupRequest(turnamentId, groupCount) {
+        this.turnamentId = turnamentId;
+        this.groupCount = groupCount;
+    }
+    return CalculateGroupRequest;
+}());
+exports.CalculateGroupRequest = CalculateGroupRequest;
+
+
+/***/ }),
+
+/***/ 400:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TurnamentInfo = (function () {
+    function TurnamentInfo(id, name, dateStart, dateEnd, type, stateCode, step) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+    }
+    return TurnamentInfo;
+}());
+exports.TurnamentInfo = TurnamentInfo;
+var GetCircleTurnament = (function () {
+    function GetCircleTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return GetCircleTurnament;
+}());
+exports.GetCircleTurnament = GetCircleTurnament;
+var GetMixedTurnament = (function () {
+    function GetMixedTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, turnamentGroups) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.turnamentGroups = turnamentGroups;
+    }
+    return GetMixedTurnament;
+}());
+exports.GetMixedTurnament = GetMixedTurnament;
+var TurnamentGroups = (function () {
+    function TurnamentGroups(groupId, positionCommand, groupTourNumber) {
+        this.groupId = groupId;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return TurnamentGroups;
+}());
+exports.TurnamentGroups = TurnamentGroups;
+var Table = (function () {
+    function Table(rowSize, colSize, table) {
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.table = table;
+    }
+    return Table;
+}());
+exports.Table = Table;
+var PositionCommand = (function () {
+    function PositionCommand(id, position, commandId, commandName, points, place, fakeCode) {
+        this.id = id;
+        this.position = position;
+        this.commandId = commandId;
+        this.commandName = commandName;
+        this.points = points;
+        this.place = place;
+        this.fakeCode = fakeCode;
+    }
+    return PositionCommand;
+}());
+exports.PositionCommand = PositionCommand;
+var GameTurnament = (function () {
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
+        this.id = id;
+        this.idCommandOne = idCommandOne;
+        this.idCommandTwo = idCommandTwo;
+        this.commandOneName = commandOneName;
+        this.commandTwoName = commandTwoName;
+        this.tour = tour;
+        this.status = status;
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.commandOneGoals = commandOneGoals;
+        this.commandTwoGoals = commandTwoGoals;
+        this.commandOnePoints = commandOnePoints;
+        this.commandTwoPoints = commandTwoPoints;
+    }
+    return GameTurnament;
+}());
+exports.GameTurnament = GameTurnament;
+var GroupDateStart = (function () {
+    function GroupDateStart(dateStart, arena, gameTurnament) {
+        this.dateStart = dateStart;
+        this.arena = arena;
+        this.gameTurnament = gameTurnament;
+    }
+    return GroupDateStart;
+}());
+exports.GroupDateStart = GroupDateStart;
+var GroupTourNumber = (function () {
+    function GroupTourNumber(numberTour, status, groupDateStart) {
+        this.numberTour = numberTour;
+        this.status = status;
+        this.groupDateStart = groupDateStart;
+    }
+    return GroupTourNumber;
+}());
+exports.GroupTourNumber = GroupTourNumber;
+var DayGame = (function () {
+    function DayGame(day, arena) {
+        this.day = day;
+        this.arena = arena;
+    }
+    return DayGame;
+}());
+exports.DayGame = DayGame;
+var Arena = (function () {
+    function Arena(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Arena;
+}());
+exports.Arena = Arena;
+var Cell = (function () {
+    function Cell(value, isFake) {
+        this.value = value;
+        this.isFake = isFake;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
+
+
+/***/ }),
+
 /***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4745,9 +4987,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var http_1 = __webpack_require__(55);
-var ng2_toastr_1 = __webpack_require__(21);
-__webpack_require__(351);
+var http_1 = __webpack_require__(56);
+var ng2_toastr_1 = __webpack_require__(19);
+__webpack_require__(354);
 var TransportService = (function () {
     function TransportService(http, toastr) {
         this.http = http;
@@ -4799,7 +5041,7 @@ exports.TransportService = TransportService;
 
 /***/ }),
 
-/***/ 50:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4838,7 +5080,8 @@ var Urls = (function () {
         this.addTurnament = 'api/TurnamentAdmin/AddTurnament';
         this.getTurnamentInfo = 'api/TurnamentAdmin/GetTurnamentInfo';
         this.dellTurnament = 'api/TurnamentAdmin/DellTurnament';
-        this.getTurnament = 'api/TurnamentAdmin/GetTurnament';
+        this.getTurnamentCircle = 'api/TurnamentAdmin/GetTurnamentCircle';
+        this.getTurnamentMixed = 'api/TurnamentAdmin/GetTurnamentMixed';
         this.saveTurnamentInfo = 'api/TurnamentAdmin/SaveTurnamentInfo';
         this.changeStep = 'api/TurnamentAdmin/ChangeStep';
         this.changeStatusTour = 'api/TurnamentAdmin/ChangeStatusTour';
@@ -4847,6 +5090,7 @@ var Urls = (function () {
         this.acceptDeclare = 'api/TurnamentAdmin/AcceptDeclare';
         this.removeDeclare = 'api/TurnamentAdmin/RemoveDeclare';
         this.calculateTable = 'api/TurnamentAdmin/CalculateTable';
+        this.calculateGroup = 'api/TurnamentAdmin/CalculateGroup';
         this.divideForDay = 'api/TurnamentAdmin/DivideForDay';
         this.getArena = 'api/TurnamentAdmin/GetArena';
         this.completeGame = 'api/TurnamentAdmin/CompleteGame';
@@ -4863,7 +5107,7 @@ exports.Urls = Urls;
 
 /***/ }),
 
-/***/ 73:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4894,7 +5138,7 @@ var Common;
         RoutePaths.Admin = "admin";
         RoutePaths.EditNews = "edit-news/:key";
         RoutePaths.Turnament = "turnament";
-        RoutePaths.TuningTurnament = "tuning-turnament/:key";
+        RoutePaths.TuningTurnament = "tuning-turnament/:key/:type";
         RoutePaths.PlanOpp = "plan/:key/:bt/:userId/:oppId";
         RoutePaths.Checkerboard = "checkerboard/:key/:type/:bt";
         RoutePaths.CheckerboardLead = "checkerboard/:key/:type/:bt/:leadId";
@@ -4966,20 +5210,20 @@ exports.VgControlsHidden = VgControlsHidden;
 
 /***/ }),
 
-/***/ 871:
+/***/ 876:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_dynamic_1 = __webpack_require__(174);
-var app_module_1 = __webpack_require__(872);
+var platform_browser_dynamic_1 = __webpack_require__(175);
+var app_module_1 = __webpack_require__(877);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 
 
 /***/ }),
 
-/***/ 872:
+/***/ 877:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4992,50 +5236,52 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__(41);
-var router_1 = __webpack_require__(64);
+var router_1 = __webpack_require__(49);
 var core_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(24);
-var http_1 = __webpack_require__(55);
-var material_modul_1 = __webpack_require__(873);
-var animations_1 = __webpack_require__(279);
-var angular2_busy_1 = __webpack_require__(874);
-var ng2_toastr_1 = __webpack_require__(21);
-var ng2_toastr_2 = __webpack_require__(21);
-var angular2_text_mask_1 = __webpack_require__(884);
-var mydatepicker_1 = __webpack_require__(885);
-var core_2 = __webpack_require__(904);
-var controls_1 = __webpack_require__(906);
-var app_routes_1 = __webpack_require__(920);
-var app_1 = __webpack_require__(942);
-var home_1 = __webpack_require__(373);
-var comand_1 = __webpack_require__(375);
-var current_tournaments_1 = __webpack_require__(376);
-var new_tournaments_1 = __webpack_require__(377);
-var past_tournaments_1 = __webpack_require__(380);
-var cabinet_1 = __webpack_require__(381);
-var news_1 = __webpack_require__(384);
-var photo_1 = __webpack_require__(385);
-var video_command_1 = __webpack_require__(946);
+var http_1 = __webpack_require__(56);
+var material_modul_1 = __webpack_require__(878);
+var animations_1 = __webpack_require__(282);
+var angular2_busy_1 = __webpack_require__(879);
+var ng2_toastr_1 = __webpack_require__(19);
+var ng2_toastr_2 = __webpack_require__(19);
+var angular2_text_mask_1 = __webpack_require__(889);
+var mydatepicker_1 = __webpack_require__(890);
+var core_2 = __webpack_require__(909);
+var controls_1 = __webpack_require__(911);
+var app_routes_1 = __webpack_require__(925);
+var app_1 = __webpack_require__(945);
+var home_1 = __webpack_require__(376);
+var comand_1 = __webpack_require__(378);
+var current_tournaments_1 = __webpack_require__(379);
+var new_tournaments_1 = __webpack_require__(380);
+var past_tournaments_1 = __webpack_require__(382);
+var cabinet_1 = __webpack_require__(383);
+var news_1 = __webpack_require__(386);
+var photo_1 = __webpack_require__(387);
+var video_command_1 = __webpack_require__(949);
 var transport_1 = __webpack_require__(45);
 var public_1 = __webpack_require__(88);
-var authentication_1 = __webpack_require__(204);
-var news_2 = __webpack_require__(203);
-var email_1 = __webpack_require__(395);
-var account_1 = __webpack_require__(382);
-var image_1 = __webpack_require__(383);
-var turnament_1 = __webpack_require__(378);
-var login_1 = __webpack_require__(386);
-var news_3 = __webpack_require__(389);
-var add_news_1 = __webpack_require__(390);
-var turnament_2 = __webpack_require__(393);
-var tuning_turnament_1 = __webpack_require__(394);
-var authentication_2 = __webpack_require__(387);
-var news_4 = __webpack_require__(205);
-var file_1 = __webpack_require__(391);
-var turnament_3 = __webpack_require__(206);
-var newsType_1 = __webpack_require__(949);
-var turnamentType_1 = __webpack_require__(950);
-var turnamentStep_1 = __webpack_require__(951);
+var authentication_1 = __webpack_require__(207);
+var news_2 = __webpack_require__(204);
+var email_1 = __webpack_require__(397);
+var account_1 = __webpack_require__(384);
+var image_1 = __webpack_require__(385);
+var turnament_1 = __webpack_require__(144);
+var login_1 = __webpack_require__(388);
+var news_3 = __webpack_require__(391);
+var add_news_1 = __webpack_require__(392);
+var turnament_2 = __webpack_require__(395);
+var tuning_turnament_1 = __webpack_require__(396);
+var circle_turnament_1 = __webpack_require__(952);
+var mixed_turnament_1 = __webpack_require__(954);
+var authentication_2 = __webpack_require__(389);
+var news_4 = __webpack_require__(208);
+var file_1 = __webpack_require__(393);
+var turnament_3 = __webpack_require__(145);
+var newsType_1 = __webpack_require__(956);
+var turnamentType_1 = __webpack_require__(957);
+var turnamentStep_1 = __webpack_require__(958);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -5059,7 +5305,9 @@ var AppModule = (function () {
                 turnamentStep_1.TurnamentStep,
                 add_news_1.AddNews,
                 turnament_2.Turnament,
-                tuning_turnament_1.TuningTurnament
+                tuning_turnament_1.TuningTurnament,
+                circle_turnament_1.CircleTurnament,
+                mixed_turnament_1.MixedTurnament
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -5106,7 +5354,7 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ 873:
+/***/ 878:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5119,16 +5367,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var material_1 = __webpack_require__(185);
-var material_2 = __webpack_require__(185);
-var table_1 = __webpack_require__(191);
-var accordion_1 = __webpack_require__(273);
-var a11y_1 = __webpack_require__(20);
+var material_1 = __webpack_require__(186);
+var material_2 = __webpack_require__(186);
+var table_1 = __webpack_require__(192);
+var accordion_1 = __webpack_require__(276);
+var a11y_1 = __webpack_require__(21);
 var bidi_1 = __webpack_require__(31);
-var overlay_1 = __webpack_require__(56);
+var overlay_1 = __webpack_require__(57);
 var platform_1 = __webpack_require__(34);
 var observers_1 = __webpack_require__(133);
-var portal_1 = __webpack_require__(57);
+var portal_1 = __webpack_require__(58);
 var MaterialModule = (function () {
     function MaterialModule() {
     }
@@ -5185,7 +5433,7 @@ exports.MaterialModule = MaterialModule;
 
 /***/ }),
 
-/***/ 874:
+/***/ 879:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5193,12 +5441,59 @@ exports.MaterialModule = MaterialModule;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(875));
+__export(__webpack_require__(880));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 875:
+/***/ 88:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+__webpack_require__(44);
+var transport_1 = __webpack_require__(45);
+var urls_1 = __webpack_require__(51);
+var HomeService = (function () {
+    function HomeService(tranport) {
+        this.tranport = tranport;
+        this.urls = new urls_1.Urls();
+    }
+    HomeService.prototype.GetCommand = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.command, null);
+    };
+    HomeService.prototype.GetCommandFilter = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.commandFilter, null);
+    };
+    HomeService.prototype.GetPhoto = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getPhoto, request);
+    };
+    HomeService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [transport_1.TransportService])
+    ], HomeService);
+    return HomeService;
+}());
+exports.HomeService = HomeService;
+
+
+/***/ }),
+
+/***/ 880:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5206,15 +5501,15 @@ __export(__webpack_require__(875));
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(364));
-__export(__webpack_require__(199));
+__export(__webpack_require__(367));
 __export(__webpack_require__(200));
-__export(__webpack_require__(877));
+__export(__webpack_require__(201));
+__export(__webpack_require__(882));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 876:
+/***/ 881:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5316,7 +5611,7 @@ exports.equals = equals;
 
 /***/ }),
 
-/***/ 877:
+/***/ 882:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5332,12 +5627,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var index_1 = __webpack_require__(878);
-var busy_directive_1 = __webpack_require__(364);
-var busy_service_1 = __webpack_require__(199);
-var busy_backdrop_component_1 = __webpack_require__(366);
-var busy_component_1 = __webpack_require__(365);
-var busy_config_1 = __webpack_require__(200);
+var index_1 = __webpack_require__(883);
+var busy_directive_1 = __webpack_require__(367);
+var busy_service_1 = __webpack_require__(200);
+var busy_backdrop_component_1 = __webpack_require__(369);
+var busy_component_1 = __webpack_require__(368);
+var busy_config_1 = __webpack_require__(201);
 var BusyModule = (function () {
     function BusyModule() {
     }
@@ -5376,89 +5671,42 @@ exports.BusyModule = BusyModule;
 
 /***/ }),
 
-/***/ 878:
+/***/ 883:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DynamicComponent_1 = __webpack_require__(367);
+var DynamicComponent_1 = __webpack_require__(370);
 exports.DynamicComponent = DynamicComponent_1.DynamicComponent;
 exports.DynamicComponentMetadata = DynamicComponent_1.DynamicComponentMetadata;
-var DynamicComponentModule_1 = __webpack_require__(883);
+var DynamicComponentModule_1 = __webpack_require__(888);
 exports.DynamicComponentModule = DynamicComponentModule_1.DynamicComponentModule;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 879:
+/***/ 884:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var MetadataHelper_1 = __webpack_require__(880);
+var MetadataHelper_1 = __webpack_require__(885);
 exports.MetadataHelper = MetadataHelper_1.MetadataHelper;
-var MetadataFactory_1 = __webpack_require__(368);
+var MetadataFactory_1 = __webpack_require__(371);
 exports.PropertyAnnotationFactory = MetadataFactory_1.PropertyAnnotationFactory;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 88:
+/***/ 885:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-__webpack_require__(44);
-var transport_1 = __webpack_require__(45);
-var urls_1 = __webpack_require__(50);
-var HomeService = (function () {
-    function HomeService(tranport) {
-        this.tranport = tranport;
-        this.urls = new urls_1.Urls();
-    }
-    HomeService.prototype.GetCommand = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.command, null);
-    };
-    HomeService.prototype.GetCommandFilter = function () {
-        var self = this;
-        return this.tranport.postData(self.urls.commandFilter, null);
-    };
-    HomeService.prototype.GetPhoto = function (request) {
-        var self = this;
-        return this.tranport.postData(self.urls.getPhoto, request);
-    };
-    HomeService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [transport_1.TransportService])
-    ], HomeService);
-    return HomeService;
-}());
-exports.HomeService = HomeService;
-
-
-/***/ }),
-
-/***/ 880:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-__webpack_require__(166);
 __webpack_require__(167);
-var Utils_1 = __webpack_require__(881);
-var MetadataFactory_1 = __webpack_require__(368);
+__webpack_require__(168);
+var Utils_1 = __webpack_require__(886);
+var MetadataFactory_1 = __webpack_require__(371);
 var MetadataHelper = (function () {
     function MetadataHelper() {
     }
@@ -5499,7 +5747,7 @@ exports.MetadataHelper = MetadataHelper;
 
 /***/ }),
 
-/***/ 881:
+/***/ 886:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5529,7 +5777,7 @@ exports.Utils = Utils;
 
 /***/ }),
 
-/***/ 882:
+/***/ 887:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5559,7 +5807,7 @@ exports.Utils = Utils;
 
 /***/ }),
 
-/***/ 883:
+/***/ 888:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5574,7 +5822,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(1);
-var DynamicComponent_1 = __webpack_require__(367);
+var DynamicComponent_1 = __webpack_require__(370);
 var DynamicComponentModule = (function () {
     function DynamicComponentModule() {
     }
@@ -5596,7 +5844,7 @@ exports.DynamicComponentModule = DynamicComponentModule;
 
 /***/ }),
 
-/***/ 884:
+/***/ 889:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5613,7 +5861,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(24);
-var textMaskCore_1 = __webpack_require__(369);
+var textMaskCore_1 = __webpack_require__(372);
 exports.MASKEDINPUT_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return MaskedInputDirective; }),
@@ -5713,62 +5961,62 @@ TextMaskModule = __decorate([
     })
 ], TextMaskModule);
 exports.TextMaskModule = TextMaskModule;
-var textMaskCore_2 = __webpack_require__(369);
+var textMaskCore_2 = __webpack_require__(372);
 exports.conformToMask = textMaskCore_2.conformToMask;
 //# sourceMappingURL=angular2TextMask.js.map
 
 /***/ }),
 
-/***/ 885:
+/***/ 890:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__ = __webpack_require__(886);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__ = __webpack_require__(891);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MyDatePickerModule", function() { return __WEBPACK_IMPORTED_MODULE_0__dist_my_date_picker_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__ = __webpack_require__(373);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MYDP_VALUE_ACCESSOR", function() { return __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MyDatePicker", function() { return __WEBPACK_IMPORTED_MODULE_1__dist_my_date_picker_component__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__ = __webpack_require__(895);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_2__dist_interfaces_my_date_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__ = __webpack_require__(891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__ = __webpack_require__(896);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_3__dist_interfaces_my_date_model_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__ = __webpack_require__(892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__ = __webpack_require__(897);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_4__dist_interfaces_my_input_field_changed_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__ = __webpack_require__(893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__ = __webpack_require__(898);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_5__dist_interfaces_my_calendar_view_changed_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__ = __webpack_require__(894);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__ = __webpack_require__(899);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_6__dist_interfaces_my_input_focus_blur_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__ = __webpack_require__(900);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_7__dist_interfaces_my_date_range_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__ = __webpack_require__(901);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_8__dist_interfaces_my_day_labels_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__ = __webpack_require__(897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__ = __webpack_require__(902);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_9__dist_interfaces_my_month_labels_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__ = __webpack_require__(903);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_10__dist_interfaces_my_options_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__ = __webpack_require__(899);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__ = __webpack_require__(904);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_11__dist_interfaces_my_weekday_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__ = __webpack_require__(900);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__ = __webpack_require__(905);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_12__dist_interfaces_my_marked_date_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__ = __webpack_require__(901);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__ = __webpack_require__(906);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_13__dist_interfaces_my_marked_dates_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__ = __webpack_require__(902);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__ = __webpack_require__(907);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_14__dist_interfaces_my_default_month_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__ = __webpack_require__(903);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__ = __webpack_require__(908);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__) if(["MyDatePickerModule","MYDP_VALUE_ACCESSOR","MyDatePicker","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_15__dist_interfaces_my_selector_interface__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
@@ -5790,7 +6038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 886:
+/***/ 891:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5798,8 +6046,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__ = __webpack_require__(889);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__ = __webpack_require__(894);
 
 
 
@@ -5822,7 +6070,7 @@ var MyDatePickerModule = (function () {
 
 /***/ }),
 
-/***/ 887:
+/***/ 892:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6185,7 +6433,7 @@ var LocaleService = (function () {
 
 /***/ }),
 
-/***/ 888:
+/***/ 893:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6423,7 +6671,7 @@ var UtilService = (function () {
 
 /***/ }),
 
-/***/ 889:
+/***/ 894:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6459,105 +6707,105 @@ var FocusDirective = (function () {
 
 /***/ }),
 
-/***/ 890:
+/***/ 895:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date.interface.js.map
 
 /***/ }),
 
-/***/ 891:
+/***/ 896:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date-model.interface.js.map
 
 /***/ }),
 
-/***/ 892:
+/***/ 897:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-input-field-changed.interface.js.map
 
 /***/ }),
 
-/***/ 893:
+/***/ 898:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-calendar-view-changed.interface.js.map
 
 /***/ }),
 
-/***/ 894:
+/***/ 899:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-input-focus-blur.interface.js.map
 
 /***/ }),
 
-/***/ 895:
+/***/ 900:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-date-range.interface.js.map
 
 /***/ }),
 
-/***/ 896:
+/***/ 901:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-day-labels.interface.js.map
 
 /***/ }),
 
-/***/ 897:
+/***/ 902:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-month-labels.interface.js.map
 
 /***/ }),
 
-/***/ 898:
+/***/ 903:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-options.interface.js.map
 
 /***/ }),
 
-/***/ 899:
+/***/ 904:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-weekday.interface.js.map
 
 /***/ }),
 
-/***/ 900:
+/***/ 905:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-marked-date.interface.js.map
 
 /***/ }),
 
-/***/ 901:
+/***/ 906:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-marked-dates.interface.js.map
 
 /***/ }),
 
-/***/ 902:
+/***/ 907:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-default-month.interface.js.map
 
 /***/ }),
 
-/***/ 903:
+/***/ 908:
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=my-selector.interface.js.map
 
 /***/ }),
 
-/***/ 904:
+/***/ 909:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6566,7 +6814,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(905));
+__export(__webpack_require__(910));
 // CustomEvent polyfill for IE9/10/11
 (function () {
     if (typeof window === "undefined" || typeof window['CustomEvent'] === "function")
@@ -6585,7 +6833,7 @@ __export(__webpack_require__(905));
 
 /***/ }),
 
-/***/ 905:
+/***/ 910:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6595,24 +6843,24 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var vg_player_1 = __webpack_require__(371);
-var vg_media_1 = __webpack_require__(201);
-var vg_cue_points_1 = __webpack_require__(372);
+var vg_player_1 = __webpack_require__(374);
+var vg_media_1 = __webpack_require__(202);
+var vg_cue_points_1 = __webpack_require__(375);
 var vg_api_1 = __webpack_require__(28);
 var vg_fullscreen_api_1 = __webpack_require__(142);
 var vg_utils_1 = __webpack_require__(143);
 var vg_controls_hidden_1 = __webpack_require__(87);
 // components
-__export(__webpack_require__(371));
-__export(__webpack_require__(201));
-__export(__webpack_require__(372));
+__export(__webpack_require__(374));
+__export(__webpack_require__(202));
+__export(__webpack_require__(375));
 // services
 __export(__webpack_require__(28));
 __export(__webpack_require__(142));
 __export(__webpack_require__(143));
 __export(__webpack_require__(87));
 // types
-__export(__webpack_require__(202));
+__export(__webpack_require__(203));
 __export(__webpack_require__(86));
 /**
  * @internal
@@ -6649,7 +6897,7 @@ exports.VgCoreModule = VgCoreModule;
 
 /***/ }),
 
-/***/ 906:
+/***/ 911:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6658,13 +6906,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(907));
+__export(__webpack_require__(912));
 
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udHJvbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJjb250cm9scy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLDZDQUF3QyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vc3JjL2NvbnRyb2xzL2NvbnRyb2xzJztcbiJdfQ==
 
 /***/ }),
 
-/***/ 907:
+/***/ 912:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6672,18 +6920,18 @@ __export(__webpack_require__(907));
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var common_1 = __webpack_require__(6);
-var vg_controls_1 = __webpack_require__(908);
-var vg_fullscreen_1 = __webpack_require__(909);
-var vg_mute_1 = __webpack_require__(910);
-var vg_volume_1 = __webpack_require__(911);
-var vg_play_pause_1 = __webpack_require__(912);
-var vg_playback_button_1 = __webpack_require__(913);
-var vg_scrub_bar_1 = __webpack_require__(914);
-var vg_scrub_bar_buffering_time_1 = __webpack_require__(915);
-var vg_scrub_bar_cue_points_1 = __webpack_require__(916);
-var vg_scrub_bar_current_time_1 = __webpack_require__(917);
-var vg_time_display_1 = __webpack_require__(918);
-var vg_track_selector_1 = __webpack_require__(919);
+var vg_controls_1 = __webpack_require__(913);
+var vg_fullscreen_1 = __webpack_require__(914);
+var vg_mute_1 = __webpack_require__(915);
+var vg_volume_1 = __webpack_require__(916);
+var vg_play_pause_1 = __webpack_require__(917);
+var vg_playback_button_1 = __webpack_require__(918);
+var vg_scrub_bar_1 = __webpack_require__(919);
+var vg_scrub_bar_buffering_time_1 = __webpack_require__(920);
+var vg_scrub_bar_cue_points_1 = __webpack_require__(921);
+var vg_scrub_bar_current_time_1 = __webpack_require__(922);
+var vg_time_display_1 = __webpack_require__(923);
+var vg_track_selector_1 = __webpack_require__(924);
 var vg_controls_hidden_1 = __webpack_require__(87);
 var VgControlsModule = (function () {
     function VgControlsModule() {
@@ -6734,7 +6982,7 @@ exports.VgControlsModule = VgControlsModule;
 
 /***/ }),
 
-/***/ 908:
+/***/ 913:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6857,7 +7105,7 @@ exports.VgControls = VgControls;
 
 /***/ }),
 
-/***/ 909:
+/***/ 914:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6938,7 +7186,7 @@ exports.VgFullscreen = VgFullscreen;
 
 /***/ }),
 
-/***/ 910:
+/***/ 915:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7020,7 +7268,7 @@ exports.VgMute = VgMute;
 
 /***/ }),
 
-/***/ 911:
+/***/ 916:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7122,7 +7370,7 @@ exports.VgVolume = VgVolume;
 
 /***/ }),
 
-/***/ 912:
+/***/ 917:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7205,7 +7453,7 @@ exports.VgPlayPause = VgPlayPause;
 
 /***/ }),
 
-/***/ 913:
+/***/ 918:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7287,7 +7535,7 @@ exports.VgPlaybackButton = VgPlaybackButton;
 
 /***/ }),
 
-/***/ 914:
+/***/ 919:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7475,7 +7723,7 @@ exports.VgScrubBar = VgScrubBar;
 
 /***/ }),
 
-/***/ 915:
+/***/ 920:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7540,7 +7788,7 @@ exports.VgScrubBarBufferingTime = VgScrubBarBufferingTime;
 
 /***/ }),
 
-/***/ 916:
+/***/ 921:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7645,7 +7893,7 @@ exports.VgScrubBarCuePoints = VgScrubBarCuePoints;
 
 /***/ }),
 
-/***/ 917:
+/***/ 922:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7703,7 +7951,7 @@ exports.VgScrubBarCurrentTime = VgScrubBarCurrentTime;
 
 /***/ }),
 
-/***/ 918:
+/***/ 923:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7800,7 +8048,7 @@ exports.VgTimeDisplay = VgTimeDisplay;
 
 /***/ }),
 
-/***/ 919:
+/***/ 924:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7888,26 +8136,26 @@ exports.VgTrackSelector = VgTrackSelector;
 
 /***/ }),
 
-/***/ 920:
+/***/ 925:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var common_1 = __webpack_require__(73);
-var home_1 = __webpack_require__(373);
-var comand_1 = __webpack_require__(375);
-var current_tournaments_1 = __webpack_require__(376);
-var new_tournaments_1 = __webpack_require__(377);
-var past_tournaments_1 = __webpack_require__(380);
-var cabinet_1 = __webpack_require__(381);
-var news_1 = __webpack_require__(384);
-var photo_1 = __webpack_require__(385);
-var login_1 = __webpack_require__(386);
-var news_2 = __webpack_require__(389);
-var add_news_1 = __webpack_require__(390);
-var turnament_1 = __webpack_require__(393);
-var tuning_turnament_1 = __webpack_require__(394);
+var common_1 = __webpack_require__(65);
+var home_1 = __webpack_require__(376);
+var comand_1 = __webpack_require__(378);
+var current_tournaments_1 = __webpack_require__(379);
+var new_tournaments_1 = __webpack_require__(380);
+var past_tournaments_1 = __webpack_require__(382);
+var cabinet_1 = __webpack_require__(383);
+var news_1 = __webpack_require__(386);
+var photo_1 = __webpack_require__(387);
+var login_1 = __webpack_require__(388);
+var news_2 = __webpack_require__(391);
+var add_news_1 = __webpack_require__(392);
+var turnament_1 = __webpack_require__(395);
+var tuning_turnament_1 = __webpack_require__(396);
 var adminRoutes = [
     { path: common_1.Common.RoutePaths.News, component: news_2.NewsAdmin },
     { path: common_1.Common.RoutePaths.EditNews, component: add_news_1.AddNews },
@@ -7932,28 +8180,28 @@ exports.AppRoutes = [
 
 /***/ }),
 
-/***/ 921:
+/***/ 926:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"home-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"about-portal\">\r\n        <div class=\"slade-content\">\r\n            <ul id=\"slides\">\r\n                <li class=\"slide showing\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n                <li class=\"slide\"></li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"info-portal\">\r\n            <h5>\"Спортивное общество \"Олимп\"</h5>\r\n            <p>\r\n                Является основанным на членстве Саратовским региональным общественным объединением, созданным с целью развития, пропаганды и популяризации спорта, физической культуры в Саратове и Саратовской области. Деятельность Организации основывается на принципах добровольности, равноправия его членов, самоуправления, законности и гласности.\r\n            </p>\r\n            Основные задачи общества:\r\n            <hr>\r\n            <ul class=\"list-1 indent-left6 p5-1\">\r\n                <li>Организация и проведение спортивно-массовых мероприятий</li>\r\n                <li>Привлечение населения к занятиям спортом и физической культурой</li>\r\n            </ul>\r\n\r\n        </div>\r\n    </div>\r\n    <div class=\"new-news\" *ngIf=\"isNews\">\r\n        Последние новости\r\n    </div>\r\n    <div class=\"news-home\">\r\n        <div *ngFor=\"let news of newss; let i = index\" class=\"news-block\">\r\n            <div class=\"news-content\">\r\n                <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"text-news-content\">\r\n                       \r\n                        <div class=\"news-text\">\r\n                            <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                            {{news.text}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                    <div id=\"photo-content\" class=\"photo-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" (click)=\"showImg(photo.url, i)\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                    <div class=\"video-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"news-video\">\r\n                            <vg-player>\r\n                                <vg-controls>\r\n                                    <vg-play-pause></vg-play-pause>\r\n                                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-scrub-bar>\r\n                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                    </vg-scrub-bar>\r\n                                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-mute></vg-mute>\r\n                                    <vg-volume></vg-volume>\r\n                                    <vg-fullscreen></vg-fullscreen>\r\n                                </vg-controls>\r\n                                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                    <source src='{{news.urlVideo}}' type=\"video/mp4\">\r\n                                </video>\r\n                            </vg-player>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 922:
+/***/ 927:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"command-title\">\r\n        <div class=\"command-title-photo\">\r\n        </div>\r\n        <div class=\"command-title-text\">\r\n            Список команд играющих в лиги\r\n        </div>\r\n    </div>\r\n\r\n\r\n\r\n    <div *ngFor=\"let command of commands; let i = index\" class=\"command-block\">\r\n\r\n        <div class=\"command-avatar-block\">\r\n            <div class=\"command-avatar\" [style.background-image]=\"command.photo\"></div>\r\n        </div>\r\n\r\n        <div class=\"command-name\">{{command.name}}</div>\r\n\r\n        <div class=\"command-player\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Состав\r\n            </div>\r\n\r\n            <input type=\"checkbox\" id=\"{{'tournaments' + i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n            <label for=\"{{'tournaments' + i}}\" class=\"tournaments-command-open\"></label>\r\n            <div>\r\n                <table class=\"lk-command comand-table\">\r\n                    <tr class=\"lk-player\">\r\n                        <td class=\"lk-number-count title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"lk-surname title-header\">\r\n                            Фамилия\r\n                        </td>\r\n                        <td class=\"lk-full-name title-header\">\r\n                            Имя\r\n                        </td>\r\n                        <td class=\"lk-last-name title-header\">\r\n                            Отчество\r\n                        </td>\r\n                        <td class=\"lk-number title-header\">\r\n                            Номер в поле\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr class=\"lk-player\" *ngFor=\"let player of command.players; let j = index\">\r\n                        <td class=\"lk-number-count\">\r\n                            {{j+1}}\r\n                        </td>\r\n                        <td class=\"lk-surname\">\r\n                            {{player.surname}}\r\n                        </td>\r\n                        <td class=\"lk-full-name\">\r\n                            {{player.name}}\r\n                        </td>\r\n                        <td class=\"lk-last-name\">\r\n                            {{player.middleName}}\r\n                        </td>\r\n                        <td class=\"lk-number\">\r\n                            {{player.number}}\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 923:
+/***/ 928:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\" *ngIf=\"isTur\">\r\n            Проходяшие турниры\r\n        </div>\r\n        <div class=\"tournaments-log-text no-log\" *ngIf=\"!isTur\">\r\n            Нет идущих чемпионатов\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div class=\"current-turnament-table\">\r\n                <table class=\"lk-command\">\r\n                    <tr *ngFor=\"let row of turnament.tableTutnament.rowSize; let r = index\">\r\n                        <td *ngFor=\"let col of turnament.tableTutnament.colSize; let c = index\">\r\n                            {{turnament.tableTutnament.table[r][c]}}\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n\r\n            <div class=\"current-tournaments-command-content\">\r\n                <div class=\"current-tours inline-block\">\r\n                    Туры\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <div class=\"current-tour-content\">\r\n                    <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" [ngClass]=\"groupTour.status == 0 ? 'current-tour-opacity' : ''\" class=\"current-tour-block\">\r\n                        <div class=\"current-tour-number\"[ngClass]=\"groupTour.status == 1 ? 'active-tour' : ''\" >\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"current-game-group-date\">\r\n                            <div class=\"current-day-play-game\">\r\n                                <div class=\"place-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                Место: {{tour.arena}}\r\n                                </div>\r\n                                День {{d+1}}\r\n                                <div class=\"date-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\" *ngIf=\"isTur\">\r\n            Проходяшие турниры\r\n        </div>\r\n        <div class=\"tournaments-log-text no-log\" *ngIf=\"!isTur\">\r\n            Нет идущих чемпионатов\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\" *ngIf=\"turnament.type == 1\">\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div class=\"current-turnament-table\">\r\n                <div>\r\n                    <table class=\"lk-command\">\r\n                        <tr *ngFor=\"let row of turnament.tableTutnament.rowSize; let r = index\">\r\n                            <td *ngFor=\"let col of turnament.tableTutnament.colSize; let c = index\">\r\n                                {{turnament.tableTutnament.table[r][c]}}\r\n                            </td>\r\n                        </tr>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"current-tournaments-command-content\">\r\n                <div class=\"current-tours inline-block\">\r\n                    Туры\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <div class=\"current-tour-content\">\r\n                    <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" [ngClass]=\"groupTour.status == 0 ? 'current-tour-opacity' : ''\" class=\"current-tour-block\">\r\n                        <div class=\"current-tour-number\" [ngClass]=\"groupTour.status == 1 ? 'active-tour' : ''\">\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"current-game-group-date\">\r\n                            <div class=\"current-day-play-game\">\r\n                                <div class=\"place-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Место: {{tour.arena}}\r\n                                </div>\r\n                                День {{d+1}}\r\n                                <div class=\"date-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"current-tournaments-content\" *ngIf=\"turnament.type == 2\">\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div *ngFor=\"let turnamentGroups of turnament.turnamentGroups; let j = index\" class=\"group-for-turnament\">\r\n                <div class=\"group-number\">\r\n                    Группа - {{j+1}}\r\n                </div>\r\n\r\n                <div class=\"turnament-table-scrol\">\r\n                    <table class=\"lk-command\">\r\n                        <tr *ngFor=\"let row of turnamentGroups.tableTutnament.rowSize; let r = index\">\r\n                            <td *ngFor=\"let col of turnamentGroups.tableTutnament.colSize; let c = index\">\r\n                                {{turnamentGroups.tableTutnament.table[r][c]}}\r\n                            </td>\r\n                        </tr>\r\n                    </table>\r\n                </div>\r\n\r\n                <div class=\"current-tours inline-block\">\r\n                    Туры\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i+j}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i+j}}\" class=\"tournaments-command-open\"></label>\r\n                <div class=\"current-tour-content\">\r\n                    <div *ngFor=\"let groupTour of turnamentGroups.groupTourNumber; let t = index\" [ngClass]=\"groupTour.status == 0 ? 'current-tour-opacity' : ''\" class=\"current-tour-block\">\r\n                        <div class=\"current-tour-number\" [ngClass]=\"groupTour.status == 1 ? 'active-tour' : ''\">\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"current-game-group-date\">\r\n                            <div class=\"current-day-play-game\">\r\n                                <div class=\"place-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Место: {{tour.arena}}\r\n                                </div>\r\n                                День {{d+1}}\r\n                                <div class=\"date-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 924:
+/***/ 929:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7996,21 +8244,21 @@ exports.CommandForTurnament = CommandForTurnament;
 
 /***/ }),
 
-/***/ 925:
+/***/ 930:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"current-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\" *ngIf=\"isTur\">\r\n            Проходит набор команд для участия\r\n        </div>\r\n        <div class=\"tournaments-log-text no-log\" *ngIf=\"!isTur\">\r\n            Нет открытых чемпионатов\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n\r\n                <button mat-button class=\"tournaments-registration button-active\" (click)=\"declareTournament(turnament.id, i)\">Участвовать</button>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n            <div class=\"tournaments-command-content\">\r\n                <div class=\"tournaments-command-title inline-block\">\r\n                    Команды\r\n                </div>\r\n\r\n                <div class=\"turnament-price\">\r\n                    Взнос за турнир - {{turnament.contributionTournament}}p.   Взнос за игру - {{turnament.contributionGame}}р.\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <table class=\"lk-command\">\r\n                    <tr>\r\n                        <td class=\"title-header\">\r\n                            №\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Названия команд участвующих в турнире\r\n                        </td>\r\n                        <td class=\"title-header\">\r\n                            Статус заявки\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                        <td>\r\n                            {{j+1}}\r\n                        </td>\r\n                        <td>\r\n                            {{command.name}}\r\n                        </td>\r\n                        <td *ngIf=\"!command.status\" class=\"filed\">\r\n                            рассмотрение\r\n                        </td>\r\n                        <td *ngIf=\"command.status\" class=\"adopted\">\r\n                            участие\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 926:
+/***/ 931:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"registration-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"login-button\" [ngClass]=\"selectPage == 1 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(1)\">Вход</div>\r\n    <div class=\"registration-button\" [ngClass]=\"selectPage == 2 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(2)\">Регистрация</div>\r\n    <div class=\"reestablish-button\" [ngClass]=\"selectPage == 3 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(3)\">Забыли пароль?</div>\r\n\r\n    <div class=\"login-content\" *ngIf=\"selectPage == 1\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Логин\" name=\"login\" [(ngModel)]=\"user.login\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Пароль\" name=\"password\" [(ngModel)]=\"user.password\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-come-in\" (click)='Authorization()'>Войти</button>\r\n        </form>\r\n    </div>\r\n\r\n    <div class=\"login-content-registration\" *ngIf=\"selectPage == 2\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Введите логин\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Введите пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Повторите пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-registration\">Зарегистрировать</button>\r\n        </form>\r\n    </div>\r\n\r\n    <div class=\"login-content-registration\" *ngIf=\"selectPage == 3\">\r\n        <form class=\"example-form\">\r\n            <mat-form-field class=\"example-full-width login\">\r\n                <input matInput placeholder=\"Введите логин\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Введите новый пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <mat-form-field class=\"example-full-width passvord\">\r\n                <input type=\"password\" matInput placeholder=\"Повторите новый пароль\" value=\"\">\r\n            </mat-form-field>\r\n\r\n            <button mat-button class=\"button-registration\">Изменить пароль</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"past-tournaments\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"tournaments-not\">\r\n        <div class=\"tournaments-not-photo\">\r\n        </div>\r\n        <div class=\"tournaments-log-text\">\r\n            Прошедшие турниры\r\n        </div>\r\n    </div>\r\n    <div class=\"news-block\" *ngFor=\"let turnament of turnaments; let i = index\">\r\n        <div class=\"current-tournaments-content\">\r\n\r\n            <div class=\"title-tournaments\">\r\n                <div class=\"tournaments-date\">\r\n                    C {{turnament.dateStart}}\r\n                </div>\r\n                <div class=\"tournaments-text\">\r\n                    {{turnament.name}}\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"tournaments-description\">\r\n                {{turnament.description}}\r\n            </div>\r\n\r\n        \r\n            <div class=\"current-tournaments-command-content\">\r\n                <div class=\"current-tours inline-block\">\r\n                    Раскрыть\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+i}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+i}}\" class=\"tournaments-command-open\"></label>\r\n\r\n                <div class=\"current-tour-content\">\r\n\r\n                    <div class=\"current-turnament-table\">\r\n                        <div>\r\n                            <table class=\"lk-command\">\r\n                                <tr *ngFor=\"let row of turnament.tableTutnament.rowSize; let r = index\">\r\n                                    <td *ngFor=\"let col of turnament.tableTutnament.colSize; let c = index\">\r\n                                        {{turnament.tableTutnament.table[r][c]}}\r\n                                    </td>\r\n                                </tr>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" [ngClass]=\"groupTour.status == 0 ? 'current-tour-opacity' : ''\" class=\"current-tour-block\">\r\n                        <div class=\"current-tour-number\" [ngClass]=\"groupTour.status == 1 ? 'active-tour' : ''\">\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"current-game-group-date\">\r\n                            <div class=\"current-day-play-game\">\r\n                                <div class=\"place-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Место: {{tour.arena}}\r\n                                </div>\r\n                                День {{d+1}}\r\n                                <div class=\"date-start-game\" *ngIf=\"groupTour.status != 0\">\r\n                                    Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 927:
+/***/ 932:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8042,21 +8290,21 @@ exports.Player = Player;
 
 /***/ }),
 
-/***/ 928:
+/***/ 933:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cabinet-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"lk-info\">\r\n        <div class=\"lk-avatar-block\">\r\n            <div class=\"lk-avatar\" id=\"avatar\" [style.background-image]=\"account.photo\"></div>\r\n        </div>\r\n\r\n        <div class=\"lk-label\">\r\n            Персональные данные команды\r\n        </div>\r\n\r\n        <div class=\"lk-name\">\r\n            <div>Название команды</div>\r\n            <input placeholder=\"Название команды\" name=\"name\" [(ngModel)]=\"account.name\" [disabled]=\"isEdit\" />\r\n        </div>\r\n        <div class=\"lk-fone\">\r\n            <div>Контактный телефон</div>\r\n            <input placeholder=\"Контактный телефон\" type=\"text\" name=\"phone\" [(ngModel)]=\"account.phone\" [disabled]=\"isEdit\" />\r\n        </div>\r\n        <div class=\"lk-email\">\r\n            <div>Электронная почта</div>\r\n            <input placeholder=\"Электронная почта\" type=\"text\" name=\"email\" [(ngModel)]=\"account.email\" [disabled]=\"isEdit\" />\r\n        </div>\r\n\r\n        <div class=\"lk-button\">\r\n            <div class=\"file-upload\">\r\n                <label>\r\n                    <input type=\"file\" name=\"file\" accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"avatarChanged($event)\" />\r\n                    <span>Загрузить фото</span>\r\n                </label>\r\n            </div>\r\n            <button mat-button class=\"button-lk-add-player\" (click)=\"openFormAddPlayer()\">Добавить игрока</button>\r\n            <button mat-button class=\"button-lk-update\" id=\"editButton\" (click)=\"editAccountInfo(isEdit)\">Редактировать</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n    <div class=\"tournaments-command-title\">\r\n        Состав\r\n    </div>\r\n\r\n    <table class=\"lk-command\">\r\n        <tr class=\"lk-player\">\r\n            <td class=\"lk-number-count title-header\">\r\n                №\r\n            </td>\r\n            <td class=\"lk-surname title-header\">\r\n                Фамилия\r\n            </td>\r\n            <td class=\"lk-full-name title-header\">\r\n                Имя\r\n            </td>\r\n            <td class=\"lk-last-name title-header\">\r\n                Отчество\r\n            </td>\r\n            <td class=\"lk-number title-header\">\r\n                Номер в поле\r\n            </td>\r\n            <td class=\"delet-player title-header\">\r\n                Удалить\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"lk-player\" *ngFor=\"let player of account.command; let i = index\">\r\n            <td class=\"lk-number-count\">\r\n                {{i+1}}\r\n            </td>\r\n            <td class=\"lk-surname\">\r\n                {{player.surname}}\r\n            </td>\r\n            <td class=\"lk-full-name\">\r\n                {{player.name}}\r\n            </td>\r\n            <td class=\"lk-last-name\">\r\n                {{player.middleName}}\r\n            </td>\r\n            <td class=\"lk-number\">\r\n                <input class=\"edit-number\" name=\"number\" #number=\"ngModel\" [(ngModel)]=\"player.number\" [disabled]=\"isEdit\" pattern=\"[0-9]*\" (change)=\"changeInfoPlayer(player, number.hasError('pattern'))\" />\r\n            </td>\r\n            <td class=\"delet-player delet-player-img\" (click)=\"selectPlayer(player.playerId, i)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n        </tr>\r\n    </table>\r\n\r\n</div>\r\n\r\n<div class=\"transparent-layer-player\" id=\"transparent-layer-player\">\r\n    <div class=\"add-player\" [ngStyle]=\"addPlayerBlockStyle()\">\r\n        <form class=\"example-form\" #newplayer=\"ngForm\" novalidate autocomplete=\"on\">\r\n            <mat-form-field>\r\n                <input placeholder=\"Фамилия\" matInput type=\"text\" name=\"surname\" [(ngModel)]=\"player.surname\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Имя\" matInput type=\"text\" name=\"name\" [(ngModel)]=\"player.name\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Отчество\" matInput type=\"text\" name=\"middleName\" [(ngModel)]=\"player.middleName\" required />\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input placeholder=\"Номер в поле\" matInput type=\"text\" #newNumber=\"ngModel\" name=\"number\" [(ngModel)]=\"player.number\" pattern=\"[0-9]*\" required />\r\n            </mat-form-field>\r\n            <button mat-button (click)=\"addPlayer(newplayer.invalid, newNumber.hasError('pattern'))\">Добавить</button>\r\n            <button mat-button (click)=\"close()\">Отмена</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n        \r\n            <div class=\"modal-body\">\r\n                Удалить игрока?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellPlayer()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 929:
+/***/ 934:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n    <div class=\"command-title\">\r\n        <div class=\"news-logo-photo\">\r\n        </div>\r\n        <div class=\"command-title-text\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"news-home\" *ngIf=\"newss\">\r\n        <div *ngFor=\"let news of newss; let i = index\" class=\"news-block\">\r\n            <div class=\"news-content\">\r\n                <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"text-news-content\">\r\n\r\n                        <div class=\"news-text\">\r\n                            <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                            {{news.text}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                    <div id=\"photo-content\" class=\"photo-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" (click)=\"showImg(photo.url, i)\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                    <div class=\"video-news-content\">\r\n                        <div class=\"news-title\">\r\n                            {{news.title}}\r\n                            <div class=\"news-date\">\r\n                                {{news.date}}\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"news-video\">\r\n                            <vg-player>\r\n                                <vg-controls>\r\n                                    <vg-play-pause></vg-play-pause>\r\n                                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-scrub-bar>\r\n                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                    </vg-scrub-bar>\r\n                                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                    <vg-mute></vg-mute>\r\n                                    <vg-volume></vg-volume>\r\n                                    <vg-fullscreen></vg-fullscreen>\r\n                                </vg-controls>\r\n                                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                    <source src='{{news.urlVideo}}' type=\"video/mp4\">\r\n                                </video>\r\n                            </vg-player>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 930:
+/***/ 935:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8074,7 +8322,7 @@ exports.Display = Display;
 
 /***/ }),
 
-/***/ 931:
+/***/ 936:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8092,7 +8340,7 @@ exports.GetPhotoRequest = GetPhotoRequest;
 
 /***/ }),
 
-/***/ 932:
+/***/ 937:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8111,14 +8359,14 @@ exports.GetPhotoResponse = GetPhotoResponse;
 
 /***/ }),
 
-/***/ 933:
+/***/ 938:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let url of pagePhotos.photos; let i = index\" class=\"photo-button\" (click)=\"openPhoto(url, i)\" [style.background-image]=\"url\"></div>\r\n        </div>\r\n        <div class=\"photo-filter\">\r\n            <div class=\"filter-title-text-comand\">Выберете команду</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter\">\r\n                    <mat-slide-toggle [checked]=\"command.id==commandId\" (change)=\"filterCommand(command.id, $event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"nav-content\">\r\n            <div class=\"nav\">\r\n                <div class=\"left\" width=\"40\" height=\"40\" (click)=\"nextLeftPage()\"> </div>\r\n                <div class=\"right\" width=\"40\" height=\"40\" (click)=\"nextRightPage()\"> </div>\r\n                <ul class=\"pages\">\r\n                    <li class=\"first-page\" [ngStyle]=\"pageStyle(1)\" (click)=\"getPage(1)\">1</li>\r\n                    <li *ngFor=\"let page of pageSize\" [ngStyle]=\"pageStyle(page)\" (click)=\"getPage(page)\">{{page}}</li>\r\n                    <li *ngIf=\"pagePhotos.pageSize > 1\" class=\"last-page\" [ngStyle]=\"pageStyle(pagePhotos.pageSize)\" (click)=\"getPage(pagePhotos.pageSize)\">{{pagePhotos.pageSize}}</li>\r\n                    <li>всего - {{pagePhotos.pageSize}}</li>\r\n                </ul>\r\n                <span></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div id=\"photo-layer\" class=\"photo-layer\">\r\n    <div class=\"photo-show\" [style.background-image]=\"display.url\" [ngStyle]=\"photoShowStyle()\" onmousemove=\"$('.photo-layer').addClass('photo-hover')\" onmouseout=\"$('.photo-layer').removeClass('photo-hover')\">\r\n        <div class=\"button-photo-left\" (click)=\"nextLeftPhoto()\">\r\n        </div>\r\n        <div class=\"button-photo-right\" (click)=\"nextRightPhoto()\">\r\n        </div>\r\n    </div>\r\n    <div class=\"photo-show-close\" (click)=\"closePhoto()\">\r\n    </div>\r\n\r\n</div>";
+module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let url of pagePhotos.photos; let i = index\" class=\"photo-button\" (click)=\"openPhoto(url, i)\" [style.background-image]=\"url\"></div>\r\n        </div>\r\n        <div class=\"photo-filter\">\r\n            <div class=\"filter-title-text-comand\">Выберете команду</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter\">\r\n                    <mat-slide-toggle [checked]=\"command.id==commandId\" (change)=\"filterCommand(command.id, $event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"nav-content\">\r\n            <div class=\"nav\">\r\n                <div class=\"left\" width=\"40\" height=\"40\" (click)=\"nextLeftPage()\"> </div>\r\n                <div class=\"right\" width=\"40\" height=\"40\" (click)=\"nextRightPage()\"> </div>\r\n                <ul class=\"pages\">\r\n                    <li [ngStyle]=\"pageStyle(1)\" (click)=\"getPage(1)\">1</li>\r\n                    <li *ngFor=\"let page of pageSize\" [ngStyle]=\"pageStyle(page)\" (click)=\"getPage(page)\">{{page}}</li>\r\n                    <li *ngIf=\"pagePhotos.pageSize > 1\" [ngStyle]=\"pageStyle(pagePhotos.pageSize)\" (click)=\"getPage(pagePhotos.pageSize)\">{{pagePhotos.pageSize}}</li>\r\n                    <li>всего - {{pagePhotos.pageSize}}</li>\r\n                </ul>\r\n                <span></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div id=\"photo-layer\" class=\"photo-layer\">\r\n    <div class=\"photo-show\" [style.background-image]=\"display.url\" [ngStyle]=\"photoShowStyle()\" onmousemove=\"$('.photo-layer').addClass('photo-hover')\" onmouseout=\"$('.photo-layer').removeClass('photo-hover')\">\r\n        <div class=\"button-photo-left\" (click)=\"nextLeftPhoto()\">\r\n        </div>\r\n        <div class=\"button-photo-right\" (click)=\"nextRightPhoto()\">\r\n        </div>\r\n    </div>\r\n    <div class=\"photo-show-close\" (click)=\"closePhoto()\">\r\n    </div>\r\n\r\n</div>";
 
 /***/ }),
 
-/***/ 934:
+/***/ 939:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8143,230 +8391,42 @@ exports.IsAuth = IsAuth;
 
 /***/ }),
 
-/***/ 935:
+/***/ 940:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"admin-login-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <header *ngIf=\"!(page==7)\">\r\n        <div class=\"header-content\">\r\n            <div class=\"logo-olimp\"></div>\r\n            <div class=\"header-logo\"></div>\r\n        </div>\r\n    </header>\r\n    <div class=\"header-hr\">\r\n        Панель Администратора\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-authorized\" *ngIf=\"isAuthAdmin\">\r\n    <div class=\"menu\">\r\n        <div class=\"menu-content\">\r\n            <ul class=\"nave nave-tabs\">\r\n                <li [className]=\"page == 8 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/admin/news\">Новости</a>\r\n                </li>\r\n                <li [className]=\"page == 9 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/admin/turnament\">Турниры</a>\r\n                </li>\r\n                <li [className]=\"page == 10 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <a href=\"/#/comand\">Команды</a>\r\n                </li>\r\n                <li onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                    <div (click)=\"signOutAdmin()\">Выйти</div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"admin-not-authorized\" *ngIf=\"!isAuthAdmin\">\r\n    <div class=\"admin-authoriz\">\r\n        <form class=\"example-form\" autocomplete=\"on\">\r\n            <div class=\"block center login-block\">\r\n                <input class=\"example-full-width login\" placeholder=\"Логин\" name=\"loginAdmin\" [(ngModel)]=\"loginAdmin.login\" required>\r\n                <span [ngClass]=\"loginAdmin.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n\r\n            <div class=\"block center login-block\">\r\n                <input type=\"password\" class=\"example-full-width passvord\" placeholder=\"Пароль\" name=\"passwordAdmin\" [(ngModel)]=\"loginAdmin.password\" minlength=\"6\" #password=\"ngModel\" required>\r\n                <span [ngClass]=\"loginAdmin.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n            </div>\r\n            <button mat-button [ngClass]=\"(loginAdmin.login && loginAdmin.password && loginAdmin.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"signIn(password.hasError('minlength'))\">Войти</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>";
 
 /***/ }),
 
-/***/ 936:
+/***/ 941:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление новостями\r\n    </div>\r\n\r\n    <div class=\"admin-list-news-block\">\r\n        <ul>\r\n            <li *ngFor=\"let news of newsInfo; let i = index\">\r\n                <div><p>Название -</p> {{news.title}} </div>\r\n                <div><p>Тип новости -</p> {{news.type | newsType}} </div>\r\n                <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>\r\n                <div><p>Отображается на главной странице -</p> {{news.top ? \"Да\":\" Нет\"}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editNews(news.id)\">Редактировать</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectNews(news.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <mat-checkbox [(ngModel)]=\"news.active\" (change)=\"active(news.id)\">\r\n                    - активна\r\n                </mat-checkbox>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news-block\">\r\n        <div class=\"add-news-title\">Добавить новость</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип новости</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isText\" (change)=\"isPhoto=false; isVideo=false\">\r\n                Текст\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isPhoto\" (change)=\"isText=false; isVideo=false\">\r\n                Фотоотчет\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isVideo\" (change)=\"isPhoto=false; isText=false\">\r\n                Видео\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isText || isPhoto  || isVideo) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addNews()\">Создать</button>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить новость?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"  (click)=\"dellNews()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление новостями\r\n    </div>\r\n\r\n    <div class=\"admin-list-news-block\">\r\n        <div class=\"filter-button-block\">\r\n            <div class=\"filter-button\" [ngClass]=\"type == 1 ? 'filter-button-active' : ''\" (click)=\"type=1\">Текстовые</div>\r\n            <div class=\"filter-button\" [ngClass]=\"type == 2 ? 'filter-button-active' : ''\" (click)=\"type=2\">Фото</div>\r\n            <div class=\"filter-button\" [ngClass]=\"type == 3 ? 'filter-button-active' : ''\" (click)=\"type=3\">Видео</div>\r\n        </div>\r\n        <ul>\r\n            <li *ngFor=\"let news of getNewsForType(type); let i = index\">\r\n                <div><p>Название -</p> {{news.title}} </div>\r\n                <div><p>Тип новости -</p> {{news.type | newsType}} </div>\r\n                <div><p>Дата создания(редактирования) -</p> {{ news.date}}</div>\r\n                <div><p>Отображается на главной странице -</p> {{news.top ? \"Да\":\" Нет\"}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editNews(news.id)\">Редактировать</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectNews(news.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <mat-checkbox [(ngModel)]=\"news.active\" (change)=\"active(news.id)\">\r\n                    - активна\r\n                </mat-checkbox>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news-block\">\r\n        <div class=\"add-news-title\">Добавить новость</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип новости</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isText\" (change)=\"isPhoto=false; isVideo=false\">\r\n                Текст\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isPhoto\" (change)=\"isText=false; isVideo=false\">\r\n                Фотоотчет\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isVideo\" (change)=\"isPhoto=false; isText=false\">\r\n                Видео\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isText || isPhoto  || isVideo) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addNews()\">Создать</button>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить новость?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"  (click)=\"dellNews()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 937:
+/***/ 942:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"admin-new-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Редактирование новости\r\n    </div>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==1\">\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n        <div class=\"admin-add-news-txt-block\">\r\n            <div>\r\n                Текст новости\r\n            </div>\r\n            <textarea class=\"admin-add-news-txt\" [(ngModel)]=\"news.text\"> </textarea>\r\n        </div>\r\n        <div class=\"profile-image\" [style.background-image]=\"news.photo[0].url\">\r\n        </div>\r\n\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"fileChangedTypeText($event)\" />\r\n                <span>Загрузить фото</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"(news.title && news.text) ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==2\">\r\n        <div class=\"select-command-block\">\r\n            <div class=\"inline-block\">\r\n                <div>Комманда 1</div>\r\n                <select [(ngModel)]=\"news.commandOne\">\r\n                    <option *ngFor=\"let command of commandFilter\" [value]=\"command.id\">\r\n                        {{ command.name }}\r\n                    </option>\r\n                </select>\r\n            </div>\r\n\r\n            <div class=\"inline-block\">\r\n                <div>Комманда 2</div>\r\n                <select [(ngModel)]=\"news.commandTwo\">\r\n                    <option *ngFor=\"let command of commandFilter\" [value]=\"command.id\">\r\n                        {{ command.name }}\r\n                    </option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n\r\n        <div id=\"preview\" class=\"news-image-content\">\r\n            <div *ngIf=\"isPhoto()\">\r\n                <div class=\"photo\" data-title=\"удалить\" *ngFor=\"let photo of news.photo; let i = index\" (click)=\"dellPhotoForNews(photo.id, i)\">\r\n                    <div [style.background-image]=\"photo.url\"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" multiple accept=\"image/x-png,image/gif,image/jpeg\" (change)=\"fileChangedTypePhoto($event)\" />\r\n                <span>Загрузить фото</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"news.title ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div class=\"admin-add-news\" *ngIf=\"news.type==3\">\r\n        <div class=\"admin-add-news-title\">\r\n            Заголовок новости\r\n        </div>\r\n        <textarea class=\"admin-add-news-title\" [(ngModel)]=\"news.title\"> </textarea>\r\n\r\n        <div class=\"news-no-video-content\" *ngIf=\"!news.urlVideo\">\r\n\r\n        </div>\r\n\r\n        <div class=\"news-video-content\" *ngIf=\"news.urlVideo\">\r\n            <div *ngFor=\"let video of videos\">\r\n                <vg-player>\r\n                    <vg-controls>\r\n                        <vg-play-pause></vg-play-pause>\r\n                        <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-scrub-bar>\r\n                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                        </vg-scrub-bar>\r\n                        <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-mute></vg-mute>\r\n                        <vg-volume></vg-volume>\r\n                        <vg-fullscreen></vg-fullscreen>\r\n                    </vg-controls>\r\n                    <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                        <source src='{{video}}' type=\"video/mp4\">\r\n                    </video>\r\n                </vg-player>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"file-upload\">\r\n            <label>\r\n                <input type=\"file\" name=\"file\" multiple accept=\"video/mp4\" (change)=\"fileChangedVideo($event)\" />\r\n                <span>Загрузить видео</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"admin-news-is-top\">\r\n            <mat-checkbox [(ngModel)]=\"news.top\">\r\n                - Отображать на главной странице\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button class=\"preview-button\" (click)=\"preview()\">Предпросмотр</button>\r\n        <button mat-button [ngClass]=\"news.title ? 'button-active' : 'button-no-active'\" class=\"save-button\" (click)=\"saveNews()\">Сохранить</button>\r\n    </div>\r\n\r\n</div>\r\n\r\n\r\n\r\n<div class=\"news-home preview-layer\" id=\"preview-layer\" (click)=\"close()\">\r\n    <div class=\"news-preview-block\">\r\n        <div class=\"news-content\">\r\n            <div *ngIf=\"news.type == 1\" class=\"news-text-block\">\r\n                <div class=\"news-title\">\r\n                    {{news.title}}\r\n                    <div class=\"news-date\">\r\n                        {{news.date}}\r\n                    </div>\r\n                </div>\r\n                <div class=\"text-news-content\">\r\n\r\n                    <div class=\"news-text\">\r\n                        <div class=\"news-photo\" [style.background-image]='news.photo[0].url'></div>\r\n                        {{news.text}}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"news.type == 2\" class=\"news-photo-block\">\r\n                <div id=\"photo-content\" class=\"photo-news-content\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div *ngIf=\"isPhoto()\">\r\n                        <div id=\"{{'display'+ i}}\" class=\"news-photo-display\" [style.background-image]=\"news.photo[0].url\"></div>\r\n                        <div class=\"photo-button-content\">\r\n                            <div *ngFor=\"let photo of news.photo\" class=\"news-photo-button\" [style.background-image]=\"photo.url\"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"news.type == 3\" class=\"news-video-block\">\r\n                <div class=\"video-news-content\">\r\n                    <div class=\"news-title\">\r\n                        {{news.title}}\r\n                        <div class=\"news-date\">\r\n                            {{news.date}}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"news-video\" *ngFor=\"let video of videos\">\r\n                        d\r\n                        <vg-player>\r\n                            <vg-controls>\r\n                                <vg-play-pause></vg-play-pause>\r\n                                <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                <vg-scrub-bar>\r\n                                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                                </vg-scrub-bar>\r\n                                <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                                <vg-mute></vg-mute>\r\n                                <vg-volume></vg-volume>\r\n                                <vg-fullscreen></vg-fullscreen>\r\n                            </vg-controls>\r\n                            <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                                <source src='{{video}}' type=\"video/mp4\">\r\n                            </video>\r\n                        </vg-player>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 938:
+/***/ 943:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление турнирами\r\n    </div>\r\n\r\n\r\n    <div class=\"admin-list-news-block\">\r\n\r\n        <ul>\r\n            <li *ngFor=\"let turnament of turnaments; let i = index\">\r\n                <div><p>Название -</p> {{turnament.name}} </div>\r\n                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>\r\n                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>\r\n                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editTurnament(turnament.id)\">Открыть</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectTurnament(turnament.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n\r\n    </div>\r\n\r\n    <div class=\"admin-add-turnament-block\">\r\n        <div class=\"add-news-title\">Добавить турнир</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип турнира</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isOut\" (change)=\"isMixture=false\">\r\n                На выбывание\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isMixture\" (change)=\"isOut=false\">\r\n                Смешанный\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isOut || isMixture) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)\">Создать</button>\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить турнир?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellTurnament()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"admin-news-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"admin-news-title\">\r\n        Управление турнирами\r\n    </div>\r\n\r\n\r\n    <div class=\"admin-list-news-block\">\r\n        <div class=\"filter-button-block\">\r\n            <div class=\"filter-button\" [ngClass]=\"step == 0 ? 'filter-button-active' : ''\" (click)=\"step=0\">Редактирование</div>\r\n            <div class=\"filter-button\" [ngClass]=\"step == 1 ? 'filter-button-active' : ''\" (click)=\"step=1\">Регистрация</div>\r\n            <div class=\"filter-button\" [ngClass]=\"step == 2 ? 'filter-button-active' : ''\" (click)=\"step=2\">Построение</div>\r\n            <div class=\"filter-button\" [ngClass]=\"step == 3 ? 'filter-button-active' : ''\" (click)=\"step=3\">В процессе</div>\r\n            <div class=\"filter-button\" [ngClass]=\"step == 4 ? 'filter-button-active' : ''\" (click)=\"step=4\">Завершены</div>\r\n        </div>\r\n        <ul>\r\n            <li *ngFor=\"let turnament of getTurnamrntForType(step); let i = index\">\r\n                <div><p>Название -</p> {{turnament.name}} </div>\r\n                <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>\r\n                <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>\r\n                <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>\r\n                <button mat-button class=\"button-come-in button-edit-news\" (click)=\"editTurnament(turnament.id, turnament.type)\">Открыть</button>\r\n                <button mat-button class=\"button-come-in button-add-news\" (click)=\"selectTurnament(turnament.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">Удалить</button>\r\n                <hr />\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"admin-add-turnament-block\">\r\n        <div class=\"add-news-title\">Добавить турнир</div>\r\n\r\n        <div class=\"select-news-title\">Выберете тип турнира</div>\r\n        <div class=\"check-news-block\">\r\n            <mat-checkbox [(ngModel)]=\"isOut\" (change)=\"isMixture=false\">\r\n                На выбывание\r\n            </mat-checkbox>\r\n            <mat-checkbox [(ngModel)]=\"isMixture\" (change)=\"isOut=false\">\r\n                Смешанный\r\n            </mat-checkbox>\r\n        </div>\r\n        <button mat-button [ngClass]=\"(isOut || isMixture) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)=\"addTurnament((isOut||isMixture), isOut ? 1 : isMixture ? 2: 0)\">Создать</button>\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n\r\n            <div class=\"modal-body\">\r\n                Удалить турнир?\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"dellTurnament()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 939:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var SaveTurnamentInfoRequest = (function () {
-    function SaveTurnamentInfoRequest(turnament) {
-        this.turnament = turnament;
-    }
-    return SaveTurnamentInfoRequest;
-}());
-exports.SaveTurnamentInfoRequest = SaveTurnamentInfoRequest;
-var TurnamentStepRequest = (function () {
-    function TurnamentStepRequest(id, step) {
-        this.id = id;
-        this.step = step;
-    }
-    return TurnamentStepRequest;
-}());
-exports.TurnamentStepRequest = TurnamentStepRequest;
-var TourStepRequest = (function () {
-    function TourStepRequest(turnamentId, tour, step) {
-        this.turnamentId = turnamentId;
-        this.tour = tour;
-        this.step = step;
-    }
-    return TourStepRequest;
-}());
-exports.TourStepRequest = TourStepRequest;
-var DeclareRequest = (function () {
-    function DeclareRequest(turnamentId, commandId) {
-        this.turnamentId = turnamentId;
-        this.commandId = commandId;
-    }
-    return DeclareRequest;
-}());
-exports.DeclareRequest = DeclareRequest;
-var RemoveDeclareRequest = (function () {
-    function RemoveDeclareRequest(turnamentId, commandId, cause) {
-        this.turnamentId = turnamentId;
-        this.commandId = commandId;
-        this.cause = cause;
-    }
-    return RemoveDeclareRequest;
-}());
-exports.RemoveDeclareRequest = RemoveDeclareRequest;
-var DivideForDayRequest = (function () {
-    function DivideForDayRequest(turnamentId, tour, days) {
-        this.turnamentId = turnamentId;
-        this.tour = tour;
-        this.days = days;
-    }
-    return DivideForDayRequest;
-}());
-exports.DivideForDayRequest = DivideForDayRequest;
-var ChangeGameDayRequest = (function () {
-    function ChangeGameDayRequest(turnamentId, startDate, newStartDate, arena, tour) {
-        this.turnamentId = turnamentId;
-        this.startDate = startDate;
-        this.newStartDate = newStartDate;
-        this.arena = arena;
-        this.tour = tour;
-    }
-    return ChangeGameDayRequest;
-}());
-exports.ChangeGameDayRequest = ChangeGameDayRequest;
-var CompleteGameRequest = (function () {
-    function CompleteGameRequest(turnamentId, gameId, commandOneGoals, commandTwoGoals) {
-        this.turnamentId = turnamentId;
-        this.gameId = gameId;
-        this.commandOneGoals = commandOneGoals;
-        this.commandTwoGoals = commandTwoGoals;
-    }
-    return CompleteGameRequest;
-}());
-exports.CompleteGameRequest = CompleteGameRequest;
-
-
-/***/ }),
-
-/***/ 940:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var TurnamentInfo = (function () {
-    function TurnamentInfo(id, name, dateStart, dateEnd, type, stateCode, step) {
-        this.id = id;
-        this.name = name;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.type = type;
-        this.stateCode = stateCode;
-        this.step = step;
-    }
-    return TurnamentInfo;
-}());
-exports.TurnamentInfo = TurnamentInfo;
-var GetTurnament = (function () {
-    function GetTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
-        this.id = id;
-        this.name = name;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.type = type;
-        this.stateCode = stateCode;
-        this.step = step;
-        this.description = description;
-        this.contributionGame = contributionGame;
-        this.contributionTournament = contributionTournament;
-        this.commands = commands;
-        this.positionCommand = positionCommand;
-        this.groupTourNumber = groupTourNumber;
-    }
-    return GetTurnament;
-}());
-exports.GetTurnament = GetTurnament;
-var PositionCommand = (function () {
-    function PositionCommand(id, position, commandId, commandName, points, place) {
-        this.id = id;
-        this.position = position;
-        this.commandId = commandId;
-        this.commandName = commandName;
-        this.points = points;
-        this.place = place;
-    }
-    return PositionCommand;
-}());
-exports.PositionCommand = PositionCommand;
-var GameTurnament = (function () {
-    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
-        this.id = id;
-        this.idCommandOne = idCommandOne;
-        this.idCommandTwo = idCommandTwo;
-        this.commandOneName = commandOneName;
-        this.commandTwoName = commandTwoName;
-        this.tour = tour;
-        this.status = status;
-        this.dateStart = dateStart;
-        this.arena = arena;
-        this.commandOneGoals = commandOneGoals;
-        this.commandTwoGoals = commandTwoGoals;
-        this.commandOnePoints = commandOnePoints;
-        this.commandTwoPoints = commandTwoPoints;
-    }
-    return GameTurnament;
-}());
-exports.GameTurnament = GameTurnament;
-var GroupDateStart = (function () {
-    function GroupDateStart(dateStart, arena, gameTurnament) {
-        this.dateStart = dateStart;
-        this.arena = arena;
-        this.gameTurnament = gameTurnament;
-    }
-    return GroupDateStart;
-}());
-exports.GroupDateStart = GroupDateStart;
-var GroupTourNumber = (function () {
-    function GroupTourNumber(numberTour, status, groupDateStart) {
-        this.numberTour = numberTour;
-        this.status = status;
-        this.groupDateStart = groupDateStart;
-    }
-    return GroupTourNumber;
-}());
-exports.GroupTourNumber = GroupTourNumber;
-var DayGame = (function () {
-    function DayGame(day, arena) {
-        this.day = day;
-        this.arena = arena;
-    }
-    return DayGame;
-}());
-exports.DayGame = DayGame;
-var Arena = (function () {
-    function Arena(id, name) {
-        this.id = id;
-        this.name = name;
-    }
-    return Arena;
-}());
-exports.Arena = Arena;
-
-
-/***/ }),
-
-/***/ 941:
+/***/ 944:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button *ngIf=\"turnament.step == 2\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">В процесс</button>\r\n    <button *ngIf=\"turnament.step == 3\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">Завершить турнир</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2 && isCalc\" mat-button class=\"calculate-table button-active\" (click)=\"calculateTable()\">Расчитать таблицу</button>\r\n\r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, j)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n\r\n            <table class=\"lk-command\">\r\n                <tr *ngFor=\"let row of rowSize; let r = index\">\r\n                    <td *ngFor=\"let col of colSize; let c = index\">\r\n                        {{table[r][c]}}\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n            <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" class=\"tour-block\">\r\n                <button *ngIf=\"groupTour.status == 0 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"activTour(groupTour.numberTour)\">Активировать тур</button>\r\n                <button *ngIf=\"groupTour.status == 2 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"closeTour(groupTour.numberTour)\">Завершить тур</button>\r\n                <div class=\"tour-number\">\r\n                    Тур № {{groupTour.numberTour}}\r\n                </div>\r\n\r\n                <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"game-group-date\">\r\n                    <div class=\"day-play-game\">\r\n                        День {{d+1}}<br />\r\n                    </div>\r\n\r\n                    <div class=\"date-start-game\" *ngIf=\"groupTour.status != 2 && groupTour.status != 3\">\r\n                        Дата игр <br />\r\n                        <input type=\"datetime-local\" [ngModel]=\"tour.dateStart\" (change)=\"changeDate($event.target.value, tour.dateStart, t+1)\">\r\n                        <br />\r\n                        Место <br />\r\n                        <select [(ngModel)]=\"tour.arena\" (change)=\"changeArena($event.target.value, tour.dateStart, t+1)\">\r\n                            <option [value]=\"arena.id\" *ngFor=\"let arena of arens\">\r\n                                {{arena.name}}\r\n                            </option>\r\n                        </select>\r\n                    </div>\r\n                    <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                        <div *ngIf=\"game.status != 1\" class=\"game-points\">\r\n                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                        </div>\r\n                        <div *ngIf=\"game.status == 1\" class=\"game-points\">\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandOneGoals\" (change)=\"game.commandOneGoals = $event.target.value\" />\r\n                            -\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandTwoGoals\" (change)=\"game.commandTwoGoals = $event.target.value\" />\r\n                        </div>\r\n\r\n                        <div class=\"game-command-name-block\">\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandOneName}}\r\n                            </div>\r\n                            VS\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandTwoName}}\r\n                            </div>\r\n                        </div>\r\n\r\n                        <button *ngIf=\"game.status == 1\" mat-button class=\"game-complete-button button-active\" (click)=\"completeGame(game.id, game.commandOneGoals, game.commandTwoGoals)\">Завершить</button>\r\n                    </div>\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'divide' + t}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label *ngIf=\"turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3\" for=\"{{'divide' + t}}\" class=\"tournaments-command-open game-day-button-open\">Разбить на дни</label>\r\n\r\n                <div *ngIf=\"turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3\">\r\n                    <div class=\"inline-block\">\r\n                        Выберете колличество дней  <input type=\"number\" value=\"0\" (change)=\"selectDay($event.target.value)\" />\r\n                    </div>\r\n                    <button mat-button class=\"game-day-button button-active\" (click)=\"divideForDay(groupTour.numberTour)\">Сохранить</button>\r\n                    <div>\r\n                        <div *ngFor=\"let day of days; let w = index\" class=\"day-value\">\r\n                            День {{w+1}}\r\n                            <input type=\"datetime-local\" [ngModel]=\"day.day\" (change)=\"day.day = $event.target.value\">\r\n                            Место\r\n                            <select [(ngModel)]=\"day.arena\">\r\n                                <option *ngFor=\"let arena of arens\" [value]=\"arena.id\">\r\n                                    {{arena.name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "\r\n<circle-turnament *ngIf=\"type==1\" [id]=\"id\" [type]=\"type\"></circle-turnament>\r\n<mixed-turnament *ngIf=\"type==2\" [id]=\"id\" [type]=\"type\"></mixed-turnament>";
 
 /***/ }),
 
-/***/ 942:
+/***/ 945:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8382,15 +8442,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
-var router_1 = __webpack_require__(64);
-var authentication_1 = __webpack_require__(204);
-var authorizationRequest_1 = __webpack_require__(388);
-var emailRequest_1 = __webpack_require__(943);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var authentication_1 = __webpack_require__(207);
+var authorizationRequest_1 = __webpack_require__(390);
+var emailRequest_1 = __webpack_require__(946);
 var page_1 = __webpack_require__(38);
-var email_1 = __webpack_require__(395);
-var common_1 = __webpack_require__(73);
-var user_1 = __webpack_require__(944);
+var email_1 = __webpack_require__(397);
+var common_1 = __webpack_require__(65);
+var user_1 = __webpack_require__(947);
 var App = (function () {
     function App(toastr, vcr, authenticationService, pageService, emailService, router) {
         this.toastr = toastr;
@@ -8555,7 +8615,7 @@ var App = (function () {
     App = __decorate([
         core_1.Component({
             selector: 'app-root',
-            template: __webpack_require__(945),
+            template: __webpack_require__(948),
             providers: [page_1.PageService]
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
@@ -8572,7 +8632,7 @@ exports.App = App;
 
 /***/ }),
 
-/***/ 943:
+/***/ 946:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8591,7 +8651,7 @@ exports.SingCodeToEmailRequest = SingCodeToEmailRequest;
 
 /***/ }),
 
-/***/ 944:
+/***/ 947:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8629,14 +8689,14 @@ exports.Account = Account;
 
 /***/ }),
 
-/***/ 945:
+/***/ 948:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"header-block\">\r\n    <header *ngIf=\"page<7\">\r\n        <div class=\"header-content\">\r\n            <div class=\"logo-olimp\"></div>\r\n            <div class=\"header-logo\"></div>\r\n            <div *ngIf=\"!isAuth\" class=\"registration\" (click)=\"goCome()\">Войти</div>\r\n            <div class=\"menu\">\r\n                <div class=\"menu-content\">\r\n                    <ul class=\"nave nave-tabs\">\r\n                        <li [className]=\"page == 1 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/\">Главная <span class=\"home\"></span></a></li>\r\n                        <li class=\"dropdown\" [className]=\"page == 2 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\">\r\n                            <a data-toggle=\"dropdown\" class=\"a-navbar\" id=\"nav_home\">Турниры <span class=\"caret\"></span> <span class=\"wreath\"></span> </a>\r\n                            <ul class=\"dropdown-menu dropped\">\r\n                                <li><a href=\"/#/current-tournaments\">Текущие турниры</a> </li>\r\n                                <li><a href=\"/#/new-tournaments\">Будущие турниры</a> </li>\r\n                                <li><a href=\"/#/past-tournaments\">Прошедшие турниры</a> </li>\r\n                            </ul>\r\n                        </li>\r\n                        <li [className]=\"page == 3 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/comand\">Команды<span class=\"comand\"></span></a></li>\r\n                        <li [className]=\"page == 4 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/news\">Новости<span class=\"news\"></span></a></li>\r\n                        <li [className]=\"page == 5 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/photo\">Фото<span class=\"photo-menu\"></span></a></li>\r\n                        <li [className]=\"page == 6 ? 'active' : ''\" onmousemove=\"$(this).addClass('focus-over')\" onmouseout=\"$('.focus-over').removeClass('focus-over')\"><a href=\"/#/video\">Видео<span class=\"video-menu\"></span></a></li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"exit-block\">\r\n                <div *ngIf=\"isAuth\" (click)=\"isExit()\" id=\"exit1\" class=\"exit\">{{name}}</div>\r\n                <div *ngIf=\"isAuth\" (click)=\"signOutUser()\" id=\"exit2\" class=\"exit-up\">Выйти</div>\r\n                <div *ngIf=\"isAuth\" (click)=\"goCabinet()\" id=\"cabinet\" class=\"cabinet\">Кабинет</div>\r\n            </div>\r\n        </div>\r\n    </header>\r\n</div>\r\n\r\n<div class=\"transparent-layer\" id=\"transparent-layer\">\r\n    <div class=\"registration-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\" [ngStyle]=\"registratioBlockStyle()\">\r\n        <div class=\"close-button\" (click)=\"close()\"></div>\r\n        <div class=\"login-button\" [ngClass]=\"selectPage == 1 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(1)\">Вход</div>\r\n        <div class=\"registration-button\" [ngClass]=\"selectPage == 2 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(2)\">Регистрация</div>\r\n        <div class=\"reestablish-button\" [ngClass]=\"selectPage == 3 ? 'active-button' : 'unactive-button'\" (click)=\"userPage(3)\">Забыли пароль?</div>\r\n\r\n\r\n        <div class=\"login-content\" *ngIf=\"selectPage == 1\">\r\n            <form class=\"example-form\" autocomplete=\"on\">\r\n\r\n                <div class=\"block center login-block\">\r\n                    <input class=\"example-full-width login\" placeholder=\"Логин\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                    <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <div class=\"block center login-block\">\r\n                    <input type=\"password\" class=\"example-full-width passvord\" placeholder=\"Пароль\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\" required>\r\n                    <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <button mat-button [ngClass]=\"(user.login && user.password && user.password && !password.hasError('minlength')) ? 'button-active' : 'button-no-active'\" class=\"button-come-in\" (click)='signInUser()'>Войти</button>\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"login-content-registration\" *ngIf=\"selectPage == 2\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n            <form class=\"example-form\" #regisrtation=\"ngForm\" novalidate autocomplete=\"on\">\r\n\r\n                <div class=\"inline-block\">\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Логин *\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                        <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" type=\"password\" placeholder=\"Пароль *\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\" required>\r\n                        <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" type=\"password\" placeholder=\"Повторите пароль *\" name=\"passwordTo\" [(ngModel)]=\"passwordTo\" required>\r\n                        <span [ngClass]=\"user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"inline-block\">\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Название команды*\" name=\"commandName\" [(ngModel)]=\"user.commandName\" required>\r\n                        <span [ngClass]=\"user.commandName ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Введите email адресс *\" name=\"email\" [(ngModel)]=\"user.email\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\" #email=\"ngModel\">\r\n                        <span [ngClass]=\"user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"block\">\r\n                        <input class=\"reg-input\" placeholder=\"Контактный телефон *\" name=\"mobile\" [(ngModel)]=\"user.mobile\" pattern=\"[0-9]*\" #mobile=\"ngModel\" required>\r\n                        <span [ngClass]=\"user.mobile && !mobile.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n                </div>\r\n\r\n                <label class=\"mandatory\">* обязательные поля</label>\r\n\r\n                <button mat-button class=\"button-code-registration\" [ngClass]=\"user.email && !email.hasError('pattern') ? 'button-active' : 'button-no-active'\" (click)='singCodeToEmail()'>Выслать код на email</button>\r\n\r\n                <input class=\"form-control label-kode\" type=\"text\" placeholder=\"код *\" name=\"code\" [(ngModel)]=\"user.code\" />\r\n\r\n                <button mat-button class=\"button-registration\" [ngClass]=\"!(regisrtation.invalid) && user.code && user.password == passwordTo ? 'button-active' : 'button-no-active'\" (click)='registration(regisrtation.invalid, user.code ? true : false)'>Зарегистрировать</button>\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"login-content-registration\" *ngIf=\"selectPage == 3\">\r\n            <form class=\"example-form\" #password=\"ngForm\" novalidate autocomplete=\"on\">\r\n\r\n                <div class=\"inline-block\">\r\n                    <input class=\"reg-input\" placeholder=\"Логин *\" name=\"login\" [(ngModel)]=\"user.login\" required>\r\n                    <span [ngClass]=\"user.login ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <div class=\"inline-block\">\r\n                    <input class=\"reg-input\" placeholder=\"Введите email адресс *\" name=\"email *\" [(ngModel)]=\"user.email\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\" #email=\"ngModel\">\r\n                    <span [ngClass]=\"user.email && !email.hasError('pattern') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                </div>\r\n\r\n                <button mat-button class=\"button-code\" [ngClass]=\"user.email && user.login && !email.hasError('pattern') ? 'button-active' : 'button-no-active'\" (click)='singCodeToEmailReplace(password.invalid)'>Выслать код на email</button>\r\n\r\n                <input class=\"form-control label-kode\" type=\"text\" placeholder=\"код *\" name=\"code\" [(ngModel)]=\"user.code\" />\r\n\r\n                <button mat-button class=\"button-code\" [ngClass]=\"user.code ? 'button-active' : 'button-no-active'\" (click)='confirmTheCode()'>Подтвердить код</button>\r\n\r\n                <div class=\"password-remove\">\r\n                    <div class=\"inline-block\">\r\n                        <input [disabled]=\"!isCode\" class=\"reg-input passvord\" type=\"password\" placeholder=\"Новый пароль\" name=\"password\" [(ngModel)]=\"user.password\" minlength=\"5\" #password=\"ngModel\">\r\n                        <span [ngClass]=\"user.password && !password.hasError('minlength') ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <div class=\"inline-block\">\r\n                        <input [disabled]=\"!isCode\" class=\"reg-input passvord\" type=\"password\" placeholder=\"Повторите новый пароль\" name=\"passwordTo\" [(ngModel)]=\"passwordTo\">\r\n                        <span [ngClass]=\"user.password == passwordTo && passwordTo ? 'valid-true' : 'valid-false'\" class=\"marcer\"></span>\r\n                    </div>\r\n\r\n                    <button [disabled]=\"!isCode\" mat-button class=\"button-registration\" [ngClass]=\"isCode ? 'button-active' : 'button-no-active'\" (click)='replacePassvord()'>Изменить пароль</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n\r\n";
 
 /***/ }),
 
-/***/ 946:
+/***/ 949:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8652,10 +8712,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var ng2_toastr_1 = __webpack_require__(21);
+var ng2_toastr_1 = __webpack_require__(19);
 var public_1 = __webpack_require__(88);
 var page_1 = __webpack_require__(38);
-var video_1 = __webpack_require__(947);
+var video_1 = __webpack_require__(950);
 var VideoCommand = (function () {
     function VideoCommand(toastr, vcr, home, pageService) {
         this.toastr = toastr;
@@ -8719,7 +8779,7 @@ var VideoCommand = (function () {
     VideoCommand = __decorate([
         core_1.Component({
             selector: 'video-command',
-            template: __webpack_require__(948)
+            template: __webpack_require__(951)
         }),
         __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
             core_1.ViewContainerRef,
@@ -8733,7 +8793,7 @@ exports.VideoCommand = VideoCommand;
 
 /***/ }),
 
-/***/ 947:
+/***/ 950:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8751,14 +8811,568 @@ exports.Video = Video;
 
 /***/ }),
 
-/***/ 948:
+/***/ 951:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"command-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n\r\n\r\n    <div id=\"photo-content\" class=\"photo-news-content\">\r\n        <div class=\"news-title-photo\">\r\n        </div>\r\n        <div class=\"photo-display\">\r\n            {{videoTitle}}\r\n\r\n            <vg-player>\r\n                <vg-controls>\r\n                    <vg-play-pause></vg-play-pause>\r\n                    <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                    <vg-scrub-bar>\r\n                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                    </vg-scrub-bar>\r\n                    <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                    <vg-mute></vg-mute>\r\n                    <vg-volume></vg-volume>\r\n                    <vg-fullscreen></vg-fullscreen>\r\n                </vg-controls>\r\n                <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                    <source *ngFor=\"let video of sources\" src='{{video}}' type=\"video/mp4\">\r\n                </video>\r\n            </vg-player>\r\n        </div>\r\n\r\n        <div class=\"photo-filter\">\r\n            <div class=\"filter-title-text\">Выберете период времени</div>\r\n            <form #myForm=\"ngForm\" novalidate class=\"form-date\">\r\n                <my-date-picker class=\"date-ot\" (dateChanged)=\"filterDate($event,1)\" closeSelectorOnDocumentClick=\"true\" name=\"dateTo\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateTo\" required></my-date-picker>\r\n                <span>- От</span>\r\n                <my-date-picker (dateChanged)=\"filterDate($event,2)\" name=\"dateEnd\" [options]=\"myDatePickerOptions\" [(ngModel)]=\"dateEnd\" required></my-date-picker>\r\n                <span>- До</span>\r\n            </form>\r\n            <div class=\"filter-title-text-comand\">Выберете команды</div>\r\n            <div class=\"filter-command\">\r\n                <div class=\"command-filter-button\" *ngFor=\"let command of commandFilter; let i = index\">\r\n                    <mat-slide-toggle (change)=\"filterCommand(command.id,$event.checked)\">{{command.name}}</mat-slide-toggle>\r\n                </div>\r\n\r\n\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"photo-content\">\r\n            <div *ngFor=\"let video of videos\" class=\"photo-button\" (click)=\"showVideo(video.url, video.name)\" [style.background-image]=\"video.url\">\r\n\r\n                <vg-player>\r\n                    <vg-controls>\r\n                        <vg-play-pause></vg-play-pause>\r\n                        <vg-time-display vgProperty=\"current\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-scrub-bar>\r\n                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>\r\n                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>\r\n                        </vg-scrub-bar>\r\n                        <vg-time-display vgProperty=\"total\" vgFormat=\"mm:ss\"></vg-time-display>\r\n                        <vg-mute></vg-mute>\r\n                        <vg-volume></vg-volume>\r\n                        <vg-fullscreen></vg-fullscreen>\r\n                    </vg-controls>\r\n                    <video #media [vgMedia]=\"media\" id=\"singleVideo\" preload=\"auto\" crossorigin=\"\">\r\n                        <source src='{{video.url}}' type=\"video/mp4\">\r\n                    </video>\r\n                </vg-player>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 
-/***/ 949:
+/***/ 952:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var common_1 = __webpack_require__(65);
+var turnament_1 = __webpack_require__(145);
+var elementRequest_1 = __webpack_require__(398);
+var turnamentRequest_1 = __webpack_require__(399);
+var turnament_2 = __webpack_require__(400);
+var CircleTurnament = (function () {
+    function CircleTurnament(toastr, router, turnamentService) {
+        this.toastr = toastr;
+        this.router = router;
+        this.turnamentService = turnamentService;
+        this.page = 1;
+        this.cause = null;
+        this.commandId = null;
+        this.index = null;
+        this.isCalc = false;
+        this.rowSize = new Array();
+        this.colSize = new Array();
+        this.days = new Array();
+        this.table = new Array();
+        this.arens = new Array();
+        this.turnament = new turnament_2.GetCircleTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
+    }
+    CircleTurnament.prototype.ngOnInit = function () {
+        var self = this;
+        self.getTurnament(self.id);
+        self.getArena();
+    };
+    CircleTurnament.prototype.getTurnament = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentCircle(new elementRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnament = response.turnament;
+            self.page = self.turnament.step > 1 ? 2 : 1;
+            self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
+            self.getTable();
+        });
+    };
+    CircleTurnament.prototype.getArena = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetArena().then(function (response) {
+            self.arens = response.arens;
+        });
+    };
+    CircleTurnament.prototype.getResult = function (row, col) {
+        var self = this;
+        var commandOneId = self.turnament.positionCommand[row - 1].commandId;
+        var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
+        var result = "";
+        self.turnament.groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        }); }); });
+        return result;
+    };
+    CircleTurnament.prototype.getTable = function () {
+        var self = this;
+        var commandSize = self.turnament.positionCommand.length;
+        self.rowSize = new Array();
+        self.colSize = new Array();
+        self.table = new Array(commandSize + 1);
+        for (var i = 0; i < commandSize + 1; i++) {
+            self.rowSize.push(i);
+            self.table[i] = new Array(commandSize + 3);
+        }
+        for (var i = 0; i < commandSize + 3; i++)
+            self.colSize.push(i);
+        for (var row = 0; row < self.table.length; row++) {
+            for (var col = 0; col < self.table[row].length; col++) {
+                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
+                    self.table[row][col] = self.getResult(row, col);
+                if (row != 0 && col == commandSize + 1)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].points;
+                if (row != 0 && col == commandSize + 2)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].place;
+                if (row == 0 && col < commandSize + 1 && row != col)
+                    self.table[row][col] = self.turnament.positionCommand[col - 1].commandName;
+                if (col == 0 && row < commandSize + 1 && row != col)
+                    self.table[row][col] = self.turnament.positionCommand[row - 1].commandName;
+                if (row == 0 && col == commandSize + 1)
+                    self.table[row][col] = "Очки";
+                if (row == 0 && col == commandSize + 2)
+                    self.table[row][col] = "Место";
+            }
+        }
+    };
+    CircleTurnament.prototype.back = function () {
+        var self = this;
+        self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.Turnament], {});
+    };
+    CircleTurnament.prototype.saveTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.SaveCircleTurnamentInfo(new turnamentRequest_1.SaveCircleTurnamentInfoRequest(self.turnament)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    CircleTurnament.prototype.openRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 1)).then(function (response) {
+            self.turnament.step = 1;
+            self.toastr.success("Этап регистрации");
+        });
+    };
+    CircleTurnament.prototype.changeStep = function (step) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, step)).then(function (response) {
+            self.turnament.step = step;
+            self.page = step > 1 ? 2 : 1;
+            self.toastr.success("Смена этапа");
+        });
+    };
+    CircleTurnament.prototype.changeArena = function (arena, date, tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeArena(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, date, null, arena, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    CircleTurnament.prototype.changeDate = function (newDate, date, tour) {
+        var self = this;
+        var nowDate = date == null ? null : date;
+        self.busy = self.turnamentService.ChangeDate(new turnamentRequest_1.ChangeGameDayRequest(self.turnament.id, nowDate, newDate, null, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    CircleTurnament.prototype.completeRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
+            self.turnament.step = 2;
+            self.page = 2;
+            self.toastr.success("Этап построения");
+        });
+    };
+    CircleTurnament.prototype.startTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 3)).then(function (response) {
+            self.turnament.step = 3;
+            self.toastr.success("Этап в процессе");
+        });
+    };
+    CircleTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
+        var self = this;
+        self.busy = self.turnamentService.AcceptDeclare(new turnamentRequest_1.DeclareRequest(turnamentId, commandId)).then(function (response) {
+            self.turnament.commands[index].status = true;
+            self.toastr.success("Заявка принята");
+        });
+    };
+    CircleTurnament.prototype.selectDeclare = function (commandId, index) {
+        var self = this;
+        self.commandId = commandId;
+        self.index = index;
+    };
+    CircleTurnament.prototype.removeDeclare = function () {
+        var self = this;
+        if (self.commandId == null && self.index == null)
+            return;
+        if (self.cause == null || self.cause == "") {
+            self.toastr.error("Укажите причину отказа");
+            return;
+        }
+        self.busy = self.turnamentService.RemoveDeclare(new turnamentRequest_1.RemoveDeclareRequest(self.turnament.id, self.commandId, self.cause)).then(function (response) {
+            self.turnament.commands.splice(self.index, 1);
+            self.commandId = null;
+            self.index = null;
+            self.cause = null;
+            self.toastr.success("Заявка отклонена");
+        });
+    };
+    CircleTurnament.prototype.calculateTable = function () {
+        var self = this;
+        self.busy = self.turnamentService.CalculateTable(new elementRequest_1.ElementRequest(self.turnament.id)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Турнирная табляца построена");
+        });
+    };
+    CircleTurnament.prototype.selectDay = function (day) {
+        var self = this;
+        if (day > self.turnament.positionCommand.length / 2) {
+            self.toastr.error("Колличество дней не может превышать - " + self.turnament.positionCommand.length / 2);
+            return;
+        }
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
+        self.days = new Array();
+        for (var i = 0; i < day; i++) {
+            self.days.push(new turnament_2.DayGame(null, null));
+        }
+    };
+    CircleTurnament.prototype.divideForDay = function (tour) {
+        var self = this;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+        var isValid = true;
+        if (self.days.length > 0)
+            self.days.forEach(function (x) {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            });
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.id, tour, self.days)).then(function (response) {
+                self.days = new Array();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    };
+    CircleTurnament.prototype.activTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, self.turnament.type, tour, 1)).then(function (response) {
+            self.turnament.groupTourNumber[tour - 1].status = 1;
+            self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
+            self.toastr.success("Тур активен");
+        });
+    };
+    CircleTurnament.prototype.completeGame = function (id, oneGols, twoGols) {
+        var self = this;
+        if (oneGols < 0 || twoGols < 0) {
+            self.toastr.error("Отрицательное колличество забитых мячей");
+            return;
+        }
+        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.id, id, oneGols, twoGols)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    };
+    CircleTurnament.prototype.closeTour = function (tour) {
+        var self = this;
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, self.turnament.type, tour, null)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
+    };
+    CircleTurnament.prototype.completeTurnament = function () {
+        var self = this;
+        self.changeStep(4);
+        self.toastr.success("Тур завершен");
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CircleTurnament.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CircleTurnament.prototype, "type", void 0);
+    CircleTurnament = __decorate([
+        core_1.Component({
+            selector: 'circle-turnament',
+            template: __webpack_require__(953)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            router_1.Router,
+            turnament_1.TurnamentAdminService])
+    ], CircleTurnament);
+    return CircleTurnament;
+}());
+exports.CircleTurnament = CircleTurnament;
+
+
+/***/ }),
+
+/***/ 953:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button *ngIf=\"turnament.step == 2\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">В процесс</button>\r\n    <button *ngIf=\"turnament.step == 3\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeTurnament()\">Завершить турнир</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\" [disabled]=\"!isCalc\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2 && isCalc\" mat-button class=\"calculate-table button-active\" (click)=\"calculateTable()\">Расчитать таблицу</button>\r\n\r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, j)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n            <div class=\"turnament-table-scrol\">\r\n                <table class=\"lk-command\">\r\n                    <tr *ngFor=\"let row of rowSize; let r = index\">\r\n                        <td *ngFor=\"let col of colSize; let c = index\">\r\n                            {{table[r][c]}}\r\n                        </td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div *ngFor=\"let groupTour of turnament.groupTourNumber; let t = index\" class=\"tour-block\">\r\n                <button *ngIf=\"groupTour.status == 0 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"activTour(groupTour.numberTour)\">Активировать тур</button>\r\n                <button *ngIf=\"groupTour.status == 2 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"closeTour(groupTour.numberTour)\">Завершить тур</button>\r\n                <div class=\"tour-number\">\r\n                    Тур № {{groupTour.numberTour}}\r\n                </div>\r\n\r\n                <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"game-group-date\">\r\n                    <div class=\"day-play-game\">\r\n                        День {{d+1}}<br />\r\n                    </div>\r\n\r\n                    <div class=\"date-start-game\" *ngIf=\"groupTour.status != 2 && groupTour.status != 3\">\r\n                        Дата игр <br />\r\n                        <input type=\"datetime-local\" [ngModel]=\"tour.dateStart\" (change)=\"changeDate($event.target.value, tour.dateStart, t+1)\">\r\n                        <br />\r\n                        Место <br />\r\n                        <select [(ngModel)]=\"tour.arena\" (change)=\"changeArena($event.target.value, tour.dateStart, t+1)\">\r\n                            <option [value]=\"arena.id\" *ngFor=\"let arena of arens\">\r\n                                {{arena.name}}\r\n                            </option>\r\n                        </select>\r\n                    </div>\r\n                    <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                        <div *ngIf=\"game.status != 1\" class=\"game-points\">\r\n                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                        </div>\r\n                        <div *ngIf=\"game.status == 1\" class=\"game-points\">\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandOneGoals\" (change)=\"game.commandOneGoals = $event.target.value\" />\r\n                            -\r\n                            <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandTwoGoals\" (change)=\"game.commandTwoGoals = $event.target.value\" />\r\n                        </div>\r\n\r\n                        <div class=\"game-command-name-block\">\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandOneName}}\r\n                            </div>\r\n                            VS\r\n                            <div class=\"game-command-name\">\r\n                                {{game.commandTwoName}}\r\n                            </div>\r\n                        </div>\r\n\r\n                        <button *ngIf=\"game.status == 1\" mat-button class=\"game-complete-button button-active\" (click)=\"completeGame(game.id, game.commandOneGoals, game.commandTwoGoals)\">Завершить</button>\r\n                    </div>\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'divide' + t}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label *ngIf=\"turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3\" for=\"{{'divide' + t}}\" class=\"tournaments-command-open game-day-button-open\">Разбить на дни</label>\r\n\r\n                <div *ngIf=\"turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3\">\r\n                    <div class=\"inline-block\">\r\n                        Выберете колличество дней  <input type=\"number\" value=\"0\" (change)=\"selectDay($event.target.value)\" />\r\n                    </div>\r\n                    <button mat-button class=\"game-day-button button-active\" (click)=\"divideForDay(groupTour.numberTour)\">Сохранить</button>\r\n                    <div>\r\n                        <div *ngFor=\"let day of days; let w = index\" class=\"day-value\">\r\n                            День {{w+1}}\r\n                            <input type=\"datetime-local\" [ngModel]=\"day.day\" (change)=\"day.day = $event.target.value\">\r\n                            Место\r\n                            <select [(ngModel)]=\"day.arena\">\r\n                                <option *ngFor=\"let arena of arens\" [value]=\"arena.id\">\r\n                                    {{arena.name}}\r\n                                </option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+
+/***/ 954:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var ng2_toastr_1 = __webpack_require__(19);
+var router_1 = __webpack_require__(49);
+var common_1 = __webpack_require__(65);
+var turnament_1 = __webpack_require__(145);
+var elementRequest_1 = __webpack_require__(398);
+var turnament_2 = __webpack_require__(400);
+var turnament_3 = __webpack_require__(205);
+var turnamentRequest_1 = __webpack_require__(399);
+var MixedTurnament = (function () {
+    function MixedTurnament(toastr, router, turnamentService) {
+        this.toastr = toastr;
+        this.router = router;
+        this.turnamentService = turnamentService;
+        this.page = 1;
+        this.days = new Array();
+        this.isCalc = false;
+        this.arens = new Array();
+        this.turnament = new turnament_2.GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null);
+    }
+    MixedTurnament.prototype.ngOnInit = function () {
+        var self = this;
+        self.getTurnament(self.id);
+        self.getArena();
+    };
+    MixedTurnament.prototype.getTurnament = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.GetTurnamentMixed(new elementRequest_1.ElementRequest(id)).then(function (response) {
+            self.turnament = response.turnament;
+            self.page = self.turnament.step > 1 ? 2 : 1;
+            self.turnament.turnamentGroups.forEach(function (x) {
+                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+            });
+            self.isCalc = self.turnament.turnamentGroups.length == 0 ? true : false;
+        });
+    };
+    MixedTurnament.prototype.getArena = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetArena().then(function (response) {
+            self.arens = response.arens;
+        });
+    };
+    MixedTurnament.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {
+        var self = this;
+        var commandOneId = positionCommand[row - 1].commandId;
+        var commandTwoId = positionCommand[col - 1].commandId;
+        var result = "";
+        groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
+                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
+                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+        }); }); });
+        return result;
+    };
+    MixedTurnament.prototype.getTable = function (positionCommand, groupTourNumber) {
+        var self = this;
+        var commandSize = positionCommand.length;
+        var rowSize = new Array();
+        var colSize = new Array();
+        var table = new Array(commandSize + 1);
+        for (var i = 0; i < commandSize + 1; i++) {
+            rowSize.push(i);
+            table[i] = new Array(commandSize + 3);
+        }
+        for (var i = 0; i < commandSize + 3; i++)
+            colSize.push(i);
+        for (var row = 0; row < table.length; row++) {
+            for (var col = 0; col < table[row].length; col++) {
+                if (row != 0 && col != 0 && row != col && col < commandSize + 1)
+                    table[row][col] = self.getResult(positionCommand, groupTourNumber, row, col);
+                if (row != 0 && col == commandSize + 1)
+                    table[row][col] = positionCommand[row - 1].points;
+                if (row != 0 && col == commandSize + 2)
+                    table[row][col] = positionCommand[row - 1].place;
+                if (row == 0 && col < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[col - 1].commandName;
+                if (col == 0 && row < commandSize + 1 && row != col)
+                    table[row][col] = positionCommand[row - 1].commandName;
+                if (row == 0 && col == commandSize + 1)
+                    table[row][col] = "Очки";
+                if (row == 0 && col == commandSize + 2)
+                    table[row][col] = "Место";
+            }
+        }
+        return new turnament_3.Table(rowSize, colSize, table);
+    };
+    MixedTurnament.prototype.back = function () {
+        var self = this;
+        self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.Turnament], {});
+    };
+    MixedTurnament.prototype.saveTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.SaveMixedTurnamentInfo(new turnamentRequest_1.SaveMixedTurnamentInfoRequest(self.turnament)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    MixedTurnament.prototype.acceptDeclare = function (turnamentId, commandId, index) {
+        var self = this;
+        self.busy = self.turnamentService.AcceptDeclare(new turnamentRequest_1.DeclareRequest(turnamentId, commandId)).then(function (response) {
+            self.turnament.commands[index].status = true;
+            self.toastr.success("Заявка принята");
+        });
+    };
+    MixedTurnament.prototype.completeRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 2)).then(function (response) {
+            self.turnament.step = 2;
+            self.page = 2;
+            self.toastr.success("Этап построения");
+        });
+    };
+    MixedTurnament.prototype.calculateGroup = function () {
+        var self = this;
+        self.busy = self.turnamentService.CalculateGroup(new turnamentRequest_1.CalculateGroupRequest(self.turnament.id, 2)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Турнирная табляца построена");
+        });
+    };
+    MixedTurnament.prototype.startTurnament = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 3)).then(function (response) {
+            self.turnament.step = 3;
+            self.toastr.success("Этап в процессе");
+        });
+    };
+    MixedTurnament.prototype.changeStep = function (step) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, step)).then(function (response) {
+            self.turnament.step = step;
+            self.page = step > 1 ? 2 : 1;
+            self.toastr.success("Смена этапа");
+        });
+    };
+    MixedTurnament.prototype.openRegistration = function () {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStep(new turnamentRequest_1.TurnamentStepRequest(self.turnament.id, 1)).then(function (response) {
+            self.turnament.step = 1;
+            self.toastr.success("Этап регистрации");
+        });
+    };
+    MixedTurnament.prototype.changeDate = function (id, newDate, date, tour) {
+        var self = this;
+        var nowDate = date == null ? null : date;
+        self.busy = self.turnamentService.ChangeDate(new turnamentRequest_1.ChangeGameDayRequest(id, nowDate, newDate, null, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    MixedTurnament.prototype.changeArena = function (id, arena, date, tour) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeArena(new turnamentRequest_1.ChangeGameDayRequest(id, date, null, arena, tour)).then(function (response) {
+            self.toastr.success("Сохранено");
+        });
+    };
+    MixedTurnament.prototype.selectDay = function (index, day) {
+        var self = this;
+        if (day > self.turnament.turnamentGroups[index].positionCommand.length / 2) {
+            self.toastr.error("Колличество дней не может превышать - " + Math.floor(self.turnament.turnamentGroups[index].positionCommand.length / 2));
+            return;
+        }
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
+        self.days = new Array();
+        for (var i = 0; i < day; i++) {
+            self.days.push(new turnament_2.DayGame(null, null));
+        }
+    };
+    MixedTurnament.prototype.divideForDay = function (index, tour) {
+        var self = this;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+        var isValid = true;
+        if (self.days.length > 0)
+            self.days.forEach(function (x) {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            });
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.turnamentGroups[index].groupId, tour, self.days)).then(function (response) {
+                self.days = new Array();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    };
+    MixedTurnament.prototype.activTour = function (tour, index) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, 1)).then(function (response) {
+            self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].status = 1;
+            self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
+            self.toastr.success("Тур активен");
+        });
+    };
+    MixedTurnament.prototype.completeGame = function (id, index, oneGols, twoGols) {
+        var self = this;
+        if (oneGols < 0 || twoGols < 0) {
+            self.toastr.error("Отрицательное колличество забитых мячей");
+            return;
+        }
+        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.turnamentGroups[index].groupId, id, oneGols, twoGols)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    };
+    MixedTurnament.prototype.closeTour = function (tour, index) {
+        var self = this;
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, null)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], MixedTurnament.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], MixedTurnament.prototype, "type", void 0);
+    MixedTurnament = __decorate([
+        core_1.Component({
+            selector: 'mixed-turnament',
+            template: __webpack_require__(955)
+        }),
+        __metadata("design:paramtypes", [ng2_toastr_1.ToastsManager,
+            router_1.Router,
+            turnament_1.TurnamentAdminService])
+    ], MixedTurnament);
+    return MixedTurnament;
+}());
+exports.MixedTurnament = MixedTurnament;
+
+
+/***/ }),
+
+/***/ 955:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"admin-tuning-turnament-content\" [ngBusy]=\"{busy: busy, message: 'Пожалуйста, подождите...'}\">\r\n    <div class=\"inline-block admin-turnament-status\">\r\n        этап -\r\n        <div class=\"inline-block\">\r\n            <select [(ngModel)]=\"turnament.step\" (change)=\"changeStep($event.target.value)\">\r\n                <option [value]=\"0\">\r\n                    Редактирование\r\n                </option>\r\n                <option [value]=\"1\">\r\n                    Регистрация\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Построение\r\n                </option>\r\n                <option [value]=\"3\">\r\n                    В процессе\r\n                </option>\r\n                <option [value]=\"4\">\r\n                    Завершен\r\n                </option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 0\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"openRegistration()\">Открыть для регистрации</button>\r\n    <button *ngIf=\"turnament.step == 1\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeRegistration()\">Завершить регистрацию</button>\r\n    <button *ngIf=\"turnament.step == 2\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"startTurnament()\">В процесс</button>\r\n    <button *ngIf=\"turnament.step == 3\" mat-button class=\"open-reg-button-turnament button-active\" (click)=\"completeTurnament()\">Завершить турнир</button>\r\n    <button mat-button class=\"button-back\" (click)=\"back()\">Назад</button>\r\n\r\n    <div class=\"admin-tuning-turnament\">\r\n        <div>\r\n            <p>Название</p>\r\n            <textarea class=\"admin-turnament-name\" [(ngModel)]=\"turnament.name\"> </textarea>\r\n        </div>\r\n\r\n        <div>\r\n            <p>Описание</p>\r\n            <textarea class=\"admin-turnament-description\" [(ngModel)]=\"turnament.description\"> </textarea>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Тип</p>\r\n            <select [(ngModel)]=\"turnament.type\" [disabled]=\"!isCalc\">\r\n                <option [value]=\"1\">\r\n                    Круговой\r\n                </option>\r\n                <option [value]=\"2\">\r\n                    Смешанный\r\n                </option>\r\n            </select>\r\n        </div>\r\n\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за турнир</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionTournament\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Взнос за игру</p>\r\n            <input type=\"number\" [(ngModel)]=\"turnament.contributionGame\" />\r\n        </div>\r\n        <div class=\"inline-block\">\r\n            <p>Дата начала</p>\r\n            <input type=\"date\" [ngModel]=\"turnament.dateStart | date:'yyyy-MM-dd'\" (ngModelChange)=\"turnament.dateStart = $event\">\r\n        </div>\r\n\r\n        <button mat-button class=\"save-button-turnament button-active\" (click)=\"saveTurnament()\">Сохранить</button>\r\n    </div>\r\n\r\n    <div *ngIf=\"turnament.step == 1\" class=\"building-title\">\r\n        Идет регистрация...\r\n    </div>\r\n\r\n    <button *ngIf=\"turnament.step == 2 && isCalc\" mat-button class=\"calculate-table button-active\" (click)=\"calculateGroup()\">Разбить на группы</button>\r\n\r\n    <div class=\"admin-tuning-turnament-block\" *ngIf=\"turnament.step != 0\">\r\n        <div class=\"button-turnament-block\" *ngIf=\"turnament.step != 1\">\r\n            <div mat-button [className]=\"page == 1 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=1\">Команды</div>\r\n            <div mat-button [className]=\"page == 2 ? 'turnament-control-active' : 'turnament-control'\" (click)=\"page=2\">Турнир</div>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 1\">\r\n            <div class=\"tournaments-command-title inline-block\">\r\n                Команды\r\n            </div>\r\n\r\n            <table class=\"lk-command\">\r\n                <tr>\r\n                    <td class=\"title-header\">\r\n                        №\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Названия команд заявленных на турнир\r\n                    </td>\r\n                    <td class=\"title-header\">\r\n                        Статус заявки\r\n                    </td>\r\n                    <td class=\"delet-player title-header\">\r\n                        Удалить\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let command of turnament.commands; let j = index\">\r\n                    <td>\r\n                        {{j+1}}\r\n                    </td>\r\n                    <td>\r\n                        {{command.name}}\r\n                    </td>\r\n                    <td *ngIf=\"!command.status\">\r\n                        <div class=\"button-turnament-decision\" (click)=\"acceptDeclare(turnament.id, command.id, j)\">принять</div>\r\n                        <div class=\"button-turnament-decision\" (click)=\"selectDeclare(command.id, i)\" data-toggle=\"modal\" data-target=\"#myModal\">отказать</div>\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"adopted\">\r\n                        принята\r\n                    </td>\r\n                    <td *ngIf=\"command.status\" class=\"delet-player delet-player-img\" (click)=\"selectDeclare(command.id, j)\" data-toggle=\"modal\" data-target=\"#myModal\"></td>\r\n                    <td *ngIf=\"!command.status\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n\r\n        <div class=\"tournaments-command-content\" *ngIf=\"page == 2\">\r\n            <div *ngFor=\"let turnamentGroups of turnament.turnamentGroups; let j = index\" class=\"group-for-turnament\">\r\n                <div class=\"group-number\">\r\n                    Группа - {{j+1}}\r\n                </div>\r\n                \r\n                <div class=\"turnament-table-scrol\">\r\n                    <table class=\"lk-command\">\r\n                        <tr *ngFor=\"let row of turnamentGroups.tableTutnament.rowSize; let r = index\">\r\n                            <td *ngFor=\"let col of turnamentGroups.tableTutnament.colSize; let c = index\">\r\n                                {{turnamentGroups.tableTutnament.table[r][c]}}\r\n                            </td>\r\n                        </tr>\r\n                    </table>\r\n                </div>\r\n\r\n                <div class=\"current-tours inline-block\">\r\n                    Туры\r\n                </div>\r\n\r\n                <input type=\"checkbox\" id=\"{{'tur'+j}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                <label for=\"{{'tur'+j}}\" class=\"tournaments-command-open\"></label>\r\n                <div>\r\n                    <div *ngFor=\"let groupTour of turnamentGroups.groupTourNumber; let t = index\" class=\"tour-block\">\r\n                        <button *ngIf=\"groupTour.status == 0 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"activTour(groupTour.numberTour, j)\">Активировать тур</button>\r\n                        <button *ngIf=\"groupTour.status == 2 && turnament.step == 3\" mat-button class=\"active-tour-button button-active\" (click)=\"closeTour(groupTour.numberTour, j)\">Завершить тур</button>\r\n                        <div class=\"tour-number\">\r\n                            Тур № {{groupTour.numberTour}}\r\n                        </div>\r\n\r\n                        <div *ngFor=\"let tour of groupTour.groupDateStart; let d = index\" class=\"game-group-date\">\r\n                            <div class=\"day-play-game\">\r\n                                День {{d+1}}<br />\r\n                            </div>\r\n\r\n                            <div class=\"date-start-game\" *ngIf=\"groupTour.status != 2 && groupTour.status != 3\">\r\n                                Дата игр <br />\r\n                                <input type=\"datetime-local\" [ngModel]=\"tour.dateStart\" (change)=\"changeDate(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)\">\r\n                                <br />\r\n                                Место <br />\r\n                                <select [(ngModel)]=\"tour.arena\" (change)=\"changeArena(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)\">\r\n                                    <option [value]=\"arena.id\" *ngFor=\"let arena of arens\">\r\n                                        {{arena.name}}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                            <div *ngFor=\"let game of tour.gameTurnament\" class=\"game-block\">\r\n                                <div *ngIf=\"game.status != 1\" class=\"game-points\">\r\n                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}\r\n                                </div>\r\n                                <div *ngIf=\"game.status == 1\" class=\"game-points\">\r\n                                    <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandOneGoals\" (change)=\"game.commandOneGoals = $event.target.value\" />\r\n                                    -\r\n                                    <input type=\"number\" class=\"goals-command\" [ngModel]=\"game.commandTwoGoals\" (change)=\"game.commandTwoGoals = $event.target.value\" />\r\n                                </div>\r\n\r\n                                <div class=\"game-command-name-block\">\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandOneName}}\r\n                                    </div>\r\n                                    VS\r\n                                    <div class=\"game-command-name\">\r\n                                        {{game.commandTwoName}}\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <button *ngIf=\"game.status == 1\" mat-button class=\"game-complete-button button-active\" (click)=\"completeGame(game.id, j, game.commandOneGoals, game.commandTwoGoals)\">Завершить</button>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <input type=\"checkbox\" id=\"{{'divide' + t}}\" class=\"hide\" [attr.checked]=\"isChecked ? 'checked' : null\" />\r\n                        <label *ngIf=\"turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3\" for=\"{{'divide' + t}}\" class=\"tournaments-command-open game-day-button-open\">Разбить на дни</label>\r\n\r\n                        <div *ngIf=\"turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3\">\r\n                            <div class=\"inline-block\">\r\n                                Выберете колличество дней  <input type=\"number\" value=\"0\" (change)=\"selectDay(j, $event.target.value)\" />\r\n                            </div>\r\n                            <button mat-button class=\"game-day-button button-active\" (click)=\"divideForDay(j, groupTour.numberTour)\">Сохранить</button>\r\n                            <div>\r\n                                <div *ngFor=\"let day of days; let w = index\" class=\"day-value\">\r\n                                    День {{w+1}}\r\n                                    <input type=\"datetime-local\" [ngModel]=\"day.day\" (change)=\"day.day = $event.target.value\">\r\n                                    Место\r\n                                    <select [(ngModel)]=\"day.arena\">\r\n                                        <option *ngFor=\"let arena of arens\" [value]=\"arena.id\">\r\n                                            {{arena.name}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"declare-modal-content\">\r\n            <div class=\"modal-body\">\r\n                Отказать в участии?\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                Причина\r\n                <textarea type=\"text\" [(ngModel)]=\"cause\"></textarea>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"removeDeclare()\">ДА</button>\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"cause = null\">Отмена</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+
+/***/ 956:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8794,7 +9408,7 @@ exports.NewsType = NewsType;
 
 /***/ }),
 
-/***/ 950:
+/***/ 957:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8828,7 +9442,7 @@ exports.TurnamentType = TurnamentType;
 
 /***/ }),
 
-/***/ 951:
+/***/ 958:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8866,108 +9480,7 @@ var TurnamentStep = (function () {
 exports.TurnamentStep = TurnamentStep;
 
 
-/***/ }),
-
-/***/ 954:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ElementTypeRequest = (function () {
-    function ElementTypeRequest(type) {
-        this.type = type;
-    }
-    return ElementTypeRequest;
-}());
-exports.ElementTypeRequest = ElementTypeRequest;
-
-
-/***/ }),
-
-/***/ 955:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GetTurnamentForUser = (function () {
-    function GetTurnamentForUser(id, name, dateStart, dateEnd, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
-        this.id = id;
-        this.name = name;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.description = description;
-        this.contributionGame = contributionGame;
-        this.contributionTournament = contributionTournament;
-        this.commands = commands;
-        this.positionCommand = positionCommand;
-        this.groupTourNumber = groupTourNumber;
-    }
-    return GetTurnamentForUser;
-}());
-exports.GetTurnamentForUser = GetTurnamentForUser;
-var PositionCommand = (function () {
-    function PositionCommand(id, position, commandId, commandName, points, place) {
-        this.id = id;
-        this.position = position;
-        this.commandId = commandId;
-        this.commandName = commandName;
-        this.points = points;
-        this.place = place;
-    }
-    return PositionCommand;
-}());
-exports.PositionCommand = PositionCommand;
-var GroupTourNumber = (function () {
-    function GroupTourNumber(numberTour, status, groupDateStart) {
-        this.numberTour = numberTour;
-        this.status = status;
-        this.groupDateStart = groupDateStart;
-    }
-    return GroupTourNumber;
-}());
-exports.GroupTourNumber = GroupTourNumber;
-var GroupDateStart = (function () {
-    function GroupDateStart(dateStart, arena, gameTurnament) {
-        this.dateStart = dateStart;
-        this.arena = arena;
-        this.gameTurnament = gameTurnament;
-    }
-    return GroupDateStart;
-}());
-exports.GroupDateStart = GroupDateStart;
-var GameTurnament = (function () {
-    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
-        this.id = id;
-        this.idCommandOne = idCommandOne;
-        this.idCommandTwo = idCommandTwo;
-        this.commandOneName = commandOneName;
-        this.commandTwoName = commandTwoName;
-        this.tour = tour;
-        this.status = status;
-        this.dateStart = dateStart;
-        this.arena = arena;
-        this.commandOneGoals = commandOneGoals;
-        this.commandTwoGoals = commandTwoGoals;
-        this.commandOnePoints = commandOnePoints;
-        this.commandTwoPoints = commandTwoPoints;
-    }
-    return GameTurnament;
-}());
-exports.GameTurnament = GameTurnament;
-var Table = (function () {
-    function Table(rowSize, colSize, table) {
-        this.rowSize = rowSize;
-        this.colSize = colSize;
-        this.table = table;
-    }
-    return Table;
-}());
-exports.Table = Table;
-
-
 /***/ })
 
-},[871]);
+},[876]);
 //# sourceMappingURL=app.js.map

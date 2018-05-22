@@ -2,8 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ElementResponse = (function () {
     function ElementResponse(txt) {
-        var self = this;
-        self.txt = txt;
+        this.txt = txt;
     }
     return ElementResponse;
 }());

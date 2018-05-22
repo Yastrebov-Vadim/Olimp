@@ -20,7 +20,8 @@ export class Turnament implements OnInit {
     public turnaments: TurnamentInfo[];
     public idTurnament: string = null;
     public index: number = null;
-
+    public step: number = 0;
+    
     constructor(
         private toastr: ToastsManager,
         private pageService: PageService,
@@ -56,7 +57,8 @@ export class Turnament implements OnInit {
             self.router.navigate([Common.RoutePaths.Admin + Common.RoutePaths.Slash + Common.RoutePaths.TuningTurnament], {
                 queryParams:
                     {
-                        key: response.txt
+                        key: response.id,
+                        type: response.type
                     }
             });
         });
@@ -83,14 +85,23 @@ export class Turnament implements OnInit {
         });
     }
 
-    public editTurnament(id) {
+    public editTurnament(id, type) {
         var self = this;
 
         self.router.navigate([Common.RoutePaths.Admin + Common.RoutePaths.Slash + Common.RoutePaths.TuningTurnament], {
             queryParams:
                 {
-                    key: id
+                    key: id,
+                    type: type
                 }
         });
+    }
+
+    public getTurnamrntForType(step) {
+        var self = this;
+
+        if (self.turnaments)
+            return self.turnaments.filter(x => x.step == step);
+        else self.turnaments;
     }
 }

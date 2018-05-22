@@ -44,6 +44,8 @@ var news_3 = require("./components/admin/news/news");
 var add_news_1 = require("./components/admin/add-news/add-news");
 var turnament_2 = require("./components/admin/turnament/turnament");
 var tuning_turnament_1 = require("./components/admin/tuning-turnament/tuning-turnament");
+var circle_turnament_1 = require("./components/admin/tuning-turnament/circle-turnament/circle-turnament");
+var mixed_turnament_1 = require("./components/admin/tuning-turnament/mixed-turnament/mixed-turnament");
 var authentication_2 = require("./services/admin/authentication");
 var news_4 = require("./services/admin/news");
 var file_1 = require("./services/admin/file");
@@ -74,7 +76,9 @@ var AppModule = (function () {
                 turnamentStep_1.TurnamentStep,
                 add_news_1.AddNews,
                 turnament_2.Turnament,
-                tuning_turnament_1.TuningTurnament
+                tuning_turnament_1.TuningTurnament,
+                circle_turnament_1.CircleTurnament,
+                mixed_turnament_1.MixedTurnament
             ],
             imports: [
                 platform_browser_1.BrowserModule,

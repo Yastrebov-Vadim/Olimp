@@ -5,19 +5,24 @@
 
 
     <div class="admin-list-news-block">
-
+        <div class="filter-button-block">
+            <div class="filter-button" [ngClass]="step == 0 ? 'filter-button-active' : ''" (click)="step=0">Редактирование</div>
+            <div class="filter-button" [ngClass]="step == 1 ? 'filter-button-active' : ''" (click)="step=1">Регистрация</div>
+            <div class="filter-button" [ngClass]="step == 2 ? 'filter-button-active' : ''" (click)="step=2">Построение</div>
+            <div class="filter-button" [ngClass]="step == 3 ? 'filter-button-active' : ''" (click)="step=3">В процессе</div>
+            <div class="filter-button" [ngClass]="step == 4 ? 'filter-button-active' : ''" (click)="step=4">Завершены</div>
+        </div>
         <ul>
-            <li *ngFor="let turnament of turnaments; let i = index">
+            <li *ngFor="let turnament of getTurnamrntForType(step); let i = index">
                 <div><p>Название -</p> {{turnament.name}} </div>
                 <div><p>Тип турнира -</p> {{turnament.type | turnamentType}} </div>
                 <div><p>Статус -</p> {{ turnament.step | turnamentStep}}</div>
                 <div><p>Дата начала -</p> {{ turnament.dateStart | date:'dd-MM-yyyy'}}</div>
-                <button mat-button class="button-come-in button-edit-news" (click)="editTurnament(turnament.id)">Открыть</button>
+                <button mat-button class="button-come-in button-edit-news" (click)="editTurnament(turnament.id, turnament.type)">Открыть</button>
                 <button mat-button class="button-come-in button-add-news" (click)="selectTurnament(turnament.id, i)" data-toggle="modal" data-target="#myModal">Удалить</button>
                 <hr />
             </li>
         </ul>
-
     </div>
 
     <div class="admin-add-turnament-block">

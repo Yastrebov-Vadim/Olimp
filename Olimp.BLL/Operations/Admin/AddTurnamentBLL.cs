@@ -7,9 +7,11 @@ namespace Olimp.BLL.Operations
 {
     public class AddTurnamentBLL
     {
-        public static ElementResponse Execute(ElementRequest request)
+        public static ElementTypeResponse Execute(ElementRequest request)
         {
-            return new ElementResponse { Txt = DbHelper.AddTurnament(Convert.ToInt32(request.Txt)) };
+            var turnament = DbHelper.AddTurnament(Convert.ToInt32(request.Txt));
+
+            return new ElementTypeResponse { Id = turnament.id.ToString(), Type = turnament.type };
         }
     }
 }

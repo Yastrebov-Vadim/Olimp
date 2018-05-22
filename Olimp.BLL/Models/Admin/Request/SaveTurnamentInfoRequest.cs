@@ -2,6 +2,6 @@
 {
     public class SaveTurnamentInfoRequest
     {
-        public TurnamentAdmin Turnament { get; set; }
+        public CircleTurnamentAdmin Turnament { get; set; }
     }
 }

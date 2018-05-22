@@ -20,9 +20,9 @@
                 <div class="left" width="40" height="40" (click)="nextLeftPage()"> </div>
                 <div class="right" width="40" height="40" (click)="nextRightPage()"> </div>
                 <ul class="pages">
-                    <li class="first-page" [ngStyle]="pageStyle(1)" (click)="getPage(1)">1</li>
+                    <li [ngStyle]="pageStyle(1)" (click)="getPage(1)">1</li>
                     <li *ngFor="let page of pageSize" [ngStyle]="pageStyle(page)" (click)="getPage(page)">{{page}}</li>
-                    <li *ngIf="pagePhotos.pageSize > 1" class="last-page" [ngStyle]="pageStyle(pagePhotos.pageSize)" (click)="getPage(pagePhotos.pageSize)">{{pagePhotos.pageSize}}</li>
+                    <li *ngIf="pagePhotos.pageSize > 1" [ngStyle]="pageStyle(pagePhotos.pageSize)" (click)="getPage(pagePhotos.pageSize)">{{pagePhotos.pageSize}}</li>
                     <li>всего - {{pagePhotos.pageSize}}</li>
                 </ul>
                 <span></span>

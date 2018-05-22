@@ -1,12 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var SaveTurnamentInfoRequest = (function () {
-    function SaveTurnamentInfoRequest(turnament) {
+var SaveCircleTurnamentInfoRequest = (function () {
+    function SaveCircleTurnamentInfoRequest(turnament) {
         this.turnament = turnament;
     }
-    return SaveTurnamentInfoRequest;
+    return SaveCircleTurnamentInfoRequest;
 }());
-exports.SaveTurnamentInfoRequest = SaveTurnamentInfoRequest;
+exports.SaveCircleTurnamentInfoRequest = SaveCircleTurnamentInfoRequest;
+var SaveMixedTurnamentInfoRequest = (function () {
+    function SaveMixedTurnamentInfoRequest(turnament) {
+        this.turnament = turnament;
+    }
+    return SaveMixedTurnamentInfoRequest;
+}());
+exports.SaveMixedTurnamentInfoRequest = SaveMixedTurnamentInfoRequest;
 var TurnamentStepRequest = (function () {
     function TurnamentStepRequest(id, step) {
         this.id = id;
@@ -16,8 +23,9 @@ var TurnamentStepRequest = (function () {
 }());
 exports.TurnamentStepRequest = TurnamentStepRequest;
 var TourStepRequest = (function () {
-    function TourStepRequest(turnamentId, tour, step) {
+    function TourStepRequest(turnamentId, turnamentType, tour, step) {
         this.turnamentId = turnamentId;
+        this.turnamentType = turnamentType;
         this.tour = tour;
         this.step = step;
     }
@@ -71,4 +79,12 @@ var CompleteGameRequest = (function () {
     return CompleteGameRequest;
 }());
 exports.CompleteGameRequest = CompleteGameRequest;
+var CalculateGroupRequest = (function () {
+    function CalculateGroupRequest(turnamentId, groupCount) {
+        this.turnamentId = turnamentId;
+        this.groupCount = groupCount;
+    }
+    return CalculateGroupRequest;
+}());
+exports.CalculateGroupRequest = CalculateGroupRequest;
 //# sourceMappingURL=turnamentRequest.js.map

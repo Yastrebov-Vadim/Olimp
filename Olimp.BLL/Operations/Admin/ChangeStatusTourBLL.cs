@@ -27,10 +27,12 @@ namespace Olimp.BLL.Operations
 
             game.ForEach(x =>
             {
-                SendEmailBLL.SendEmail("Новый тур", $"{request.Tour} тур, в турнире \"{DbHelper.GetTurnamentName(Guid.Parse(request.TurnamentId))}\" " +
+                var turnamentName = request.TurnamentType == 1 ? DbHelper.GetTurnamentName(Guid.Parse(request.TurnamentId)) : DbHelper.GetTurnamentNameForGroup(Guid.Parse(request.TurnamentId));
+
+                SendEmailBLL.SendEmail("Новый тур", $"{request.Tour} тур, в турнире \"{turnamentName}\" " +
                     $"пройдет - {x.date_start.Value.ToShortDateString()} в {x.date_start.Value.ToShortTimeString()}. " +
                     $"Место проведения тура - {DbHelper.GetArenaName(x.id_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_one));
-                SendEmailBLL.SendEmail("Новый тур", $"{request.Tour} тур, в турнире \"{DbHelper.GetTurnamentName(Guid.Parse(request.TurnamentId))}\" " +
+                SendEmailBLL.SendEmail("Новый тур", $"{request.Tour} тур, в турнире \"{turnamentName}\" " +
                     $"пройдет - {x.date_start.Value.ToShortDateString()} в {x.date_start.Value.ToShortTimeString()}. " +
                     $"Место проведения тура - {DbHelper.GetArenaName(x.id_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_two));
             });

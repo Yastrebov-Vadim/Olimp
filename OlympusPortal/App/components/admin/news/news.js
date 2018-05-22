@@ -29,6 +29,7 @@ var NewsAdmin = (function () {
         this.isVideo = false;
         this.idNews = null;
         this.index = null;
+        this.type = 1;
         var self = this;
     }
     NewsAdmin.prototype.ngOnInit = function () {
@@ -85,6 +86,13 @@ var NewsAdmin = (function () {
         self.busy = self.newsService.ActiveNews(new ElementRequest_1.ElementRequest(id)).then(function (response) {
             self.toastr.success("Новость " + response.txt);
         });
+    };
+    NewsAdmin.prototype.getNewsForType = function (type) {
+        var self = this;
+        if (self.newsInfo)
+            return self.newsInfo.filter(function (x) { return x.type == type; });
+        else
+            self.newsInfo;
     };
     NewsAdmin = __decorate([
         core_1.Component({

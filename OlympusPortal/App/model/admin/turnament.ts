@@ -20,7 +20,7 @@ export class TurnamentInfo {
     }
 }
 
-export class GetTurnament {
+export class GetCircleTurnament {
     public id: string;
     public name: string;
     public dateStart: Date;
@@ -55,6 +55,63 @@ export class GetTurnament {
     }
 }
 
+export class GetMixedTurnament {
+    public id: string;
+    public name: string;
+    public dateStart: Date;
+    public dateEnd: Date;
+    public type: number;
+    public stateCode: boolean;
+    public step: number;
+    public description: string;
+    public contributionGame: number;
+    public contributionTournament: number;
+    public commands: CommandForTurnament[];
+    public turnamentGroups: TurnamentGroups[];
+
+    constructor(id: string, name: string, dateStart: Date, dateEnd: Date, type: number,
+        stateCode: boolean, step: number, description: string, contributionGame: number,
+        contributionTournament: number, commands: CommandForTurnament[], turnamentGroups: TurnamentGroups[]) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.turnamentGroups = turnamentGroups;
+    }
+}
+
+export class TurnamentGroups {
+    public groupId: string;
+    public positionCommand: PositionCommand[];
+    public groupTourNumber: GroupTourNumber[];
+    public tableTutnament: Table;
+
+    constructor(groupId: string,positionCommand: PositionCommand[], groupTourNumber: GroupTourNumber[]) {
+        this.groupId = groupId;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+}
+
+export class Table {
+    public rowSize: Array<number>;
+    public colSize: Array<number>;
+    public table: Array<number>;
+
+    constructor(rowSize: Array<number>, colSize: Array<number>, table: Array<number>) {
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.table = table;
+    }
+}
+
 export class PositionCommand {
     public id: string;
     public position: number;
@@ -62,14 +119,16 @@ export class PositionCommand {
     public commandName: string;
     public points: number;
     public place: number;
+    public fakeCode: boolean;
 
-    constructor(id: string, position: number, commandId: string, commandName: string, points: number, place: number) {
+    constructor(id: string, position: number, commandId: string, commandName: string, points: number, place: number, fakeCode: boolean) {
         this.id = id;
         this.position = position;
         this.commandId = commandId;
         this.commandName = commandName;
         this.points = points;
         this.place = place;
+        this.fakeCode = fakeCode;
     }
 }
 
@@ -147,5 +206,15 @@ export class Arena {
     constructor(id: string, name: string) {
         this.id = id;
         this.name = name;
+    }
+}
+
+export class Cell {
+    public value: any;
+    public isFake: boolean;
+
+    constructor(value: any, isFake: boolean) {
+        this.value = value;
+        this.isFake = isFake;
     }
 }

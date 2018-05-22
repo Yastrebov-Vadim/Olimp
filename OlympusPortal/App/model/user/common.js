@@ -25,7 +25,7 @@ var Common;
         RoutePaths.Admin = "admin";
         RoutePaths.EditNews = "edit-news/:key";
         RoutePaths.Turnament = "turnament";
-        RoutePaths.TuningTurnament = "tuning-turnament/:key";
+        RoutePaths.TuningTurnament = "tuning-turnament/:key/:type";
         RoutePaths.PlanOpp = "plan/:key/:bt/:userId/:oppId";
         RoutePaths.Checkerboard = "checkerboard/:key/:type/:bt";
         RoutePaths.CheckerboardLead = "checkerboard/:key/:type/:bt/:leadId";

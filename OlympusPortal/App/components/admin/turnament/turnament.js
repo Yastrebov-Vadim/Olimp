@@ -26,6 +26,7 @@ var Turnament = (function () {
         this.http = http;
         this.idTurnament = null;
         this.index = null;
+        this.step = 0;
         var self = this;
     }
     Turnament.prototype.ngOnInit = function () {
@@ -48,7 +49,8 @@ var Turnament = (function () {
         self.busy = self.turnamentService.AddTurnament(new ElementRequest_1.ElementRequest(type)).then(function (response) {
             self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
                 queryParams: {
-                    key: response.txt
+                    key: response.id,
+                    type: response.type
                 }
             });
         });
@@ -69,13 +71,21 @@ var Turnament = (function () {
             self.toastr.success("Турнир удален");
         });
     };
-    Turnament.prototype.editTurnament = function (id) {
+    Turnament.prototype.editTurnament = function (id, type) {
         var self = this;
         self.router.navigate([common_1.Common.RoutePaths.Admin + common_1.Common.RoutePaths.Slash + common_1.Common.RoutePaths.TuningTurnament], {
             queryParams: {
-                key: id
+                key: id,
+                type: type
             }
         });
+    };
+    Turnament.prototype.getTurnamrntForType = function (step) {
+        var self = this;
+        if (self.turnaments)
+            return self.turnaments.filter(function (x) { return x.step == step; });
+        else
+            self.turnaments;
     };
     Turnament = __decorate([
         core_1.Component({

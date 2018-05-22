@@ -11,13 +11,16 @@ namespace OlympusPortal.Controllers.API
         public TurnamentsInfoResponse GetTurnamentInfo() => GetTurnamentInfoBLL.Execute();
 
         [HttpPost]
-        public ElementResponse AddTurnament(ElementRequest request) => AddTurnamentBLL.Execute(request);
+        public ElementTypeResponse AddTurnament(ElementRequest request) => AddTurnamentBLL.Execute(request);
 
         [HttpPost]
         public void DellTurnament(ElementRequest request) => DellTurnamentBLL.Execute(request);
 
         [HttpPost]
-        public GetTurnamentResponse GetTurnament(ElementRequest request) => GetTurnamentBLL.Execute(request);
+        public GetCircleTurnamentResponse GetTurnamentCircle(ElementRequest request) => GetTurnamentCircleBLL.Execute(request);
+
+        [HttpPost]
+        public GetMixedTurnamentResponse GetTurnamentMixed(ElementRequest request) => GetTurnamentMixedBLL.Execute(request);
 
         [HttpPost]
         public void SaveTurnamentInfo(SaveTurnamentInfoRequest request) => SaveTurnamentInfoBLL.Execute(request);
@@ -33,6 +36,9 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void CalculateTable(ElementRequest request) => CalculateTableBLL.Execute(request);
+
+        [HttpPost]
+        public void CalculateGroup(CalculateGroupRequest request) => CalculateGroupBLL.Execute(request);
 
         [HttpPost]
         public void DivideForDay(DivideForDayRequest request) => DivideForDayBLL.Execute(request);

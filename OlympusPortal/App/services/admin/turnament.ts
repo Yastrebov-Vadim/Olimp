@@ -5,9 +5,9 @@ import 'rxjs/Rx';
 import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { ElementRequest } from '../../classes/admin/requests/ElementRequest';
-import { ElementResponse } from '../../classes/admin/response/elementResponse';
-import { TurnamentInfoResponse, GetTurnamentResponse, GetArenaResponse } from '../../classes/admin/response/turnamentResponse';
-import { SaveTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
+import { ElementTypeResponse } from '../../classes/admin/response/elementTypeResponse';
+import { TurnamentInfoResponse, GetCircleTurnamentResponse, GetMixedTurnamentResponse, GetArenaResponse } from '../../classes/admin/response/turnamentResponse';
+import { SaveMixedTurnamentInfoRequest, CalculateGroupRequest, SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
 
 @Injectable()
 export class TurnamentAdminService {
@@ -20,7 +20,7 @@ export class TurnamentAdminService {
         return this.tranport.postData(self.urls.getTurnamentInfo, null);
     }
 
-    AddTurnament(request: ElementRequest): Promise<ElementResponse> {
+    AddTurnament(request: ElementRequest): Promise<ElementTypeResponse> {
         var self = this;
         return this.tranport.postData(self.urls.addTurnament, request);
     }
@@ -30,12 +30,22 @@ export class TurnamentAdminService {
         return this.tranport.postData(self.urls.dellTurnament, request);
     }
 
-    GetTurnament(request: ElementRequest): Promise<GetTurnamentResponse> {
+    GetTurnamentCircle(request: ElementRequest): Promise<GetCircleTurnamentResponse> {
         var self = this;
-        return this.tranport.postData(self.urls.getTurnament, request);
+        return this.tranport.postData(self.urls.getTurnamentCircle, request);
     }
 
-    SaveTurnamentInfo(request: SaveTurnamentInfoRequest): Promise<any> {
+    GetTurnamentMixed(request: ElementRequest): Promise<GetMixedTurnamentResponse> {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentMixed, request);
+    }
+
+    SaveCircleTurnamentInfo(request: SaveCircleTurnamentInfoRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
+    }
+
+    SaveMixedTurnamentInfo(request: SaveMixedTurnamentInfoRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.saveTurnamentInfo, request);
     }
@@ -54,7 +64,7 @@ export class TurnamentAdminService {
         var self = this;
         return this.tranport.postData(self.urls.changeDate, request);
     }
-    
+
     AcceptDeclare(request: DeclareRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.acceptDeclare, request);
@@ -70,6 +80,11 @@ export class TurnamentAdminService {
         return this.tranport.postData(self.urls.calculateTable, request);
     }
 
+    CalculateGroup(request: CalculateGroupRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.calculateGroup, request);
+    }
+    
     DivideForDay(request: DivideForDayRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.divideForDay, request);

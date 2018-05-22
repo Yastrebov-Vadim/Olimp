@@ -13,8 +13,8 @@ var TurnamentInfo = (function () {
     return TurnamentInfo;
 }());
 exports.TurnamentInfo = TurnamentInfo;
-var GetTurnament = (function () {
-    function GetTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
+var GetCircleTurnament = (function () {
+    function GetCircleTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, positionCommand, groupTourNumber) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -29,17 +29,54 @@ var GetTurnament = (function () {
         this.positionCommand = positionCommand;
         this.groupTourNumber = groupTourNumber;
     }
-    return GetTurnament;
+    return GetCircleTurnament;
 }());
-exports.GetTurnament = GetTurnament;
+exports.GetCircleTurnament = GetCircleTurnament;
+var GetMixedTurnament = (function () {
+    function GetMixedTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, turnamentGroups) {
+        this.id = id;
+        this.name = name;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.type = type;
+        this.stateCode = stateCode;
+        this.step = step;
+        this.description = description;
+        this.contributionGame = contributionGame;
+        this.contributionTournament = contributionTournament;
+        this.commands = commands;
+        this.turnamentGroups = turnamentGroups;
+    }
+    return GetMixedTurnament;
+}());
+exports.GetMixedTurnament = GetMixedTurnament;
+var TurnamentGroups = (function () {
+    function TurnamentGroups(groupId, positionCommand, groupTourNumber) {
+        this.groupId = groupId;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return TurnamentGroups;
+}());
+exports.TurnamentGroups = TurnamentGroups;
+var Table = (function () {
+    function Table(rowSize, colSize, table) {
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.table = table;
+    }
+    return Table;
+}());
+exports.Table = Table;
 var PositionCommand = (function () {
-    function PositionCommand(id, position, commandId, commandName, points, place) {
+    function PositionCommand(id, position, commandId, commandName, points, place, fakeCode) {
         this.id = id;
         this.position = position;
         this.commandId = commandId;
         this.commandName = commandName;
         this.points = points;
         this.place = place;
+        this.fakeCode = fakeCode;
     }
     return PositionCommand;
 }());
@@ -97,4 +134,12 @@ var Arena = (function () {
     return Arena;
 }());
 exports.Arena = Arena;
+var Cell = (function () {
+    function Cell(value, isFake) {
+        this.value = value;
+        this.isFake = isFake;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
 //# sourceMappingURL=turnament.js.map

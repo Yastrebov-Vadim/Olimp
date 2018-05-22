@@ -24,7 +24,7 @@ export module Common {
         public static Admin = "admin";
         public static EditNews = "edit-news/:key";
         public static Turnament = "turnament";
-        public static TuningTurnament = "tuning-turnament/:key";
+        public static TuningTurnament = "tuning-turnament/:key/:type";
 
         public static PlanOpp = "plan/:key/:bt/:userId/:oppId";
         public static Checkerboard = "checkerboard/:key/:type/:bt";

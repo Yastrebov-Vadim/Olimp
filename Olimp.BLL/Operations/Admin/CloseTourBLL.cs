@@ -1,4 +1,5 @@
-﻿using Olimp.BLL.Models;
+﻿using Olimp.BLL.Assest;
+using Olimp.BLL.Models;
 using Olimp.DAL.Assest;
 using Olimp.DAL.DTO;
 using System;
@@ -11,8 +12,15 @@ namespace Olimp.BLL.Operations
     {
         public static void Execute(TourStepRequest request)
         {
-            DbHelper.CloseTour(Guid.Parse(request.TurnamentId), request.Tour);
+            var game = DbHelper.CloseTour(Guid.Parse(request.TurnamentId), request.Tour);
             CalculatePosition(Guid.Parse(request.TurnamentId));
+            game.ForEach(x =>
+            {
+                var turnamentName = request.TurnamentType == 1 ? DbHelper.GetTurnamentName(Guid.Parse(request.TurnamentId)) : DbHelper.GetTurnamentNameForGroup(Guid.Parse(request.TurnamentId));
+
+                SendEmailBLL.SendEmail("Окончание тура", $"{request.Tour} тур, в турнире \"{turnamentName}\" завершен", DbHelper.GetAccountEmail(x.id_command_one));
+                SendEmailBLL.SendEmail("Окончание тура", $"{request.Tour} тур, в турнире \"{turnamentName}\" завершен", DbHelper.GetAccountEmail(x.id_command_two));
+            });
         }
 
         public static void CalculatePosition(Guid turnamentId)
@@ -50,8 +58,9 @@ namespace Olimp.BLL.Operations
                     for (var g = 0; g < positionPoints[i][j].Count; g++)
                     {
                         DbHelper.SavePlaceCommand(turnamentId, positionPoints[i][j][g].id_command, place);
-                        place++;
                     }
+
+                    place++;
                 }
             }
         }

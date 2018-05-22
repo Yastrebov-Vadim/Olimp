@@ -30,11 +30,19 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.dellTurnament, request);
     };
-    TurnamentAdminService.prototype.GetTurnament = function (request) {
+    TurnamentAdminService.prototype.GetTurnamentCircle = function (request) {
         var self = this;
-        return this.tranport.postData(self.urls.getTurnament, request);
+        return this.tranport.postData(self.urls.getTurnamentCircle, request);
     };
-    TurnamentAdminService.prototype.SaveTurnamentInfo = function (request) {
+    TurnamentAdminService.prototype.GetTurnamentMixed = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnamentMixed, request);
+    };
+    TurnamentAdminService.prototype.SaveCircleTurnamentInfo = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.saveTurnamentInfo, request);
+    };
+    TurnamentAdminService.prototype.SaveMixedTurnamentInfo = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.saveTurnamentInfo, request);
     };
@@ -61,6 +69,10 @@ var TurnamentAdminService = (function () {
     TurnamentAdminService.prototype.CalculateTable = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.calculateTable, request);
+    };
+    TurnamentAdminService.prototype.CalculateGroup = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.calculateGroup, request);
     };
     TurnamentAdminService.prototype.DivideForDay = function (request) {
         var self = this;

@@ -21,5 +21,6 @@ namespace Olimp.DAL.DTO
         public string command_name { get; set; }
         public int points { get; set; }
         public int place { get; set; }
+        public bool fake_code { get; set; }
     }
 }

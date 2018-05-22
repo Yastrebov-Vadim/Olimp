@@ -7,13 +7,20 @@ var TurnamentInfoResponse = (function () {
     return TurnamentInfoResponse;
 }());
 exports.TurnamentInfoResponse = TurnamentInfoResponse;
-var GetTurnamentResponse = (function () {
-    function GetTurnamentResponse(turnament) {
+var GetCircleTurnamentResponse = (function () {
+    function GetCircleTurnamentResponse(turnament) {
         this.turnament = turnament;
     }
-    return GetTurnamentResponse;
+    return GetCircleTurnamentResponse;
 }());
-exports.GetTurnamentResponse = GetTurnamentResponse;
+exports.GetCircleTurnamentResponse = GetCircleTurnamentResponse;
+var GetMixedTurnamentResponse = (function () {
+    function GetMixedTurnamentResponse(turnament) {
+        this.turnament = turnament;
+    }
+    return GetMixedTurnamentResponse;
+}());
+exports.GetMixedTurnamentResponse = GetMixedTurnamentResponse;
 var GetArenaResponse = (function () {
     function GetArenaResponse(arens) {
         this.arens = arens;

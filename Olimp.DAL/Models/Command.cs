@@ -5,5 +5,6 @@
         public string Id { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
+        public bool FakeCode { get; set; }
     }
 }

@@ -8,14 +8,16 @@ export class GetTurnamentForUser {
     public description: string;
     public contributionGame: number;
     public contributionTournament: number;
+    public type: number;
     public commands: CommandForTurnament[];
     public positionCommand: PositionCommand[];
     public groupTourNumber: GroupTourNumber[];
+    public turnamentGroups: TurnamentGroups[];
     public tableTutnament: Table;
     
     constructor(id: string, name: string, dateStart: Date, dateEnd: Date, description: string, contributionGame: number,
-        contributionTournament: number, commands: CommandForTurnament[], positionCommand: PositionCommand[],
-        groupTourNumber: GroupTourNumber[]) {
+        contributionTournament: number, type: number, commands: CommandForTurnament[], positionCommand: PositionCommand[],
+        groupTourNumber: GroupTourNumber[], turnamentGroups: TurnamentGroups[]) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -23,7 +25,21 @@ export class GetTurnamentForUser {
         this.description = description;
         this.contributionGame = contributionGame;
         this.contributionTournament = contributionTournament;
+        this.type = type;
         this.commands = commands;
+        this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+        this.turnamentGroups = turnamentGroups;
+    }
+}
+
+
+export class TurnamentGroups {
+    public positionCommand: PositionCommand[];
+    public groupTourNumber: GroupTourNumber[];
+    public tableTutnament: Table;
+
+    constructor(positionCommand: PositionCommand[], groupTourNumber: GroupTourNumber[]) {
         this.positionCommand = positionCommand;
         this.groupTourNumber = groupTourNumber;
     }

@@ -214,6 +214,7 @@
     <Content Include="App\app.html" />
     <TypeScriptCompile Include="App\classes\admin\requests\turnamentRequest.ts" />
     <TypeScriptCompile Include="App\classes\admin\requests\elementRequest.ts" />
+    <TypeScriptCompile Include="App\classes\admin\response\elementTypeResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\turnamentResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\photoResponse.ts" />
     <TypeScriptCompile Include="App\classes\admin\response\elementResponse.ts" />
@@ -230,6 +231,8 @@
     <TypeScriptCompile Include="App\classes\user\response\commandsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\newsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\accountResponse.ts" />
+    <Content Include="App\components\admin\tuning-turnament\mixed-turnament\mixed-turnament.html" />
+    <Content Include="App\components\admin\tuning-turnament\circle-turnament\circle-turnament.html" />
     <Content Include="App\components\admin\tuning-turnament\tuning-turnament.html" />
     <Content Include="App\components\admin\login\login.html" />
     <Content Include="App\components\admin\news\news.html" />
@@ -246,6 +249,8 @@
     <Content Include="App\components\user\public\home.html" />
     <Content Include="App\components\user\new-tournaments\new-tournaments.html" />
     <TypeScriptCompile Include="App\classes\user\response\turnamentResponse.ts" />
+    <TypeScriptCompile Include="App\components\admin\tuning-turnament\mixed-turnament\mixed-turnament.ts" />
+    <TypeScriptCompile Include="App\components\admin\tuning-turnament\circle-turnament\circle-turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\tuning-turnament\tuning-turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\login\login.ts" />
     <TypeScriptCompile Include="App\components\admin\news\news.ts" />

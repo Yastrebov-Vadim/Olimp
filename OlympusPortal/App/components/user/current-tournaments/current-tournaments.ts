@@ -36,7 +36,14 @@ export class CurrentTournaments implements OnInit {
         self.busy = self.turnamentService.GetTurnamentsForUser(new ElementTypeRequest(3)).then(response => {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(x => {
-                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                if (x.type == 1) {
+                    x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                }
+                else {
+                    x.turnamentGroups.forEach(g => {
+                        g.tableTutnament = self.getTable(g.positionCommand, g.groupTourNumber);
+                    });
+                }
             });
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;
@@ -105,6 +112,6 @@ export class CurrentTournaments implements OnInit {
             }
         }
 
-        return new Table(rowSize,colSize,table);
+        return new Table(rowSize, colSize, table);
     }
 }

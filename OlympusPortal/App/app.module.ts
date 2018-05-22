@@ -41,6 +41,8 @@ import { NewsAdmin } from './components/admin/news/news';
 import { AddNews } from './components/admin/add-news/add-news';
 import { Turnament } from './components/admin/turnament/turnament';
 import { TuningTurnament } from './components/admin/tuning-turnament/tuning-turnament';
+import { CircleTurnament } from './components/admin/tuning-turnament/circle-turnament/circle-turnament';
+import { MixedTurnament } from './components/admin/tuning-turnament/mixed-turnament/mixed-turnament';
 
 import { AuthenticationAdminService } from './services/admin/authentication';
 import { NewsAdminService } from './services/admin/news';
@@ -71,7 +73,9 @@ import { TurnamentStep } from './pipe/turnamentStep';
         TurnamentStep,
         AddNews,
         Turnament,
-        TuningTurnament
+        TuningTurnament,
+        CircleTurnament,
+        MixedTurnament
     ],
     imports: [
         BrowserModule,
