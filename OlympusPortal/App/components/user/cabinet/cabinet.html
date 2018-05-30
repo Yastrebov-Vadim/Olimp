@@ -1,121 +1,378 @@
 ﻿<div class="cabinet-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
-    <div class="lk-info">
-        <div class="lk-avatar-block">
-            <div class="lk-avatar" id="avatar" [style.background-image]="account.photo"></div>
-        </div>
-
-        <div class="lk-label">
-            Персональные данные команды
-        </div>
-
-        <div class="lk-name">
-            <div>Название команды</div>
-            <input placeholder="Название команды" name="name" [(ngModel)]="account.name" [disabled]="isEdit" />
-        </div>
-        <div class="lk-fone">
-            <div>Контактный телефон</div>
-            <input placeholder="Контактный телефон" type="text" name="phone" [(ngModel)]="account.phone" [disabled]="isEdit" />
-        </div>
-        <div class="lk-email">
-            <div>Электронная почта</div>
-            <input placeholder="Электронная почта" type="text" name="email" [(ngModel)]="account.email" [disabled]="isEdit" />
-        </div>
-
-        <div class="lk-button">
-            <div class="file-upload">
-                <label>
-                    <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" (change)="avatarChanged($event)" />
-                    <span>Загрузить фото</span>
-                </label>
+    <div class="button-cabinet-block">
+        <div mat-button [className]="page == 1 ? 'cabinet-control-active' : 'cabinet-control'" (click)="page=1">Данные</div>
+        <div mat-button [className]="page == 2 ? 'cabinet-control-active' : 'cabinet-control'" (click)="page=2">Турниры</div>
+        <div mat-button [className]="page == 3 ? 'cabinet-control-active' : 'cabinet-control'" (click)="page=3">Статистика</div>
+    </div>
+    <div class="lk-info" *ngIf="page == 1">
+        <div class="lk-info">
+            <div class="lk-avatar-block">
+                <div class="lk-avatar" id="avatar" [style.background-image]="account.photo"></div>
             </div>
-            <button mat-button class="button-lk-add-player" (click)="openFormAddPlayer()">Добавить игрока</button>
-            <button mat-button class="button-lk-update" id="editButton" (click)="editAccountInfo(isEdit)">Редактировать</button>
-        </div>
 
-
-    </div>
-
-    <div class="tournaments-command-title">
-        Состав
-    </div>
-
-    <table class="lk-command">
-        <tr class="lk-player">
-            <td class="lk-number-count title-header">
-                №
-            </td>
-            <td class="lk-surname title-header">
-                Фамилия
-            </td>
-            <td class="lk-full-name title-header">
-                Имя
-            </td>
-            <td class="lk-last-name title-header">
-                Отчество
-            </td>
-            <td class="lk-number title-header">
-                Номер в поле
-            </td>
-            <td class="delet-player title-header">
-                Удалить
-            </td>
-        </tr>
-
-        <tr class="lk-player" *ngFor="let player of account.command; let i = index">
-            <td class="lk-number-count">
-                {{i+1}}
-            </td>
-            <td class="lk-surname">
-                {{player.surname}}
-            </td>
-            <td class="lk-full-name">
-                {{player.name}}
-            </td>
-            <td class="lk-last-name">
-                {{player.middleName}}
-            </td>
-            <td class="lk-number">
-                <input class="edit-number" name="number" #number="ngModel" [(ngModel)]="player.number" [disabled]="isEdit" pattern="[0-9]*" (change)="changeInfoPlayer(player, number.hasError('pattern'))" />
-            </td>
-            <td class="delet-player delet-player-img" (click)="selectPlayer(player.playerId, i)" data-toggle="modal" data-target="#myModal"></td>
-        </tr>
-    </table>
-
-</div>
-
-<div class="transparent-layer-player" id="transparent-layer-player">
-    <div class="add-player" [ngStyle]="addPlayerBlockStyle()">
-        <form class="example-form" #newplayer="ngForm" novalidate autocomplete="on">
-            <mat-form-field>
-                <input placeholder="Фамилия" matInput type="text" name="surname" [(ngModel)]="player.surname" required />
-            </mat-form-field>
-            <mat-form-field>
-                <input placeholder="Имя" matInput type="text" name="name" [(ngModel)]="player.name" required />
-            </mat-form-field>
-            <mat-form-field>
-                <input placeholder="Отчество" matInput type="text" name="middleName" [(ngModel)]="player.middleName" required />
-            </mat-form-field>
-            <mat-form-field>
-                <input placeholder="Номер в поле" matInput type="text" #newNumber="ngModel" name="number" [(ngModel)]="player.number" pattern="[0-9]*" required />
-            </mat-form-field>
-            <button mat-button (click)="addPlayer(newplayer.invalid, newNumber.hasError('pattern'))">Добавить</button>
-            <button mat-button (click)="close()">Отмена</button>
-        </form>
-    </div>
-</div>
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        
-            <div class="modal-body">
-                Удалить игрока?
+            <div class="lk-label">
+                Персональные данные команды
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellPlayer()">ДА</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+
+            <div class="lk-name">
+                <div>Название команды</div>
+                <input placeholder="Название команды" name="name" [(ngModel)]="account.name" [disabled]="isEdit" />
+            </div>
+            <div class="lk-fone">
+                <div>Контактный телефон</div>
+                <input placeholder="Контактный телефон" type="text" name="phone" [(ngModel)]="account.phone" [disabled]="isEdit" />
+            </div>
+            <div class="lk-email">
+                <div>Электронная почта</div>
+                <input placeholder="Электронная почта" type="text" name="email" [(ngModel)]="account.email" [disabled]="isEdit" />
+            </div>
+
+            <div class="lk-button">
+                <div class="file-upload">
+                    <label>
+                        <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" (change)="avatarChanged($event)" />
+                        <span>Загрузить фото</span>
+                    </label>
+                </div>
+                <button mat-button class="button-lk-add-player" (click)="openFormAddPlayer()">Добавить игрока</button>
+                <button mat-button class="button-lk-update" id="editButton" (click)="editAccountInfo(isEdit)">Редактировать</button>
             </div>
         </div>
+
+
+        <div class="tournaments-command-title">
+            Состав
+        </div>
+
+        <table class="lk-command">
+            <tr class="lk-player">
+                <td class="lk-number-count title-header">
+                    №
+                </td>
+                <td class="lk-surname title-header">
+                    Фамилия
+                </td>
+                <td class="lk-full-name title-header">
+                    Имя
+                </td>
+                <td class="lk-last-name title-header">
+                    Отчество
+                </td>
+                <td class="lk-number title-header">
+                    Номер в поле
+                </td>
+                <td class="delet-player title-header">
+                    Удалить
+                </td>
+            </tr>
+
+            <tr class="lk-player" *ngFor="let player of account.command; let i = index">
+                <td class="lk-number-count">
+                    {{i+1}}
+                </td>
+                <td class="lk-surname">
+                    <input class="edit-surname" name="surname" #number="ngModel" [(ngModel)]="player.surname" [disabled]="isEdit" (change)="changeInfoPlayer(player, false)" />
+                </td>
+                <td class="lk-full-name">
+                    <input class="edit-name" name="name" #number="ngModel" [(ngModel)]="player.name" [disabled]="isEdit" (change)="changeInfoPlayer(player, false)" />
+                </td>
+                <td class="lk-last-name">
+                    <input class="edit-middleName" name="middleName" #number="ngModel" [(ngModel)]="player.middleName" [disabled]="isEdit" (change)="changeInfoPlayer(player, false)" />
+                </td>
+                <td class="lk-number">
+                    <input class="edit-number" name="number" #number="ngModel" [(ngModel)]="player.number" [disabled]="isEdit" pattern="[0-9]*" (change)="changeInfoPlayer(player, number.hasError('pattern'))" />
+                </td>
+                <td class="delet-player delet-player-img" (click)="selectPlayer(player.playerId, i)" data-toggle="modal" data-target="#myModal"></td>
+            </tr>
+        </table>
     </div>
-</div>
+
+
+    <div class="lk-info" *ngIf="page == 2">
+        <div class="tournaments-not">
+            <div class="tournaments-not-photo">
+            </div>
+            <div class="tournaments-log-text" *ngIf="isTur">
+                Вы участвуете в турнирах
+            </div>
+            <div class="tournaments-log-text no-log" *ngIf="!isTur">
+                Вы не учавствуете в турнирах
+            </div>
+        </div>
+
+        <div class="news-block" *ngFor="let turnament of turnaments; let i = index">
+            <div class="current-tournaments-content" *ngIf="turnament.type == 1">
+                <div class="title-tournaments">
+                    <div class="tournaments-date">
+                        C {{turnament.dateStart}}
+                    </div>
+                    <div class="tournaments-text">
+                        {{turnament.name}}
+                    </div>
+                </div>
+
+                <div class="tournaments-description">
+                    {{turnament.description}}
+                </div>
+
+                <div class="current-turnament-table">
+                    <div>
+                        <table class="lk-command">
+                            <tr *ngFor="let row of turnament.tableTutnament.rowSize; let r = index">
+                                <td *ngFor="let col of turnament.tableTutnament.colSize; let c = index">
+                                    {{turnament.tableTutnament.table[r][c]}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="current-tournaments-command-content">
+                    <div class="current-tours inline-block">
+                        Туры
+                    </div>
+
+                    <input type="checkbox" id="{{'tur'+i}}" class="hide" />
+                    <label for="{{'tur'+i}}" class="tournaments-command-open"></label>
+
+                    <div class="current-tour-content">
+                        <div *ngFor="let groupTour of turnament.groupTourNumber; let t = index" [ngClass]="groupTour.status == 0 ? 'current-tour-opacity' : ''" class="current-tour-block">
+                            <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
+                                Тур № {{groupTour.numberTour}}
+                            </div>
+                            <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
+                                <div class="current-day-play-game">
+                                    <div class="place-start-game" *ngIf="groupTour.status != 0">
+                                        Место: {{tour.arena}}
+                                    </div>
+                                    День {{d+1}}
+                                    <div class="date-start-game" *ngIf="groupTour.status != 0">
+                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                    </div>
+                                </div>
+
+                                <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                                    <div class="game-points">
+                                        {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                    </div>
+
+                                    <div class="game-command-name-block">
+                                        <div class="game-command-name">
+                                            {{game.commandOneName}}
+                                        </div>
+                                        VS
+                                        <div class="game-command-name">
+                                            {{game.commandTwoName}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="current-tournaments-content" *ngIf="turnament.type == 2">
+                <div class="title-tournaments">
+                    <div class="tournaments-date">
+                        C {{turnament.dateStart}}
+                    </div>
+                    <div class="tournaments-text">
+                        {{turnament.name}}
+                    </div>
+                </div>
+
+                <div class="tournaments-description">
+                    {{turnament.description}}
+                </div>
+                <div class="button-turnament-block" *ngIf="turnament.step != 1">
+                    <div mat-button [className]="list == 1 ? 'turnament-control-active' : 'turnament-control'" (click)="list=1">Команды</div>
+                    <div mat-button [className]="list == 2 ? 'turnament-control-active' : 'turnament-control'" (click)="list=2">Группы</div>
+                    <div mat-button [className]="list == 3 ? 'turnament-control-active' : 'turnament-control'" (click)="list=3">Плей-офф</div>
+                </div>
+
+                <div class="tournaments-command-content" *ngIf="list == 1">
+                    <div class="tournaments-command-title inline-block">
+                        Команды
+                    </div>
+
+                    <table class="lk-command">
+                        <tr>
+                            <td class="title-header">
+                                №
+                            </td>
+                            <td class="title-header">
+                                Названия команд заявленных на турнир
+                            </td>
+                        </tr>
+
+                        <tr *ngFor="let command of turnament.commands; let j = index">
+                            <td>
+                                {{j+1}}
+                            </td>
+                            <td>
+                                {{command.name}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div *ngIf="list == 2">
+                    <div *ngFor="let turnamentGroups of turnament.turnamentGroups; let j = index" class="group-for-turnament">
+                        <div class="group-number">
+                            Группа - {{j+1}}
+                        </div>
+
+                        <div class="turnament-table-scrol">
+                            <table class="lk-command">
+                                <tr *ngFor="let row of turnamentGroups.tableTutnament.rowSize; let r = index">
+                                    <td *ngFor="let col of turnamentGroups.tableTutnament.colSize; let c = index">
+                                        {{turnamentGroups.tableTutnament.table[r][c]}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="current-tours inline-block">
+                            Туры
+                        </div>
+
+                        <input type="checkbox" id="{{'tur'+i+j}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                        <label for="{{'tur'+i+j}}" class="tournaments-command-open"></label>
+                        <div class="current-tour-content">
+                            <div *ngFor="let groupTour of turnamentGroups.groupTourNumber; let t = index" [ngClass]="groupTour.status == 0 ? 'current-tour-opacity' : ''" class="current-tour-block">
+                                <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
+                                    Тур № {{groupTour.numberTour}}
+                                </div>
+                                <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
+                                    <div class="current-day-play-game">
+                                        <div class="place-start-game" *ngIf="groupTour.status != 0">
+                                            Место: {{tour.arena}}
+                                        </div>
+                                        День {{d+1}}
+                                        <div class="date-start-game" *ngIf="groupTour.status != 0">
+                                            Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                        </div>
+                                    </div>
+
+                                    <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                                        <div class="game-points">
+                                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                        </div>
+
+                                        <div class="game-command-name-block">
+                                            <div class="game-command-name">
+                                                {{game.commandOneName}}
+                                            </div>
+                                            VS
+                                            <div class="game-command-name">
+                                                {{game.commandTwoName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tournaments-command-content" *ngIf="list == 3">
+                    <div class="tournaments-command-content">
+                        <table class="lk-command" *ngIf="turnament.isPlayOff">
+                            <tr>
+                                <td class="title-header">
+                                    № Тура
+                                </td>
+                                <td class="title-header" [attr.colspan]="turnament.positionPlayOff[0].length">
+                                    Названия команд
+                                </td>
+                            </tr>
+
+                            <tr *ngFor="let positionPlayOff of turnament.positionPlayOff; let n = index">
+                                <td>
+                                    {{n+1}}
+                                </td>
+                                <td *ngFor="let position of positionPlayOff">
+                                    {{position.commandName}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div *ngFor="let turnamentPlayOff of turnament.turnamentPlayOff; let p = index">
+                        <div *ngFor="let groupTour of turnamentPlayOff.groupTourNumber; let t = index" class="tour-block" [ngClass]="turnamentPlayOff.stateCode || turnamentPlayOff.numberCircle == 1 || turnament.turnamentPlayOff[p-1].stateCode  ? '' : 'current-tour-opacity'">
+                            <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
+                                Тур № {{groupTour.numberTour}}
+                            </div>
+                            <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="current-game-group-date">
+                                <div class="current-day-play-game">
+                                    <div class="place-start-game" *ngIf="groupTour.status != 0">
+                                        Место: {{tour.arena}}
+                                    </div>
+                                    День {{d+1}}
+                                    <div class="date-start-game" *ngIf="groupTour.status != 0">
+                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                    </div>
+                                </div>
+
+                                <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                                    <div class="game-points">
+                                        {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                    </div>
+
+                                    <div class="game-command-name-block">
+                                        <div class="game-command-name">
+                                            {{game.commandOneName}}
+                                        </div>
+                                        VS
+                                        <div class="game-command-name">
+                                            {{game.commandTwoName}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="transparent-layer-player" id="transparent-layer-player">
+        <div class="add-player" [ngStyle]="addPlayerBlockStyle()">
+            <form class="example-form" #newplayer="ngForm" novalidate autocomplete="on">
+                <mat-form-field>
+                    <input placeholder="Фамилия" matInput type="text" name="surname" [(ngModel)]="player.surname" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <input placeholder="Имя" matInput type="text" name="name" [(ngModel)]="player.name" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <input placeholder="Отчество" matInput type="text" name="middleName" [(ngModel)]="player.middleName" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <input placeholder="Номер в поле" matInput type="text" #newNumber="ngModel" name="number" [(ngModel)]="player.number" pattern="[0-9]*" required />
+                </mat-form-field>
+                <button mat-button (click)="addPlayer(newplayer.invalid, newNumber.hasError('pattern'))">Добавить</button>
+                <button mat-button (click)="close()">Отмена</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    Удалить игрока?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellPlayer()">ДА</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>

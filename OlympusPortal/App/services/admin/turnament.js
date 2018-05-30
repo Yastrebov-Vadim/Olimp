@@ -38,6 +38,10 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.getTurnamentMixed, request);
     };
+    TurnamentAdminService.prototype.GetPlayerForTurnament = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.getPlayerForTurnament, request);
+    };
     TurnamentAdminService.prototype.SaveCircleTurnamentInfo = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.saveTurnamentInfo, request);
@@ -74,6 +78,10 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.calculateGroup, request);
     };
+    TurnamentAdminService.prototype.CalculatePlayOff = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.calculatePlayOff, request);
+    };
     TurnamentAdminService.prototype.DivideForDay = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.divideForDay, request);
@@ -93,6 +101,10 @@ var TurnamentAdminService = (function () {
     TurnamentAdminService.prototype.CloseTour = function (request) {
         var self = this;
         return this.tranport.postData(self.urls.closeTour, request);
+    };
+    TurnamentAdminService.prototype.AddGoals = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.addGoals, request);
     };
     TurnamentAdminService = __decorate([
         core_1.Injectable(),

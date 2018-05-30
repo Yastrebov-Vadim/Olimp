@@ -1,4 +1,4 @@
-﻿import { TurnamentInfo, GetCircleTurnament, GetMixedTurnament, Arena } from '../../../model/admin/turnament';
+﻿import { TurnamentInfo, GetCircleTurnament, GetMixedTurnament, Arena, Player } from '../../../model/admin/turnament';
 
 export class TurnamentInfoResponse {
     turnaments: TurnamentInfo[]
@@ -21,6 +21,14 @@ export class GetMixedTurnamentResponse {
 
     constructor(turnament: GetMixedTurnament) {
         this.turnament = turnament
+    }
+}
+
+export class GetPlayerForTurnamentResponse {
+    players: Player[]
+
+    constructor(players: Player[]) {
+        this.players = players
     }
 }
 

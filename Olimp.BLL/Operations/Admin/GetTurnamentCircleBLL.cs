@@ -28,7 +28,7 @@ namespace Olimp.BLL.Operations
             }
 
             var positionCommands = turnament.step > 1 ? GetPositionCommandBLL.Execute(turnamentId) : new List<PositionCommand>();
-            var groupTourNumber = turnament.step > 1 ? GetGroupTourNumberBLL.Execute(turnamentId) : new List<GroupTourNumber>();
+            var groupTourNumber = turnament.step > 1 ? GetGroupTourNumberBLL.Execute(turnamentId, true) : new List<GroupTourNumber>();
 
             var item = new CircleTurnamentAdmin
             {

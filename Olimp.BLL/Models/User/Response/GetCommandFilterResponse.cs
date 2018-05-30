@@ -4,7 +4,7 @@ namespace Olimp.BLL.Models.Response
 {
     public class GetCommandFilterResponse
     {
-        public List<CommandFilter> CommandFilter { get; set; }
+        public List<CommandsFilter> CommandFilter { get; set; }
     }
 }
 

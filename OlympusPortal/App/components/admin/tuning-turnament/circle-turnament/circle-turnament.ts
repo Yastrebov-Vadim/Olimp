@@ -1,12 +1,12 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Common } from '../../../../model/user/common';
 import { TurnamentAdminService } from '../../../../services/admin/turnament';
 import { ElementRequest } from '../../../../classes/admin/requests/elementRequest';
-import { SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
-import { GetCircleTurnament, GameTurnament, DayGame, Arena } from '../../../../model/admin/turnament';
+import { SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, AddGoalRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
+import { GetCircleTurnament, GameTurnament, DayGame, Arena, Goal, Player, Command } from '../../../../model/admin/turnament';
 
 @Component({
     selector: 'circle-turnament',
@@ -14,7 +14,7 @@ import { GetCircleTurnament, GameTurnament, DayGame, Arena } from '../../../../m
 })
 
 export class CircleTurnament implements OnInit {
-    @Input() id: number;
+    @Input() id: string;
     @Input() type: number;
     public busy: Promise<any>;
     public dateStart: any;
@@ -27,7 +27,10 @@ export class CircleTurnament implements OnInit {
     public colSize: number[] = new Array<number>();
     public days: DayGame[] = new Array<DayGame>();
     public table = new Array();
+    public players: Player[] = new Array<Player>();
+    public goal: Goal = new Goal(null, null, null, null, null, null, null);
     public arens: Arena[] = new Array<Arena>();
+    public commands: Command[] = new Array<Command>();
     public turnament: GetCircleTurnament = new GetCircleTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null)
 
     constructor(
@@ -39,6 +42,7 @@ export class CircleTurnament implements OnInit {
     ngOnInit(): void {
         var self = this;
         self.getTurnament(self.id);
+        self.getPlayerForTurnament(self.id);
         self.getArena();
     }
 
@@ -49,6 +53,13 @@ export class CircleTurnament implements OnInit {
             self.page = self.turnament.step > 1 ? 2 : 1;
             self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
+        });
+    }
+
+    public getPlayerForTurnament(id) {
+        var self = this;
+        self.busy = self.turnamentService.GetPlayerForTurnament(new ElementRequest(id)).then(response => {
+            self.players = response.players;
         });
     }
 
@@ -67,10 +78,10 @@ export class CircleTurnament implements OnInit {
         var result = "";
         self.turnament.groupTourNumber.forEach(gt => gt.groupDateStart.forEach(gd => gd.gameTurnament.forEach(t => {
             if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+                result = t.commandOneGoals.value + " -- " + t.commandTwoGoals.value;
 
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+                result = t.commandTwoGoals.value + " -- " + t.commandOneGoals.value;
         })));
 
         return result;
@@ -282,7 +293,7 @@ export class CircleTurnament implements OnInit {
     public activTour(tour) {
         var self = this;
 
-        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.id, self.turnament.type, tour, 1)).then(response => {
+        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.id, null, self.turnament.type, tour, 1)).then(response => {
             self.turnament.groupTourNumber[tour - 1].status = 1;
             self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(x => x.gameTurnament.forEach(y => y.status = 1));
             self.toastr.success("Тур активен");
@@ -306,7 +317,7 @@ export class CircleTurnament implements OnInit {
     public closeTour(tour) {
         var self = this;
 
-        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.id, self.turnament.type, tour, null)).then(response => {
+        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.id, null, self.turnament.type, tour, null)).then(response => {
             self.getTurnament(self.id);
             self.toastr.success("Тур завершен");
         });
@@ -316,6 +327,60 @@ export class CircleTurnament implements OnInit {
         var self = this;
 
         self.changeStep(4);
-        self.toastr.success("Тур завершен");
+        self.toastr.success("Турнир завершен");
+    }
+
+    public openFormAddGoals() {
+        var self = this;
+
+        document.getElementById("transparent-layer-goals").style.display = "block";
+    }
+
+    public close() {
+        document.getElementById("transparent-layer-goals").style.display = "none";
+    }
+
+    public addGoalsBlockStyle() {
+        var self = this;
+        var top = (window.outerHeight - 500) / 2;
+
+        return {
+            "margin-top": top + "px"
+        }
+    }
+
+    public addGoals(isValid) {
+        var self = this;
+
+        if (isValid) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+
+        self.goal.turnamentId = self.id;
+
+        self.busy = self.turnamentService.AddGoals(new AddGoalRequest(self.goal)).then(response => {
+            self.getTurnament(self.id);
+            self.goal = new Goal(null, null, null, null, null, null, null);
+            self.close();
+        });
+    }
+
+    public selectCommand(game: GameTurnament) {
+        var self = this;
+
+        self.commands = new Array<Command>();
+        self.commandId = null;
+        self.commands.push(new Command(game.idCommandOne, game.commandOneName));
+        self.commands.push(new Command(game.idCommandTwo, game.commandTwoName));
+        self.goal.gameId = game.id;
+    }
+
+    public getPlayer() {
+        var self = this;
+        if (self.commandId != null)
+            return self.players.filter(x => x.commandId == self.commandId)
+
+        return new Array<Player>();
     }
 } 

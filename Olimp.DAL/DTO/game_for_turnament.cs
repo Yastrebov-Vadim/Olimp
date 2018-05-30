@@ -23,8 +23,6 @@ namespace Olimp.DAL.DTO
         public int number_tour { get; set; }
         public Nullable<System.DateTime> date_start { get; set; }
         public Nullable<System.Guid> id_arena { get; set; }
-        public int command_one_goals { get; set; }
-        public int command_two_goals { get; set; }
         public int command_one_points { get; set; }
         public int command_two_points { get; set; }
         public int status_code { get; set; }

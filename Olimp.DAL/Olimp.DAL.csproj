@@ -60,6 +60,9 @@
     <Compile Include="DTO\avatar.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\circle_for_turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\command_for_turnament.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
@@ -70,6 +73,9 @@
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\game_for_turnament.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\goal.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\group_for_turnament.cs">

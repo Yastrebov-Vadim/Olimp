@@ -23,8 +23,9 @@ var TurnamentStepRequest = (function () {
 }());
 exports.TurnamentStepRequest = TurnamentStepRequest;
 var TourStepRequest = (function () {
-    function TourStepRequest(turnamentId, turnamentType, tour, step) {
+    function TourStepRequest(turnamentId, circleId, turnamentType, tour, step) {
         this.turnamentId = turnamentId;
+        this.circleId = circleId;
         this.turnamentType = turnamentType;
         this.tour = tour;
         this.step = step;
@@ -87,4 +88,11 @@ var CalculateGroupRequest = (function () {
     return CalculateGroupRequest;
 }());
 exports.CalculateGroupRequest = CalculateGroupRequest;
+var AddGoalRequest = (function () {
+    function AddGoalRequest(goal) {
+        this.goal = goal;
+    }
+    return AddGoalRequest;
+}());
+exports.AddGoalRequest = AddGoalRequest;
 //# sourceMappingURL=turnamentRequest.js.map

@@ -71,12 +71,17 @@
         Идет регистрация...
     </div>
 
+    <div class="group-count" *ngIf="turnament.step == 2 && isCalc">
+        Выберете колличество групп  <input type="number" value="0" (change)="countGroup = $event.target.value" />
+    </div>
+
     <button *ngIf="turnament.step == 2 && isCalc" mat-button class="calculate-table button-active" (click)="calculateGroup()">Разбить на группы</button>
 
     <div class="admin-tuning-turnament-block" *ngIf="turnament.step != 0">
         <div class="button-turnament-block" *ngIf="turnament.step != 1">
             <div mat-button [className]="page == 1 ? 'turnament-control-active' : 'turnament-control'" (click)="page=1">Команды</div>
-            <div mat-button [className]="page == 2 ? 'turnament-control-active' : 'turnament-control'" (click)="page=2">Турнир</div>
+            <div mat-button [className]="page == 2 ? 'turnament-control-active' : 'turnament-control'" (click)="page=2">Группы</div>
+            <div mat-button [className]="page == 3 ? 'turnament-control-active' : 'turnament-control'" (click)="page=3" *ngIf="!isCalc">Плей-офф</div>
         </div>
 
         <div class="tournaments-command-content" *ngIf="page == 1">
@@ -125,7 +130,7 @@
                 <div class="group-number">
                     Группа - {{j+1}}
                 </div>
-                
+
                 <div class="turnament-table-scrol">
                     <table class="lk-command">
                         <tr *ngFor="let row of turnamentGroups.tableTutnament.rowSize; let r = index">
@@ -171,7 +176,10 @@
                                     {{game.commandOneGoals}} - {{game.commandTwoGoals}}
                                 </div>
                                 <div *ngIf="game.status == 1" class="game-points">
-                                    <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="game.commandOneGoals = $event.target.value" />
+                                    <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="addGoal(game.id); game.commandOneGoals = $event.target.value" />
+                                    <div *ngFor="let goal of game.goals; let gm = index">
+                                        ывыsdasd
+                                    </div>
                                     -
                                     <input type="number" class="goals-command" [ngModel]="game.commandTwoGoals" (change)="game.commandTwoGoals = $event.target.value" />
                                 </div>
@@ -190,8 +198,8 @@
                             </div>
                         </div>
 
-                        <input type="checkbox" id="{{'divide' + t}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
-                        <label *ngIf="turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3" for="{{'divide' + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
+                        <input type="checkbox" id="{{'divide' + j + t}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                        <label *ngIf="turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3" for="{{'divide' + j + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
 
                         <div *ngIf="turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3">
                             <div class="inline-block">
@@ -209,6 +217,107 @@
                                         </option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tournaments-command-content" *ngIf="page == 3 && !isCalc">
+
+            <div class="tournaments-command-content" *ngIf="!isPlOf">
+                <table class="lk-command">
+                    <tr>
+                        <td class="title-header">
+                            № Тура
+                        </td>
+                        <td class="title-header" [attr.colspan]="turnament.positionPlayOff[0].length" >
+                            Названия команд
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let positionPlayOff of turnament.positionPlayOff; let n = index">
+                        <td>
+                            {{n+1}}
+                        </td>
+                        <td *ngFor="let position of positionPlayOff">
+                            {{position.commandName}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div *ngIf="isPlOf" mat-button class="turnament-control button-active" (click)="calculatePlayOff()">Составить плей-офф</div>
+            <div *ngFor="let turnamentPlayOff of turnament.turnamentPlayOff; let p = index">
+                <div *ngFor="let groupTour of turnamentPlayOff.groupTourNumber; let t = index" class="tour-block" [ngClass]="turnamentPlayOff.stateCode || turnamentPlayOff.numberCircle == 1 || turnament.turnamentPlayOff[p-1].stateCode  ? '' : 'current-tour-opacity'">
+                    <button *ngIf="groupTour.status == 0 && turnament.step == 3" mat-button class="active-tour-button button-active" (click)="activTourPlayOff(groupTour.numberTour, t, p)">Активировать тур</button>
+                    <button *ngIf="groupTour.status == 2 && turnament.step == 3" mat-button class="active-tour-button button-active" (click)="closeTourPlayOff(turnament.turnamentPlayOff[p].playOffId)">Завершить тур</button>
+                    <div class="tour-number">
+                        Тур № {{groupTour.numberTour}}
+                    </div>
+
+                    <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="game-group-date">
+                        <div class="day-play-game">
+                            День {{d+1}}<br />
+                        </div>
+
+                        <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
+                            Дата игр <br />
+                            <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
+                            <br />
+                            Место <br />
+                            <select [(ngModel)]="tour.arena" (change)="changeArena(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
+                                <option [value]="arena.id" *ngFor="let arena of arens">
+                                    {{arena.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngFor="let game of tour.gameTurnament" class="game-block">
+                            <div *ngIf="game.status != 1" class="game-points">
+                                {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                            </div>
+                            <div *ngIf="game.status == 1" class="game-points">
+                                <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="addGoal(game.id);game.commandOneGoals = $event.target.value" />
+                                <div  *ngFor="let goal of game.goals; let gm = index">
+                                    ывы
+                                </div>
+                                -
+                                <input type="number" class="goals-command" [ngModel]="game.commandTwoGoals" (change)="game.commandTwoGoals = $event.target.value" />
+                            </div>
+
+                            <div class="game-command-name-block">
+                                <div class="game-command-name">
+                                    {{game.commandOneName}}
+                                </div>
+                                VS
+                                <div class="game-command-name">
+                                    {{game.commandTwoName}}
+                                </div>
+                            </div>
+
+                            <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGamePlayOff(game.id, j, p, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
+                        </div>
+                    </div>
+
+                    <input type="checkbox" id="{{'divide' + p + t}}" class="hide" [attr.checked]="isChecked ? 'checked' : null" />
+                    <label *ngIf="turnament.step == 3 && groupTour.status != 2 && groupTour.status != 3" for="{{'divide' + p + t}}" class="tournaments-command-open game-day-button-open">Разбить на дни</label>
+
+                    <div *ngIf="turnament.step == 3  && groupTour.status != 2 && groupTour.status != 3">
+                        <div class="inline-block">
+                            Выберете колличество дней  <input type="number" value="0" (change)="selectDayPlayOff(p, t, $event.target.value)" />
+                        </div>
+                        <button mat-button class="game-day-button button-active" (click)="divideForDayPlayOff(groupTour.numberTour, p)">Сохранить</button>
+                        <div>
+                            <div *ngFor="let day of days; let w = index" class="day-value">
+                                День {{w+1}}
+                                <input type="datetime-local" [ngModel]="day.day" (change)="day.day = $event.target.value">
+                                Место
+                                <select [(ngModel)]="day.arena">
+                                    <option *ngFor="let arena of arens" [value]="arena.id">
+                                        {{arena.name}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>

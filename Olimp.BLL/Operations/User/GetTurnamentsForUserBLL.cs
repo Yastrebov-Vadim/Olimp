@@ -1,23 +1,33 @@
 ﻿using Olimp.BLL.Models;
 using Olimp.BLL.Models.Response;
 using Olimp.DAL.Assest;
+using System;
 using System.Collections.Generic;
 
 namespace Olimp.BLL.Operations
 {
     public class GetTurnamentsForUserBLL
     {
-        public static GetTurnamentsForUserResponse Execute(ElementTypeRequest request)
+        public static GetTurnamentsForUserResponse Execute(string accountId)
         {
-            var turnaments = DbHelper.GetTurnamentsForUser(request.Type);
+            var turnaments = DbHelper.GetTurnamentsForUser(Guid.Parse(accountId));
 
             var response = new GetTurnamentsForUserResponse { Turnaments = new List<Turnament>() };
 
             foreach (var item in turnaments)
             {
-                var positionCommands = item.step > 1 && item.type == 1 ? GetPositionCommandBLL.Execute(item.id) : new List<PositionCommand>();
-                var groupTourNumber = item.step > 1 && item.type == 1 ? GetGroupTourNumberBLL.Execute(item.id) : new List<GroupTourNumber>();
-                var turnamentGroups = item.step > 1 && item.type == 2 ? GetTurnamentGroupsBLL.Execute(item.id) : new List<TurnamentGroups>();
+                var positionCommands = item.type == 1 ? GetPositionCommandBLL.Execute(item.id) : new List<PositionCommand>();
+                var groupTourNumber = item.type == 1 ? GetGroupTourNumberBLL.Execute(item.id, false) : new List<GroupTourNumber>();
+                var turnamentGroups = item.type == 2 ? GetTurnamentGroupsBLL.Execute(item.id, false) : new List<TurnamentGroups>();
+                var turnamentPlayOff = new List<TurnamentPlayOff>();
+                var positionPlayOff = new List<List<PositionCommand>>();
+
+                if (item.type == 2)
+                {
+                    var tuple = GetPositionPlayOffBLL.Execute(item.id, false);
+                    turnamentPlayOff = tuple.Item1;
+                    positionPlayOff = tuple.Item2;
+                }
 
                 var commands = DbHelper.GetCommandForTurnament(item.id, true);
                 var commandsForTurnament = new List<CommandForTurnament>();
@@ -48,7 +58,9 @@ namespace Olimp.BLL.Operations
                     Type = item.type,
                     PositionCommand = positionCommands,
                     GroupTourNumber = groupTourNumber,
-                    TurnamentGroups = turnamentGroups
+                    TurnamentGroups = turnamentGroups,
+                    TurnamentPlayOff = turnamentPlayOff,
+                    PositionPlayOff = positionPlayOff
                 };
 
                 response.Turnaments.Add(turnament);

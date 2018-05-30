@@ -26,8 +26,10 @@ var MixedTurnament = (function () {
         this.page = 1;
         this.days = new Array();
         this.isCalc = false;
+        this.isPlOf = false;
+        this.countGroup = 0;
         this.arens = new Array();
-        this.turnament = new turnament_2.GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null);
+        this.turnament = new turnament_2.GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
     MixedTurnament.prototype.ngOnInit = function () {
         var self = this;
@@ -38,10 +40,11 @@ var MixedTurnament = (function () {
         var self = this;
         self.busy = self.turnamentService.GetTurnamentMixed(new elementRequest_1.ElementRequest(id)).then(function (response) {
             self.turnament = response.turnament;
-            self.page = self.turnament.step > 1 ? 2 : 1;
+            self.page = self.turnament.turnamentPlayOff.length == 0 ? self.turnament.step > 1 ? 2 : 1 : 3;
             self.turnament.turnamentGroups.forEach(function (x) {
                 x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
             });
+            self.isPlOf = self.turnament.turnamentPlayOff.length == 0 ? true : false;
             self.isCalc = self.turnament.turnamentGroups.length == 0 ? true : false;
         });
     };
@@ -123,7 +126,11 @@ var MixedTurnament = (function () {
     };
     MixedTurnament.prototype.calculateGroup = function () {
         var self = this;
-        self.busy = self.turnamentService.CalculateGroup(new turnamentRequest_1.CalculateGroupRequest(self.turnament.id, 2)).then(function (response) {
+        if (self.countGroup <= 0) {
+            self.toastr.error("Ошибка: колличество групп меньше или равно 0");
+            return;
+        }
+        self.busy = self.turnamentService.CalculateGroup(new turnamentRequest_1.CalculateGroupRequest(self.turnament.id, self.countGroup)).then(function (response) {
             self.getTurnament(self.id);
             self.toastr.success("Турнирная табляца построена");
         });
@@ -178,6 +185,25 @@ var MixedTurnament = (function () {
             self.days.push(new turnament_2.DayGame(null, null));
         }
     };
+    MixedTurnament.prototype.selectDayPlayOff = function (circle, index, day) {
+        var self = this;
+        var countGame = 0;
+        self.turnament.turnamentPlayOff[circle].groupTourNumber[index].groupDateStart.forEach(function (x) {
+            countGame += x.gameTurnament.length;
+        });
+        if (day > countGame) {
+            self.toastr.error("Колличество дней не может превышать - " + countGame);
+            return;
+        }
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
+        self.days = new Array();
+        for (var i = 0; i < day; i++) {
+            self.days.push(new turnament_2.DayGame(null, null));
+        }
+    };
     MixedTurnament.prototype.divideForDay = function (index, tour) {
         var self = this;
         if (self.days.length == 0) {
@@ -200,11 +226,41 @@ var MixedTurnament = (function () {
                 self.toastr.success("Игры распределены по дням");
             });
     };
+    MixedTurnament.prototype.divideForDayPlayOff = function (tour, circle) {
+        var self = this;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+        var isValid = true;
+        if (self.days.length > 0)
+            self.days.forEach(function (x) {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            });
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new turnamentRequest_1.DivideForDayRequest(self.turnament.turnamentPlayOff[circle].playOffId, tour, self.days)).then(function (response) {
+                self.days = new Array();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    };
     MixedTurnament.prototype.activTour = function (tour, index) {
         var self = this;
-        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, 1)).then(function (response) {
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, null, self.turnament.type, tour, 1)).then(function (response) {
             self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].status = 1;
             self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
+            self.toastr.success("Тур активен");
+        });
+    };
+    MixedTurnament.prototype.activTourPlayOff = function (tour, index, circle) {
+        var self = this;
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentPlayOff[circle].playOffId, null, 3, tour, 1)).then(function (response) {
+            self.turnament.turnamentPlayOff[circle].groupTourNumber[index].status = 1;
+            self.turnament.turnamentPlayOff[circle].groupTourNumber[index].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
             self.toastr.success("Тур активен");
         });
     };
@@ -219,12 +275,47 @@ var MixedTurnament = (function () {
             self.toastr.success("Игра завершена");
         });
     };
+    MixedTurnament.prototype.completeGamePlayOff = function (id, index, circle, oneGols, twoGols) {
+        var self = this;
+        if (oneGols < 0 || twoGols < 0) {
+            self.toastr.error("Отрицательное колличество забитых мячей");
+            return;
+        }
+        self.busy = self.turnamentService.CompleteGame(new turnamentRequest_1.CompleteGameRequest(self.turnament.turnamentPlayOff[circle].playOffId, id, oneGols, twoGols)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    };
     MixedTurnament.prototype.closeTour = function (tour, index) {
         var self = this;
-        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, null)).then(function (response) {
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.turnamentGroups[index].groupId, null, self.turnament.type, tour, null)).then(function (response) {
             self.getTurnament(self.id);
             self.toastr.success("Тур завершен");
         });
+    };
+    MixedTurnament.prototype.closeTourPlayOff = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, id, 3, null, null)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
+    };
+    MixedTurnament.prototype.calculatePlayOff = function () {
+        var self = this;
+        self.busy = self.turnamentService.CalculatePlayOff(new elementRequest_1.ElementRequest(self.turnament.id)).then(function (response) {
+            self.getTurnament(self.id);
+            self.toastr.success("Турнирная табляца построена");
+        });
+    };
+    MixedTurnament.prototype.completeTurnament = function () {
+        var self = this;
+        self.changeStep(4);
+        self.toastr.success("Турнир завершен");
+    };
+    MixedTurnament.prototype.addGoal = function (id) {
+        var self = this;
+        self.turnament.turnamentGroups.forEach(function (g) { return g.groupTourNumber.forEach(function (g) { return g.groupDateStart.forEach(function (d) { return d.gameTurnament.forEach(function (x) {
+        }); }); }); });
     };
     __decorate([
         core_1.Input(),

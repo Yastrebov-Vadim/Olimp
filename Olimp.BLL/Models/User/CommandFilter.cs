@@ -2,7 +2,7 @@
 
 namespace Olimp.BLL.Models
 {
-    public class CommandFilter
+    public class CommandsFilter
     {
         public string Name { get; set; }
         public string Id { get; set; }

@@ -14,8 +14,8 @@ import { ElementTypeRequest } from '../../../classes/user/requests/elementTypeRe
 export class PastTournaments implements OnInit {
     public busy: Promise<any>;
     public turnaments: GetTurnamentForUser[];
-    public isChecked: boolean = false;
     public isTur: boolean = false;
+    public page: number = 2;
 
     constructor(
         private toastr: ToastsManager,
@@ -33,13 +33,19 @@ export class PastTournaments implements OnInit {
 
     public getTournaments() {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new ElementTypeRequest(4)).then(response => {
+        self.busy = self.turnamentService.GetTurnaments(new ElementTypeRequest(4)).then(response => {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(x => {
-                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                if (x.type == 1) {
+                    x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                }
+                else {
+                    x.turnamentGroups.forEach(g => {
+                        g.tableTutnament = self.getTable(g.positionCommand, g.groupTourNumber);
+                    });
+                }
             });
             self.isTur = self.turnaments.length > 0;
-            self.isChecked = self.turnaments.length < 2;
         });
     }
 

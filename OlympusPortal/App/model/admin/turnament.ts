@@ -68,10 +68,13 @@ export class GetMixedTurnament {
     public contributionTournament: number;
     public commands: CommandForTurnament[];
     public turnamentGroups: TurnamentGroups[];
+    public turnamentPlayOff: TurnamentPlayOff[];
+    public positionPlayOff: PositionCommand[][]
 
     constructor(id: string, name: string, dateStart: Date, dateEnd: Date, type: number,
         stateCode: boolean, step: number, description: string, contributionGame: number,
-        contributionTournament: number, commands: CommandForTurnament[], turnamentGroups: TurnamentGroups[]) {
+        contributionTournament: number, commands: CommandForTurnament[], turnamentGroups: TurnamentGroups[],
+        turnamentPlayOff: TurnamentPlayOff[], positionPlayOff: PositionCommand[][]) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -84,6 +87,8 @@ export class GetMixedTurnament {
         this.contributionTournament = contributionTournament;
         this.commands = commands;
         this.turnamentGroups = turnamentGroups;
+        this.turnamentPlayOff = turnamentPlayOff;
+        this.positionPlayOff = positionPlayOff;
     }
 }
 
@@ -96,6 +101,20 @@ export class TurnamentGroups {
     constructor(groupId: string,positionCommand: PositionCommand[], groupTourNumber: GroupTourNumber[]) {
         this.groupId = groupId;
         this.positionCommand = positionCommand;
+        this.groupTourNumber = groupTourNumber;
+    }
+}
+
+export class TurnamentPlayOff {
+    public playOffId: string;
+    public numberCircle: number;
+    public stateCode: boolean;
+    public groupTourNumber: GroupTourNumber[];
+
+    constructor(playOffId: string, numberCircle: number, stateCode: boolean, groupTourNumber: GroupTourNumber[]) {
+        this.playOffId = playOffId;
+        this.numberCircle = numberCircle;
+        this.stateCode = stateCode;
         this.groupTourNumber = groupTourNumber;
     }
 }
@@ -132,6 +151,17 @@ export class PositionCommand {
     }
 }
 
+export class Command {
+    public commandId: string;
+    public commandName: string;
+
+    constructor(commandId: string, commandName: string) {
+
+        this.commandId = commandId;
+        this.commandName = commandName;
+    }
+}
+
 export class GameTurnament {
     public id: string;
     public idCommandOne: string;
@@ -142,13 +172,13 @@ export class GameTurnament {
     public status: number;
     public dateStart: Date;
     public arena: string;
-    public commandOneGoals: number;
-    public commandTwoGoals: number;
+    public commandOneGoals: Goals;
+    public commandTwoGoals: Goals;
     public commandOnePoints: number;
     public commandTwoPoints: number;
 
     constructor(id: string, idCommandOne: string, idCommandTwo: string, commandOneName: string, commandTwoName: string,
-        tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: number, commandTwoGoals: number,
+        tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: Goals, commandTwoGoals: Goals,
         commandOnePoints: number, commandTwoPoints: number) {
         this.id = id;
         this.idCommandOne = idCommandOne;
@@ -163,6 +193,36 @@ export class GameTurnament {
         this.commandTwoGoals = commandTwoGoals;
         this.commandOnePoints = commandOnePoints;
         this.commandTwoPoints = commandTwoPoints;
+    }
+}
+
+export class Goals {
+    public value: number;
+    public goal: Goal[];
+
+    constructor(value: number, goal: Goal[]) {
+        this.value = value;
+        this.goal = goal;
+    }
+}
+
+export class Goal {
+    public id: string;
+    public turnamentId: string;
+    public commandId: string;
+    public gameId: string;
+    public playerId: string;
+    public playerSurname: string;
+    public time: number;
+
+    constructor(id: string, turnamentId: string, commandId: string, gameId: string, playerId: string, playerSurname: string, time: number) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.time = time;
     }
 }
 
@@ -216,5 +276,17 @@ export class Cell {
     constructor(value: any, isFake: boolean) {
         this.value = value;
         this.isFake = isFake;
+    }
+}
+
+export class Player {
+    public playerId: string;
+    public commandId: string;
+    public surname: string;
+
+    constructor(playerId: string, commandId: string, surname: string) {
+        this.playerId = playerId;
+        this.commandId = commandId;
+        this.surname = surname;
     }
 }

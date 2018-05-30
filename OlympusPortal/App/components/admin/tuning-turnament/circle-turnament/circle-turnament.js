@@ -31,12 +31,16 @@ var CircleTurnament = (function () {
         this.colSize = new Array();
         this.days = new Array();
         this.table = new Array();
+        this.players = new Array();
+        this.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
         this.arens = new Array();
+        this.commands = new Array();
         this.turnament = new turnament_2.GetCircleTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
     CircleTurnament.prototype.ngOnInit = function () {
         var self = this;
         self.getTurnament(self.id);
+        self.getPlayerForTurnament(self.id);
         self.getArena();
     };
     CircleTurnament.prototype.getTurnament = function (id) {
@@ -46,6 +50,12 @@ var CircleTurnament = (function () {
             self.page = self.turnament.step > 1 ? 2 : 1;
             self.isCalc = self.turnament.positionCommand.length == 0 ? true : false;
             self.getTable();
+        });
+    };
+    CircleTurnament.prototype.getPlayerForTurnament = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.GetPlayerForTurnament(new elementRequest_1.ElementRequest(id)).then(function (response) {
+            self.players = response.players;
         });
     };
     CircleTurnament.prototype.getArena = function () {
@@ -61,9 +71,9 @@ var CircleTurnament = (function () {
         var result = "";
         self.turnament.groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
             if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+                result = t.commandOneGoals.value + " -- " + t.commandTwoGoals.value;
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+                result = t.commandTwoGoals.value + " -- " + t.commandOneGoals.value;
         }); }); });
         return result;
     };
@@ -225,7 +235,7 @@ var CircleTurnament = (function () {
     };
     CircleTurnament.prototype.activTour = function (tour) {
         var self = this;
-        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, self.turnament.type, tour, 1)).then(function (response) {
+        self.busy = self.turnamentService.ChangeStatusTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, null, self.turnament.type, tour, 1)).then(function (response) {
             self.turnament.groupTourNumber[tour - 1].status = 1;
             self.turnament.groupTourNumber[tour - 1].groupDateStart.forEach(function (x) { return x.gameTurnament.forEach(function (y) { return y.status = 1; }); });
             self.toastr.success("Тур активен");
@@ -244,7 +254,7 @@ var CircleTurnament = (function () {
     };
     CircleTurnament.prototype.closeTour = function (tour) {
         var self = this;
-        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, self.turnament.type, tour, null)).then(function (response) {
+        self.busy = self.turnamentService.CloseTour(new turnamentRequest_1.TourStepRequest(self.turnament.id, null, self.turnament.type, tour, null)).then(function (response) {
             self.getTurnament(self.id);
             self.toastr.success("Тур завершен");
         });
@@ -252,11 +262,52 @@ var CircleTurnament = (function () {
     CircleTurnament.prototype.completeTurnament = function () {
         var self = this;
         self.changeStep(4);
-        self.toastr.success("Тур завершен");
+        self.toastr.success("Турнир завершен");
+    };
+    CircleTurnament.prototype.openFormAddGoals = function () {
+        var self = this;
+        document.getElementById("transparent-layer-goals").style.display = "block";
+    };
+    CircleTurnament.prototype.close = function () {
+        document.getElementById("transparent-layer-goals").style.display = "none";
+    };
+    CircleTurnament.prototype.addGoalsBlockStyle = function () {
+        var self = this;
+        var top = (window.outerHeight - 500) / 2;
+        return {
+            "margin-top": top + "px"
+        };
+    };
+    CircleTurnament.prototype.addGoals = function (isValid) {
+        var self = this;
+        if (isValid) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+        self.goal.turnamentId = self.id;
+        self.busy = self.turnamentService.AddGoals(new turnamentRequest_1.AddGoalRequest(self.goal)).then(function (response) {
+            self.getTurnament(self.id);
+            self.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+            self.close();
+        });
+    };
+    CircleTurnament.prototype.selectCommand = function (game) {
+        var self = this;
+        self.commands = new Array();
+        self.commandId = null;
+        self.commands.push(new turnament_2.Command(game.idCommandOne, game.commandOneName));
+        self.commands.push(new turnament_2.Command(game.idCommandTwo, game.commandTwoName));
+        self.goal.gameId = game.id;
+    };
+    CircleTurnament.prototype.getPlayer = function () {
+        var self = this;
+        if (self.commandId != null)
+            return self.players.filter(function (x) { return x.commandId == self.commandId; });
+        return new Array();
     };
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Number)
+        __metadata("design:type", String)
     ], CircleTurnament.prototype, "id", void 0);
     __decorate([
         core_1.Input(),

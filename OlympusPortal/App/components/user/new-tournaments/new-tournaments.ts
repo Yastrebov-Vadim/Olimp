@@ -35,7 +35,7 @@ export class NewTournaments implements OnInit {
 
     public getTournaments() {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new ElementTypeRequest(1)).then(response => {
+        self.busy = self.turnamentService.GetTurnaments(new ElementTypeRequest(1)).then(response => {
             self.turnaments = response.turnaments;
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;

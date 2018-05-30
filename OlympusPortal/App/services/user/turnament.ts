@@ -15,9 +15,14 @@ export class TurnamentService {
 
     constructor(private tranport: TransportService) { }
 
-    GetTurnamentsForUser(request: ElementTypeRequest): Promise<GetTurnamentForUserResponse> {
+    GetTurnamentsForUser(): Promise<GetTurnamentForUserResponse> {
         var self = this;
-        return this.tranport.postData(self.urls.getTurnamentsForUser, request);
+        return this.tranport.postData(self.urls.getTurnamentsForUser, null);
+    }
+
+    GetTurnaments(request: ElementTypeRequest): Promise<GetTurnamentForUserResponse> {
+        var self = this;
+        return this.tranport.postData(self.urls.getTurnaments, request);
     }
 
     DeclareTournament(request: ElementRequest): Promise<ElementResponse> {

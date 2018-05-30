@@ -8,4 +8,11 @@
         public string MiddleName { get; set; }
         public int Number { get; set; }
     }
+
+    public class PlayerAdmin
+    {
+        public string PlayerId { get; set; }
+        public string CommandId { get; set; }
+        public string Surname { get; set; }
+    }
 }

@@ -12,12 +12,31 @@ namespace Olimp.BLL.Operations
     {
         public static void Execute(TourStepRequest request)
         {
-            var game = DbHelper.CloseTour(Guid.Parse(request.TurnamentId), request.Tour);
+            var turnamentName = string.Empty;
+            var turnamentId = Guid.Parse(request.TurnamentId);
+            var game = new List<game_for_turnament>();
+
+            switch (request.TurnamentType)
+            {
+                case 1:
+                    game = DbHelper.CloseTour(turnamentId, request.Tour);
+                    turnamentName = DbHelper.GetTurnamentName(turnamentId);
+                    break;
+                case 2:
+                    game = DbHelper.CloseTour(turnamentId, request.Tour);
+                    turnamentName = DbHelper.GetTurnamentNameForGroup(turnamentId);
+                    break;
+                case 3:
+                    var circleId = Guid.Parse(request.CircleId);
+                    game = DbHelper.CloseTour(circleId);
+                    turnamentName = DbHelper.GetTurnamentNameForPlayOff(circleId);
+                    CreateGameNewTour(turnamentId, circleId);
+                    break;
+            };
+
             CalculatePosition(Guid.Parse(request.TurnamentId));
             game.ForEach(x =>
             {
-                var turnamentName = request.TurnamentType == 1 ? DbHelper.GetTurnamentName(Guid.Parse(request.TurnamentId)) : DbHelper.GetTurnamentNameForGroup(Guid.Parse(request.TurnamentId));
-
                 SendEmailBLL.SendEmail("Окончание тура", $"{request.Tour} тур, в турнире \"{turnamentName}\" завершен", DbHelper.GetAccountEmail(x.id_command_one));
                 SendEmailBLL.SendEmail("Окончание тура", $"{request.Tour} тур, в турнире \"{turnamentName}\" завершен", DbHelper.GetAccountEmail(x.id_command_two));
             });
@@ -38,7 +57,7 @@ namespace Olimp.BLL.Operations
             {
                 if (x.Count() > 1)
                 {
-                    var positions = CalculatePositionGroup(game, x.ToList());
+                    var positions = CalculatePositionGroup(turnamentId, game, x.ToList());
                     positionPoints.Add(positions);
                 }
                 else
@@ -65,7 +84,7 @@ namespace Olimp.BLL.Operations
             }
         }
 
-        public static List<List<position_command_for_turnament>> CalculatePositionGroup(List<game_for_turnament> game, List<position_command_for_turnament> commands)
+        public static List<List<position_command_for_turnament>> CalculatePositionGroup(Guid turnamentId, List<game_for_turnament> game, List<position_command_for_turnament> commands)
         {
             var response = new List<List<position_command_for_turnament>>();
 
@@ -100,7 +119,7 @@ namespace Olimp.BLL.Operations
             var groupNewPosition = newPosition.GroupBy(x => x.points).ToList();
 
             if (groupNewPosition.Count() == 1)
-                response.Add(CalculatePositionLine(game, groupNewPosition.First().ToList()));
+                response.Add(CalculatePositionLine(turnamentId, game, groupNewPosition.First().ToList()));
             else
             {
                 groupNewPosition.ForEach(x =>
@@ -109,7 +128,7 @@ namespace Olimp.BLL.Operations
                         response.Add(x.ToList());
                     else
                     {
-                        var listPosition = CalculatePositionGroup(game, x.ToList());
+                        var listPosition = CalculatePositionGroup(turnamentId, game, x.ToList());
                         listPosition.ForEach(w =>
                         {
                             response.Add(w);
@@ -121,7 +140,7 @@ namespace Olimp.BLL.Operations
             return response;
         }
 
-        public static List<position_command_for_turnament> CalculatePositionLine(List<game_for_turnament> game, List<position_command_for_turnament> commands)
+        public static List<position_command_for_turnament> CalculatePositionLine(Guid turnamentId, List<game_for_turnament> game, List<position_command_for_turnament> commands)
         {
             var response = new List<position_command_for_turnament>();
 
@@ -142,10 +161,13 @@ namespace Olimp.BLL.Operations
                 {
                     commands.ForEach(c =>
                     {
+                        var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_one, g.id);
+                        var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_two, g.id);
+
                         if (g.id_command_one == x.id_command && g.id_command_two == c.id_command)
-                            goals += g.command_one_goals - g.command_two_goals;
+                            goals += commandOne.Count - commandTwo.Count;
                         if (g.id_command_two == x.id_command && g.id_command_one == c.id_command)
-                            goals += g.command_two_goals - g.command_one_goals;
+                            goals += commandTwo.Count - commandOne.Count;
                     });
                 });
 
@@ -170,6 +192,26 @@ namespace Olimp.BLL.Operations
             });
 
             return response;
+        }
+
+        public static void CreateGameNewTour(Guid turnamentId, Guid circleId)
+        {
+            var circle = DbHelper.GetCircleForTurnament(turnamentId);
+            circle.Sort((a, b) => a.numbr_circle <= b.numbr_circle ? -1 : 1);
+            var commands = DbHelper.GetCommandGoNewTour(circleId);
+            var circleNextId = Guid.Empty;
+
+            for(var i = 0; i < circle.Count - 1; i++)
+            {
+                if (circle[i].id == circleId)
+                    circleNextId = circle[i+1].id;
+            }
+
+            if (circleNextId == Guid.Empty)
+                return;
+
+            DbHelper.SetCommandForNewTour(circleNextId, commands);
+            DbHelper.SetPositionCommandForNewTour(circleNextId, commands);
         }
     }
 }

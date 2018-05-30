@@ -17,5 +17,7 @@ namespace Olimp.BLL.Models
         public int ContributionTournament { get; set; }
         public List<CommandForTurnament> Commands { get; set; }
         public List<TurnamentGroups> TurnamentGroups { get; set; }
+        public List<TurnamentPlayOff> TurnamentPlayOff { get; set; }
+        public List<List<PositionCommand>> PositionPlayOff { get; set; }
     }
 }

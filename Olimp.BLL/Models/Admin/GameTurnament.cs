@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Olimp.BLL.Models
 {
@@ -13,8 +14,8 @@ namespace Olimp.BLL.Models
         public int Status { get; set; }
         public DateTime? DateStart { get; set; }
         public string Arena { get; set; }
-        public int CommandOneGoals { get; set; }
-        public int CommandTwoGoals { get; set; }
+        public Goals CommandOneGoals { get; set; }
+        public Goals CommandTwoGoals { get; set; }
         public int CommandOnePoints { get; set; }
         public int CommandTwoPoints { get; set; }
     }

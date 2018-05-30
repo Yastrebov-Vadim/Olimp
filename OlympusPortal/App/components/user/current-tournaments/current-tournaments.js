@@ -21,8 +21,8 @@ var CurrentTournaments = (function () {
         this.vcr = vcr;
         this.pageService = pageService;
         this.turnamentService = turnamentService;
-        this.isChecked = false;
         this.isTur = false;
+        this.page = 1;
     }
     CurrentTournaments.prototype.ngOnInit = function () {
         var self = this;
@@ -31,7 +31,7 @@ var CurrentTournaments = (function () {
     };
     CurrentTournaments.prototype.getTournaments = function () {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(3)).then(function (response) {
+        self.busy = self.turnamentService.GetTurnaments(new elementTypeRequest_1.ElementTypeRequest(3)).then(function (response) {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(function (x) {
                 if (x.type == 1) {
@@ -44,7 +44,6 @@ var CurrentTournaments = (function () {
                 }
             });
             self.isTur = self.turnaments.length > 0;
-            self.isChecked = self.turnaments.length < 2;
         });
     };
     CurrentTournaments.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {

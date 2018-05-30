@@ -8,7 +8,7 @@ namespace Olimp.BLL.Operations
 {
     public class GetGroupTourNumberBLL
     {
-        public static List<GroupTourNumber> Execute(Guid turnamentId)
+        public static List<GroupTourNumber> Execute(Guid turnamentId, bool isAdmin)
         {
             var games = DbHelper.GetGameForTurnament(turnamentId);
             var groupTourNumber = new List<GroupTourNumber>();
@@ -29,6 +29,36 @@ namespace Olimp.BLL.Operations
 
                         foreach (var element in groupDate)
                         {
+                            var commandOneGoals = new Goals { Value = 0, Goal = new List<Goal>() };
+                            var commandTwoGoals = new Goals { Value = 0, Goal = new List<Goal>() };
+                            var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_one, element.id);
+                            var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_two, element.id);
+
+                            commandOneGoals.Value = commandOne == null ? 0 : commandOne.Count;
+                            commandOne.ForEach(x =>
+                            {
+                                commandOneGoals.Goal.Add(new Goal
+                                {
+                                    Id = x.id.ToString(),
+                                    TurnamentId = x.id_turnament.ToString(),
+                                    PlayerId = x.id_player.ToString(),
+                                    PlayerSurname = DbHelper.GetPlayerName(x.id_player),
+                                    Time = x.time
+                                });
+                            });
+                            commandTwoGoals.Value = commandTwo == null ? 0 : commandTwo.Count;
+                            commandTwo.ForEach(x =>
+                            {
+                                commandTwoGoals.Goal.Add(new Goal
+                                {
+                                    Id = x.id.ToString(),
+                                    TurnamentId = x.id_turnament.ToString(),
+                                    PlayerId = x.id_player.ToString(),
+                                    PlayerSurname = DbHelper.GetPlayerName(x.id_player),
+                                    Time = x.time
+                                });
+                            });
+
                             var game = new GameTurnament
                             {
                                 Id = element.id.ToString(),
@@ -36,13 +66,13 @@ namespace Olimp.BLL.Operations
                                 IdCommandTwo = element.id_command_two.ToString(),
                                 CommandOneName = element.command_one_name,
                                 CommandTwoName = element.command_two_name,
-                                CommandOneGoals = element.command_one_goals,
-                                CommandTwoGoals = element.command_two_goals,
+                                CommandOneGoals = commandOneGoals,
+                                CommandTwoGoals = commandTwoGoals,
                                 CommandOnePoints = element.command_one_points,
                                 CommandTwoPoints = element.command_two_points,
                                 Tour = element.number_tour,
                                 DateStart = element.date_start,
-                                Arena = DbHelper.GetArenaName(element.id_arena),
+                                Arena = isAdmin ? element.id_arena.ToString() : DbHelper.GetArenaName(element.id_arena),
                                 Status = element.status_code
                             };
 

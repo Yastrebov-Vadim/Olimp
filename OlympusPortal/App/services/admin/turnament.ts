@@ -6,8 +6,8 @@ import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { ElementRequest } from '../../classes/admin/requests/ElementRequest';
 import { ElementTypeResponse } from '../../classes/admin/response/elementTypeResponse';
-import { TurnamentInfoResponse, GetCircleTurnamentResponse, GetMixedTurnamentResponse, GetArenaResponse } from '../../classes/admin/response/turnamentResponse';
-import { SaveMixedTurnamentInfoRequest, CalculateGroupRequest, SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
+import { TurnamentInfoResponse, GetCircleTurnamentResponse, GetMixedTurnamentResponse, GetArenaResponse, GetPlayerForTurnamentResponse } from '../../classes/admin/response/turnamentResponse';
+import { SaveMixedTurnamentInfoRequest, AddGoalRequest, CalculateGroupRequest, SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
 
 @Injectable()
 export class TurnamentAdminService {
@@ -40,6 +40,11 @@ export class TurnamentAdminService {
         return this.tranport.postData(self.urls.getTurnamentMixed, request);
     }
 
+    GetPlayerForTurnament(request: ElementRequest): Promise<GetPlayerForTurnamentResponse> {
+        var self = this;
+        return this.tranport.postData(self.urls.getPlayerForTurnament, request);
+    }
+    
     SaveCircleTurnamentInfo(request: SaveCircleTurnamentInfoRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.saveTurnamentInfo, request);
@@ -84,6 +89,11 @@ export class TurnamentAdminService {
         var self = this;
         return this.tranport.postData(self.urls.calculateGroup, request);
     }
+
+    CalculatePlayOff(request: ElementRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.calculatePlayOff, request);
+    }
     
     DivideForDay(request: DivideForDayRequest): Promise<any> {
         var self = this;
@@ -108,5 +118,10 @@ export class TurnamentAdminService {
     CloseTour(request: TourStepRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.closeTour, request);
+    }
+
+    AddGoals(request: AddGoalRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.addGoals, request);
     }
 } 

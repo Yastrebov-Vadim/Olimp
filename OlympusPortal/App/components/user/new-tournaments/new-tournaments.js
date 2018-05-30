@@ -32,7 +32,7 @@ var NewTournaments = (function () {
     };
     NewTournaments.prototype.getTournaments = function () {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
+        self.busy = self.turnamentService.GetTurnaments(new elementTypeRequest_1.ElementTypeRequest(1)).then(function (response) {
             self.turnaments = response.turnaments;
             self.isTur = self.turnaments.length > 0;
             self.isChecked = self.turnaments.length < 2;

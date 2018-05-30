@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Common } from '../../../../model/user/common';
 import { TurnamentAdminService } from '../../../../services/admin/turnament';
 import { ElementRequest } from '../../../../classes/admin/requests/elementRequest';
-import { GetMixedTurnament, GameTurnament, Arena, DayGame } from '../../../../model/admin/turnament';
+import { GetMixedTurnament, GameTurnament, Arena, DayGame, Goal } from '../../../../model/admin/turnament';
 import { Table } from '../../../../model/user/turnament';
 import { SaveMixedTurnamentInfoRequest, CalculateGroupRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
 
@@ -22,8 +22,10 @@ export class MixedTurnament implements OnInit {
     public page: number = 1;
     public days: DayGame[] = new Array<DayGame>();
     public isCalc: boolean = false;
+    public isPlOf: boolean = false;
+    public countGroup: number = 0;
     public arens: Arena[] = new Array<Arena>();
-    public turnament: GetMixedTurnament = new GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null)
+    public turnament: GetMixedTurnament = new GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 
     constructor(
         private toastr: ToastsManager,
@@ -41,11 +43,11 @@ export class MixedTurnament implements OnInit {
         var self = this;
         self.busy = self.turnamentService.GetTurnamentMixed(new ElementRequest(id)).then(response => {
             self.turnament = response.turnament;
-            self.page = self.turnament.step > 1 ? 2 : 1;
+            self.page = self.turnament.turnamentPlayOff.length == 0 ? self.turnament.step > 1 ? 2 : 1 : 3;
             self.turnament.turnamentGroups.forEach(x => {
                 x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
             });
-
+            self.isPlOf = self.turnament.turnamentPlayOff.length == 0 ? true : false;
             self.isCalc = self.turnament.turnamentGroups.length == 0 ? true : false;
         });
     }
@@ -130,7 +132,7 @@ export class MixedTurnament implements OnInit {
 
     public saveTurnament() {
         var self = this;
-        
+
         self.busy = self.turnamentService.SaveMixedTurnamentInfo(new SaveMixedTurnamentInfoRequest(self.turnament)).then(response => {
             self.toastr.success("Сохранено");
         });
@@ -158,7 +160,12 @@ export class MixedTurnament implements OnInit {
     public calculateGroup() {
         var self = this;
 
-        self.busy = self.turnamentService.CalculateGroup(new CalculateGroupRequest(self.turnament.id, 2)).then(response => {
+        if (self.countGroup <= 0) {
+            self.toastr.error("Ошибка: колличество групп меньше или равно 0");
+            return;
+        }
+
+        self.busy = self.turnamentService.CalculateGroup(new CalculateGroupRequest(self.turnament.id, self.countGroup)).then(response => {
             self.getTurnament(self.id);
             self.toastr.success("Турнирная табляца построена");
         });
@@ -228,6 +235,29 @@ export class MixedTurnament implements OnInit {
         }
     }
 
+    public selectDayPlayOff(circle, index, day) {
+        var self = this;
+        var countGame = 0;
+        self.turnament.turnamentPlayOff[circle].groupTourNumber[index].groupDateStart.forEach(x => {
+            countGame += x.gameTurnament.length;
+        });
+        if (day > countGame) {
+            self.toastr.error("Колличество дней не может превышать - " + countGame);
+            return;
+        }
+
+        if (day < 1) {
+            self.toastr.error("Колличество дней не может быть меньше 1 дня");
+            return;
+        }
+
+        self.days = new Array<DayGame>();
+
+        for (let i = 0; i < day; i++) {
+            self.days.push(new DayGame(null, null));
+        }
+    }
+
     public divideForDay(index: number, tour: number) {
         var self = this;
         if (self.days.length == 0) {
@@ -253,12 +283,47 @@ export class MixedTurnament implements OnInit {
             });
     }
 
+    public divideForDayPlayOff(tour: number, circle: number) {
+        var self = this;
+        if (self.days.length == 0) {
+            self.toastr.error("Не выбрана дата");
+            return;
+        }
+
+        var isValid = true;
+
+        if (self.days.length > 0)
+            self.days.forEach(x => {
+                if (x.day == null || x.arena == null) {
+                    self.toastr.error("Не все поля заполнены");
+                    isValid = false;
+                    return;
+                }
+            })
+        if (isValid)
+            self.busy = self.turnamentService.DivideForDay(new DivideForDayRequest(self.turnament.turnamentPlayOff[circle].playOffId, tour, self.days)).then(response => {
+                self.days = new Array<DayGame>();
+                self.getTurnament(self.id);
+                self.toastr.success("Игры распределены по дням");
+            });
+    }
+
     public activTour(tour, index) {
         var self = this;
 
-        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, 1)).then(response => {
+        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.turnamentGroups[index].groupId, null, self.turnament.type, tour, 1)).then(response => {
             self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].status = 1;
             self.turnament.turnamentGroups[index].groupTourNumber[tour - 1].groupDateStart.forEach(x => x.gameTurnament.forEach(y => y.status = 1));
+            self.toastr.success("Тур активен");
+        });
+    }
+
+    public activTourPlayOff(tour, index, circle) {
+        var self = this;
+
+        self.busy = self.turnamentService.ChangeStatusTour(new TourStepRequest(self.turnament.turnamentPlayOff[circle].playOffId, null, 3, tour, 1)).then(response => {
+            self.turnament.turnamentPlayOff[circle].groupTourNumber[index].status = 1;
+            self.turnament.turnamentPlayOff[circle].groupTourNumber[index].groupDateStart.forEach(x => x.gameTurnament.forEach(y => y.status = 1));
             self.toastr.success("Тур активен");
         });
     }
@@ -277,12 +342,59 @@ export class MixedTurnament implements OnInit {
         });
     }
 
+    public completeGamePlayOff(id, index, circle, oneGols, twoGols) {
+        var self = this;
+
+        if (oneGols < 0 || twoGols < 0) {
+            self.toastr.error("Отрицательное колличество забитых мячей");
+            return;
+        }
+
+        self.busy = self.turnamentService.CompleteGame(new CompleteGameRequest(self.turnament.turnamentPlayOff[circle].playOffId, id, oneGols, twoGols)).then(response => {
+            self.getTurnament(self.id);
+            self.toastr.success("Игра завершена");
+        });
+    }
+
     public closeTour(tour, index) {
         var self = this;
 
-        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.turnamentGroups[index].groupId, self.turnament.type, tour, null)).then(response => {
+        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.turnamentGroups[index].groupId, null, self.turnament.type, tour, null)).then(response => {
             self.getTurnament(self.id);
             self.toastr.success("Тур завершен");
         });
+    }
+
+    public closeTourPlayOff(id) {
+        var self = this;
+
+        self.busy = self.turnamentService.CloseTour(new TourStepRequest(self.turnament.id, id, 3, null, null)).then(response => {
+            self.getTurnament(self.id);
+            self.toastr.success("Тур завершен");
+        });
+    }
+
+    public calculatePlayOff() {
+        var self = this;
+
+        self.busy = self.turnamentService.CalculatePlayOff(new ElementRequest(self.turnament.id)).then(response => {
+            self.getTurnament(self.id);
+            self.toastr.success("Турнирная табляца построена");
+        });
+    }
+
+    public completeTurnament() {
+        var self = this;
+
+        self.changeStep(4);
+        self.toastr.success("Турнир завершен");
+    }
+
+    public addGoal(id) {
+        var self = this;
+        self.turnament.turnamentGroups.forEach(g => g.groupTourNumber.forEach(g => g.groupDateStart.forEach(d => d.gameTurnament.forEach(x => {
+           // if (x.id == id)
+              //  x.goals.push(new Goal(null, null, null));
+        }))));
     }
 } 

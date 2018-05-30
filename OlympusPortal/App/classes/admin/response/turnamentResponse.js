@@ -21,6 +21,13 @@ var GetMixedTurnamentResponse = (function () {
     return GetMixedTurnamentResponse;
 }());
 exports.GetMixedTurnamentResponse = GetMixedTurnamentResponse;
+var GetPlayerForTurnamentResponse = (function () {
+    function GetPlayerForTurnamentResponse(players) {
+        this.players = players;
+    }
+    return GetPlayerForTurnamentResponse;
+}());
+exports.GetPlayerForTurnamentResponse = GetPlayerForTurnamentResponse;
 var GetArenaResponse = (function () {
     function GetArenaResponse(arens) {
         this.arens = arens;

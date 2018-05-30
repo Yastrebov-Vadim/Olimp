@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var GetTurnamentForUser = (function () {
-    function GetTurnamentForUser(id, name, dateStart, dateEnd, description, contributionGame, contributionTournament, type, commands, positionCommand, groupTourNumber, turnamentGroups) {
+    function GetTurnamentForUser(id, name, dateStart, dateEnd, description, contributionGame, contributionTournament, type, commands, positionCommand, groupTourNumber, turnamentGroups, turnamentPlayOff, positionPlayOff) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -14,10 +14,22 @@ var GetTurnamentForUser = (function () {
         this.positionCommand = positionCommand;
         this.groupTourNumber = groupTourNumber;
         this.turnamentGroups = turnamentGroups;
+        this.turnamentPlayOff = turnamentPlayOff;
+        this.positionPlayOff = positionPlayOff;
     }
     return GetTurnamentForUser;
 }());
 exports.GetTurnamentForUser = GetTurnamentForUser;
+var TurnamentPlayOff = (function () {
+    function TurnamentPlayOff(playOffId, numberCircle, stateCode, groupTourNumber) {
+        this.playOffId = playOffId;
+        this.numberCircle = numberCircle;
+        this.stateCode = stateCode;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return TurnamentPlayOff;
+}());
+exports.TurnamentPlayOff = TurnamentPlayOff;
 var TurnamentGroups = (function () {
     function TurnamentGroups(positionCommand, groupTourNumber) {
         this.positionCommand = positionCommand;

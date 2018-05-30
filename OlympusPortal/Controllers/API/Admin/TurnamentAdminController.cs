@@ -41,6 +41,9 @@ namespace OlympusPortal.Controllers.API
         public void CalculateGroup(CalculateGroupRequest request) => CalculateGroupBLL.Execute(request);
 
         [HttpPost]
+        public void CalculatePlayOff(ElementRequest request) => CalculatePlayOffBLL.Execute(request);
+
+        [HttpPost]
         public void DivideForDay(DivideForDayRequest request) => DivideForDayBLL.Execute(request);
 
         [HttpPost]
@@ -60,5 +63,11 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void CloseTour(TourStepRequest request) => CloseTourBLL.Execute(request);
+
+        [HttpPost]
+        public GetPlayerForTurnamentRequest GetPlayerForTurnament(ElementRequest request) => GetPlayerForTurnamentBLL.Execute(request);
+
+        [HttpPost]
+        public void AddGoals(AddGoalsRequest request) => AddGoalsBLL.Execute(request);
     }
 }

@@ -27,8 +27,9 @@ namespace Olimp.BLL.Operations
                 commandsForTurnament.Add(commandForTurnament);
             }
 
-            var turnamentGroups = turnament.step > 1 ? GetTurnamentGroupsBLL.Execute(turnamentId) : new List<TurnamentGroups>();
-
+            var turnamentGroups = turnament.step > 1 ? GetTurnamentGroupsBLL.Execute(turnamentId, true) : new List<TurnamentGroups>();
+            var tuple = GetPositionPlayOffBLL.Execute(turnamentId, true);
+            
             var item = new MixedTurnamentAdmin
             {
                 Id = turnament.id.ToString(),
@@ -42,7 +43,9 @@ namespace Olimp.BLL.Operations
                 ContributionGame = turnament.сontribution_game,
                 ContributionTournament = turnament.сontribution_tournament,
                 Commands = commandsForTurnament,
-                TurnamentGroups = turnamentGroups
+                TurnamentGroups = turnamentGroups,
+                TurnamentPlayOff = tuple.Item1,
+                PositionPlayOff = tuple.Item2
             };
 
             return new GetMixedTurnamentResponse { Turnament = item };

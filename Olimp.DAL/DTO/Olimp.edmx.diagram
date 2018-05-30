@@ -6,19 +6,21 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b46a6f4d41654ccc9629d7b677ded673" Name="Diagram1">
         <EntityTypeShape EntityType="OlimpModel.admin" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OlimpModel.email_code" Width="1.5" PointX="4" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.email_code" Width="1.5" PointX="4.125" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="OlimpModel.news" Width="1.5" PointX="2.125" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OlimpModel.player" Width="1.5" PointX="5.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlimpModel.player" Width="1.5" PointX="3.875" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OlimpModel.img_for_news" Width="1.5" PointX="0.5" PointY="3.75" />
         <EntityTypeShape EntityType="OlimpModel.video_for_news" Width="1.5" PointX="5.75" PointY="0.625" />
         <EntityTypeShape EntityType="OlimpModel.account" Width="1.5" PointX="2.25" PointY="0.625" />
-        <EntityTypeShape EntityType="OlimpModel.avatar" Width="1.5" PointX="7.625" PointY="0.75" />
-        <EntityTypeShape EntityType="OlimpModel.turnament" Width="1.5" PointX="3.875" PointY="0.625" />
-        <EntityTypeShape EntityType="OlimpModel.command_for_turnament" Width="1.5" PointX="9.375" PointY="4.625" />
-        <EntityTypeShape EntityType="OlimpModel.position_command_for_turnament" Width="1.5" PointX="7.625" PointY="3.875" />
-        <EntityTypeShape EntityType="OlimpModel.game_arena" Width="1.5" PointX="11.125" PointY="0.75" />
-        <EntityTypeShape EntityType="OlimpModel.game_for_turnament" Width="1.5" PointX="9.375" PointY="0.625" />
-        <EntityTypeShape EntityType="OlimpModel.group_for_turnament" Width="1.5" PointX="11.375" PointY="2.625" />
+        <EntityTypeShape EntityType="OlimpModel.avatar" Width="1.5" PointX="4" PointY="0.5" />
+        <EntityTypeShape EntityType="OlimpModel.turnament" Width="1.5" PointX="11.5" PointY="0.625" />
+        <EntityTypeShape EntityType="OlimpModel.command_for_turnament" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="OlimpModel.position_command_for_turnament" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="OlimpModel.game_arena" Width="1.5" PointX="9.625" PointY="0.75" />
+        <EntityTypeShape EntityType="OlimpModel.group_for_turnament" Width="1.5" PointX="9.875" PointY="2.625" />
+        <EntityTypeShape EntityType="OlimpModel.circle_for_turnament" Width="1.5" PointX="9.75" PointY="4.625" />
+        <EntityTypeShape EntityType="OlimpModel.goal" Width="1.5" PointX="11.75" PointY="4.25" />
+        <EntityTypeShape EntityType="OlimpModel.game_for_turnament" Width="1.5" PointX="7.75" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

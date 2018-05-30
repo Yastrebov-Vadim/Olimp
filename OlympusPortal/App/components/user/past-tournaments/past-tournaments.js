@@ -21,8 +21,8 @@ var PastTournaments = (function () {
         this.vcr = vcr;
         this.pageService = pageService;
         this.turnamentService = turnamentService;
-        this.isChecked = false;
         this.isTur = false;
+        this.page = 2;
     }
     PastTournaments.prototype.ngOnInit = function () {
         var self = this;
@@ -31,13 +31,19 @@ var PastTournaments = (function () {
     };
     PastTournaments.prototype.getTournaments = function () {
         var self = this;
-        self.busy = self.turnamentService.GetTurnamentsForUser(new elementTypeRequest_1.ElementTypeRequest(4)).then(function (response) {
+        self.busy = self.turnamentService.GetTurnaments(new elementTypeRequest_1.ElementTypeRequest(4)).then(function (response) {
             self.turnaments = response.turnaments;
             self.turnaments.forEach(function (x) {
-                x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                if (x.type == 1) {
+                    x.tableTutnament = self.getTable(x.positionCommand, x.groupTourNumber);
+                }
+                else {
+                    x.turnamentGroups.forEach(function (g) {
+                        g.tableTutnament = self.getTable(g.positionCommand, g.groupTourNumber);
+                    });
+                }
             });
             self.isTur = self.turnaments.length > 0;
-            self.isChecked = self.turnaments.length < 2;
         });
     };
     PastTournaments.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {

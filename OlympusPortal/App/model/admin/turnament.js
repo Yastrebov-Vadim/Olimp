@@ -33,7 +33,7 @@ var GetCircleTurnament = (function () {
 }());
 exports.GetCircleTurnament = GetCircleTurnament;
 var GetMixedTurnament = (function () {
-    function GetMixedTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, turnamentGroups) {
+    function GetMixedTurnament(id, name, dateStart, dateEnd, type, stateCode, step, description, contributionGame, contributionTournament, commands, turnamentGroups, turnamentPlayOff, positionPlayOff) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
@@ -46,6 +46,8 @@ var GetMixedTurnament = (function () {
         this.contributionTournament = contributionTournament;
         this.commands = commands;
         this.turnamentGroups = turnamentGroups;
+        this.turnamentPlayOff = turnamentPlayOff;
+        this.positionPlayOff = positionPlayOff;
     }
     return GetMixedTurnament;
 }());
@@ -59,6 +61,16 @@ var TurnamentGroups = (function () {
     return TurnamentGroups;
 }());
 exports.TurnamentGroups = TurnamentGroups;
+var TurnamentPlayOff = (function () {
+    function TurnamentPlayOff(playOffId, numberCircle, stateCode, groupTourNumber) {
+        this.playOffId = playOffId;
+        this.numberCircle = numberCircle;
+        this.stateCode = stateCode;
+        this.groupTourNumber = groupTourNumber;
+    }
+    return TurnamentPlayOff;
+}());
+exports.TurnamentPlayOff = TurnamentPlayOff;
 var Table = (function () {
     function Table(rowSize, colSize, table) {
         this.rowSize = rowSize;
@@ -81,6 +93,14 @@ var PositionCommand = (function () {
     return PositionCommand;
 }());
 exports.PositionCommand = PositionCommand;
+var Command = (function () {
+    function Command(commandId, commandName) {
+        this.commandId = commandId;
+        this.commandName = commandName;
+    }
+    return Command;
+}());
+exports.Command = Command;
 var GameTurnament = (function () {
     function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
         this.id = id;
@@ -100,6 +120,27 @@ var GameTurnament = (function () {
     return GameTurnament;
 }());
 exports.GameTurnament = GameTurnament;
+var Goals = (function () {
+    function Goals(value, goal) {
+        this.value = value;
+        this.goal = goal;
+    }
+    return Goals;
+}());
+exports.Goals = Goals;
+var Goal = (function () {
+    function Goal(id, turnamentId, commandId, gameId, playerId, playerSurname, time) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.time = time;
+    }
+    return Goal;
+}());
+exports.Goal = Goal;
 var GroupDateStart = (function () {
     function GroupDateStart(dateStart, arena, gameTurnament) {
         this.dateStart = dateStart;
@@ -142,4 +183,13 @@ var Cell = (function () {
     return Cell;
 }());
 exports.Cell = Cell;
+var Player = (function () {
+    function Player(playerId, commandId, surname) {
+        this.playerId = playerId;
+        this.commandId = commandId;
+        this.surname = surname;
+    }
+    return Player;
+}());
+exports.Player = Player;
 //# sourceMappingURL=turnament.js.map

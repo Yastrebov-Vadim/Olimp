@@ -7,7 +7,7 @@ namespace Olimp.BLL.Operations
 {
     public class GetTurnamentGroupsBLL
     {
-        public static List<TurnamentGroups> Execute(Guid turnamentId)
+        public static List<TurnamentGroups> Execute(Guid turnamentId, bool isAdmin)
         {
             var response = new List<TurnamentGroups>();
 
@@ -15,7 +15,7 @@ namespace Olimp.BLL.Operations
 
             turnamentGroup.ForEach(x => {
                 var positionCommands =  GetPositionCommandBLL.Execute(x.id);
-                var groupTourNumber =  GetGroupTourNumberBLL.Execute(x.id);
+                var groupTourNumber =  GetGroupTourNumberBLL.Execute(x.id, isAdmin);
 
                 response.Add(new TurnamentGroups {
                     GroupId = x.id.ToString(),
