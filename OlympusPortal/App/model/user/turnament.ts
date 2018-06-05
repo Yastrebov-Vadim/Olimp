@@ -116,13 +116,13 @@ export class GameTurnament {
     public status: number;
     public dateStart: Date;
     public arena: string;
-    public commandOneGoals: number;
-    public commandTwoGoals: number;
+    public commandOneGoals: Goals;
+    public commandTwoGoals: Goals;
     public commandOnePoints: number;
     public commandTwoPoints: number;
 
     constructor(id: string, idCommandOne: string, idCommandTwo: string, commandOneName: string, commandTwoName: string,
-        tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: number, commandTwoGoals: number,
+        tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: Goals, commandTwoGoals: Goals,
         commandOnePoints: number, commandTwoPoints: number) {
         this.id = id;
         this.idCommandOne = idCommandOne;
@@ -149,5 +149,36 @@ export class Table {
         this.rowSize = rowSize;
         this.colSize = colSize;
         this.table = table;
+    }
+}
+
+
+export class Goals {
+    public value: number;
+    public goal: Goal[];
+
+    constructor(value: number, goal: Goal[]) {
+        this.value = value;
+        this.goal = goal;
+    }
+}
+
+export class Goal {
+    public id: string;
+    public turnamentId: string;
+    public commandId: string;
+    public gameId: string;
+    public playerId: string;
+    public playerSurname: string;
+    public time: number;
+
+    constructor(id: string, turnamentId: string, commandId: string, gameId: string, playerId: string, playerSurname: string, time: number) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.time = time;
     }
 }

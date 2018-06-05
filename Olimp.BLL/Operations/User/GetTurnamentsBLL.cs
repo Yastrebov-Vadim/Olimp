@@ -15,20 +15,20 @@ namespace Olimp.BLL.Operations
 
             foreach (var item in turnaments)
             {
-                var positionCommands = item.step > 1 && item.type == 1 ? GetPositionCommandBLL.Execute(item.id) : new List<PositionCommand>();
-                var groupTourNumber = item.step > 1 && item.type == 1 ? GetGroupTourNumberBLL.Execute(item.id, false) : new List<GroupTourNumber>();
-                var turnamentGroups = item.step > 1 && item.type == 2 ? GetTurnamentGroupsBLL.Execute(item.id, false) : new List<TurnamentGroups>();
+                var positionCommands = item.step > 1 && item.type == 1 ? GetPositionCommandBLL.Execute(item.id_turnament) : new List<PositionCommand>();
+                var groupTourNumber = item.step > 1 && item.type == 1 ? GetGroupTourNumberBLL.Execute(item.id_turnament, false) : new List<GroupTourNumber>();
+                var turnamentGroups = item.step > 1 && item.type == 2 ? GetTurnamentGroupsBLL.Execute(item.id_turnament, false) : new List<TurnamentGroups>();
                 var turnamentPlayOff = new List<TurnamentPlayOff>();
                 var positionPlayOff = new List<List<PositionCommand>>();
 
                 if (item.step > 1 && item.type == 2)
                 {
-                    var tuple = GetPositionPlayOffBLL.Execute(item.id, false);
+                    var tuple = GetPositionPlayOffBLL.Execute(item.id_turnament, false);
                     turnamentPlayOff = tuple.Item1;
                     positionPlayOff = tuple.Item2;
                 }
 
-                var commands = DbHelper.GetCommandForTurnament(item.id, true);
+                var commands = DbHelper.GetCommandForTurnament(item.id_turnament, true);
                 var commandsForTurnament = new List<CommandForTurnament>();
 
                 foreach (var command in commands)
@@ -46,7 +46,7 @@ namespace Olimp.BLL.Operations
 
                 var turnament = new Turnament
                 {
-                    Id = item.id.ToString(),
+                    Id = item.id_turnament.ToString(),
                     ContributionGame = item.сontribution_game,
                     ContributionTournament = item.сontribution_tournament,
                     DateEnd = item.date_end == null ? null : item.date_end.Value.ToShortDateString(),

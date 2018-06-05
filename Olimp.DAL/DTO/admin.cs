@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class admin
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_admin { get; set; }
         public string login { get; set; }
         public string password { get; set; }
         public string name { get; set; }

@@ -76,7 +76,7 @@ namespace Olimp.BLL.Operations
                 {
                     for (var g = 0; g < positionPoints[i][j].Count; g++)
                     {
-                        DbHelper.SavePlaceCommand(turnamentId, positionPoints[i][j][g].id_command, place);
+                        DbHelper.SavePlaceCommand(turnamentId, positionPoints[i][j][g].id_account, place);
                     }
 
                     place++;
@@ -94,7 +94,7 @@ namespace Olimp.BLL.Operations
             {
                 var position = new position_command_for_turnament
                 {
-                    id_command = x.id_command,
+                    id_account = x.id_account,
                     points = 0,
                 };
 
@@ -104,9 +104,9 @@ namespace Olimp.BLL.Operations
                 {
                     commands.ForEach(c =>
                     {
-                        if (g.id_command_one == x.id_command && g.id_command_two == c.id_command)
+                        if (g.id_command_one == x.id_account && g.id_command_two == c.id_account)
                             points += g.command_one_points;
-                        if (g.id_command_two == x.id_command && g.id_command_one == c.id_command)
+                        if (g.id_command_two == x.id_account && g.id_command_one == c.id_account)
                             points += g.command_two_points;
                     });
                 });
@@ -150,7 +150,7 @@ namespace Olimp.BLL.Operations
             {
                 var position = new position_command_for_turnament
                 {
-                    id_command = x.id_command,
+                    id_account = x.id_account,
                     command_name = x.command_name,
                     points = 0,
                 };
@@ -161,12 +161,12 @@ namespace Olimp.BLL.Operations
                 {
                     commands.ForEach(c =>
                     {
-                        var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_one, g.id);
-                        var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_two, g.id);
+                        var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_one, g.id_game_for_turnament);
+                        var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, g.id_command_two, g.id_game_for_turnament);
 
-                        if (g.id_command_one == x.id_command && g.id_command_two == c.id_command)
+                        if (g.id_command_one == x.id_account && g.id_command_two == c.id_account)
                             goals += commandOne.Count - commandTwo.Count;
-                        if (g.id_command_two == x.id_command && g.id_command_one == c.id_command)
+                        if (g.id_command_two == x.id_account && g.id_command_one == c.id_account)
                             goals += commandTwo.Count - commandOne.Count;
                     });
                 });
@@ -203,8 +203,8 @@ namespace Olimp.BLL.Operations
 
             for(var i = 0; i < circle.Count - 1; i++)
             {
-                if (circle[i].id == circleId)
-                    circleNextId = circle[i+1].id;
+                if (circle[i].id_circle_for_turnament == circleId)
+                    circleNextId = circle[i+1].id_circle_for_turnament;
             }
 
             if (circleNextId == Guid.Empty)

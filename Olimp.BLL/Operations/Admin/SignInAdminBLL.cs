@@ -18,7 +18,7 @@ namespace Olimp.BLL.Operations
             if (admin == null)
                 throw new ApplicationException("Неверный логин или пароль");
 
-            return Tuple.Create(admin.id.ToString(), admin.name);
+            return Tuple.Create(admin.id_admin.ToString(), admin.name);
         }
     }
 }

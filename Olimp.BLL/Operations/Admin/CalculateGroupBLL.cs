@@ -42,8 +42,8 @@ namespace Olimp.BLL.Operations
 
             g = 0;
             groupCommand.ForEach(x => {
-                DbHelper.CreatePositionCommand(x, groupsTurnament[g].id);
-                CreateTour(groupsTurnament[g].id);
+                DbHelper.CreatePositionCommand(x, groupsTurnament[g].id_group_for_turnament);
+                CreateTour(groupsTurnament[g].id_group_for_turnament);
                 g++;
             });
         }
@@ -116,7 +116,7 @@ namespace Olimp.BLL.Operations
             {
                 for (var col = 0; col < commandSize / 2; col++)
                 {
-                    DbHelper.CreateGameForTurnament(turnamentId, table[row, col][0].id_command, table[row, col][1].id_command, table[row, col][0].command_name, table[row, col][1].command_name, row + 1, table[row, col][0].fake_code || table[row, col][1].fake_code);
+                    DbHelper.CreateGameForTurnament(turnamentId, table[row, col][0].id_account, table[row, col][1].id_account, table[row, col][0].command_name, table[row, col][1].command_name, row + 1, table[row, col][0].fake_code || table[row, col][1].fake_code);
                 }
             }
         }

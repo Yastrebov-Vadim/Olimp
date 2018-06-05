@@ -14,11 +14,11 @@ namespace Olimp.DAL.DTO
     
     public partial class player
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_player { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string middleName { get; set; }
         public int number { get; set; }
-        public System.Guid id_command { get; set; }
+        public System.Guid id_account { get; set; }
     }
 }

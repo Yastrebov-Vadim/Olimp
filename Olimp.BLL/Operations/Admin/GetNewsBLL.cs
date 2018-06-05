@@ -13,7 +13,7 @@ namespace Olimp.BLL.Operations
         {
             var news = DbHelper.GetNews(Guid.Parse(request.Txt));
             
-            var img_for_news = DbHelper.GetPhotoForNews(news.id);
+            var img_for_news = DbHelper.GetPhotoForNews(news.id_news);
 
             var photo = new List<Photo>();
 
@@ -29,7 +29,7 @@ namespace Olimp.BLL.Operations
             {
                 photo.Add(new Photo
                 {
-                    Id = item.id.ToString(),
+                    Id = item.id_img_for_news.ToString(),
                     Url = item.url_bd
                 });
             }
@@ -38,16 +38,16 @@ namespace Olimp.BLL.Operations
             {
                 News = new FullNews
                 {
-                    Id = news.id.ToString(),
+                    Id = news.id_news.ToString(),
                     Text = news.text,
                     Title = news.title,
                     Date = news.date.ToShortDateString(),
                     Type = news.type,
                     Top = news.top,
                     Photo = photo,
-                    UrlVideo = DbHelper.GetVideoForNews(news.id),
-                    CommandOne = news.command_one.ToString(),
-                    CommandTwo = news.command_two.ToString()
+                    UrlVideo = DbHelper.GetVideoForNews(news.id_news),
+                    CommandOne = news.id_command_one.ToString(),
+                    CommandTwo = news.id_command_two.ToString()
                 }
             };
 

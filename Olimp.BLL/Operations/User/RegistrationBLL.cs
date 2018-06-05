@@ -23,7 +23,7 @@ namespace Olimp.BLL.Operations
 
             var account = DbHelper.Registration(registrationRequest);
 
-            return Tuple.Create(account.id.ToString(), account.command_name);
+            return Tuple.Create(account.id_account.ToString(), account.command_name);
         }
     }
 }

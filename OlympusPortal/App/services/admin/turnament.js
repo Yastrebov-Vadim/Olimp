@@ -106,6 +106,18 @@ var TurnamentAdminService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.addGoals, request);
     };
+    TurnamentAdminService.prototype.AddCard = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.addCard, request);
+    };
+    TurnamentAdminService.prototype.AddArena = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.addArena, request);
+    };
+    TurnamentAdminService.prototype.DellArena = function (request) {
+        var self = this;
+        return this.tranport.postData(self.urls.dellArena, request);
+    };
     TurnamentAdminService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [transport_1.TransportService])

@@ -15,7 +15,7 @@ namespace Olimp.BLL.Operations
                 Photo =
                 new Photo
                 {
-                    Id = photo.id.ToString(),
+                    Id = photo.id_img_for_news.ToString(),
                     Url = photo.url_bd
                 }
             };

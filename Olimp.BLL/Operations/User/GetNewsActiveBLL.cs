@@ -21,8 +21,8 @@ namespace Olimp.BLL.Operations
 
             foreach (var element in news)
             {
-                var urlVideo = DbHelper.GetVideoForNews(element.id);
-                var img_for_news = DbHelper.GetPhotoForNews(element.id);
+                var urlVideo = DbHelper.GetVideoForNews(element.id_news);
+                var img_for_news = DbHelper.GetPhotoForNews(element.id_news);
 
                 var photo = new List<Photo>();
 
@@ -38,14 +38,14 @@ namespace Olimp.BLL.Operations
                 {
                     photo.Add(new Photo
                     {
-                        Id = item.id.ToString(),
+                        Id = item.id_img_for_news.ToString(),
                         Url = item.url_bd
                     });
                 }
 
                 response.News.Add(new FullNews
                 {
-                    Id = element.id.ToString(),
+                    Id = element.id_news.ToString(),
                     Title = element.title,
                     Text = element.text,
                     Date = element.date.ToShortDateString(),

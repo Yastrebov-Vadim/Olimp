@@ -96,4 +96,25 @@ var Table = (function () {
     return Table;
 }());
 exports.Table = Table;
+var Goals = (function () {
+    function Goals(value, goal) {
+        this.value = value;
+        this.goal = goal;
+    }
+    return Goals;
+}());
+exports.Goals = Goals;
+var Goal = (function () {
+    function Goal(id, turnamentId, commandId, gameId, playerId, playerSurname, time) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.time = time;
+    }
+    return Goal;
+}());
+exports.Goal = Goal;
 //# sourceMappingURL=turnament.js.map

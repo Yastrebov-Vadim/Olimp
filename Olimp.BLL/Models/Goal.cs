@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Olimp.BLL.Models
+﻿namespace Olimp.BLL.Models
 {
     public class Goal
     {

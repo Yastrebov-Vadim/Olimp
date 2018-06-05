@@ -18,7 +18,7 @@ namespace Olimp.BLL.Operations
             if (account == null)
                 throw new ApplicationException("Неверный логин или пароль");
 
-            return Tuple.Create(account.id.ToString(), account.command_name);
+            return Tuple.Create(account.id_account.ToString(), account.command_name);
         }
     }
 }

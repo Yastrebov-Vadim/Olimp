@@ -33,6 +33,7 @@ var CircleTurnament = (function () {
         this.table = new Array();
         this.players = new Array();
         this.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+        this.card = new turnament_2.Card(null, null, null, null, null, null, null);
         this.arens = new Array();
         this.commands = new Array();
         this.turnament = new turnament_2.GetCircleTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null);
@@ -70,10 +71,16 @@ var CircleTurnament = (function () {
         var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
         var result = "";
         self.turnament.groupTourNumber.forEach(function (gt) { return gt.groupDateStart.forEach(function (gd) { return gd.gameTurnament.forEach(function (t) {
-            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals.value + " -- " + t.commandTwoGoals.value;
-            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals.value + " -- " + t.commandOneGoals.value;
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId) {
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                result = oneGoals + " : " + twoGoals;
+            }
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
+                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                result = twoGoals + " : " + oneGoals;
+            }
         }); }); });
         return result;
     };
@@ -268,8 +275,13 @@ var CircleTurnament = (function () {
         var self = this;
         document.getElementById("transparent-layer-goals").style.display = "block";
     };
+    CircleTurnament.prototype.openFormAddCard = function () {
+        var self = this;
+        document.getElementById("transparent-layer-card").style.display = "block";
+    };
     CircleTurnament.prototype.close = function () {
         document.getElementById("transparent-layer-goals").style.display = "none";
+        document.getElementById("transparent-layer-card").style.display = "none";
     };
     CircleTurnament.prototype.addGoalsBlockStyle = function () {
         var self = this;
@@ -289,6 +301,22 @@ var CircleTurnament = (function () {
             self.getTurnament(self.id);
             self.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
             self.close();
+            self.toastr.success("Гол добавлен в систему");
+        });
+    };
+    CircleTurnament.prototype.addCard = function (isValid) {
+        var self = this;
+        if (isValid || (!self.isYellowe && !self.isRed)) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+        self.card.turnamentId = self.id;
+        self.card.type = self.isYellowe ? 1 : 2;
+        self.busy = self.turnamentService.AddCard(new turnamentRequest_1.AddCardRequest(self.card)).then(function (response) {
+            self.getTurnament(self.id);
+            self.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Штраф добавлен в систему");
         });
     };
     CircleTurnament.prototype.selectCommand = function (game) {
@@ -298,6 +326,7 @@ var CircleTurnament = (function () {
         self.commands.push(new turnament_2.Command(game.idCommandOne, game.commandOneName));
         self.commands.push(new turnament_2.Command(game.idCommandTwo, game.commandTwoName));
         self.goal.gameId = game.id;
+        self.card.gameId = game.id;
     };
     CircleTurnament.prototype.getPlayer = function () {
         var self = this;

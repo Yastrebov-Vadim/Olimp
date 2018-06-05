@@ -16,7 +16,7 @@ namespace Olimp.BLL.Operations
                 var command = DbHelper.GetPositionCommand(Guid.Parse(request.Id));
 
                 command.ForEach(x=> {
-                    SendEmailBLL.SendEmail("Окончание турнира", $"Турнир \"{DbHelper.GetTurnamentName(Guid.Parse(request.Id))}\" завершен.", DbHelper.GetAccountEmail(x.id_command));
+                    SendEmailBLL.SendEmail("Окончание турнира", $"Турнир \"{DbHelper.GetTurnamentName(Guid.Parse(request.Id))}\" завершен.", DbHelper.GetAccountEmail(x.id_account));
                 });
             }
         }

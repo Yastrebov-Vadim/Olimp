@@ -2624,11 +2624,11 @@ header {
 }
 
 .date-start-game {
-    float: left;
+    float: right;
 }
 
 .arena-start-game {
-    float: right;
+    float: left;
     font-size: 16px;
 }
 
@@ -2817,7 +2817,7 @@ header {
 
 .game-points-block {
     display: inline-block;
-    border: 1px solid #656565;
+    border-top: 1px solid #656565;
     padding: 5px;
     min-width: 100px;
 }
@@ -2839,6 +2839,17 @@ header {
 }
 
 .transparent-layer-goals {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(75, 75, 78, 0.6);
+    z-index: 999;
+    display: none;
+}
+
+.transparent-layer-card {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -2906,3 +2917,113 @@ header {
 .arena-start-game select {
     font-size: 14px;
 }
+
+.current-game-points-block {
+    display: inline-block;
+    width: 100%;
+    min-width: 100px;
+    border-top: 1px solid rgb(101, 101, 101);
+    padding: 5px;
+}
+
+    .current-game-points-block tr td:first-child {
+        padding-right: 5px;
+        border-right: 1px solid rgb(123, 118, 118);
+    }
+
+    .current-game-points-block tr td {
+        min-width: 100px;
+    }
+
+.card-select-block {
+    margin-top: 10px;
+}
+
+.card {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    background-image: url(./img/filed.png) !important;
+    background-size: 17px 17px !important;
+    background-repeat: no-repeat !important;
+    background-position: 100% !important;
+}
+
+.yellowe-card {
+    background-image: url(./img/yellow-card.png) !important;
+}
+
+.red-card {
+    background-image: url(./img/red_card.png) !important;
+}
+
+.arens-block {
+    width: 940px;
+    height: 500px;
+    border: 1px solid #23c0f1;
+    margin: 20px 0px 50px 50px;
+    overflow-y: scroll;
+}
+
+.button-add-arena {
+    float: right;
+    position: relative;
+    left: -40px;
+    background-color: green !important;
+}
+
+
+.transparent-layer-arena {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(75, 75, 78, 0.6);
+    z-index: 999;
+    display: none;
+}
+
+.add-arena {
+    width: 287px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #232323;
+    position: relative;
+    border-radius: 5px;
+    padding: 10px;
+    border: 5px solid #000000;
+}
+
+    .add-arena mat-form-field {
+        width: 255px;
+    }
+
+    .add-arena button {
+        background-color: green !important;
+        border-radius: 5px !important;
+        margin-left: 30px !important;
+        margin-top: 10px !important;
+    }
+
+        .add-arena button:last-child {
+            background-color: red !important;
+            border-radius: 5px !important;
+            margin-left: 15px !important;
+            margin-top: 10px !important;
+        }
+
+    .add-arena .mat-form-field-label {
+        color: #fff !important;
+    }
+
+    .add-arena .mat-focused .mat-form-field-label {
+        color: #fff !important;
+    }
+
+    .add-arena .mat-form-field-underline {
+        background-color: #fff !important;
+    }

@@ -58,7 +58,7 @@ namespace OlympusPortal.Controllers.API
             string root = HttpContext.Current.Server.MapPath("~/Files/Photo/News/");
 
             await Request.Content.ReadAsMultipartAsync(provider);
-            
+
             var file = provider.Contents[0];
 
             byte[] fileArray = await file.ReadAsByteArrayAsync();
@@ -76,7 +76,7 @@ namespace OlympusPortal.Controllers.API
             {
                 await fs.WriteAsync(fileArray, 0, fileArray.Length);
             }
-            
+
             return AddImgForNewsBLL.Execute(newsId, urlDir, urlBd);
         }
 

@@ -14,11 +14,13 @@ var news_2 = require("./components/admin/news/news");
 var add_news_1 = require("./components/admin/add-news/add-news");
 var turnament_1 = require("./components/admin/turnament/turnament");
 var tuning_turnament_1 = require("./components/admin/tuning-turnament/tuning-turnament");
+var arens_1 = require("./components/admin/arens/arens");
 var adminRoutes = [
     { path: common_1.Common.RoutePaths.News, component: news_2.NewsAdmin },
     { path: common_1.Common.RoutePaths.EditNews, component: add_news_1.AddNews },
     { path: common_1.Common.RoutePaths.Turnament, component: turnament_1.Turnament },
     { path: common_1.Common.RoutePaths.TuningTurnament, component: tuning_turnament_1.TuningTurnament },
+    { path: common_1.Common.RoutePaths.Arens, component: arens_1.ArensAdmin },
 ];
 exports.AppRoutes = [
     { path: common_1.Common.RoutePaths.Home, component: home_1.Home },

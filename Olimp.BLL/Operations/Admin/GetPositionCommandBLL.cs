@@ -1,5 +1,4 @@
 ﻿using Olimp.BLL.Models;
-using Olimp.BLL.Models.Response;
 using Olimp.DAL.Assest;
 using System;
 using System.Collections.Generic;
@@ -23,10 +22,10 @@ namespace Olimp.BLL.Operations
                 {
                     var position = new PositionCommand
                     {
-                        Id = element.id.ToString(),
+                        Id = element.id_position_command_for_turnament.ToString(),
                         CommandName = element.command_name,
                         Position = element.position,
-                        CommandId = element.id_command.ToString(),
+                        CommandId = element.id_account.ToString(),
                         Place = element.place,
                         Points = element.points,
                         FakeCode = element.fake_code

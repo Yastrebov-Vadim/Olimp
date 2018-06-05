@@ -173,7 +173,7 @@
                             </div>
                             <div *ngFor="let game of tour.gameTurnament" class="game-block">
                                 <div *ngIf="game.status != 1" class="game-points">
-                                    {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                    {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
                                 </div>
                                 <div *ngIf="game.status == 1" class="game-points">
                                     <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="addGoal(game.id); game.commandOneGoals = $event.target.value" />
@@ -192,6 +192,28 @@
                                     <div class="game-command-name">
                                         {{game.commandTwoName}}
                                     </div>
+                                </div>
+
+                                <div class="game-add-info-block">
+                                    <table class="current-game-points-block">
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <div class="goal-command-block">
+                                                        <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                            {{goal.playerSurname}} - {{goal.time}} мин
+                                                        </div>
+                                                    </div>
+                                                    <div class="goal-command-block">
+                                                        <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                            {{goal.playerSurname}} - {{goal.time}} мин
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
                                 </div>
 
                                 <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGame(game.id, j, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>

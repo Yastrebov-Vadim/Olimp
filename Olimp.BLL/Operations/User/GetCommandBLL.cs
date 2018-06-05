@@ -14,7 +14,7 @@ namespace Olimp.BLL.Operations
 
             foreach (var account in accounts)
             {
-                var players = DbHelper.GetPlayerForCommand(account.id);
+                var players = DbHelper.GetPlayerForCommand(account.id_account);
                 var playersItem = new List<Player>();
 
                 foreach (var player in players)
@@ -24,7 +24,7 @@ namespace Olimp.BLL.Operations
                         MiddleName = player.middleName,
                         Name = player.middleName,
                         Number = player.number,
-                        PlayerId = player.id.ToString(),
+                        PlayerId = player.id_player.ToString(),
                         Surname = player.surname
                     };
 
@@ -34,7 +34,7 @@ namespace Olimp.BLL.Operations
                 Command commandElement = new Command
                 {
                     Name = account.command_name,
-                    Photo = DbHelper.GetAccountAvatar(account.id),
+                    Photo = DbHelper.GetAccountAvatar(account.id_account),
                     Players = playersItem
                 };
 

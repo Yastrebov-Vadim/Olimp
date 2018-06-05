@@ -46,6 +46,7 @@ var turnament_2 = require("./components/admin/turnament/turnament");
 var tuning_turnament_1 = require("./components/admin/tuning-turnament/tuning-turnament");
 var circle_turnament_1 = require("./components/admin/tuning-turnament/circle-turnament/circle-turnament");
 var mixed_turnament_1 = require("./components/admin/tuning-turnament/mixed-turnament/mixed-turnament");
+var arens_1 = require("./components/admin/arens/arens");
 var authentication_2 = require("./services/admin/authentication");
 var news_4 = require("./services/admin/news");
 var file_1 = require("./services/admin/file");
@@ -78,7 +79,8 @@ var AppModule = (function () {
                 turnament_2.Turnament,
                 tuning_turnament_1.TuningTurnament,
                 circle_turnament_1.CircleTurnament,
-                mixed_turnament_1.MixedTurnament
+                mixed_turnament_1.MixedTurnament,
+                arens_1.ArensAdmin
             ],
             imports: [
                 platform_browser_1.BrowserModule,

@@ -1,4 +1,4 @@
-﻿import { GetCircleTurnament,GetMixedTurnament, DayGame, Goal } from '../../../model/admin/turnament';
+﻿import { GetCircleTurnament,GetMixedTurnament, DayGame, Goal, Card } from '../../../model/admin/turnament';
 export class SaveCircleTurnamentInfoRequest {
     turnament: GetCircleTurnament
 
@@ -120,5 +120,13 @@ export class AddGoalRequest {
 
     constructor(goal: Goal) {
         this.goal = goal;
+    }
+}
+
+export class AddCardRequest {
+    card: Card;
+
+    constructor(card: Card) {
+        this.card = card;
     }
 }

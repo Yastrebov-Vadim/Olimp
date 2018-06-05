@@ -14,9 +14,9 @@ namespace Olimp.DAL.DTO
     
     public partial class avatar
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_avatar { get; set; }
         public string url_bd { get; set; }
         public string url_dir { get; set; }
-        public System.Guid account_id { get; set; }
+        public System.Guid id_account { get; set; }
     }
 }

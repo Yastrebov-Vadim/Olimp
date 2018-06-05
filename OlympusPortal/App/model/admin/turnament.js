@@ -102,7 +102,7 @@ var Command = (function () {
 }());
 exports.Command = Command;
 var GameTurnament = (function () {
-    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOnePoints, commandTwoPoints) {
+    function GameTurnament(id, idCommandOne, idCommandTwo, commandOneName, commandTwoName, tour, status, dateStart, arena, commandOneGoals, commandTwoGoals, commandOneCard, commandTwoCard, commandOnePoints, commandTwoPoints) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
@@ -114,6 +114,8 @@ var GameTurnament = (function () {
         this.arena = arena;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
+        this.commandOneCard = commandOneCard;
+        this.commandTwoCard = commandTwoCard;
         this.commandOnePoints = commandOnePoints;
         this.commandTwoPoints = commandTwoPoints;
     }
@@ -141,6 +143,27 @@ var Goal = (function () {
     return Goal;
 }());
 exports.Goal = Goal;
+var Cards = (function () {
+    function Cards(value, card) {
+        this.value = value;
+        this.card = card;
+    }
+    return Cards;
+}());
+exports.Cards = Cards;
+var Card = (function () {
+    function Card(id, turnamentId, commandId, gameId, playerId, playerSurname, type) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.type = type;
+    }
+    return Card;
+}());
+exports.Card = Card;
 var GroupDateStart = (function () {
     function GroupDateStart(dateStart, arena, gameTurnament) {
         this.dateStart = dateStart;

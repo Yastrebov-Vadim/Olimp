@@ -14,10 +14,10 @@ namespace Olimp.DAL.DTO
     
     public partial class position_command_for_turnament
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_position_command_for_turnament { get; set; }
         public System.Guid id_turnament { get; set; }
         public int position { get; set; }
-        public System.Guid id_command { get; set; }
+        public System.Guid id_account { get; set; }
         public string command_name { get; set; }
         public int points { get; set; }
         public int place { get; set; }

@@ -174,12 +174,14 @@ export class GameTurnament {
     public arena: string;
     public commandOneGoals: Goals;
     public commandTwoGoals: Goals;
+    public commandOneCard: Cards;
+    public commandTwoCard: Cards;
     public commandOnePoints: number;
     public commandTwoPoints: number;
 
     constructor(id: string, idCommandOne: string, idCommandTwo: string, commandOneName: string, commandTwoName: string,
         tour: number, status: number, dateStart: Date, arena: string, commandOneGoals: Goals, commandTwoGoals: Goals,
-        commandOnePoints: number, commandTwoPoints: number) {
+        commandOneCard: Cards, commandTwoCard: Cards, commandOnePoints: number, commandTwoPoints: number) {
         this.id = id;
         this.idCommandOne = idCommandOne;
         this.idCommandTwo = idCommandTwo;
@@ -191,6 +193,8 @@ export class GameTurnament {
         this.arena = arena;
         this.commandOneGoals = commandOneGoals;
         this.commandTwoGoals = commandTwoGoals;
+        this.commandOneCard = commandOneCard;
+        this.commandTwoCard = commandTwoCard;
         this.commandOnePoints = commandOnePoints;
         this.commandTwoPoints = commandTwoPoints;
     }
@@ -223,6 +227,36 @@ export class Goal {
         this.playerId = playerId;
         this.playerSurname = playerSurname;
         this.time = time;
+    }
+}
+
+export class Cards {
+    public value: number;
+    public card: Card[];
+
+    constructor(value: number, card: Card[]) {
+        this.value = value;
+        this.card = card;
+    }
+}
+
+export class Card {
+    public id: string;
+    public turnamentId: string;
+    public commandId: string;
+    public gameId: string;
+    public playerId: string;
+    public playerSurname: string;
+    public type: number;
+
+    constructor(id: string, turnamentId: string, commandId: string, gameId: string, playerId: string, playerSurname: string, type: number) {
+        this.id = id;
+        this.turnamentId = turnamentId;
+        this.commandId = commandId;
+        this.gameId = gameId;
+        this.playerId = playerId;
+        this.playerSurname = playerSurname;
+        this.type = type;
     }
 }
 

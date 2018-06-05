@@ -63,7 +63,7 @@
 
                                 <div *ngFor="let game of tour.gameTurnament" class="game-block">
                                     <div class="game-points">
-                                        {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                        {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
                                     </div>
 
                                     <div class="game-command-name-block">
@@ -75,6 +75,42 @@
                                             {{game.commandTwoName}}
                                         </div>
                                     </div>
+
+                                    <div class="game-add-info-block">
+                                        <table class="current-game-points-block">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -153,6 +189,42 @@
                                             {{game.commandTwoName}}
                                         </div>
                                     </div>
+
+                                    <div class="game-add-info-block">
+                                        <table class="current-game-points-block">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

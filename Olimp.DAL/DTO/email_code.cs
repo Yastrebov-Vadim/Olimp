@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class email_code
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_email_code { get; set; }
         public string email { get; set; }
         public int code_user { get; set; }
     }

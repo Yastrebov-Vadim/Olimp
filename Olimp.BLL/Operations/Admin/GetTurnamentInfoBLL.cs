@@ -22,7 +22,7 @@ namespace Olimp.BLL.Operations
             {
                 response.Turnaments.Add(new TurnamentsInfo
                 {
-                    Id = turnament.id.ToString(),
+                    Id = turnament.id_turnament.ToString(),
                     Name = turnament.name,
                     DateStart = turnament.date_start,
                     DateEnd = turnament.date_end,

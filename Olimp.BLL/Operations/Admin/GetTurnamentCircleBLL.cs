@@ -32,7 +32,7 @@ namespace Olimp.BLL.Operations
 
             var item = new CircleTurnamentAdmin
             {
-                Id = turnament.id.ToString(),
+                Id = turnament.id_turnament.ToString(),
                 Name = turnament.name,
                 DateStart = turnament.date_start,
                 DateEnd = turnament.date_end,

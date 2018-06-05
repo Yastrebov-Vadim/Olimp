@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class turnament
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_turnament { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public int сontribution_tournament { get; set; }

@@ -67,11 +67,17 @@ export class MixedTurnament implements OnInit {
         var result = "";
 
         groupTourNumber.forEach(gt => gt.groupDateStart.forEach(gd => gd.gameTurnament.forEach(t => {
-            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals + " -- " + t.commandTwoGoals;
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId) {
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                result = oneGoals + " : " + twoGoals;
+            }
 
-            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals + " -- " + t.commandOneGoals;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
+                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                result = twoGoals + " : " + oneGoals;
+            }
         })));
 
         return result;

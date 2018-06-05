@@ -43,6 +43,7 @@ import { Turnament } from './components/admin/turnament/turnament';
 import { TuningTurnament } from './components/admin/tuning-turnament/tuning-turnament';
 import { CircleTurnament } from './components/admin/tuning-turnament/circle-turnament/circle-turnament';
 import { MixedTurnament } from './components/admin/tuning-turnament/mixed-turnament/mixed-turnament';
+import { ArensAdmin } from './components/admin/arens/arens';
 
 import { AuthenticationAdminService } from './services/admin/authentication';
 import { NewsAdminService } from './services/admin/news';
@@ -75,7 +76,8 @@ import { TurnamentStep } from './pipe/turnamentStep';
         Turnament,
         TuningTurnament,
         CircleTurnament,
-        MixedTurnament
+        MixedTurnament,
+        ArensAdmin
     ],
     imports: [
         BrowserModule,

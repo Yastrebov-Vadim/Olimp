@@ -16,7 +16,7 @@ namespace Olimp.BLL.Operations
             {
                 response.Arens.Add(new Arena
                 {
-                    Id = x.id.ToString(),
+                    Id = x.id_game_arena.ToString(),
                     Name = x.name
                 });
             });

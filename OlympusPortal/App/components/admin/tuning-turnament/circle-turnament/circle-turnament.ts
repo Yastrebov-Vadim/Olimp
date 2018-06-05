@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Common } from '../../../../model/user/common';
 import { TurnamentAdminService } from '../../../../services/admin/turnament';
 import { ElementRequest } from '../../../../classes/admin/requests/elementRequest';
-import { SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, AddGoalRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
-import { GetCircleTurnament, GameTurnament, DayGame, Arena, Goal, Player, Command } from '../../../../model/admin/turnament';
+import { SaveCircleTurnamentInfoRequest, AddCardRequest, TurnamentStepRequest, DeclareRequest, AddGoalRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
+import { GetCircleTurnament, GameTurnament, DayGame, Arena, Goal, Card, Player, Command } from '../../../../model/admin/turnament';
 
 @Component({
     selector: 'circle-turnament',
@@ -29,6 +29,9 @@ export class CircleTurnament implements OnInit {
     public table = new Array();
     public players: Player[] = new Array<Player>();
     public goal: Goal = new Goal(null, null, null, null, null, null, null);
+    public card: Card = new Card(null, null, null, null, null, null, null);
+    public isYellowe: boolean;
+    public isRed: boolean;
     public arens: Arena[] = new Array<Arena>();
     public commands: Command[] = new Array<Command>();
     public turnament: GetCircleTurnament = new GetCircleTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null)
@@ -77,11 +80,17 @@ export class CircleTurnament implements OnInit {
         var commandTwoId = self.turnament.positionCommand[col - 1].commandId;
         var result = "";
         self.turnament.groupTourNumber.forEach(gt => gt.groupDateStart.forEach(gd => gd.gameTurnament.forEach(t => {
-            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId)
-                result = t.commandOneGoals.value + " -- " + t.commandTwoGoals.value;
+            if (t.idCommandOne == commandOneId && t.idCommandTwo == commandTwoId) {
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                result = oneGoals + " : " + twoGoals;
+            }
 
-            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId)
-                result = t.commandTwoGoals.value + " -- " + t.commandOneGoals.value;
+            if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
+                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
+                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                result = twoGoals + " : " + oneGoals;
+            }
         })));
 
         return result;
@@ -336,8 +345,15 @@ export class CircleTurnament implements OnInit {
         document.getElementById("transparent-layer-goals").style.display = "block";
     }
 
+    public openFormAddCard() {
+        var self = this;
+
+        document.getElementById("transparent-layer-card").style.display = "block";
+    }
+
     public close() {
         document.getElementById("transparent-layer-goals").style.display = "none";
+        document.getElementById("transparent-layer-card").style.display = "none";
     }
 
     public addGoalsBlockStyle() {
@@ -363,9 +379,30 @@ export class CircleTurnament implements OnInit {
             self.getTurnament(self.id);
             self.goal = new Goal(null, null, null, null, null, null, null);
             self.close();
+            self.toastr.success("Гол добавлен в систему");
         });
     }
 
+    public addCard(isValid) {
+        var self = this;
+
+        if (isValid || (!self.isYellowe && !self.isRed)) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+
+        self.card.turnamentId = self.id;
+
+        self.card.type = self.isYellowe ? 1 : 2;
+
+        self.busy = self.turnamentService.AddCard(new AddCardRequest(self.card)).then(response => {
+            self.getTurnament(self.id);
+            self.goal = new Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Штраф добавлен в систему");
+        });
+    }
+    
     public selectCommand(game: GameTurnament) {
         var self = this;
 
@@ -374,6 +411,7 @@ export class CircleTurnament implements OnInit {
         self.commands.push(new Command(game.idCommandOne, game.commandOneName));
         self.commands.push(new Command(game.idCommandTwo, game.commandTwoName));
         self.goal.gameId = game.id;
+        self.card.gameId = game.id;
     }
 
     public getPlayer() {

@@ -16,6 +16,8 @@ namespace Olimp.BLL.Models
         public string Arena { get; set; }
         public Goals CommandOneGoals { get; set; }
         public Goals CommandTwoGoals { get; set; }
+        public Cards CommandOneCard { get; set; }
+        public Cards CommandTwoCard { get; set; }
         public int CommandOnePoints { get; set; }
         public int CommandTwoPoints { get; set; }
     }

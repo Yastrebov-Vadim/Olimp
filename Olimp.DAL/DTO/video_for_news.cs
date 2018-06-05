@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class video_for_news
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_video_for_news { get; set; }
         public System.Guid id_news { get; set; }
         public Nullable<System.Guid> id_command_one { get; set; }
         public Nullable<System.Guid> id_command_two { get; set; }

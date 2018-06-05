@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class circle_for_turnament
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_circle_for_turnament { get; set; }
         public System.Guid id_turnament { get; set; }
         public int numbr_circle { get; set; }
         public bool state_code { get; set; }

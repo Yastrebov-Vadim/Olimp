@@ -21,13 +21,13 @@ namespace Olimp.BLL.Operations
                 {
                     turnamentPlayOff.Add(new TurnamentPlayOff
                     {
-                        PlayOffId = x.id.ToString(),
+                        PlayOffId = x.id_circle_for_turnament.ToString(),
                         NumberCircle = x.numbr_circle,
                         StateCode = x.state_code,
-                        GroupTourNumber = GetGroupTourNumberBLL.Execute(x.id, isAdmin)
+                        GroupTourNumber = GetGroupTourNumberBLL.Execute(x.id_circle_for_turnament, isAdmin)
                     });
 
-                    var position = DbHelper.GetPositionCommand(x.id);
+                    var position = DbHelper.GetPositionCommand(x.id_circle_for_turnament);
 
                     var pos = new List<PositionCommand>();
 
@@ -35,7 +35,7 @@ namespace Olimp.BLL.Operations
                     {
                         pos.Add(new PositionCommand
                         {
-                            CommandId = p.id_command.ToString(),
+                            CommandId = p.id_account.ToString(),
                             CommandName = p.command_name,
                             Points = p.points,
                             Position = p.position,

@@ -31,18 +31,5 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void SignOutAdmin() => SignOut();
-
-        [HttpPost]
-        public void Registration(RegistrationRequest request)
-        {
-            var account = RegistrationBLL.Execute(request);
-            SignIn(account.Item1, account.Item2, Role.User);
-        }
-
-        [HttpPost]
-        public void ConfirmTheCode(RegistrationRequest request) => CheckKodeBLL.Execute(request);
-
-        [HttpPost]
-        public void ReplacePassvord(RegistrationRequest request) => ReplacePassvordBLL.Execute(request);
     }
 }

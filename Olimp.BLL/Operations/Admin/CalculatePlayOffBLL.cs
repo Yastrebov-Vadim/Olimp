@@ -18,7 +18,7 @@ namespace Olimp.BLL.Operations
 
             groups.ForEach(x =>
             {
-                var position = DbHelper.GetPositionTopForGroup(turnamentId, x.id);
+                var position = DbHelper.GetPositionTopForGroup(turnamentId, x.id_group_for_turnament);
                 position.ForEach(p =>
                 {
                     commands.Add(p);
@@ -43,7 +43,7 @@ namespace Olimp.BLL.Operations
                 {
                     var command = new position_command_for_turnament
                     {
-                        id_command = Guid.Empty,
+                        id_account = Guid.Empty,
                         command_name = "?"
                     };
 
@@ -77,7 +77,7 @@ namespace Olimp.BLL.Operations
                         {
                             var command = new position_command_for_turnament
                             {
-                                id_command = Guid.Empty,
+                                id_account = Guid.Empty,
                                 command_name = "?"
                             };
                             circlePositionCommand[i].Add(command);
@@ -94,7 +94,7 @@ namespace Olimp.BLL.Operations
                         {
                             var command = new position_command_for_turnament
                             {
-                                id_command = Guid.Empty,
+                                id_account = Guid.Empty,
                                 command_name = "?"
                             };
                             circlePositionCommand[i].Add(command);
@@ -108,7 +108,7 @@ namespace Olimp.BLL.Operations
                     {
                         var command = new position_command_for_turnament
                         {
-                            id_command = Guid.Empty,
+                            id_account = Guid.Empty,
                             command_name = "?"
                         };
 
@@ -127,11 +127,11 @@ namespace Olimp.BLL.Operations
 
             circle.ForEach(x =>
             {
-                var positoinCommands = DbHelper.GetPositionCommand(x.id);
+                var positoinCommands = DbHelper.GetPositionCommand(x.id_circle_for_turnament);
                 if (x != circle.Last())
                     for (var j = 0; j < positoinCommands.Count; j = j + 2)
                     {
-                        DbHelper.CreateGameForTurnament(x.id, positoinCommands[j].id_command, positoinCommands[j + 1].id_command, positoinCommands[j].command_name, positoinCommands[j + 1].command_name, x.numbr_circle, false);
+                        DbHelper.CreateGameForTurnament(x.id_circle_for_turnament, positoinCommands[j].id_account, positoinCommands[j + 1].id_account, positoinCommands[j].command_name, positoinCommands[j + 1].command_name, x.numbr_circle, false);
                     }
             });
         }

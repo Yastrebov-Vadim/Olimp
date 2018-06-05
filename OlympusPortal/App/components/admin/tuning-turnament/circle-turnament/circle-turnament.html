@@ -163,7 +163,7 @@
                             <div class="game-command-block">
                                 <div class="inline-block">
                                     <div class="game-points">
-                                        {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
+                                        {{game.commandOneGoals.value}} -- {{game.commandTwoGoals.value}}
                                     </div>
                                     <div class="game-command-name-block">
                                         <div class="game-command-name">
@@ -185,7 +185,7 @@
                                                     <span *ngIf="game.status != 1">Голы</span>
                                                 </td>
                                                 <td>
-                                                    <button *ngIf="game.status == 1" mat-button class="goals-add-button">Добавить штраф</button>
+                                                    <button *ngIf="game.status == 1" mat-button class="goals-add-button" (click)="openFormAddCard();selectCommand(game)">Добавить штраф</button>
                                                     <span *ngIf="game.status != 1">Штрафы</span>
                                                 </td>
                                             </tr>
@@ -204,7 +204,20 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -279,6 +292,61 @@
             <input type="number" name="time" [(ngModel)]="goal.time" required />
 
             <button mat-button (click)="addGoals(newgoal.invalid)">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
+    </div>
+</div>
+
+<div class="transparent-layer-goals" id="transparent-layer-goals">
+    <div class="add-goal" [ngStyle]="addGoalsBlockStyle()">
+        <form class="example-form" #newgoal="ngForm" novalidate autocomplete="on">
+            Команда
+            <select [(ngModel)]="commandId" name="commandId" (change)="goal.commandId = $event.target.value">
+                <option *ngFor="let command of commands" [value]="command.commandId">
+                    {{command.commandName}}
+                </option>
+            </select>
+            Игрок
+            <select (change)="goal.playerId = $event.target.value" required>
+                <option>asdasd</option>
+                <option *ngFor="let player of getPlayer()" [value]="player.playerId">
+                    {{player.surname}}
+                </option>
+            </select>
+            Минута
+            <input type="number" name="time" [(ngModel)]="goal.time" required />
+
+            <button mat-button (click)="addGoals(newgoal.invalid)">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
+    </div>
+</div>
+
+<div class="transparent-layer-card" id="transparent-layer-card">
+    <div class="add-goal" [ngStyle]="addGoalsBlockStyle()">
+        <form class="example-form" #newcard="ngForm" novalidate autocomplete="on">
+            Команда
+            <select [(ngModel)]="commandId" name="commandId" (change)="card.commandId = $event.target.value" required>
+                <option *ngFor="let command of commands" [value]="command.commandId">
+                    {{command.commandName}}
+                </option>
+            </select>
+            Игрок
+            <select (change)="card.playerId = $event.target.value" required>
+                <option></option>
+                <option *ngFor="let player of getPlayer()" [value]="player.playerId">
+                    {{player.surname}}
+                </option>
+            </select>
+            <div class="card-select-block">
+                <mat-checkbox [(ngModel)]="isYellowe" name="yellowe" (change)="isRed=false">
+                    Желтая
+                </mat-checkbox>
+                <mat-checkbox [(ngModel)]="isRed" name="red" (change)="isYellowe=false">
+                    Красная
+                </mat-checkbox>
+            </div>
+            <button mat-button (click)="addCard(newcard.invalid)">Добавить</button>
             <button mat-button (click)="close()">Отмена</button>
         </form>
     </div>

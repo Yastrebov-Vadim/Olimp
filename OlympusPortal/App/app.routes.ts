@@ -17,12 +17,14 @@ import { NewsAdmin } from './components/admin/news/news';
 import { AddNews } from './components/admin/add-news/add-news';
 import { Turnament } from './components/admin/turnament/turnament';
 import { TuningTurnament } from './components/admin/tuning-turnament/tuning-turnament';
+import { ArensAdmin } from './components/admin/arens/arens';
 
 const adminRoutes: Routes = [
     { path: Common.RoutePaths.News, component: NewsAdmin },
     { path: Common.RoutePaths.EditNews, component: AddNews },
     { path: Common.RoutePaths.Turnament, component: Turnament },
     { path: Common.RoutePaths.TuningTurnament, component: TuningTurnament },
+    { path: Common.RoutePaths.Arens, component: ArensAdmin },
 ];
 
 export const AppRoutes: Routes = [

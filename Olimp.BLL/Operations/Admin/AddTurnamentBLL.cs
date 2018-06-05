@@ -11,7 +11,7 @@ namespace Olimp.BLL.Operations
         {
             var turnament = DbHelper.AddTurnament(Convert.ToInt32(request.Txt));
 
-            return new ElementTypeResponse { Id = turnament.id.ToString(), Type = turnament.type };
+            return new ElementTypeResponse { Id = turnament.id_turnament.ToString(), Type = turnament.type };
         }
     }
 }

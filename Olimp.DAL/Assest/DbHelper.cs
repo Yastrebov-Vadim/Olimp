@@ -67,7 +67,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<news> query = context.news;
 
-                var news = query.Where(x => x.id == id).FirstOrDefault();
+                var news = query.Where(x => x.id_news == id).FirstOrDefault();
 
                 if (news == null)
                     throw new ApplicationException("Новость не найдена");
@@ -84,7 +84,7 @@ namespace Olimp.DAL.Assest
 
                 email_code emailCode = new email_code
                 {
-                    id = Guid.NewGuid(),
+                    id_email_code = Guid.NewGuid(),
                     email = email,
                     code_user = code
                 };
@@ -129,7 +129,7 @@ namespace Olimp.DAL.Assest
             {
                 account account = new account
                 {
-                    id = Guid.NewGuid(),
+                    id_account = Guid.NewGuid(),
                     login = request.Login,
                     password = request.Password,
                     command_name = request.CommandName,
@@ -182,7 +182,7 @@ namespace Olimp.DAL.Assest
                 IQueryable<account> query = context.accounts;
 
                 var account = query
-                    .Where(x => x.id == Id)
+                    .Where(x => x.id_account == Id)
                     .FirstOrDefault();
 
                 return account;
@@ -196,7 +196,7 @@ namespace Olimp.DAL.Assest
                 IQueryable<avatar> query = context.avatars;
 
                 var avatar = query
-                    .Where(x => x.account_id == Id)
+                    .Where(x => x.id_account == Id)
                     .FirstOrDefault();
 
                 return avatar == null ? "url(./content/img/avatar.png)" : avatar.url_bd;
@@ -209,7 +209,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<player> query = context.players;
 
-                var players = query.Where(x => x.id_command == Id).ToList();
+                var players = query.Where(x => x.id_account == Id).ToList();
 
                 return players;
             }
@@ -221,18 +221,18 @@ namespace Olimp.DAL.Assest
             {
                 player newPlayer = new player
                 {
-                    id = Guid.NewGuid(),
+                    id_player = Guid.NewGuid(),
                     name = name,
                     surname = surname,
                     middleName = middleName,
                     number = number,
-                    id_command = Id
+                    id_account = Id
                 };
 
                 context.players.Add(newPlayer);
                 context.SaveChanges();
 
-                return newPlayer.id.ToString();
+                return newPlayer.id_player.ToString();
             }
         }
 
@@ -242,7 +242,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<player> query = context.players;
 
-                var player = query.Where(x => x.id_command == commandId && x.number == number).FirstOrDefault();
+                var player = query.Where(x => x.id_account == commandId && x.number == number).FirstOrDefault();
 
                 if (player != null)
                     throw new ApplicationException("Игрок с таким номером уже существует");
@@ -256,7 +256,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<player> query = context.players;
 
-                var player = query.Where(x => x.id == Id).FirstOrDefault();
+                var player = query.Where(x => x.id_player == Id).FirstOrDefault();
 
                 if (player == null)
                     return;
@@ -272,10 +272,10 @@ namespace Olimp.DAL.Assest
             {
                 avatar avatar = new avatar
                 {
-                    id = Guid.NewGuid(),
+                    id_avatar = Guid.NewGuid(),
                     url_bd = urlBd,
                     url_dir = urlDir,
-                    account_id = Id
+                    id_account = Id
                 };
 
                 context.avatars.Add(avatar);
@@ -289,7 +289,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<avatar> query = context.avatars;
 
-                var avatar = query.Where(x => x.account_id == id).FirstOrDefault();
+                var avatar = query.Where(x => x.id_account == id).FirstOrDefault();
 
                 if (avatar == null)
                     return;
@@ -307,7 +307,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<account> query = context.accounts;
 
-                var account = query.Where(x => x.id == id).FirstOrDefault();
+                var account = query.Where(x => x.id_account == id).FirstOrDefault();
 
                 if (account == null)
                     return;
@@ -332,7 +332,7 @@ namespace Olimp.DAL.Assest
                 foreach (Player item in players)
                 {
                     var id = Guid.Parse(item.PlayerId);
-                    var player = query.Where(x => x.id == id).FirstOrDefault();
+                    var player = query.Where(x => x.id_player == id).FirstOrDefault();
 
                     if (player == null)
                         continue;
@@ -364,7 +364,7 @@ namespace Olimp.DAL.Assest
             {
                 news news = new news
                 {
-                    id = Guid.NewGuid(),
+                    id_news = Guid.NewGuid(),
                     date = DateTime.Now.Date,
                     type = type,
                     top = false,
@@ -374,7 +374,7 @@ namespace Olimp.DAL.Assest
                 context.news.Add(news);
                 context.SaveChanges();
 
-                return news.id.ToString();
+                return news.id_news.ToString();
             }
         }
 
@@ -386,7 +386,7 @@ namespace Olimp.DAL.Assest
 
                 IQueryable<news> query = context.news;
 
-                var news = query.Where(x => x.id == id).FirstOrDefault();
+                var news = query.Where(x => x.id_news == id).FirstOrDefault();
 
                 if (news == null)
                     throw new ApplicationException("Новость не найдена");
@@ -397,14 +397,14 @@ namespace Olimp.DAL.Assest
                 news.date = DateTime.Now.Date;
                 if (CommandOne.Any())
                 {
-                    news.command_one = Guid.Parse(CommandOne);
-                    BindingCommandForFoto(news.id, Guid.Parse(CommandOne), CommandNumber.One);
+                    news.id_command_one = Guid.Parse(CommandOne);
+                    BindingCommandForFoto(news.id_news, Guid.Parse(CommandOne), CommandNumber.One);
                 }
 
                 if (CommandTwo.Any())
                 {
-                    news.command_two = Guid.Parse(CommandTwo);
-                    BindingCommandForFoto(news.id, Guid.Parse(CommandTwo), CommandNumber.Two);
+                    news.id_command_two = Guid.Parse(CommandTwo);
+                    BindingCommandForFoto(news.id_news, Guid.Parse(CommandTwo), CommandNumber.Two);
                 }
 
                 context.SaveChanges();
@@ -490,7 +490,7 @@ namespace Olimp.DAL.Assest
             {
                 img_for_news img = new img_for_news
                 {
-                    id = Guid.NewGuid(),
+                    id_img_for_news = Guid.NewGuid(),
                     id_news = Guid.Parse(newsId),
                     url_dir = urlDir,
                     url_bd = urlBd
@@ -509,7 +509,7 @@ namespace Olimp.DAL.Assest
             {
                 video_for_news video = new video_for_news
                 {
-                    id = Guid.NewGuid(),
+                    id_video_for_news = Guid.NewGuid(),
                     id_news = Guid.Parse(videoId),
                     url_dir = urlDir,
                     url_bd = urlBd
@@ -530,7 +530,7 @@ namespace Olimp.DAL.Assest
 
                 var id = Guid.Parse(newsId);
 
-                var news = query.Where(x => x.id == id).FirstOrDefault();
+                var news = query.Where(x => x.id_news == id).FirstOrDefault();
 
                 if (news == null)
                     throw new ApplicationException("Новость не найдена");
@@ -594,7 +594,7 @@ namespace Olimp.DAL.Assest
 
                 var id = Guid.Parse(photoId);
 
-                var photo = query.Where(x => x.id == id).FirstOrDefault();
+                var photo = query.Where(x => x.id_img_for_news == id).FirstOrDefault();
 
                 if (photo == null)
                     throw new ApplicationException("Фото не найдено");
@@ -613,7 +613,7 @@ namespace Olimp.DAL.Assest
 
                 var id = Guid.Parse(newsId);
 
-                var news = query.Where(x => x.id == id).FirstOrDefault();
+                var news = query.Where(x => x.id_news == id).FirstOrDefault();
 
                 if (news == null)
                     throw new ApplicationException("Новость не найдена");
@@ -632,20 +632,20 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<img_for_news> query = context.img_for_news;
 
-                var pageSize = 4;
+                var pageSize = 20;
                 int totalPages;
                 var photos = new List<img_for_news>();
 
                 if (commandId == null)
                 {
                     totalPages = (int)(Math.Ceiling(query.Count() / (decimal)pageSize));
-                    photos = query.OrderBy(x => x.id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                    photos = query.OrderBy(x => x.id_img_for_news).Skip((page - 1) * pageSize).Take(pageSize).ToList();
                 }
                 else
                 {
                     var id = Guid.Parse(commandId);
                     totalPages = (int)(Math.Ceiling(query.Where(c => c.id_command_one == id || c.id_command_two == id).Count() / (decimal)pageSize));
-                    photos = query.Where(c => c.id_command_one == id || c.id_command_two == id).OrderBy(x => x.id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                    photos = query.Where(c => c.id_command_one == id || c.id_command_two == id).OrderBy(x => x.id_img_for_news).Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
                 }
 
@@ -659,7 +659,7 @@ namespace Olimp.DAL.Assest
             {
                 turnament turnament = new turnament
                 {
-                    id = Guid.NewGuid(),
+                    id_turnament = Guid.NewGuid(),
                     type = type,
                     state_code = true,
                     step = 0,
@@ -694,7 +694,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<turnament> query = context.turnaments;
 
-                var turnament = query.Where(x => x.id == turnamentId).FirstOrDefault();
+                var turnament = query.Where(x => x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (turnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -709,7 +709,7 @@ namespace Olimp.DAL.Assest
             using (OlimpEntities context = new OlimpEntities())
             {
                 IQueryable<turnament> query = context.turnaments;
-                var turnament = query.Where(x => x.id == turnamentId).FirstOrDefault();
+                var turnament = query.Where(x => x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (turnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -726,7 +726,7 @@ namespace Olimp.DAL.Assest
 
                 IQueryable<turnament> query = context.turnaments;
 
-                var turnament = query.Where(x => x.id == id).FirstOrDefault();
+                var turnament = query.Where(x => x.id_turnament == id).FirstOrDefault();
 
                 if (turnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -750,7 +750,7 @@ namespace Olimp.DAL.Assest
 
                 IQueryable<turnament> query = context.turnaments;
 
-                var turnament = query.Where(x => x.id == id).FirstOrDefault();
+                var turnament = query.Where(x => x.id_turnament == id).FirstOrDefault();
 
                 if (turnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -776,11 +776,11 @@ namespace Olimp.DAL.Assest
             using (OlimpEntities context = new OlimpEntities())
             {
                 var query = from tr in context.turnaments.Where(x => x.step == 3)
-                            join ac in context.command_for_turnament.Where(x => x.id_command == accountId) on tr.id equals ac.id_turnament into ps
+                            join ac in context.command_for_turnament.Where(x => x.id_account == accountId) on tr.id_turnament equals ac.id_turnament into ps
                             from ac in ps.DefaultIfEmpty()
                             select new
                             {
-                                tr.id,
+                                tr.id_turnament,
                                 tr.name,
                                 tr.description,
                                 tr.date_start,
@@ -795,7 +795,7 @@ namespace Olimp.DAL.Assest
                 {
                     var tur = new turnament
                     {
-                        id = item.id,
+                        id_turnament = item.id_turnament,
                         name = item.name,
                         description = item.description,
                         date_start = item.date_start,
@@ -816,16 +816,16 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<command_for_turnament> query = context.command_for_turnament;
 
-                var commandForTurnament = query.Where(x => x.id_command == commandId && x.id_turnament == turnamentId).FirstOrDefault();
+                var commandForTurnament = query.Where(x => x.id_account == commandId && x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (commandForTurnament != null)
                     throw new ApplicationException("Ошибка: повторная заявка на турнир");
 
                 command_for_turnament item = new command_for_turnament
                 {
-                    id = Guid.NewGuid(),
+                    id_command_for_turnament = Guid.NewGuid(),
                     id_turnament = turnamentId,
-                    id_command = commandId,
+                    id_account = commandId,
                     status = false
                 };
 
@@ -839,11 +839,11 @@ namespace Olimp.DAL.Assest
             using (OlimpEntities context = new OlimpEntities())
             {
                 var query = from cm in context.command_for_turnament.Where(x => x.id_turnament == turnamentId)
-                            join ac in context.accounts on cm.id_command equals ac.id into ps
+                            join ac in context.accounts on cm.id_account equals ac.id_account into ps
                             from ac in ps.DefaultIfEmpty()
                             select new
                             {
-                                ac.id,
+                                ac.id_account,
                                 ac.command_name,
                                 cm.status
                             };
@@ -860,7 +860,7 @@ namespace Olimp.DAL.Assest
 
                     var item = new Command
                     {
-                        Id = command.id.ToString(),
+                        Id = command.id_account.ToString(),
                         Name = command.command_name,
                         Status = command.status
                     };
@@ -879,7 +879,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<player> query = context.players;
 
-                var player = query.Where(x => x.id_command == commandId).ToList();
+                var player = query.Where(x => x.id_account == commandId).ToList();
 
                 if (player.Count < 7)
                     throw new ApplicationException("Колличество игроков не соответствует регламенту");
@@ -892,7 +892,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<account> query = context.accounts;
 
-                var account = query.Where(x => x.id == commandId).FirstOrDefault();
+                var account = query.Where(x => x.id_account == commandId).FirstOrDefault();
 
                 if (account == null)
                     throw new ApplicationException("Команда не найдена");
@@ -907,7 +907,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<turnament> query = context.turnaments;
 
-                var turnament = query.Where(x => x.id == turnamentId).FirstOrDefault();
+                var turnament = query.Where(x => x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (turnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -922,7 +922,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<group_for_turnament> query = context.group_for_turnament;
 
-                var group = query.Where(x => x.id == grouptId).FirstOrDefault();
+                var group = query.Where(x => x.id_group_for_turnament == grouptId).FirstOrDefault();
 
                 if (group == null)
                     throw new ApplicationException("Группа не найдена");
@@ -937,7 +937,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<circle_for_turnament> query = context.circle_for_turnament;
 
-                var playOff = query.Where(x => x.id == playOffId).FirstOrDefault();
+                var playOff = query.Where(x => x.id_circle_for_turnament == playOffId).FirstOrDefault();
 
                 if (playOff == null)
                     throw new ApplicationException("PlayOff не найден");
@@ -952,7 +952,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<account> query = context.accounts;
 
-                var account = query.Where(x => x.id == accountId).FirstOrDefault();
+                var account = query.Where(x => x.id_account == accountId).FirstOrDefault();
 
                 if (account == null)
                     throw new ApplicationException("Команда не найдена");
@@ -967,10 +967,10 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<command_for_turnament> query = context.command_for_turnament;
 
-                var commandForTurnament = query.Where(x => x.id_command == commandId && x.id_turnament == turnamentId).FirstOrDefault();
+                var commandForTurnament = query.Where(x => x.id_account == commandId && x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (commandForTurnament == null)
-                    throw new ApplicationException("Турнир не найден");
+                    throw new ApplicationException("Команда не найдена");
 
                 commandForTurnament.status = true;
 
@@ -984,7 +984,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<command_for_turnament> query = context.command_for_turnament;
 
-                var commandForTurnament = query.Where(x => x.id_command == commandId && x.id_turnament == turnamentId).FirstOrDefault();
+                var commandForTurnament = query.Where(x => x.id_account == commandId && x.id_turnament == turnamentId).FirstOrDefault();
 
                 if (commandForTurnament == null)
                     throw new ApplicationException("Турнир не найден");
@@ -1004,9 +1004,9 @@ namespace Olimp.DAL.Assest
                 {
                     position_command_for_turnament position = new position_command_for_turnament
                     {
-                        id = Guid.NewGuid(),
+                        id_position_command_for_turnament = Guid.NewGuid(),
                         command_name = command.Name,
-                        id_command = Guid.Parse(command.Id),
+                        id_account = Guid.Parse(command.Id),
                         id_turnament = turnamentId,
                         position = index,
                         fake_code = command.FakeCode
@@ -1026,9 +1026,9 @@ namespace Olimp.DAL.Assest
             {
                 position_command_for_turnament position = new position_command_for_turnament
                 {
-                    id = Guid.NewGuid(),
+                    id_position_command_for_turnament = Guid.NewGuid(),
                     command_name = command.command_name,
-                    id_command = command.id_command,
+                    id_account = command.id_account,
                     id_turnament = turnamentId,
                     position = 0,
                     fake_code = false
@@ -1047,7 +1047,7 @@ namespace Olimp.DAL.Assest
                 {
                     game_for_turnament game = new game_for_turnament
                     {
-                        id = Guid.NewGuid(),
+                        id_game_for_turnament = Guid.NewGuid(),
                         id_turnament = turnamentId,
                         id_command_one = commandOneId,
                         id_command_two = commandTwoId,
@@ -1107,7 +1107,7 @@ namespace Olimp.DAL.Assest
                     x.ForEach(y =>
                     {
                         y.date_start = days[j];
-                        y.id_arena = Guid.Parse(arens[j]);
+                        y.id_game_arena = Guid.Parse(arens[j]);
                         context.SaveChanges();
                     });
 
@@ -1140,7 +1140,7 @@ namespace Olimp.DAL.Assest
 
                 game.ForEach(x =>
                 {
-                    x.id_arena = arena;
+                    x.id_game_arena = arena;
                     context.SaveChanges();
                 });
             }
@@ -1201,7 +1201,7 @@ namespace Olimp.DAL.Assest
 
                 IQueryable<game_arena> query = context.game_arena;
 
-                var arena = query.Where(x => x.id == arenaId).FirstOrDefault();
+                var arena = query.Where(x => x.id_game_arena == arenaId).FirstOrDefault();
 
                 if (arena == null)
                     throw new ApplicationException("Арена не найдена");
@@ -1216,7 +1216,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<game_for_turnament> query = context.game_for_turnament;
 
-                var game = query.Where(x => x.id == gameId).FirstOrDefault();
+                var game = query.Where(x => x.id_game_for_turnament == gameId).FirstOrDefault();
 
                 var commandOneGoals = GetGoalsCommandForTurnament(turnamentId, game.id_command_one, gameId);
                 var commandTwoGoals = GetGoalsCommandForTurnament(turnamentId, game.id_command_two, gameId);
@@ -1238,7 +1238,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<position_command_for_turnament> query = context.position_command_for_turnament;
 
-                var position = query.Where(x => x.id_turnament == turnamentId && x.id_command == commandId).FirstOrDefault();
+                var position = query.Where(x => x.id_turnament == turnamentId && x.id_account == commandId).FirstOrDefault();
 
                 if (position == null)
                     throw new ApplicationException("Позиция не найдена");
@@ -1273,7 +1273,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<circle_for_turnament> query = context.circle_for_turnament;
 
-                var circle = query.Where(x => x.id == circleId).FirstOrDefault();
+                var circle = query.Where(x => x.id_circle_for_turnament == circleId).FirstOrDefault();
 
                 if (circle == null)
                     throw new ApplicationException("Тур плей-офф не найден");
@@ -1309,7 +1309,7 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<position_command_for_turnament> query = context.position_command_for_turnament;
 
-                var position = query.Where(x => x.id_turnament == turnamentId && x.id_command == commandId).FirstOrDefault();
+                var position = query.Where(x => x.id_turnament == turnamentId && x.id_account == commandId).FirstOrDefault();
 
                 position.place = place;
                 context.SaveChanges();
@@ -1341,7 +1341,7 @@ namespace Olimp.DAL.Assest
                 {
                     group_for_turnament group = new group_for_turnament
                     {
-                        id = Guid.NewGuid(),
+                        id_group_for_turnament = Guid.NewGuid(),
                         id_turnament = turnamentId,
                         position = i
                     };
@@ -1375,7 +1375,7 @@ namespace Olimp.DAL.Assest
             {
                 var circle = new circle_for_turnament
                 {
-                    id = Guid.NewGuid(),
+                    id_circle_for_turnament = Guid.NewGuid(),
                     id_turnament = turnamentId,
                     numbr_circle = index
                 };
@@ -1383,7 +1383,7 @@ namespace Olimp.DAL.Assest
                 context.circle_for_turnament.Add(circle);
                 context.SaveChanges();
 
-                return circle.id;
+                return circle.id_circle_for_turnament;
             }
         }
 
@@ -1409,8 +1409,8 @@ namespace Olimp.DAL.Assest
 
                 game.ForEach(x =>
                 {
-                    var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, x.id_command_one, x.id);
-                    var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, x.id_command_two, x.id);
+                    var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, x.id_command_one, x.id_game_for_turnament);
+                    var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, x.id_command_two, x.id_game_for_turnament);
 
                     if (commandOne.Count > commandTwo.Count)
                     {
@@ -1477,9 +1477,9 @@ namespace Olimp.DAL.Assest
                 {
                     for (var i = 0; i < position.Count; i++)
                     {
-                        if (position[i].id_command == Guid.Empty)
+                        if (position[i].id_account == Guid.Empty)
                         {
-                            position[i].id_command = Guid.Parse(c.Id);
+                            position[i].id_account = Guid.Parse(c.Id);
                             position[i].command_name = c.Name;
                             context.SaveChanges();
                             break;
@@ -1495,7 +1495,17 @@ namespace Olimp.DAL.Assest
             {
                 IQueryable<goal> query = context.goals;
 
-                return query.Where(x => x.id_turnament == turnamentId && x.id_command == accountId && x.id_game == gameId).ToList();
+                return query.Where(x => x.id_turnament == turnamentId && x.id_account == accountId && x.id_game_for_turnament == gameId).ToList();
+            }
+        }
+
+        public static List<foul_card> GetCardCommandForTurnament(Guid turnamentId, Guid accountId, Guid gameId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<foul_card> query = context.foul_card;
+
+                return query.Where(x => x.id_turnament == turnamentId && x.id_account == accountId && x.id_game_for_turnament == gameId).ToList();
             }
         }
 
@@ -1504,15 +1514,15 @@ namespace Olimp.DAL.Assest
             using (OlimpEntities context = new OlimpEntities())
             {
                 var query = from cm in context.command_for_turnament.Where(x => x.id_turnament == turnamentId)
-                            join ac in context.accounts on cm.id_command equals ac.id into ps
+                            join ac in context.accounts on cm.id_account equals ac.id_account into ps
                             from ac in ps.DefaultIfEmpty()
-                            join p in context.players on ac.id equals p.id_command into pl
+                            join p in context.players on ac.id_account equals p.id_account into pl
                             from p in pl.DefaultIfEmpty()
                             select new
                             {
-                                p.id,
+                                p.id_player,
                                 p.surname,
-                                commandId = ac.id
+                                commandId = ac.id_account
                             };
 
                 var players = query.ToList();
@@ -1523,7 +1533,7 @@ namespace Olimp.DAL.Assest
                 {
                     var item = new PlayerAdmin
                     {
-                        PlayerId = player.id.ToString(),
+                        PlayerId = player.id_player.ToString(),
                         CommandId = player.commandId.ToString(),
                         Surname = player.surname
                     };
@@ -1541,11 +1551,11 @@ namespace Olimp.DAL.Assest
             {
                 var goal = new goal
                 {
-                    id = Guid.NewGuid(),
+                    id_goal = Guid.NewGuid(),
                     id_turnament = turnamentId,
-                    id_command = commandId,
+                    id_account = commandId,
                     id_player = playerId,
-                    id_game= gameId,
+                    id_game_for_turnament = gameId,
                     time = time
                 };
 
@@ -1554,18 +1564,70 @@ namespace Olimp.DAL.Assest
             }
         }
 
+        public static void AddCard(Guid turnamentId, Guid commandId, Guid playerId, Guid gameId, int type)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var card = new foul_card
+                {
+                    id_foul_card = Guid.NewGuid(),
+                    id_turnament = turnamentId,
+                    id_account = commandId,
+                    id_player = playerId,
+                    id_game_for_turnament = gameId,
+                    type = type
+                };
+
+                context.foul_card.Add(card);
+                context.SaveChanges();
+            }
+        }
+
+        public static string AddArena(string name)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var arena = new game_arena
+                {
+                    id_game_arena = Guid.NewGuid(),
+                    name = name,
+                };
+
+                context.game_arena.Add(arena);
+                context.SaveChanges();
+
+                return arena.id_game_arena.ToString();
+            }
+        }
+        
         public static string GetPlayerName(Guid playerId)
         {
             using (OlimpEntities context = new OlimpEntities())
             {
                 IQueryable<player> query = context.players;
 
-                var player = query.Where(x => x.id == playerId).FirstOrDefault();
+                var player = query.Where(x => x.id_player == playerId).FirstOrDefault();
 
                 if (player == null)
                     throw new ApplicationException("Игрок не найден");
 
                 return player.surname;
+            }
+        }
+
+        public static void DellArena(Guid arenaId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_arena> query = context.game_arena;
+
+                var arena = query.Where(x => x.id_game_arena == arenaId).FirstOrDefault();
+
+                if (arena == null)
+                    throw new ApplicationException("Арена не найдена");
+
+                context.game_arena.Remove(arena);
+                context.SaveChanges();
             }
         }
     }

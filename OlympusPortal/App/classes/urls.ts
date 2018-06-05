@@ -59,6 +59,9 @@
     readonly completeGame = 'api/TurnamentAdmin/CompleteGame';
     readonly closeTour = 'api/TurnamentAdmin/CloseTour';
     readonly addGoals = 'api/TurnamentAdmin/AddGoals';
+    readonly addCard = 'api/TurnamentAdmin/AddCard';
+    readonly addArena = 'api/TurnamentAdmin/AddArena';
+    readonly dellArena = 'api/TurnamentAdmin/DellArena';
 
     readonly addImgNewsTypeText = 'api/FileAdmin/AddImgNewsTypeText';
     readonly addImgNewsTypePhoto = 'api/FileAdmin/AddImgNewsTypePhoto';

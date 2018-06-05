@@ -103,6 +103,7 @@ var App = (function () {
         var self = this;
         self.userPage(1);
         document.getElementById("transparent-layer").style.display = "block";
+        self.ex = true;
     };
     App.prototype.close = function () {
         document.getElementById("transparent-layer").style.display = "none";
@@ -142,6 +143,7 @@ var App = (function () {
         var self = this;
         document.getElementById("exit2").style.marginLeft = "0px";
         document.getElementById("cabinet").style.marginLeft = "0px";
+        self.ex = true;
         self.router.navigate([common_1.Common.RoutePaths.Cabinet], { queryParams: {} });
     };
     App.prototype.confirmTheCode = function () {

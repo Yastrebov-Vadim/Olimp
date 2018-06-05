@@ -23,7 +23,7 @@ namespace Olimp.BLL.Operations
             {
                 response.News.Add(new NewsInfo
                 {
-                    Id = element.id.ToString(),
+                    Id = element.id_news.ToString(),
                     Date = element.date.ToShortDateString(),
                     Title = element.title,
                     Type = element.type,

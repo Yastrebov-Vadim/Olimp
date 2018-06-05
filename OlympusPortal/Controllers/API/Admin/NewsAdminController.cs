@@ -1,7 +1,6 @@
 ﻿using Olimp.BLL.Models;
 using Olimp.BLL.Models.Response;
 using Olimp.BLL.Operations;
-using System.Web;
 using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API

@@ -14,11 +14,11 @@ namespace Olimp.DAL.DTO
     
     public partial class goal
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_goal { get; set; }
         public System.Guid id_turnament { get; set; }
-        public System.Guid id_command { get; set; }
+        public System.Guid id_account { get; set; }
+        public System.Guid id_game_for_turnament { get; set; }
         public System.Guid id_player { get; set; }
         public int time { get; set; }
-        public System.Guid id_game { get; set; }
     }
 }

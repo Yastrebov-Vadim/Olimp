@@ -6,8 +6,9 @@ import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { ElementRequest } from '../../classes/admin/requests/ElementRequest';
 import { ElementTypeResponse } from '../../classes/admin/response/elementTypeResponse';
+import { ElementResponse } from '../../classes/admin/response/elementResponse';
 import { TurnamentInfoResponse, GetCircleTurnamentResponse, GetMixedTurnamentResponse, GetArenaResponse, GetPlayerForTurnamentResponse } from '../../classes/admin/response/turnamentResponse';
-import { SaveMixedTurnamentInfoRequest, AddGoalRequest, CalculateGroupRequest, SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
+import { SaveMixedTurnamentInfoRequest, AddCardRequest, AddGoalRequest, CalculateGroupRequest, SaveCircleTurnamentInfoRequest, TurnamentStepRequest, DeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest, RemoveDeclareRequest } from '../../classes/admin/requests/turnamentRequest';
 
 @Injectable()
 export class TurnamentAdminService {
@@ -123,5 +124,20 @@ export class TurnamentAdminService {
     AddGoals(request: AddGoalRequest): Promise<any> {
         var self = this;
         return this.tranport.postData(self.urls.addGoals, request);
+    }
+
+    AddCard(request: AddCardRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.addCard, request);
+    }
+
+    AddArena(request: ElementRequest): Promise<ElementResponse> {
+        var self = this;
+        return this.tranport.postData(self.urls.addArena, request);
+    }
+
+    DellArena(request: ElementRequest): Promise<any> {
+        var self = this;
+        return this.tranport.postData(self.urls.dellArena, request);
     }
 } 

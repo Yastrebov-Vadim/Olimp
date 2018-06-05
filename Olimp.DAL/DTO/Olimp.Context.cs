@@ -25,21 +25,22 @@ namespace Olimp.DAL.DTO
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<admin> admins { get; set; }
+        public virtual DbSet<avatar> avatars { get; set; }
+        public virtual DbSet<circle_for_turnament> circle_for_turnament { get; set; }
+        public virtual DbSet<command_for_turnament> command_for_turnament { get; set; }
         public virtual DbSet<email_code> email_code { get; set; }
+        public virtual DbSet<foul_card> foul_card { get; set; }
+        public virtual DbSet<game_arena> game_arena { get; set; }
+        public virtual DbSet<game_for_turnament> game_for_turnament { get; set; }
+        public virtual DbSet<goal> goals { get; set; }
+        public virtual DbSet<group_for_turnament> group_for_turnament { get; set; }
+        public virtual DbSet<img_for_news> img_for_news { get; set; }
         public virtual DbSet<news> news { get; set; }
         public virtual DbSet<player> players { get; set; }
-        public virtual DbSet<img_for_news> img_for_news { get; set; }
-        public virtual DbSet<video_for_news> video_for_news { get; set; }
-        public virtual DbSet<account> accounts { get; set; }
-        public virtual DbSet<avatar> avatars { get; set; }
-        public virtual DbSet<turnament> turnaments { get; set; }
-        public virtual DbSet<command_for_turnament> command_for_turnament { get; set; }
         public virtual DbSet<position_command_for_turnament> position_command_for_turnament { get; set; }
-        public virtual DbSet<game_arena> game_arena { get; set; }
-        public virtual DbSet<group_for_turnament> group_for_turnament { get; set; }
-        public virtual DbSet<circle_for_turnament> circle_for_turnament { get; set; }
-        public virtual DbSet<goal> goals { get; set; }
-        public virtual DbSet<game_for_turnament> game_for_turnament { get; set; }
+        public virtual DbSet<turnament> turnaments { get; set; }
+        public virtual DbSet<video_for_news> video_for_news { get; set; }
     }
 }

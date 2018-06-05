@@ -34,7 +34,7 @@ namespace Olimp.BLL.Operations
             {
                 if (x.date_start == null)
                     throw new ApplicationException("Не установлена дата проведения");
-                if (x.id_arena == null)
+                if (x.id_game_arena == null)
                     throw new ApplicationException("Не установлено место проведения");
             });
 
@@ -44,10 +44,10 @@ namespace Olimp.BLL.Operations
 
                 SendEmailBLL.SendEmail("Новый тур", $"{tour} тур, в турнире \"{turnamentName}\" " +
                     $"пройдет - {x.date_start.Value.ToShortDateString()} в {x.date_start.Value.ToShortTimeString()}. " +
-                    $"Место проведения тура - {DbHelper.GetArenaName(x.id_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_one));
+                    $"Место проведения тура - {DbHelper.GetArenaName(x.id_game_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_one));
                 SendEmailBLL.SendEmail("Новый тур", $"{tour} тур, в турнире \"{turnamentName}\" " +
                     $"пройдет - {x.date_start.Value.ToShortDateString()} в {x.date_start.Value.ToShortTimeString()}. " +
-                    $"Место проведения тура - {DbHelper.GetArenaName(x.id_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_two));
+                    $"Место проведения тура - {DbHelper.GetArenaName(x.id_game_arena)} Подробности можно узнать в личном кабинете.", DbHelper.GetAccountEmail(x.id_command_two));
             });
 
             DbHelper.ChangeStatusTour(turnamentId, tour, step);

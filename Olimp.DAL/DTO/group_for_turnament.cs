@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class group_for_turnament
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_group_for_turnament { get; set; }
         public System.Guid id_turnament { get; set; }
         public int position { get; set; }
     }

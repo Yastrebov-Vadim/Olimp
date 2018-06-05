@@ -46,6 +46,7 @@
     <Compile Include="Models\Admin\GameTurnament.cs" />
     <Compile Include="Models\Admin\DayGame.cs" />
     <Compile Include="Models\Admin\Player.cs" />
+    <Compile Include="Models\Admin\Request\AddCardRequest.cs" />
     <Compile Include="Models\Admin\Request\AddGoalsRequest.cs" />
     <Compile Include="Models\Admin\Request\GetPlayerForTurnamentRequest.cs" />
     <Compile Include="Models\Admin\Request\CalculateGroupRequest.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Models\Admin\Response\PhotoResponse.cs" />
     <Compile Include="Models\Admin\Response\NewsInfoResponse.cs" />
     <Compile Include="Models\Admin\Response\IsAuthResponse.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Cards.cs" />
     <Compile Include="Models\Goals.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\Enum\TurnamentType.cs" />
@@ -104,6 +107,9 @@
     <Compile Include="Models\User\Response\GetCommandsResponse.cs" />
     <Compile Include="Models\User\Response\GetAllNewsResponse.cs" />
     <Compile Include="Models\User\Turnament.cs" />
+    <Compile Include="Operations\Admin\DellArenaBLL.cs" />
+    <Compile Include="Operations\Admin\AddArenaBLL.cs" />
+    <Compile Include="Operations\Admin\AddCardBLL.cs" />
     <Compile Include="Operations\Admin\AddGoalsBLL.cs" />
     <Compile Include="Operations\Admin\CalculateGroupBLL.cs" />
     <Compile Include="Operations\Admin\GetPlayerForTurnamentBLL.cs" />

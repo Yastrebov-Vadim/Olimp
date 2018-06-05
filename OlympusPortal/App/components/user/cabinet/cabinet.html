@@ -96,7 +96,7 @@
                 Вы участвуете в турнирах
             </div>
             <div class="tournaments-log-text no-log" *ngIf="!isTur">
-                Вы не учавствуете в турнирах
+                Вы не учавствуете
             </div>
         </div>
 
@@ -153,7 +153,7 @@
 
                                 <div *ngFor="let game of tour.gameTurnament" class="game-block">
                                     <div class="game-points">
-                                        {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                        {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
                                     </div>
 
                                     <div class="game-command-name-block">
@@ -165,6 +165,42 @@
                                             {{game.commandTwoName}}
                                         </div>
                                     </div>
+
+                                    <div class="game-add-info-block">
+                                        <table class="current-game-points-block">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -258,7 +294,7 @@
 
                                     <div *ngFor="let game of tour.gameTurnament" class="game-block">
                                         <div class="game-points">
-                                            {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                            {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
                                         </div>
 
                                         <div class="game-command-name-block">
@@ -270,6 +306,29 @@
                                                 {{game.commandTwoName}}
                                             </div>
                                         </div>
+
+                                        <div class="game-add-info-block">
+                                            <table class="current-game-points-block">
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                    {{goal.playerSurname}} - {{goal.time}} мин
+                                                                </div>
+                                                            </div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                    {{goal.playerSurname}} - {{goal.time}} мин
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -338,41 +397,41 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="transparent-layer-player" id="transparent-layer-player">
+    <div class="add-player" [ngStyle]="addPlayerBlockStyle()">
+        <form class="example-form" #newplayer="ngForm" novalidate autocomplete="on">
+            <mat-form-field>
+                <input placeholder="Фамилия" matInput type="text" name="surname" [(ngModel)]="player.surname" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Имя" matInput type="text" name="name" [(ngModel)]="player.name" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Отчество" matInput type="text" name="middleName" [(ngModel)]="player.middleName" required />
+            </mat-form-field>
+            <mat-form-field>
+                <input placeholder="Номер в поле" matInput type="text" #newNumber="ngModel" name="number" [(ngModel)]="player.number" pattern="[0-9]*" required />
+            </mat-form-field>
+            <button mat-button (click)="addPlayer(newplayer.invalid, newNumber.hasError('pattern'))">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
     </div>
-
-    <div class="transparent-layer-player" id="transparent-layer-player">
-        <div class="add-player" [ngStyle]="addPlayerBlockStyle()">
-            <form class="example-form" #newplayer="ngForm" novalidate autocomplete="on">
-                <mat-form-field>
-                    <input placeholder="Фамилия" matInput type="text" name="surname" [(ngModel)]="player.surname" required />
-                </mat-form-field>
-                <mat-form-field>
-                    <input placeholder="Имя" matInput type="text" name="name" [(ngModel)]="player.name" required />
-                </mat-form-field>
-                <mat-form-field>
-                    <input placeholder="Отчество" matInput type="text" name="middleName" [(ngModel)]="player.middleName" required />
-                </mat-form-field>
-                <mat-form-field>
-                    <input placeholder="Номер в поле" matInput type="text" #newNumber="ngModel" name="number" [(ngModel)]="player.number" pattern="[0-9]*" required />
-                </mat-form-field>
-                <button mat-button (click)="addPlayer(newplayer.invalid, newNumber.hasError('pattern'))">Добавить</button>
-                <button mat-button (click)="close()">Отмена</button>
-            </form>
-        </div>
-    </div>
+</div>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
-                <div class="modal-body">
-                    Удалить игрока?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellPlayer()">ДА</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                </div>
+            <div class="modal-body">
+                Удалить игрока?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellPlayer()">ДА</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
             </div>
         </div>
     </div>
+</div>

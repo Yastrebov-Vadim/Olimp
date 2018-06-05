@@ -5,6 +5,7 @@ using System.Web.Http;
 
 namespace OlympusPortal.Controllers.API
 {
+    [Authorize(Roles = "Admin")]
     public class TurnamentAdminController : ApiBaseController
     {
         [HttpPost]
@@ -54,7 +55,7 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void ChangeDate(ChangeGameDayRequest request) => ChangeDateBLL.Execute(request);
-        
+
         [HttpPost]
         public void ChangeStatusTour(TourStepRequest request) => ChangeStatusTourBLL.Execute(request);
 
@@ -69,5 +70,14 @@ namespace OlympusPortal.Controllers.API
 
         [HttpPost]
         public void AddGoals(AddGoalsRequest request) => AddGoalsBLL.Execute(request);
+
+        [HttpPost]
+        public void AddCard(AddCardRequest request) => AddCardBLL.Execute(request);
+
+        [HttpPost]
+        public ElementResponse AddArena(ElementRequest request) => AddArenaBLL.Execute(request);
+
+        [HttpPost]
+        public void DellArena(ElementRequest request) => DellArenaBLL.Execute(request);
     }
 }

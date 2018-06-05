@@ -29,50 +29,91 @@ namespace Olimp.BLL.Operations
 
                         foreach (var element in groupDate)
                         {
-                            var commandOneGoals = new Goals { Value = 0, Goal = new List<Goal>() };
-                            var commandTwoGoals = new Goals { Value = 0, Goal = new List<Goal>() };
-                            var commandOne = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_one, element.id);
-                            var commandTwo = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_two, element.id);
+                            int? value = null;
+                            if (element.status_code != 0)
+                                value = 0;
 
-                            commandOneGoals.Value = commandOne == null ? 0 : commandOne.Count;
-                            commandOne.ForEach(x =>
+                            var commandOneGoals = new Goals { Value = value, Goal = new List<Goal>() };
+                            var commandTwoGoals = new Goals { Value = value, Goal = new List<Goal>() };
+                            var commandOneGoalsDb = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_one, element.id_game_for_turnament);
+                            var commandTwoGoalsDb = DbHelper.GetGoalsCommandForTurnament(turnamentId, element.id_command_two, element.id_game_for_turnament);
+                            var commandOneCard = new Cards { Value = null, Card = new List<Card>() };
+                            var commandTwoCard = new Cards { Value = null, Card = new List<Card>() };
+                            var commandOneCardDb = DbHelper.GetCardCommandForTurnament(turnamentId, element.id_command_one, element.id_game_for_turnament);
+                            var commandTwoCardDb = DbHelper.GetCardCommandForTurnament(turnamentId, element.id_command_two, element.id_game_for_turnament);
+
+                            if (commandOneGoalsDb.Count != 0)
+                                commandOneGoals.Value = commandOneGoalsDb.Count;
+
+                            commandOneGoalsDb.ForEach(x =>
                             {
                                 commandOneGoals.Goal.Add(new Goal
                                 {
-                                    Id = x.id.ToString(),
+                                    Id = x.id_goal.ToString(),
                                     TurnamentId = x.id_turnament.ToString(),
                                     PlayerId = x.id_player.ToString(),
                                     PlayerSurname = DbHelper.GetPlayerName(x.id_player),
                                     Time = x.time
                                 });
                             });
-                            commandTwoGoals.Value = commandTwo == null ? 0 : commandTwo.Count;
-                            commandTwo.ForEach(x =>
+                            if (commandTwoGoalsDb.Count != 0)
+                                commandTwoGoals.Value = commandTwoGoalsDb.Count;
+                            commandTwoGoalsDb.ForEach(x =>
                             {
                                 commandTwoGoals.Goal.Add(new Goal
                                 {
-                                    Id = x.id.ToString(),
+                                    Id = x.id_goal.ToString(),
                                     TurnamentId = x.id_turnament.ToString(),
                                     PlayerId = x.id_player.ToString(),
                                     PlayerSurname = DbHelper.GetPlayerName(x.id_player),
                                     Time = x.time
+                                });
+                            });
+
+                            if (commandOneCardDb.Count != 0)
+                                commandOneCard.Value = commandOneCardDb.Count;
+
+                            commandOneCardDb.ForEach(x =>
+                            {
+                                commandOneCard.Card.Add(new Card
+                                {
+                                    Id = x.id_foul_card.ToString(),
+                                    TurnamentId = x.id_turnament.ToString(),
+                                    PlayerId = x.id_player.ToString(),
+                                    PlayerSurname = DbHelper.GetPlayerName(x.id_player),
+                                    Type = x.type
+                                });
+                            });
+                            if (commandTwoCardDb.Count != 0)
+                                commandTwoCard.Value = commandTwoCardDb.Count;
+                            commandTwoCardDb.ForEach(x =>
+                            {
+                                commandTwoCard.Card.Add(new Card
+                                {
+                                    Id = x.id_foul_card.ToString(),
+                                    TurnamentId = x.id_turnament.ToString(),
+                                    PlayerId = x.id_player.ToString(),
+                                    PlayerSurname = DbHelper.GetPlayerName(x.id_player),
+                                    Type = x.type
                                 });
                             });
 
                             var game = new GameTurnament
                             {
-                                Id = element.id.ToString(),
+                                Id = element.id_game_for_turnament.ToString(),
                                 IdCommandOne = element.id_command_one.ToString(),
                                 IdCommandTwo = element.id_command_two.ToString(),
                                 CommandOneName = element.command_one_name,
                                 CommandTwoName = element.command_two_name,
                                 CommandOneGoals = commandOneGoals,
                                 CommandTwoGoals = commandTwoGoals,
+                                CommandOneCard = commandOneCard,
+                                CommandTwoCard = commandTwoCard,
                                 CommandOnePoints = element.command_one_points,
                                 CommandTwoPoints = element.command_two_points,
                                 Tour = element.number_tour,
                                 DateStart = element.date_start,
-                                Arena = isAdmin ? element.id_arena.ToString() : DbHelper.GetArenaName(element.id_arena),
+                                Arena = isAdmin ? element.id_game_arena.ToString() : DbHelper.GetArenaName(element.id_game_arena),
                                 Status = element.status_code
                             };
 

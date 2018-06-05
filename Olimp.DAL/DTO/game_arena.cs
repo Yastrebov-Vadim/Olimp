@@ -14,7 +14,7 @@ namespace Olimp.DAL.DTO
     
     public partial class game_arena
     {
-        public System.Guid id { get; set; }
+        public System.Guid id_game_arena { get; set; }
         public string name { get; set; }
     }
 }

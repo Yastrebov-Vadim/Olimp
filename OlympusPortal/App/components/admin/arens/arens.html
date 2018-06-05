@@ -1,0 +1,62 @@
+﻿<div class="admin-news-content" [ngBusy]="{busy: busy, message: 'Пожалуйста, подождите...'}">
+    <div class="admin-news-title">
+        Игровые арены
+        <button mat-button class="button-add-arena" (click)="openFormAddArena()">Добавить арену</button>
+    </div>
+   
+    <div class="arens-block">
+
+        <table class="lk-command">
+            <tr>
+                <td class="title-header">
+                    №
+                </td>
+                <td class="title-header">
+                    Названия игровых площадок
+                </td>
+                <td class="delet-player title-header">
+                    Удалить
+                </td>
+            </tr>
+
+            <tr *ngFor="let arena of arens; let i = index">
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{arena.name}}
+                </td>
+                <td class="delet-player delet-player-img" (click)="selectArena(arena.id, i)" data-toggle="modal" data-target="#myModal"></td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<div class="transparent-layer-arena" id="transparent-layer-arena">
+    <div class="add-arena" [ngStyle]="addArenaBlockStyle()">
+        <form class="example-form" #newarena="ngForm" novalidate autocomplete="on">
+            <mat-form-field>
+                <input placeholder="Название" matInput type="text" name="name" [(ngModel)]="arenaName" required />
+            </mat-form-field>
+            <button mat-button (click)="addArena(newarena.invalid)">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Удалить арену?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="dellArena()">ДА</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

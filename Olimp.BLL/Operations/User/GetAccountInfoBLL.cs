@@ -17,7 +17,7 @@ namespace Olimp.BLL.Operations
             {
                 Command = GetPlayerForCommandBLL(id),
                 Email = command.email,
-                Photo = DbHelper.GetAccountAvatar(command.id),
+                Photo = DbHelper.GetAccountAvatar(command.id_account),
                 Name = command.command_name,
                 Phone = command.mobile
             };
@@ -38,7 +38,7 @@ namespace Olimp.BLL.Operations
                         MiddleName = x.middleName,
                         Name = x.name,
                         Number = x.number,
-                        PlayerId = x.id.ToString(),
+                        PlayerId = x.id_player.ToString(),
                         Surname = x.surname
                     });
                 });

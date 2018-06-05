@@ -17,7 +17,7 @@ namespace Olimp.BLL.Operations
                 var commandFilter = new CommandsFilter
                 {
                     Name = command.command_name,
-                    Id = command.id.ToString()
+                    Id = command.id_account.ToString()
                 };
 
                 commandsFilterItem.Add(commandFilter);

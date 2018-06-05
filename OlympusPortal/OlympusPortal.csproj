@@ -231,6 +231,7 @@
     <TypeScriptCompile Include="App\classes\user\response\commandsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\newsResponse.ts" />
     <TypeScriptCompile Include="App\classes\user\response\accountResponse.ts" />
+    <Content Include="App\components\admin\arens\arens.html" />
     <Content Include="App\components\admin\tuning-turnament\mixed-turnament\mixed-turnament.html" />
     <Content Include="App\components\admin\tuning-turnament\circle-turnament\circle-turnament.html" />
     <Content Include="App\components\admin\tuning-turnament\tuning-turnament.html" />
@@ -249,6 +250,7 @@
     <Content Include="App\components\user\public\home.html" />
     <Content Include="App\components\user\new-tournaments\new-tournaments.html" />
     <TypeScriptCompile Include="App\classes\user\response\turnamentResponse.ts" />
+    <TypeScriptCompile Include="App\components\admin\arens\arens.ts" />
     <TypeScriptCompile Include="App\components\admin\tuning-turnament\mixed-turnament\mixed-turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\tuning-turnament\circle-turnament\circle-turnament.ts" />
     <TypeScriptCompile Include="App\components\admin\tuning-turnament\tuning-turnament.ts" />

@@ -129,6 +129,7 @@ export class App implements OnInit {
 
         self.userPage(1);
         document.getElementById("transparent-layer").style.display = "block";
+        self.ex = true;
     }
 
     public close() {
@@ -176,7 +177,7 @@ export class App implements OnInit {
         var self = this;
         document.getElementById("exit2").style.marginLeft = "0px";
         document.getElementById("cabinet").style.marginLeft = "0px";
-
+        self.ex = true;
         self.router.navigate([Common.RoutePaths.Cabinet], { queryParams: {} });
     }
 

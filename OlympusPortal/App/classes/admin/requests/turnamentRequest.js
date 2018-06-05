@@ -95,4 +95,11 @@ var AddGoalRequest = (function () {
     return AddGoalRequest;
 }());
 exports.AddGoalRequest = AddGoalRequest;
+var AddCardRequest = (function () {
+    function AddCardRequest(card) {
+        this.card = card;
+    }
+    return AddCardRequest;
+}());
+exports.AddCardRequest = AddCardRequest;
 //# sourceMappingURL=turnamentRequest.js.map
