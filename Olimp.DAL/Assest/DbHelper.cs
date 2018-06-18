@@ -3,6 +3,7 @@ using Olimp.DAL.Enum;
 using Olimp.DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 namespace Olimp.DAL.Assest
@@ -1549,6 +1550,8 @@ namespace Olimp.DAL.Assest
         {
             using (OlimpEntities context = new OlimpEntities())
             {
+                var adversaryId = GetAdversary(gameId, commandId);
+
                 var goal = new goal
                 {
                     id_goal = Guid.NewGuid(),
@@ -1556,11 +1559,27 @@ namespace Olimp.DAL.Assest
                     id_account = commandId,
                     id_player = playerId,
                     id_game_for_turnament = gameId,
-                    time = time
+                    time = time,
+                    id_adversary = adversaryId
                 };
 
                 context.goals.Add(goal);
                 context.SaveChanges();
+            }
+        }
+
+        public static Guid GetAdversary(Guid gameId,  Guid commandId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_game_for_turnament == gameId).FirstOrDefault();
+
+                if (game.id_command_one == commandId)
+                    return game.id_command_two;
+                
+                return game.id_command_one;
             }
         }
 
@@ -1583,6 +1602,112 @@ namespace Olimp.DAL.Assest
             }
         }
 
+        public static bool CheckCommandSkip(Guid turnamentId, Guid commandId, Guid playerId, int type)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<foul_card> query = context.foul_card;
+
+                var card = query.Where(x => x.id_turnament == turnamentId && x.id_account == commandId && x.id_player == playerId && x.type == type).ToList();
+
+                if (card != null && (card.Count % 2) != 0)
+                    return true;
+
+                return false;
+            }
+        }
+
+        public static void CommandSkip(Guid turnamentId, Guid commandId, Guid playerId, Guid gameId, int type)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var skipMatch = new skip_match();
+
+                switch (type)
+                {
+                    case 1:
+                        if (CheckCommandSkip(turnamentId, commandId, playerId, type))
+                        {
+                            skipMatch = new skip_match
+                            {
+                                id_skip_match = Guid.NewGuid(),
+                                id_turnament = turnamentId,
+                                id_account = commandId,
+                                id_player = playerId,
+                                date_appointment = GetDateGame(gameId).Value
+                            };
+
+                            context.skip_match.Add(skipMatch);
+                        }
+                        break;
+                    case 2:
+                        skipMatch = new skip_match
+                        {
+                            id_skip_match = Guid.NewGuid(),
+                            id_turnament = turnamentId,
+                            id_account = commandId,
+                            id_player = playerId,
+                            date_appointment = GetDateGame(gameId).Value
+                        };
+
+                        context.skip_match.Add(skipMatch);
+                        break;
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveSkip(Guid turnamentId, Guid gameId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var commandsId = GetCommandForGame(gameId);
+
+                IQueryable<skip_match> query = context.skip_match;
+
+                var skip = query.Where(x => x.id_turnament == turnamentId && (x.id_account == commandsId.Item1 || x.id_account == commandsId.Item2)).ToList();
+
+                var skipMatchs = skip.Where(x => x.date_appointment.Date < GetDateGame(gameId)).ToList();
+
+                if (skipMatchs.Count == 0)
+                    return;
+
+                skipMatchs.ForEach(x =>
+                {
+                    context.skip_match.Remove(x);
+                    context.SaveChanges();
+                });
+            }
+        }
+
+        public static DateTime? GetDateGame(Guid gameId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                var commandsId = GetCommandForGame(gameId);
+
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_game_for_turnament == gameId).FirstOrDefault();
+
+                return game.date_start;
+            }
+        }
+
+
+        public static Tuple<Guid, Guid> GetCommandForGame(Guid gameId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => x.id_game_for_turnament == gameId).FirstOrDefault();
+
+                return Tuple.Create(game.id_command_one, game.id_command_two);
+            }
+        }
+
         public static string AddArena(string name)
         {
             using (OlimpEntities context = new OlimpEntities())
@@ -1599,7 +1724,7 @@ namespace Olimp.DAL.Assest
                 return arena.id_game_arena.ToString();
             }
         }
-        
+
         public static string GetPlayerName(Guid playerId)
         {
             using (OlimpEntities context = new OlimpEntities())
@@ -1612,6 +1737,21 @@ namespace Olimp.DAL.Assest
                     throw new ApplicationException("Игрок не найден");
 
                 return player.surname;
+            }
+        }
+
+        public static player GetPlayer(Guid playerId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<player> query = context.players;
+
+                var player = query.Where(x => x.id_player == playerId).FirstOrDefault();
+
+                if (player == null)
+                    throw new ApplicationException("Игрок не найден");
+
+                return player;
             }
         }
 
@@ -1628,6 +1768,54 @@ namespace Olimp.DAL.Assest
 
                 context.game_arena.Remove(arena);
                 context.SaveChanges();
+            }
+        }
+
+        public static List<skip_match> GetSkip(Guid accountId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<skip_match> query = context.skip_match;
+
+                var skipMatch = query.Where(x => x.id_account == accountId).ToList();
+
+                return skipMatch;
+            }
+        }
+
+        public static int GetScoreGoals(Guid accountId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<goal> query = context.goals;
+
+                var goal = query.Where(x => x.id_account == accountId).ToList();
+
+                return goal.Count;
+            }
+        }
+
+        public static int GetMissedGoals(Guid accountId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<goal> query = context.goals;
+
+                var goal = query.Where(x => x.id_adversary == accountId).ToList();
+
+                return goal.Count;
+            }
+        }
+
+        public static List<game_for_turnament> GetGameForCommand(Guid accountId)
+        {
+            using (OlimpEntities context = new OlimpEntities())
+            {
+                IQueryable<game_for_turnament> query = context.game_for_turnament;
+
+                var game = query.Where(x => (x.id_command_one == accountId || x.id_command_two == accountId) && x.status_code == 3).ToList();
+
+                return game;
             }
         }
     }

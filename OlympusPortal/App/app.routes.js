@@ -9,6 +9,7 @@ var past_tournaments_1 = require("./components/user/past-tournaments/past-tourna
 var cabinet_1 = require("./components/user/cabinet/cabinet");
 var news_1 = require("./components/user/news/news");
 var photo_1 = require("./components/user/photo/photo");
+var video_command_1 = require("./components/user/video/video-command");
 var login_1 = require("./components/admin/login/login");
 var news_2 = require("./components/admin/news/news");
 var add_news_1 = require("./components/admin/add-news/add-news");
@@ -31,7 +32,7 @@ exports.AppRoutes = [
     { path: common_1.Common.RoutePaths.Cabinet, component: cabinet_1.Cabinet },
     { path: common_1.Common.RoutePaths.News, component: news_1.News },
     { path: common_1.Common.RoutePaths.Photo, component: photo_1.Photo },
-    { path: common_1.Common.RoutePaths.Video, component: login_1.Login },
+    { path: common_1.Common.RoutePaths.Video, component: video_command_1.VideoCommand },
     { path: common_1.Common.RoutePaths.Admin, component: login_1.Login },
     { path: common_1.Common.RoutePaths.Admin, component: login_1.Login, children: adminRoutes },
     { path: common_1.Common.RoutePaths.Any, component: home_1.Home }

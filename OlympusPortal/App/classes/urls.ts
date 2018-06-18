@@ -22,6 +22,7 @@
     readonly getTurnaments = 'api/Turnament/GetTurnaments';
     readonly getTurnamentsForUser = 'api/Turnament/GetTurnamentsForUser';
     readonly declareTournament = 'api/Turnament/DeclareTournament';
+    readonly getStatisticsCommand = 'api/Turnament/GetStatisticsCommand';
     
     readonly command = 'api/Public/GetCommand';
     readonly commandFilter = 'api/Public/GetCommandFilter';

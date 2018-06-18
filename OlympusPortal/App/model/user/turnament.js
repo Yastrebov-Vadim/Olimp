@@ -117,4 +117,25 @@ var Goal = (function () {
     return Goal;
 }());
 exports.Goal = Goal;
+var SkipMatch = (function () {
+    function SkipMatch(turnamentName, players) {
+        this.turnamentName = turnamentName;
+        this.players = players;
+    }
+    return SkipMatch;
+}());
+exports.SkipMatch = SkipMatch;
+var StatisticsCommand = (function () {
+    function StatisticsCommand(skipMatchs, countGame, scoreGoals, missedGoals, victory, loss, draw) {
+        this.skipMatchs = skipMatchs,
+            this.countGame = countGame,
+            this.scoreGoals = scoreGoals,
+            this.missedGoals = missedGoals,
+            this.victory = victory,
+            this.loss = loss,
+            this.draw = draw;
+    }
+    return StatisticsCommand;
+}());
+exports.StatisticsCommand = StatisticsCommand;
 //# sourceMappingURL=turnament.js.map

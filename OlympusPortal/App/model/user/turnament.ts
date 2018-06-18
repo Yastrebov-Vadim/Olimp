@@ -1,4 +1,5 @@
 ﻿import { CommandForTurnament } from '../../model/user/command';
+import { Player } from '../../model/user/account';
 
 export class GetTurnamentForUser {
     public id: string;
@@ -17,7 +18,7 @@ export class GetTurnamentForUser {
     public positionPlayOff: PositionCommand[][]
     public tableTutnament: Table;
     public isOlayOff: boolean;
-    
+
     constructor(id: string, name: string, dateStart: Date, dateEnd: Date, description: string, contributionGame: number,
         contributionTournament: number, type: number, commands: CommandForTurnament[], positionCommand: PositionCommand[],
         groupTourNumber: GroupTourNumber[], turnamentGroups: TurnamentGroups[], turnamentPlayOff: TurnamentPlayOff[],
@@ -180,5 +181,35 @@ export class Goal {
         this.playerId = playerId;
         this.playerSurname = playerSurname;
         this.time = time;
+    }
+}
+
+export class SkipMatch {
+    public turnamentName: string;
+    public players: Player[];
+
+    constructor(turnamentName: string, players: Player[]) {
+        this.turnamentName = turnamentName;
+        this.players = players;
+    }
+}
+
+export class StatisticsCommand {
+    public skipMatchs: SkipMatch[];
+    public countGame: number;
+    public scoreGoals: number;
+    public missedGoals: number;
+    public victory: number;
+    public loss: number;
+    public draw: number;
+
+    constructor(skipMatchs: SkipMatch[], countGame: number, scoreGoals: number, missedGoals: number, victory: number, loss: number, draw: number) {
+        this.skipMatchs = skipMatchs,
+        this.countGame = countGame,
+        this.scoreGoals = scoreGoals,
+        this.missedGoals = missedGoals,
+        this.victory = victory,
+        this.loss = loss,
+        this.draw = draw
     }
 }

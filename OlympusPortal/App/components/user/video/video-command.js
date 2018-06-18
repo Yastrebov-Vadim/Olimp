@@ -23,9 +23,7 @@ var VideoCommand = (function () {
         this.videos = new Array();
         this.sources = new Array();
         this.dateTo = null;
-        this.myDatePickerOptions = {
-            dateFormat: 'dd.mm.yyyy'
-        };
+        this.pageSize = new Array();
         var self = this;
         self.getCommandFilter();
         self.videoTitle = 'ttttttttttttttttttt';
@@ -60,18 +58,11 @@ var VideoCommand = (function () {
     };
     VideoCommand.prototype.filterCommand = function (id, checked) {
         var self = this;
-        console.dir(checked);
-        var D = self.dateTo;
-    };
-    VideoCommand.prototype.filterDate = function (event, type) {
-        var self = this;
-        switch (type) {
-            case 1:
-                console.dir("1- " + event);
-                break;
-            case 2:
-                console.dir("2- " + event);
-                break;
+        if (checked) {
+            self.commandId = id;
+        }
+        else {
+            self.commandId = null;
         }
     };
     VideoCommand = __decorate([

@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { Common } from '../../../../model/user/common';
 import { TurnamentAdminService } from '../../../../services/admin/turnament';
 import { ElementRequest } from '../../../../classes/admin/requests/elementRequest';
-import { GetMixedTurnament, GameTurnament, Arena, DayGame, Goal } from '../../../../model/admin/turnament';
+import { GetMixedTurnament, GameTurnament, Arena, DayGame, Goal, Card, Command, Player } from '../../../../model/admin/turnament';
 import { Table } from '../../../../model/user/turnament';
-import { SaveMixedTurnamentInfoRequest, CalculateGroupRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
+import { SaveMixedTurnamentInfoRequest, AddGoalRequest, AddCardRequest, CalculateGroupRequest, TurnamentStepRequest, DeclareRequest, RemoveDeclareRequest, DivideForDayRequest, ChangeGameDayRequest, TourStepRequest, CompleteGameRequest } from '../../../../classes/admin/requests/turnamentRequest';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { SaveMixedTurnamentInfoRequest, CalculateGroupRequest, TurnamentStepRequ
 })
 
 export class MixedTurnament implements OnInit {
-    @Input() id: number;
+    @Input() id: string;
     @Input() type: number;
     public busy: Promise<any>;
     public page: number = 1;
@@ -25,7 +25,14 @@ export class MixedTurnament implements OnInit {
     public isPlOf: boolean = false;
     public countGroup: number = 0;
     public arens: Arena[] = new Array<Arena>();
-    public turnament: GetMixedTurnament = new GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+    public turnament: GetMixedTurnament = new GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    public commands: Command[] = new Array<Command>();
+    public players: Player[] = new Array<Player>();
+    public goal: Goal = new Goal(null, null, null, null, null, null, null);
+    public card: Card = new Card(null, null, null, null, null, null, null);
+    public isYellowe: boolean;
+    public isRed: boolean;
+    public commandId: string = null;
 
     constructor(
         private toastr: ToastsManager,
@@ -36,6 +43,7 @@ export class MixedTurnament implements OnInit {
     ngOnInit(): void {
         var self = this;
         self.getTurnament(self.id);
+        self.getPlayerForTurnament(self.id);
         self.getArena();
     }
 
@@ -59,6 +67,13 @@ export class MixedTurnament implements OnInit {
         });
     }
 
+    public getPlayerForTurnament(id) {
+        var self = this;
+        self.busy = self.turnamentService.GetPlayerForTurnament(new ElementRequest(id)).then(response => {
+            self.players = response.players;
+        });
+    }
+
     public getResult(positionCommand, groupTourNumber, row, col) {
         var self = this;
 
@@ -74,8 +89,8 @@ export class MixedTurnament implements OnInit {
             }
 
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
-                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
-                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
                 result = twoGoals + " : " + oneGoals;
             }
         })));
@@ -396,11 +411,84 @@ export class MixedTurnament implements OnInit {
         self.toastr.success("Турнир завершен");
     }
 
-    public addGoal(id) {
+    public openFormAddGoals() {
         var self = this;
-        self.turnament.turnamentGroups.forEach(g => g.groupTourNumber.forEach(g => g.groupDateStart.forEach(d => d.gameTurnament.forEach(x => {
-           // if (x.id == id)
-              //  x.goals.push(new Goal(null, null, null));
-        }))));
+
+        document.getElementById("transparent-layer-goals").style.display = "block";
+    }
+
+    public openFormAddCard() {
+        var self = this;
+
+        document.getElementById("transparent-layer-card").style.display = "block";
+    }
+
+    public close() {
+        document.getElementById("transparent-layer-goals").style.display = "none";
+        document.getElementById("transparent-layer-card").style.display = "none";
+    }
+
+    public addGoalsBlockStyle() {
+        var self = this;
+        var top = (window.outerHeight - 500) / 2;
+
+        return {
+            "margin-top": top + "px"
+        }
+    }
+
+    public addGoals(isValid) {
+        var self = this;
+
+        if (isValid) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+        
+        self.busy = self.turnamentService.AddGoals(new AddGoalRequest(self.goal)).then(response => {
+            self.getTurnament(self.id);
+            self.goal = new Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Гол добавлен в систему");
+        });
+    }
+
+    public addCard(isValid) {
+        var self = this;
+
+        if (isValid || (!self.isYellowe && !self.isRed)) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+
+        self.card.type = self.isYellowe ? 1 : 2;
+
+        self.busy = self.turnamentService.AddCard(new AddCardRequest(self.card)).then(response => {
+            self.getTurnament(self.id);
+            self.goal = new Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Штраф добавлен в систему");
+        });
+    }
+
+    public selectCommand(game: GameTurnament, id) {
+        var self = this;
+
+        self.commands = new Array<Command>();
+        self.commandId = null;
+        self.commands.push(new Command(game.idCommandOne, game.commandOneName));
+        self.commands.push(new Command(game.idCommandTwo, game.commandTwoName));
+        self.goal.gameId = game.id;
+        self.card.gameId = game.id;
+        self.goal.turnamentId = id;
+        self.card.turnamentId = id;
+    }
+
+    public getPlayer() {
+        var self = this;
+        if (self.commandId != null)
+            return self.players.filter(x => x.commandId == self.commandId)
+
+        return new Array<Player>();
     }
 } 

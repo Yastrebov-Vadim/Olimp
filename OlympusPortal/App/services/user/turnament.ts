@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import { TransportService } from '../transport';
 import { Urls } from '../../classes/urls';
 import { ElementTypeRequest } from '../../classes/user/requests/elementTypeRequest';
-import { GetTurnamentForUserResponse } from '../../classes/user/response/turnamentResponse';
+import { GetTurnamentForUserResponse, StatisticsCommandResponse } from '../../classes/user/response/turnamentResponse';
 import { ElementRequest } from '../../classes/user/requests/elementtRequest';
 import { ElementResponse } from '../../classes/user/response/elementResponse';
 
@@ -28,5 +28,10 @@ export class TurnamentService {
     DeclareTournament(request: ElementRequest): Promise<ElementResponse> {
         var self = this;
         return this.tranport.postData(self.urls.declareTournament, request);
+    }
+
+    GetStatisticsCommand(): Promise<StatisticsCommandResponse> {
+        var self = this;
+        return this.tranport.postData(self.urls.getStatisticsCommand, null);
     }
 } 

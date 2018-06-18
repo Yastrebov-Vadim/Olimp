@@ -283,32 +283,8 @@
                 </option>
             </select>
             Игрок
-            <select (change)="goal.playerId = $event.target.value">
-                <option *ngFor="let player of getPlayer()" [value]="player.playerId">
-                    {{player.surname}}
-                </option>
-            </select>
-            Минута
-            <input type="number" name="time" [(ngModel)]="goal.time" required />
-
-            <button mat-button (click)="addGoals(newgoal.invalid)">Добавить</button>
-            <button mat-button (click)="close()">Отмена</button>
-        </form>
-    </div>
-</div>
-
-<div class="transparent-layer-goals" id="transparent-layer-goals">
-    <div class="add-goal" [ngStyle]="addGoalsBlockStyle()">
-        <form class="example-form" #newgoal="ngForm" novalidate autocomplete="on">
-            Команда
-            <select [(ngModel)]="commandId" name="commandId" (change)="goal.commandId = $event.target.value">
-                <option *ngFor="let command of commands" [value]="command.commandId">
-                    {{command.commandName}}
-                </option>
-            </select>
-            Игрок
             <select (change)="goal.playerId = $event.target.value" required>
-                <option>asdasd</option>
+                <option></option>
                 <option *ngFor="let player of getPlayer()" [value]="player.playerId">
                     {{player.surname}}
                 </option>

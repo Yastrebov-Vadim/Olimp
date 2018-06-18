@@ -19,6 +19,7 @@ var Urls = (function () {
         this.getTurnaments = 'api/Turnament/GetTurnaments';
         this.getTurnamentsForUser = 'api/Turnament/GetTurnamentsForUser';
         this.declareTournament = 'api/Turnament/DeclareTournament';
+        this.getStatisticsCommand = 'api/Turnament/GetStatisticsCommand';
         this.command = 'api/Public/GetCommand';
         this.commandFilter = 'api/Public/GetCommandFilter';
         this.getPhoto = 'api/Public/GetPhoto';

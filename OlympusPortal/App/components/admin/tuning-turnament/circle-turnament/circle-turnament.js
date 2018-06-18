@@ -77,8 +77,8 @@ var CircleTurnament = (function () {
                 result = oneGoals + " : " + twoGoals;
             }
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
-                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
-                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
                 result = twoGoals + " : " + oneGoals;
             }
         }); }); });

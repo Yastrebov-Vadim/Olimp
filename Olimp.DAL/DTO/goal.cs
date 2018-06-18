@@ -20,5 +20,6 @@ namespace Olimp.DAL.DTO
         public System.Guid id_game_for_turnament { get; set; }
         public System.Guid id_player { get; set; }
         public int time { get; set; }
+        public System.Guid id_adversary { get; set; }
     }
 }

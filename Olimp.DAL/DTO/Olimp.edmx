@@ -106,6 +106,7 @@
           <Property Name="id_account" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id_game_for_turnament" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id_player" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_adversary" Type="uniqueidentifier" Nullable="false" />
           <Property Name="time" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="group_for_turnament">
@@ -165,6 +166,16 @@
           <Property Name="place" Type="int" Nullable="false" />
           <Property Name="fake_code" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="skip_match">
+          <Key>
+            <PropertyRef Name="id_skip_match" />
+          </Key>
+          <Property Name="id_skip_match" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_turnament" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_account" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_player" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="date_appointment" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="turnament">
           <Key>
             <PropertyRef Name="id_turnament" />
@@ -207,6 +218,7 @@
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="players" EntityType="Self.players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="position_command_for_turnament" EntityType="Self.position_command_for_turnament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skip_match" EntityType="Self.skip_match" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="turnament" EntityType="Self.turnament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="video_for_news" EntityType="Self.video_for_news" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -232,6 +244,7 @@
           <EntitySet Name="position_command_for_turnament" EntityType="OlimpModel.position_command_for_turnament" />
           <EntitySet Name="turnaments" EntityType="OlimpModel.turnament" />
           <EntitySet Name="video_for_news" EntityType="OlimpModel.video_for_news" />
+          <EntitySet Name="skip_match" EntityType="OlimpModel.skip_match" />
         </EntityContainer>
         <EntityType Name="account">
           <Key>
@@ -335,6 +348,7 @@
           <Property Name="id_game_for_turnament" Type="Guid" Nullable="false" />
           <Property Name="id_player" Type="Guid" Nullable="false" />
           <Property Name="time" Type="Int32" Nullable="false" />
+          <Property Name="id_adversary" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="group_for_turnament">
           <Key>
@@ -418,6 +432,16 @@
           <Property Name="id_command_two" Type="Guid" />
           <Property Name="url_bd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="url_dir" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="skip_match">
+          <Key>
+            <PropertyRef Name="id_skip_match" />
+          </Key>
+          <Property Name="id_skip_match" Type="Guid" Nullable="false" />
+          <Property Name="id_turnament" Type="Guid" Nullable="false" />
+          <Property Name="id_account" Type="Guid" Nullable="false" />
+          <Property Name="id_player" Type="Guid" Nullable="false" />
+          <Property Name="date_appointment" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -529,6 +553,7 @@
           <EntitySetMapping Name="goals">
             <EntityTypeMapping TypeName="OlimpModel.goal">
               <MappingFragment StoreEntitySet="goals">
+                <ScalarProperty Name="id_adversary" ColumnName="id_adversary" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="id_player" ColumnName="id_player" />
                 <ScalarProperty Name="id_game_for_turnament" ColumnName="id_game_for_turnament" />
@@ -625,6 +650,17 @@
                 <ScalarProperty Name="id_command_one" ColumnName="id_command_one" />
                 <ScalarProperty Name="id_news" ColumnName="id_news" />
                 <ScalarProperty Name="id_video_for_news" ColumnName="id_video_for_news" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skip_match">
+            <EntityTypeMapping TypeName="OlimpModel.skip_match">
+              <MappingFragment StoreEntitySet="skip_match">
+                <ScalarProperty Name="date_appointment" ColumnName="date_appointment" />
+                <ScalarProperty Name="id_player" ColumnName="id_player" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="id_turnament" ColumnName="id_turnament" />
+                <ScalarProperty Name="id_skip_match" ColumnName="id_skip_match" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,7 +13,7 @@ import { Common } from '../../../model/user/common';
 import { ElementRequest } from '../../../classes/user/requests/elementtRequest';
 import { Observable } from 'rxjs/Observable';
 import { TurnamentService } from '../../../services/user/turnament';
-import { GetTurnamentForUser } from '../../../model/user/turnament';
+import { GetTurnamentForUser, StatisticsCommand } from '../../../model/user/turnament';
 import { Table } from '../../../model/user/turnament';
 
 @Component({
@@ -34,6 +34,7 @@ export class Cabinet implements OnInit {
     public list: number = 2;
     public isTur: boolean = false;
     public turnaments: GetTurnamentForUser[];
+    public statisticsCommand: StatisticsCommand;
 
     constructor(
         private toastr: ToastsManager,
@@ -57,7 +58,8 @@ export class Cabinet implements OnInit {
         self.getAccount();
         self.isAccount();
         self.getTournaments();
-    }
+        self.getStatisticsCommand();
+    } 
 
     public getTournaments() {
         var self = this;
@@ -79,6 +81,13 @@ export class Cabinet implements OnInit {
         });
     }
 
+    public getStatisticsCommand() {
+        var self = this;
+        self.busy = self.turnamentService.GetStatisticsCommand().then(response => {
+            self.statisticsCommand = response.statisticsCommand;
+        });
+    }
+
     public getResult(positionCommand, groupTourNumber, row, col) {
         var self = this;
 
@@ -94,8 +103,8 @@ export class Cabinet implements OnInit {
             }
 
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
-                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
-                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
                 result = twoGoals + " : " + oneGoals;
             }
         })));

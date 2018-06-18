@@ -30,6 +30,10 @@ var TurnamentService = (function () {
         var self = this;
         return this.tranport.postData(self.urls.declareTournament, request);
     };
+    TurnamentService.prototype.GetStatisticsCommand = function () {
+        var self = this;
+        return this.tranport.postData(self.urls.getStatisticsCommand, null);
+    };
     TurnamentService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [transport_1.TransportService])

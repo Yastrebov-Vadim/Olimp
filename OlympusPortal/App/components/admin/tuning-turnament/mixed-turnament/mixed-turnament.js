@@ -30,10 +30,16 @@ var MixedTurnament = (function () {
         this.countGroup = 0;
         this.arens = new Array();
         this.turnament = new turnament_2.GetMixedTurnament(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.commands = new Array();
+        this.players = new Array();
+        this.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+        this.card = new turnament_2.Card(null, null, null, null, null, null, null);
+        this.commandId = null;
     }
     MixedTurnament.prototype.ngOnInit = function () {
         var self = this;
         self.getTurnament(self.id);
+        self.getPlayerForTurnament(self.id);
         self.getArena();
     };
     MixedTurnament.prototype.getTurnament = function (id) {
@@ -54,6 +60,12 @@ var MixedTurnament = (function () {
             self.arens = response.arens;
         });
     };
+    MixedTurnament.prototype.getPlayerForTurnament = function (id) {
+        var self = this;
+        self.busy = self.turnamentService.GetPlayerForTurnament(new elementRequest_1.ElementRequest(id)).then(function (response) {
+            self.players = response.players;
+        });
+    };
     MixedTurnament.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {
         var self = this;
         var commandOneId = positionCommand[row - 1].commandId;
@@ -66,8 +78,8 @@ var MixedTurnament = (function () {
                 result = oneGoals + " : " + twoGoals;
             }
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
-                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
-                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
                 result = twoGoals + " : " + oneGoals;
             }
         }); }); });
@@ -318,14 +330,72 @@ var MixedTurnament = (function () {
         self.changeStep(4);
         self.toastr.success("Турнир завершен");
     };
-    MixedTurnament.prototype.addGoal = function (id) {
+    MixedTurnament.prototype.openFormAddGoals = function () {
         var self = this;
-        self.turnament.turnamentGroups.forEach(function (g) { return g.groupTourNumber.forEach(function (g) { return g.groupDateStart.forEach(function (d) { return d.gameTurnament.forEach(function (x) {
-        }); }); }); });
+        document.getElementById("transparent-layer-goals").style.display = "block";
+    };
+    MixedTurnament.prototype.openFormAddCard = function () {
+        var self = this;
+        document.getElementById("transparent-layer-card").style.display = "block";
+    };
+    MixedTurnament.prototype.close = function () {
+        document.getElementById("transparent-layer-goals").style.display = "none";
+        document.getElementById("transparent-layer-card").style.display = "none";
+    };
+    MixedTurnament.prototype.addGoalsBlockStyle = function () {
+        var self = this;
+        var top = (window.outerHeight - 500) / 2;
+        return {
+            "margin-top": top + "px"
+        };
+    };
+    MixedTurnament.prototype.addGoals = function (isValid) {
+        var self = this;
+        if (isValid) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+        self.busy = self.turnamentService.AddGoals(new turnamentRequest_1.AddGoalRequest(self.goal)).then(function (response) {
+            self.getTurnament(self.id);
+            self.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Гол добавлен в систему");
+        });
+    };
+    MixedTurnament.prototype.addCard = function (isValid) {
+        var self = this;
+        if (isValid || (!self.isYellowe && !self.isRed)) {
+            self.toastr.error("Все поля должны быть заполнены");
+            return;
+        }
+        self.card.type = self.isYellowe ? 1 : 2;
+        self.busy = self.turnamentService.AddCard(new turnamentRequest_1.AddCardRequest(self.card)).then(function (response) {
+            self.getTurnament(self.id);
+            self.goal = new turnament_2.Goal(null, null, null, null, null, null, null);
+            self.close();
+            self.toastr.success("Штраф добавлен в систему");
+        });
+    };
+    MixedTurnament.prototype.selectCommand = function (game, id) {
+        var self = this;
+        self.commands = new Array();
+        self.commandId = null;
+        self.commands.push(new turnament_2.Command(game.idCommandOne, game.commandOneName));
+        self.commands.push(new turnament_2.Command(game.idCommandTwo, game.commandTwoName));
+        self.goal.gameId = game.id;
+        self.card.gameId = game.id;
+        self.goal.turnamentId = id;
+        self.card.turnamentId = id;
+    };
+    MixedTurnament.prototype.getPlayer = function () {
+        var self = this;
+        if (self.commandId != null)
+            return self.players.filter(function (x) { return x.commandId == self.commandId; });
+        return new Array();
     };
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Number)
+        __metadata("design:type", String)
     ], MixedTurnament.prototype, "id", void 0);
     __decorate([
         core_1.Input(),

@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Admin\Arena.cs" />
+    <Compile Include="Models\Admin\Response\StatisticsCommandResponse.cs" />
+    <Compile Include="Models\Admin\SkipMatch.cs" />
+    <Compile Include="Models\Admin\StatisticsCommand.cs" />
     <Compile Include="Models\Admin\GroupTourNumber.cs" />
     <Compile Include="Models\Admin\GroupDateStart.cs" />
     <Compile Include="Models\Admin\GameTurnament.cs" />
@@ -147,6 +150,7 @@
     <Compile Include="Operations\Admin\GetNewsInfoBLL.cs" />
     <Compile Include="Operations\Admin\AddNewsBLL.cs" />
     <Compile Include="Operations\Admin\SignInAdminBLL.cs" />
+    <Compile Include="Operations\User\GetStatisticsCommandBLL.cs" />
     <Compile Include="Operations\User\DeclareTournamentBLL.cs" />
     <Compile Include="Operations\User\GetTurnamentsBLL.cs" />
     <Compile Include="Operations\User\GetTurnamentsForUserBLL.cs" />

@@ -319,6 +319,7 @@
     <Content Include="Content\img\user.png" />
     <Content Include="Content\img\video.png" />
     <Content Include="Content\img\wreath.png" />
+    <Content Include="Content\Site1.css" />
     <Content Include="Content\video\videogular.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="Files\Photo\Avatar\2ab76333-c2e4-4511-b3f4-80d6f762189c9453.jpg" />

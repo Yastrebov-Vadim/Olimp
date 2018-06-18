@@ -157,66 +157,90 @@
 
                         <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="game-group-date">
                             <div class="day-play-game">
-                                День {{d+1}}<br />
+                                <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
+                                    Дата игр <br />
+                                    <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)">
+                                </div>
+
+                                День {{d+1}}
+
+                                <div class="arena-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
+                                    Место <br />
+                                    <select [(ngModel)]="tour.arena" (change)="changeArena(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)">
+                                        <option [value]="arena.id" *ngFor="let arena of arens">
+                                            {{arena.name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
-                                Дата игр <br />
-                                <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)">
-                                <br />
-                                Место <br />
-                                <select [(ngModel)]="tour.arena" (change)="changeArena(turnamentGroups.groupId, $event.target.value, tour.dateStart, t+1)">
-                                    <option [value]="arena.id" *ngFor="let arena of arens">
-                                        {{arena.name}}
-                                    </option>
-                                </select>
-                            </div>
                             <div *ngFor="let game of tour.gameTurnament" class="game-block">
-                                <div *ngIf="game.status != 1" class="game-points">
-                                    {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
-                                </div>
-                                <div *ngIf="game.status == 1" class="game-points">
-                                    <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="addGoal(game.id); game.commandOneGoals = $event.target.value" />
-                                    <div *ngFor="let goal of game.goals; let gm = index">
-                                        ывыsdasd
+                                <div class="game-command-block">
+                                    <div class="inline-block">
+                                        <div class="game-points">
+                                            {{game.commandOneGoals.value}} -- {{game.commandTwoGoals.value}}
+                                        </div>
+                                        <div class="game-command-name-block">
+                                            <div class="game-command-name">
+                                                {{game.commandOneName}}
+                                            </div>
+                                            VS
+                                            <div class="game-command-name">
+                                                {{game.commandTwoName}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    -
-                                    <input type="number" class="goals-command" [ngModel]="game.commandTwoGoals" (change)="game.commandTwoGoals = $event.target.value" />
-                                </div>
 
-                                <div class="game-command-name-block">
-                                    <div class="game-command-name">
-                                        {{game.commandOneName}}
-                                    </div>
-                                    VS
-                                    <div class="game-command-name">
-                                        {{game.commandTwoName}}
-                                    </div>
-                                </div>
-
-                                <div class="game-add-info-block">
-                                    <table class="current-game-points-block">
-                                        <tr>
-                                            <td>
-                                                <div>
-                                                    <div class="goal-command-block">
-                                                        <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
-                                                            {{goal.playerSurname}} - {{goal.time}} мин
+                                    <div class="game-add-info-block">
+                                        <table class="game-points-block">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <button *ngIf="game.status == 1" mat-button class="goals-add-button" (click)="openFormAddGoals();selectCommand(game, turnamentGroups.groupId)">Добавить гол</button>
+                                                        <span *ngIf="game.status != 1">Голы</span>
+                                                    </td>
+                                                    <td>
+                                                        <button *ngIf="game.status == 1" mat-button class="goals-add-button" (click)="openFormAddCard();selectCommand(game, turnamentGroups.groupId)">Добавить штраф</button>
+                                                        <span *ngIf="game.status != 1">Штрафы</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                    {{goal.playerSurname}} - {{goal.time}} мин
+                                                                </div>
+                                                            </div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                    {{goal.playerSurname}} - {{goal.time}} мин
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="goal-command-block">
-                                                        <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
-                                                            {{goal.playerSurname}} - {{goal.time}} мин
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                    {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="goal-command-block">
+                                                                <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                    {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGame(game.id, j, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
+                                    <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGame(game.id, j, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
+
+                                </div>
                             </div>
                         </div>
 
@@ -254,7 +278,7 @@
                         <td class="title-header">
                             № Тура
                         </td>
-                        <td class="title-header" [attr.colspan]="turnament.positionPlayOff[0].length" >
+                        <td class="title-header" [attr.colspan]="turnament.positionPlayOff[0].length">
                             Названия команд
                         </td>
                     </tr>
@@ -280,45 +304,92 @@
                     </div>
 
                     <div *ngFor="let tour of groupTour.groupDateStart; let d = index" class="game-group-date">
+
                         <div class="day-play-game">
-                            День {{d+1}}<br />
+                            <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
+                                Дата игр <br />
+                                <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
+                            </div>
+
+                            День {{d+1}}
+
+                            <div class="arena-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
+                                Место <br />
+                                <select [(ngModel)]="tour.arena" (change)="changeArena(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
+                                    <option [value]="arena.id" *ngFor="let arena of arens">
+                                        {{arena.name}}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="date-start-game" *ngIf="groupTour.status != 2 && groupTour.status != 3">
-                            Дата игр <br />
-                            <input type="datetime-local" [ngModel]="tour.dateStart" (change)="changeDate(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
-                            <br />
-                            Место <br />
-                            <select [(ngModel)]="tour.arena" (change)="changeArena(turnament.turnamentPlayOff[p].playOffId, $event.target.value, tour.dateStart, groupTour.numberTour)">
-                                <option [value]="arena.id" *ngFor="let arena of arens">
-                                    {{arena.name}}
-                                </option>
-                            </select>
-                        </div>
                         <div *ngFor="let game of tour.gameTurnament" class="game-block">
-                            <div *ngIf="game.status != 1" class="game-points">
-                                {{game.commandOneGoals}} - {{game.commandTwoGoals}}
-                            </div>
-                            <div *ngIf="game.status == 1" class="game-points">
-                                <input type="number" class="goals-command" [ngModel]="game.commandOneGoals" (change)="addGoal(game.id);game.commandOneGoals = $event.target.value" />
-                                <div  *ngFor="let goal of game.goals; let gm = index">
-                                    ывы
+                            <div class="game-command-block">
+                                <div class="inline-block">
+                                    <div class="game-points">
+                                        {{game.commandOneGoals.value}} -- {{game.commandTwoGoals.value}}
+                                    </div>
+                                    <div class="game-command-name-block">
+                                        <div class="game-command-name">
+                                            {{game.commandOneName}}
+                                        </div>
+                                        VS
+                                        <div class="game-command-name">
+                                            {{game.commandTwoName}}
+                                        </div>
+                                    </div>
                                 </div>
-                                -
-                                <input type="number" class="goals-command" [ngModel]="game.commandTwoGoals" (change)="game.commandTwoGoals = $event.target.value" />
-                            </div>
 
-                            <div class="game-command-name-block">
-                                <div class="game-command-name">
-                                    {{game.commandOneName}}
+                                <div class="game-add-info-block">
+                                    <table class="game-points-block">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <button *ngIf="game.status == 1" mat-button class="goals-add-button" (click)="openFormAddGoals();selectCommand(game, turnamentPlayOff.playOffId)">Добавить гол</button>
+                                                    <span *ngIf="game.status != 1">Голы</span>
+                                                </td>
+                                                <td>
+                                                    <button *ngIf="game.status == 1" mat-button class="goals-add-button" (click)="openFormAddCard();selectCommand(game, turnamentPlayOff.playOffId)">Добавить штраф</button>
+                                                    <span *ngIf="game.status != 1">Штрафы</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                VS
-                                <div class="game-command-name">
-                                    {{game.commandTwoName}}
-                                </div>
-                            </div>
 
-                            <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGamePlayOff(game.id, j, p, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
+                                <button *ngIf="game.status == 1" mat-button class="game-complete-button button-active" (click)="completeGamePlayOff(game.id, j, p, game.commandOneGoals, game.commandTwoGoals)">Завершить</button>
+
+                            </div>
                         </div>
                     </div>
 
@@ -365,5 +436,60 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cause = null">Отмена</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="transparent-layer-goals" id="transparent-layer-goals">
+    <div class="add-goal" [ngStyle]="addGoalsBlockStyle()">
+        <form class="example-form" #newgoal="ngForm" novalidate autocomplete="on">
+            Команда
+            <select [(ngModel)]="commandId" name="commandId" (change)="goal.commandId = $event.target.value">
+                <option *ngFor="let command of commands" [value]="command.commandId">
+                    {{command.commandName}}
+                </option>
+            </select>
+            Игрок
+            <select (change)="goal.playerId = $event.target.value" required>
+                <option></option>
+                <option *ngFor="let player of getPlayer()" [value]="player.playerId">
+                    {{player.surname}}
+                </option>
+            </select>
+            Минута
+            <input type="number" name="time" [(ngModel)]="goal.time" required />
+
+            <button mat-button (click)="addGoals(newgoal.invalid)">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
+    </div>
+</div>
+
+<div class="transparent-layer-card" id="transparent-layer-card">
+    <div class="add-goal" [ngStyle]="addGoalsBlockStyle()">
+        <form class="example-form" #newcard="ngForm" novalidate autocomplete="on">
+            Команда
+            <select [(ngModel)]="commandId" name="commandId" (change)="card.commandId = $event.target.value" required>
+                <option *ngFor="let command of commands" [value]="command.commandId">
+                    {{command.commandName}}
+                </option>
+            </select>
+            Игрок
+            <select (change)="card.playerId = $event.target.value" required>
+                <option></option>
+                <option *ngFor="let player of getPlayer()" [value]="player.playerId">
+                    {{player.surname}}
+                </option>
+            </select>
+            <div class="card-select-block">
+                <mat-checkbox [(ngModel)]="isYellowe" name="yellowe" (change)="isRed=false">
+                    Желтая
+                </mat-checkbox>
+                <mat-checkbox [(ngModel)]="isRed" name="red" (change)="isYellowe=false">
+                    Красная
+                </mat-checkbox>
+            </div>
+            <button mat-button (click)="addCard(newcard.invalid)">Добавить</button>
+            <button mat-button (click)="close()">Отмена</button>
+        </form>
     </div>
 </div>

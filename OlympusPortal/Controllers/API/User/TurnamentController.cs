@@ -18,6 +18,10 @@ namespace OlympusPortal.Controllers.API
         [Authorize]
         [HttpPost]
         public ElementResponse DeclareTournament(ElementRequest request) => DeclareTournamentBLL.Execute(request, GetAccountId(), GetAccountName(), ConfigurationManager.AppSettings["OlimpEmail"]);
+
+        [Authorize]
+        [HttpPost]
+        public StatisticsCommandResponse GetStatisticsCommand() => GetStatisticsCommandBLL.Execute(GetAccountId());
     }
 }
 

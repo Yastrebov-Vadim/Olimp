@@ -9,6 +9,7 @@ namespace Olimp.BLL.Operations
         public static void Execute(CompleteGameRequest request)
         {
             DbHelper.CompleteGame(Guid.Parse(request.TurnamentId), Guid.Parse(request.GameId));
+            DbHelper.RemoveSkip(Guid.Parse(request.TurnamentId), Guid.Parse(request.GameId));
         }
     }
 }

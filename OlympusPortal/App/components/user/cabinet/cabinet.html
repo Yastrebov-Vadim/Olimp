@@ -147,7 +147,7 @@
                                     </div>
                                     День {{d+1}}
                                     <div class="date-start-game" *ngIf="groupTour.status != 0">
-                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy HH:mm'}}
                                     </div>
                                 </div>
 
@@ -288,7 +288,7 @@
                                         </div>
                                         День {{d+1}}
                                         <div class="date-start-game" *ngIf="groupTour.status != 0">
-                                            Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                            Дата игр: {{tour.dateStart | date:'dd-MM-yyyy HH:mm'}}
                                         </div>
                                     </div>
 
@@ -338,7 +338,7 @@
 
                 <div class="tournaments-command-content" *ngIf="list == 3">
                     <div class="tournaments-command-content">
-                        <table class="lk-command" *ngIf="turnament.isPlayOff">
+                        <table class="lk-command" *ngIf="!turnament.isPlayOff">
                             <tr>
                                 <td class="title-header">
                                     № Тура
@@ -360,6 +360,8 @@
                     </div>
 
                     <div *ngFor="let turnamentPlayOff of turnament.turnamentPlayOff; let p = index">
+
+
                         <div *ngFor="let groupTour of turnamentPlayOff.groupTourNumber; let t = index" class="tour-block" [ngClass]="turnamentPlayOff.stateCode || turnamentPlayOff.numberCircle == 1 || turnament.turnamentPlayOff[p-1].stateCode  ? '' : 'current-tour-opacity'">
                             <div class="current-tour-number" [ngClass]="groupTour.status == 1 ? 'active-tour' : ''">
                                 Тур № {{groupTour.numberTour}}
@@ -371,13 +373,13 @@
                                     </div>
                                     День {{d+1}}
                                     <div class="date-start-game" *ngIf="groupTour.status != 0">
-                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy'}}
+                                        Дата игр: {{tour.dateStart | date:'dd-MM-yyyy HH:mm'}}
                                     </div>
                                 </div>
 
                                 <div *ngFor="let game of tour.gameTurnament" class="game-block">
                                     <div class="game-points">
-                                        {{game.commandOneGoals}} - {{game.commandTwoGoals}}
+                                        {{game.commandOneGoals.value}} - {{game.commandTwoGoals.value}}
                                     </div>
 
                                     <div class="game-command-name-block">
@@ -389,12 +391,145 @@
                                             {{game.commandTwoName}}
                                         </div>
                                     </div>
+
+                                    <div class="game-add-info-block">
+                                        <table class="current-game-points-block">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandOneGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let goal of game.commandTwoGoals.goal">
+                                                                {{goal.playerSurname}} - {{goal.time}} мин
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandOneCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="goal-command-block">
+                                                            <div class="goal-command-element" *ngFor="let card of game.commandTwoCard.card">
+                                                                {{card.playerSurname}} <div [ngClass]="card.type == 1 ? 'yellowe-card' : 'red-card'" class="card"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="statistics-content" *ngIf="page == 3">
+        <div class="skip-block">
+
+            <div class="statistics-block">
+                <table class="lk-command">
+                    <tr class="lk-player">
+                        <td class="title-header">
+                            Всего игр
+                        </td>
+                        <td class="title-header">
+                            Забитых мячей
+                        </td>
+                        <td class="title-header">
+                            Пропущенных мячей
+                        </td>
+                        <td class="title-header">
+                            Побед
+                        </td>
+                        <td class="title-header">
+                            Поражений
+                        </td>
+                        <td class="title-header">
+                            Ничьих
+                        </td>
+                    </tr>
+
+                    <tr class="lk-player">
+                        <td class="">
+                            {{statisticsCommand.countGame}}
+                        </td>
+                        <td class="">
+                            {{statisticsCommand.scoreGoals}}
+                        </td>
+                        <td class="">
+                            {{statisticsCommand.missedGoals}}
+                        </td>
+                        <td class="">
+                            {{statisticsCommand.victory}}
+                        </td>
+                        <td class="">
+                            {{statisticsCommand.loss}}
+                        </td>
+                        <td class="">
+                            {{statisticsCommand.draw}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <div class="skip-title">Игроки пропускающие матч</div>
+                <div *ngFor="let skipMatchs of statisticsCommand.skipMatchs" class="skip-command">
+                    <div class="skip-title">
+                        {{skipMatchs.turnamentName}}
+                        <table class="lk-command">
+                            <tr class="lk-player">
+                                <td class="lk-number-count title-header">
+                                    №
+                                </td>
+                                <td class="lk-surname title-header">
+                                    Фамилия
+                                </td>
+                                <td class="lk-full-name title-header">
+                                    Имя
+                                </td>
+                                <td class="lk-last-name title-header">
+                                    Отчество
+                                </td>
+                                <td class="lk-number title-header">
+                                    Номер в поле
+                                </td>
+                            </tr>
+
+                            <tr class="lk-player" *ngFor="let player of skipMatchs.players; let p = index">
+                                <td class="lk-number-count">
+                                    {{p+1}}
+                                </td>
+                                <td class="lk-surname">
+                                    {{player.surname}}
+                                </td>
+                                <td class="lk-full-name">
+                                    {{player.name}}
+                                </td>
+                                <td class="lk-last-name">
+                                    {{player.middleName}}
+                                </td>
+                                <td class="lk-number">
+                                    {{player.number}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="OlimpModel.position_command_for_turnament" Width="1.5" PointX="8.75" PointY="7.625" />
         <EntityTypeShape EntityType="OlimpModel.turnament" Width="1.5" PointX="10.75" PointY="3.625" />
         <EntityTypeShape EntityType="OlimpModel.video_for_news" Width="1.5" PointX="10.75" PointY="0.625" />
+        <EntityTypeShape EntityType="OlimpModel.skip_match" Width="1.5" PointX="10.5" PointY="7.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

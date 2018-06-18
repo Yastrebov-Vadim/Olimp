@@ -36,7 +36,7 @@ export const AppRoutes: Routes = [
     { path: Common.RoutePaths.Cabinet, component: Cabinet },
     { path: Common.RoutePaths.News, component: News },
     { path: Common.RoutePaths.Photo, component: Photo },
-    { path: Common.RoutePaths.Video, component: Login },
+    { path: Common.RoutePaths.Video, component: VideoCommand },
 
     { path: Common.RoutePaths.Admin, component: Login },
     { path: Common.RoutePaths.Admin, component: Login, children: adminRoutes },

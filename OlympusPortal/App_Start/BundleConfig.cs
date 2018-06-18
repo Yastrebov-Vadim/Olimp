@@ -21,7 +21,7 @@ namespace OlympusPortal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site1.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/webPack").Include(
                        "~/Scripts/minify/polyfills.js",

@@ -111,6 +111,9 @@
     <Compile Include="DTO\position_command_for_turnament.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\skip_match.cs">
+      <DependentUpon>Olimp.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\turnament.cs">
       <DependentUpon>Olimp.tt</DependentUpon>
     </Compile>

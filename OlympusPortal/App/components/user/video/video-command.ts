@@ -20,10 +20,8 @@ export class VideoCommand implements OnInit {
     public videoTitle: string;
     public sources = new Array<string>();
     public dateTo: Date = null;
-
-    public myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd.mm.yyyy'
-    };
+    public commandId: string;
+    public pageSize: number[] = new Array<number>();
 
     constructor(
         private toastr: ToastsManager,
@@ -70,23 +68,14 @@ export class VideoCommand implements OnInit {
         self.sources.push(url);
     }
 
-    public filterCommand(id, checked) {
+    public filterCommand(id: string, checked) {
         var self = this;
 
-        console.dir(checked);
-        var D = self.dateTo;
-    }
-
-    public filterDate(event: IMyDateModel, type) {
-        var self = this;
-
-        switch (type) {
-            case 1: 
-                console.dir("1- " + event);
-                break;
-            case 2: 
-                console.dir("2- " + event);
-                break;
+        if (checked) {
+            self.commandId = id;
+        }
+        else {
+            self.commandId = null;
         }
     }
 }

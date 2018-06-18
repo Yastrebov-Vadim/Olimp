@@ -1,4 +1,10 @@
-﻿body {
+﻿.test-button {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+
+body {
     width: 100%;
     min-height: 100%;
     font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
@@ -1889,6 +1895,7 @@ header {
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
+    background-color: #232323;
 }
 
 .photo-layer {
@@ -1993,6 +2000,32 @@ header {
     box-shadow: 0px 0px 16px rgba(0,0,0,.75);
     -moz-box-shadow: 0px 0px 16px rgba(0,0,0,.75);
     -webkit-box-shadow: 0px 0px 16px rgba(0,0,0,.75);
+}
+
+.video-filter {
+    width: 255px;
+    height: 490px;
+    float: right;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 16px;
+}
+
+    .video-filter .filter-command {
+        height: 500px;
+        width: 255px;
+        overflow-y: scroll;
+        background-color: rgb(35, 35, 35);
+        padding-top: 10px;
+        box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 16px;
+        border-bottom: 1px solid rgb(0, 0, 0);
+    }
+
+.video-content-block {
+    height: 415px;
+    background-color: #232323;
+    border-radius: 5px;
+    overflow-y: scroll;
+    padding: 7px;
+    display: inline-block;
 }
 
 .mydp .invaliddate {
@@ -3027,3 +3060,30 @@ header {
     .add-arena .mat-form-field-underline {
         background-color: #fff !important;
     }
+
+.statistics-content {
+    background-color: #232323;
+    padding: 20px;
+}
+
+.skip-block {
+    border: 1px solid;
+    padding: 10px;
+}
+
+.skip-command {
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+.skip-title {
+    font-size: 16px;
+}
+
+.skip-title {
+    font-size: 18px;
+}
+
+.statistics-block {
+    margin-bottom: 40px;
+}

@@ -50,6 +50,7 @@ var Cabinet = (function () {
         self.getAccount();
         self.isAccount();
         self.getTournaments();
+        self.getStatisticsCommand();
     };
     Cabinet.prototype.getTournaments = function () {
         var self = this;
@@ -69,6 +70,12 @@ var Cabinet = (function () {
             self.isTur = self.turnaments.length > 0;
         });
     };
+    Cabinet.prototype.getStatisticsCommand = function () {
+        var self = this;
+        self.busy = self.turnamentService.GetStatisticsCommand().then(function (response) {
+            self.statisticsCommand = response.statisticsCommand;
+        });
+    };
     Cabinet.prototype.getResult = function (positionCommand, groupTourNumber, row, col) {
         var self = this;
         var commandOneId = positionCommand[row - 1].commandId;
@@ -81,8 +88,8 @@ var Cabinet = (function () {
                 result = oneGoals + " : " + twoGoals;
             }
             if (t.idCommandOne == commandTwoId && t.idCommandTwo == commandOneId) {
-                var oneGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
-                var twoGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var oneGoals = t.commandOneGoals.value == null ? "-" : t.commandOneGoals.value;
+                var twoGoals = t.commandTwoGoals.value == null ? "-" : t.commandTwoGoals.value;
                 result = twoGoals + " : " + oneGoals;
             }
         }); }); });
